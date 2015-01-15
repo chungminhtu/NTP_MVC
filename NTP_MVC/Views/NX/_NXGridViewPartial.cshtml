@@ -1,0 +1,18 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "NXGridView";
+        settings.CallbackRouteValues = new { Controller = "NX", Action = "NXGridViewPartial" };
+		
+				
+		settings.KeyFieldName = "ID";
+		
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = false;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+		
+				settings.Columns.Add("MO_TA");
+				settings.Columns.Add("TYPE");
+			});
+	}
+@grid.Bind(Model).GetHtml()

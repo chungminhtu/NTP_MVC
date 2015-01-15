@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu>
+  <!--<group Text="Danh mục dùng chung">
+    <item Text="Danh mục Tỉnh"  NavigateUrl="DMTinh" />
+    <item Text="Danh mục Huyện"  NavigateUrl="DMHuyen" />
+    <item Text="Danh mục Bệnh viện"  NavigateUrl="BenhVien" />
+    <item Text="Danh mục Loại bệnh viện"  NavigateUrl="DMLoaiBenhVien" />
+    <item Text="Danh mục Nguồn kinh phí"  NavigateUrl="DMNguonKinhPhi" />
+    <item Text="Danh mục Đơn vị tính"  NavigateUrl="DMDonViTinh" />
+    <item Text="Danh mục Đối tượng"  NavigateUrl="DMDoiTuong" />
+  </group>
+  <group Text="Quản lý bệnh nhân" >
+    <item Text="Danh sách bệnh nhân" NavigateUrl="BenhNhan"  />
+    <item Text="Sổ khám bệnh"  NavigateUrl="SoKhamBenh" />
+    <item Text="Phiếu xét nghiệm soi đờm trực tiếp" NavigateUrl="PhieuXetNghiem" />
+    <item Text="Sổ điều trị" NavigateUrl="SoDieuTri"/>
+  </group>
+  <group Text="Báo cáo">
+    <item Text="Báo cáo bệnh nhân" />
+    <item Text="Báo cáo thuốc" />
+    <item Text="Báo cáo vật tư y tế" />
+  </group>
+  <group Text="Trợ giúp">
+    <item Text="Thông tin chung" />
+    <item Text="Giới thiệu" />
+  </group>-->
+</menu>

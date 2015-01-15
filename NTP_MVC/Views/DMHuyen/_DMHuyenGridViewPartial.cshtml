@@ -1,0 +1,31 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "DMHuyenGridView";
+        settings.CallbackRouteValues = new { Controller = "DMHuyen", Action = "DMHuyenGridViewPartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMHuyen", Action = "DMHuyenGridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMHuyen", Action = "DMHuyenGridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMHuyen", Action = "DMHuyenGridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "MA_HUYEN";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("TEN_HUYEN");
+				settings.Columns.Add("MA_TINH");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

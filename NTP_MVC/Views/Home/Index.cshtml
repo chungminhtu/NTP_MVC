@@ -1,0 +1,43 @@
+﻿@model NTP_MVC.Models.AD_Users
+
+<link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
+
+<table style="background-color:#0ca3d2; width:100%; height: 100%" >
+    <tr>
+        <td style="padding: 50px 50px 50px 200px;vertical-align: middle;">
+            <div class="login">
+                <h1>Chương trình chống lao</h1>
+                @using (Html.BeginForm("Login", "Home"))
+                {
+                    <p> 
+                        @Html.TextBoxFor(model => model.Username, new { placeholder = "Tên đăng nhập" })
+                    </p>
+                    <p> 
+                        @Html.PasswordFor(model => model.Password, new { placeholder = "Mật khẩu" })
+                    </p>
+                    <p class="submit"><input type="submit" name="commit" value="Đăng nhập"></p>
+                }
+            </div>
+        </td>
+        <td>
+            @Html.DevExpress().ImageSlider(
+                    settings =>
+                    {
+                        settings.Name = "ImageSlider";
+                        settings.ShowNavigationBar = true;
+                        settings.Width = 600;
+
+                        settings.SettingsImageArea.ItemTextVisibility = ElementVisibilityMode.OnMouseOver;
+                        settings.SettingsImageArea.NavigationButtonVisibility = ElementVisibilityMode.OnMouseOver;
+                        settings.SettingsImageArea.ImageSizeMode = ImageSizeMode.FillAndCrop;
+
+                    }
+                 ).BindToFolder(@"~\Content\Slides").GetHtml()
+        </td>
+
+    </tr>
+
+</table>
+
+
+

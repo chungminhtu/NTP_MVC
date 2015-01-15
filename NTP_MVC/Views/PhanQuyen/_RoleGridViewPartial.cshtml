@@ -1,0 +1,17 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "RoleGridView";
+        settings.CallbackRouteValues = new { Controller = "Role", Action = "RoleGridViewPartial" };
+
+
+		settings.KeyFieldName = "RoleID";
+
+		settings.SettingsPager.Visible = false;
+		settings.Settings.ShowGroupPanel = false;
+		settings.Settings.ShowFilterRow = false;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("RoleName");
+			});
+}
+@grid.Bind(Model).GetHtml()

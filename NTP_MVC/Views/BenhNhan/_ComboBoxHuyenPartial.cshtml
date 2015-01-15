@@ -1,0 +1,12 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "ComboBoxHuyen";
+   settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboBoxHuyenPartial" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "MA_HUYEN";
+    settings.Properties.TextField = "TEN_HUYEN";
+ //   settings.Properties.Caption = "Huyện";
+    settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaTinh'] = ComboBoxTinh.GetValue(); }";
+}).BindList(ViewData["Huyens"]).GetHtml()

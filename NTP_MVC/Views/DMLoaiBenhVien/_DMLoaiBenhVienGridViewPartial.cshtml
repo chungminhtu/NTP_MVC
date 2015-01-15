@@ -1,0 +1,31 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "DMLoaiBenhVienGridView";
+        settings.CallbackRouteValues = new { Controller = "DMLoaiBenhVien", Action = "DMLoaiBenhVienGridViewPartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMLoaiBenhVien", Action = "DMLoaiBenhVienGridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMLoaiBenhVien", Action = "DMLoaiBenhVienGridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMLoaiBenhVien", Action = "DMLoaiBenhVienGridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "ID_LOAIBV";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("TEN_LOAIBV");
+				settings.Columns.Add("THUTU");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

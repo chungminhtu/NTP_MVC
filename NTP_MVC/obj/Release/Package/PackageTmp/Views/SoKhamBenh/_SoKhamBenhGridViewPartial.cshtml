@@ -1,0 +1,24 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "SoKhamBenhGridView";
+        settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartial" };
+
+
+		settings.KeyFieldName = "ID_SoKhamBenh";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = false;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("TrieuChung");
+				settings.Columns.Add("TrangThaiDomDaiThe");
+				settings.Columns.Add("XQ");
+				settings.Columns.Add("NoiGioiThieu");
+				settings.Columns.Add("ToChongLao");
+				settings.Columns.Add("XuTri");
+				settings.Columns.Add("BSKhamBenh");
+				settings.Columns.Add("NgayKhamBenh");
+			});
+}
+@grid.Bind(Model).GetHtml()

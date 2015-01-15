@@ -1,0 +1,56 @@
+﻿@{
+        var grid = Html.DevExpress().GridView(settings =>
+        {
+            settings.Name = "BenhNhanGridView";
+            settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "BenhNhanGridViewPartial" };
+
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BenhNhan", Action = "BenhNhanGridViewPartialAddNew" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BenhNhan", Action = "BenhNhanGridViewPartialUpdate" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BenhNhan", Action = "BenhNhanGridViewPartialDelete" };
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+        //    settings.SettingsSearchPanel.Visible = true;
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.ShowEditButton = true;
+
+            settings.KeyFieldName = "IDBenhNhan";
+
+            settings.SettingsPager.Visible = true;
+            //   settings.Settings.ShowGroupPanel = true;
+            settings.Settings.ShowFilterRow = true;
+            settings.SettingsBehavior.AllowSelectByRowClick = true;
+            settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaTinh'] = ComboBoxTinh.GetValue(); }";
+
+            settings.Columns.Add("HoTen");
+            settings.Columns.Add("SoCMND");
+            settings.Columns.Add("Tuoi");
+            settings.Columns.Add("Gioitinh");
+            settings.Columns.Add("Diachi");
+            settings.Columns.Add("Sodienthoai");
+            settings.Columns.Add("BHYT");
+            settings.Columns.Add("NgheNghiep");
+            settings.Columns.Add("NoiGioiThieu");
+
+            settings.CommandColumn.SetHeaderTemplateContent(c =>
+            {
+                Html.DevExpress().HyperLink(hyperLinkSettings =>
+                {
+                    hyperLinkSettings.Name = "link_" + settings.Name;
+                    hyperLinkSettings.Properties.Text = "New";
+                    hyperLinkSettings.NavigateUrl = "javascript:void(0);";
+                    hyperLinkSettings.Properties.ClientSideEvents.Click = string.Format(@"
+                            function(s, e)
+                            {{
+                                {0}.AddNewRow();
+                            }}",
+                   settings.Name);
+                }).Render();
+            });
+        });
+        if (ViewData["EditError"] != null)
+        {
+            grid.SetEditErrorText((string)ViewData["EditError"]);
+        }
+        grid.Bind(Model).GetHtml();
+} 

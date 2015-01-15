@@ -1,0 +1,32 @@
+﻿@Html.DevExpress().Splitter(settings =>
+{
+    settings.Name = "Splitter";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.AllowResize = true;
+    settings.FullscreenMode = true;
+    settings.ShowCollapseBackwardButton = true;
+    settings.Panes.Add(pane =>
+    {
+        pane.MaxSize = 250;
+        pane.MinSize = 200;
+        pane.Collapsed = false;
+        pane.ScrollBars = ScrollBars.Vertical;
+        pane.SetContent(() =>
+        {
+            Html.RenderPartial("EditBenhNhan");
+        });
+    });
+    settings.Panes.Add(pane =>
+    {
+        pane.SetContent(() =>
+        { 
+            Html.RenderAction("SoKhamBenhGridViewPartial");  
+        });
+    });
+}).GetHtml()
+
+
+
+
+

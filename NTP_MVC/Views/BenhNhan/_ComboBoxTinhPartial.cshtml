@@ -1,0 +1,12 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "ComboBoxTinh"; 
+  settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+ //   settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboBoxHuyenPartial" };
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.Properties.ValueType = typeof(long);
+    settings.Properties.ValueField = "MA_TINH";
+    settings.Properties.TextField = "TEN_TINH";
+    settings.Properties.Caption = "Thuộc tỉnh";
+    settings.Properties.ClientSideEvents.SelectedIndexChanged = "function(s, e) {ComboBoxHuyen.PerformCallback(); BenhNhanGridView.PerformCallback(); BenhNhanGridView.DataBind();}";
+}).BindList(ViewData["Tinhs"]).GetHtml()

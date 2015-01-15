@@ -1,0 +1,22 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "MaBNQLComboBox";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.Properties.DropDownHeight = 350;
+    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "MaBNQLPartial" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "MaBNQL";
+    settings.Properties.FilterMinLength = 4;
+    settings.Properties.TextFormatString = "{0}";
+    settings.Properties.ValueType = typeof(string); 
+    settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) {  e.customArgs['MaBNQLComboBox'] = MaBNQLComboBox.GetValue(); }";
+
+    settings.Properties.Columns.Add("MaBNQL", "Mã Bệnh Nhân", 120);
+    settings.Properties.Columns.Add("HoTen", "Họ và Tên", 130);
+    settings.Properties.Columns.Add("GioiTinh", "Giới Tính", 60);
+    settings.Properties.Columns.Add("Tuoi", "Tuổi", 40);
+    settings.Properties.Columns.Add("TenTinh", "Tỉnh", 100);
+    settings.Properties.Columns.Add("TenHuyen", "Huyện", 250);
+    
+}).BindList(ViewData["MaBNQL"]).GetHtml()

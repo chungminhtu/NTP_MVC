@@ -1,0 +1,29 @@
+@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
+        settings.Name = "MenuTreeList";
+        settings.CallbackRouteValues = new { Controller = "Role", Action = "MenuTreeListPartial" };
+
+
+        settings.AutoGenerateColumns = false;
+
+        settings.KeyFieldName = "MenuID";
+        settings.ParentFieldName = "AD_Menu";
+        settings.Columns.Add(
+            column =>
+            {
+                column.FieldName = "AllowAccess";
+            }
+        );
+        settings.Columns.Add(
+            column =>
+            {
+                column.FieldName = "AD_Menu";
+            }
+     );
+
+        settings.SettingsPager.Visible = true;
+        settings.SettingsSelection.Enabled = true;
+    });
+}
+@treeList.Bind(Model).GetHtml()

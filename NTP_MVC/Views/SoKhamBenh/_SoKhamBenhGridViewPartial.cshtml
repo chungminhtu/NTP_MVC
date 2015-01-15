@@ -1,0 +1,65 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "SoKhamBenhGridView";
+        settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter; 
+        
+        settings.SettingsBehavior.ConfirmDelete = true;
+       // settings.SettingsSearchPanel.Visible = true;
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "ID_SoKhamBenh";
+
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+       // settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaTinh'] = ComboBoxTinh.GetValue(); }";
+
+        settings.Columns.Add("TrieuChung");
+        settings.Columns.Add("KetQuaXetNghiemDom");
+        settings.Columns.Add("NgayXetNghiemDom");
+        settings.Columns.Add("XQ");
+        settings.Columns.Add("NgayChupXQ");
+        settings.Columns.Add("Khac");
+        settings.Columns.Add("NoiGioiThieu");
+        settings.Columns.Add("ToChongLao");
+        settings.Columns.Add("XuTri");
+        settings.Columns.Add("BSKhamBenh");
+        settings.Columns.Add("Ghichu");
+        settings.Columns.Add("NgayKhamBenh");
+        settings.Columns.Add("MaBNQL");
+
+        settings.CommandColumn.SetHeaderTemplateContent(c =>
+        {
+            Html.DevExpress().HyperLink(hyperLinkSettings =>
+            {
+                hyperLinkSettings.Name = "link_" + settings.Name;
+                hyperLinkSettings.Properties.Text = "Thêm";
+                hyperLinkSettings.NavigateUrl = "javascript:void(0);";
+                hyperLinkSettings.Properties.ClientSideEvents.Click = string.Format(@"
+                            function(s, e)
+                            {{
+                                {0}.AddNewRow();
+                            }}",
+               settings.Name);
+            }).Render();
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(Model).GetHtml();
+} 
