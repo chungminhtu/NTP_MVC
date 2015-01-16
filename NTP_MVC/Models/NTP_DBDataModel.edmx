@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="MenuID" />
           </Key>
-          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="MenuParentID" Type="int" />
         </EntityType>
@@ -537,7 +537,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
           <Key>
             <PropertyRef Name="MenuID" />
           </Key>
-          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MenuName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MenuParentID" Type="Int32" />
           <NavigationProperty Name="AD_RoleMenu" Relationship="Self.FK_AD_RoleMenu_AD_Menu" FromRole="AD_Menu" ToRole="AD_RoleMenu" />

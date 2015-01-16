@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="MenuID" />
     </Key>
-    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MenuName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="MenuParentID" Type="Int32" />
     <NavigationProperty Name="AD_RoleMenu" Relationship="Self.FK_AD_RoleMenu_AD_Menu" FromRole="AD_Menu" ToRole="AD_RoleMenu" />

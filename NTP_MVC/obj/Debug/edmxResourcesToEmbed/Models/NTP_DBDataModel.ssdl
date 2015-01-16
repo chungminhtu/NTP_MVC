@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="MenuID" />
     </Key>
-    <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="MenuName" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="MenuParentID" Type="int" />
   </EntityType>
