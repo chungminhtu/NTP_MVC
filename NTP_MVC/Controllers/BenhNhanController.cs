@@ -9,11 +9,15 @@ namespace NTP_MVC.Controllers
     public class BenhNhanController : Controller
     {
         // GET: BenhNhan
-        public ActionResult Index()
+        public ActionResult Index(string MaTinh, string MaHuyen)
         {
-            ViewData["Tinhs"] = db.DM_Tinh.ToList();
-            ViewData["Huyens"] = null;
-            ViewData["BenhNhan"] = null;
+            ControllerContext.HttpContext.Session["MATINH"] = MaTinh + "";
+            ControllerContext.HttpContext.Session["MAHUYEN"] = MaHuyen + "";
+
+            ViewData["Tinhs"] = MaTinh == null ? db.DM_Tinh.ToList() : db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
+            ViewData["Huyens"] = MaHuyen == null ? null : db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
+
+            ViewData["BenhNhan"] = null;//db.SO_BenhNhan.Where(b => b.MA_TINH == MaTinh).Where(b => b.MA_HUYEN == MaHuyen).ToList();
             ViewData["MaBNQL"] = null;
             ViewData["StartDate"] = null;
             ViewData["EndDate"] = null;
@@ -25,9 +29,9 @@ namespace NTP_MVC.Controllers
         [ValidateInput(false)]
         public ActionResult BenhNhanGridViewPartial()
         {
-            string s = Request.Params["MaTinh"] + "";
+            string s = Request.Params["MaHuyen"] + "";
             var model = (from d in db.SO_BenhNhan
-                         where d.MA_TINH.Equals(s)
+                         where d.MA_HUYEN.Equals(s)
                          select d).ToList();
             return PartialView("_BenhNhanGridViewPartial", model.ToList());
         }
@@ -60,7 +64,7 @@ namespace NTP_MVC.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.IDBenhNhan == item.IDBenhNhan);
+                    var modelItem = model.FirstOrDefault(it => it.ID_BenhNhan == item.ID_BenhNhan);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -84,7 +88,7 @@ namespace NTP_MVC.Controllers
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.IDBenhNhan == IDBenhNhan);
+                    var item = model.FirstOrDefault(it => it.ID_BenhNhan == IDBenhNhan);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -121,7 +125,7 @@ namespace NTP_MVC.Controllers
         public ActionResult SearchBenhNhanPartial()
         {
             string s = Request.Params["SearchCombobox"] + "";
-            
+
             ViewData["BenhNhan"] = (from d in db.SO_BenhNhan
                                     join e in db.DM_Huyen on d.MA_HUYEN equals e.MA_HUYEN into Huyen
                                     from h in Huyen
@@ -129,7 +133,7 @@ namespace NTP_MVC.Controllers
                                     from tinh in Tinh.DefaultIfEmpty()
                                     from huyen in Huyen.DefaultIfEmpty()
                                     where d.SoCMND.Contains(s) || d.MaBNQL.Contains(s) || d.HoTen.Contains(s)
-                                    orderby tinh.TEN_TINH 
+                                    orderby tinh.TEN_TINH
                                     select new
                                     {
                                         SoCMND = d.SoCMND,
@@ -139,7 +143,7 @@ namespace NTP_MVC.Controllers
                                         Tuoi = d.Tuoi,
                                         TenTinh = tinh.TEN_TINH,
                                         TenHuyen = huyen.TEN_HUYEN,
-                                        IDBenhNhan = d.IDBenhNhan,
+                                        ID_BenhNhan = d.ID_BenhNhan,
                                         ID_Doituong = d.ID_Doituong,
                                         MA_TINH = d.MA_TINH,
                                         MA_HUYEN = d.MA_HUYEN,
