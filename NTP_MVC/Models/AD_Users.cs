@@ -22,7 +22,5 @@ namespace NTP_MVC.Models
         public Nullable<int> RoleID { get; set; }
         public string MA_TINH { get; set; }
         public string MA_HUYEN { get; set; }
-    
-        public virtual AD_Roles AD_Roles { get; set; }
     }
 }

@@ -16,6 +16,13 @@ namespace NTP_MVC.Controllers
         }
 
         NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        
+        public ActionResult ComboBoxHuyenPartial()
+        {
+            string maTinh = Request.Params["MaTinh"] + "";
+            ViewData["Huyens"] = db.DM_Huyen.Where(m => m.MA_TINH == maTinh).ToList();
+            return PartialView("_ComboBoxHuyenPartial");
+        }
 
         [ValidateInput(false)]
         public ActionResult DMHuyenGridViewPartial()

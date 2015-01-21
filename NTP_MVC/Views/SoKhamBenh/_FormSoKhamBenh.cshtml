@@ -5,14 +5,14 @@
         new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "MetropolisBlue" },
         new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "MetropolisBlue" }
     )*@
-
-@Html.DevExpress().FormLayout(settings =>
+<div style="overflow-y:scroll; width:auto; height:550px;">
+    @Html.DevExpress().FormLayout(settings =>
     {
-        settings.Name = "FormDetailSoKB";
+        settings.Name = "FormSoKhamBenh";
         //settings.Theme = "MetropolisBlue"; ///Thay đổi giao diện
         settings.ColCount = 4;
-        settings.Width = 900; 
-        
+        settings.Width = 900;
+
         settings.Items.AddGroupItem(group =>
         {
             group.Caption = "Thông tin cơ bản";
@@ -53,7 +53,7 @@
                 m.NestedExtensionSettings.Width = Unit.Percentage(100);
             });
         });
-         
+
         ///////////////////////////////////////KẾT QUẢ CẬN LÂM SÀNG
         settings.Items.AddGroupItem(group =>
         {
@@ -120,12 +120,12 @@
                 m.Caption = "";
                 m.SetNestedContent(() =>
                 {
-                    @Html.RenderAction("PhieuXetNghiemGridPartial");
+                    Html.RenderAction("GridPhieuXetNghiem", "PhieuXetNghiem");
                 });
             });
         });
 
-         
+
         ///////////////////////////////////////Ý KIẾN CHẨN ĐOÁN CỦA BÁC SỸ
         settings.Items.AddGroupItem(group =>
         {
@@ -140,7 +140,7 @@
                 m.FieldName = "NoiGioiThieu";
                 m.ColSpan = 2;
                 m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
-                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                m.NestedExtensionSettings.Width = Unit.Percentage(80);
             });
             group.Items.Add(m =>
             {
@@ -155,7 +155,7 @@
                 m.FieldName = "XuTri";
                 m.ColSpan = 2;
                 m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
-                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                m.NestedExtensionSettings.Width = Unit.Percentage(80);
             });
             group.Items.Add(m =>
             {
@@ -169,10 +169,10 @@
                 m.FieldName = "GhiChu";
                 m.ColSpan = 2;
                 m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
-                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                m.NestedExtensionSettings.Width = Unit.Percentage(80);
             });
         });
-         
+
         ///////////////////////////////////////////FOOTER
         settings.Items.Add(itemSettings =>
         {
@@ -186,7 +186,7 @@
                     {
                         btnSettings.Name = "btnUpdate";
                         btnSettings.Text = "Cập nhật dữ liệu";
-                        btnSettings.ClientSideEvents.Click = "function(s, e){ SoKhamBenhGridView.UpdateEdit(); }";
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoKhamBenh.UpdateEdit(); }";
                     }).Render();
                 Html.DevExpress().Button(
                     btnSettings =>
@@ -194,10 +194,10 @@
                         btnSettings.Name = "btnCancel";
                         btnSettings.Text = "Đóng";
                         btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                        btnSettings.ClientSideEvents.Click = "function(s, e){ SoKhamBenhGridView.CancelEdit(); }";
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoKhamBenh.CancelEdit(); }";
                     }).Render();
                 ViewContext.Writer.Write("</div>");
-        });
+            });
 
         //var groupItem = settings.Items.AddGroupItem(groupSettings =>
         //{
@@ -205,8 +205,8 @@
         //    groupSettings.ShowCaption = DefaultBoolean.True;
         //    groupSettings.GroupBoxDecoration = GroupBoxDecoration.Box;
 
-        //    groupSettings.ColSpan = 2;
-        //    groupSettings.ColCount = 2;
+        //    groupSettings.ColSpan = 4;
+        //    groupSettings.ColCount = 4;
         //});
 
         //groupItem.SettingsItems.ShowCaption = DefaultBoolean.True;
@@ -224,5 +224,6 @@
         //groupItem.Items.Add(m => m.HUY);
         //groupItem.Items.Add(m => m.NGAYHUY);
 
-    }).GetHtml();
+    }).GetHtml()
 
+</div>

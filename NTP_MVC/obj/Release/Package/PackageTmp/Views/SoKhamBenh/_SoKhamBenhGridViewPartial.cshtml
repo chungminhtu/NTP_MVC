@@ -1,24 +1,121 @@
+﻿@*<div>
+        @Html.DevExpress().Panel(settings =>
+    {
+        settings.Name = "Panel";
+        settings.FixedPosition = DevExpress.Web.PanelFixedPosition.None;
+        settings.SettingsCollapsing.ExpandEffect = DevExpress.Web.PanelExpandEffect.Auto;
+        settings.SetContent(() =>
+        {
+            @Html.DevExpress().Button(
+               MyButton =>
+               {
+                   MyButton.Name = "btnThemMoi";
+                   MyButton.Width = 90;
+                   MyButton.Text = "Thêm mới";
+                   MyButton.ClientSideEvents.Click = "UpdateLayoutForm";
+                   //settings.Images.Image.IconID = "actions_cancel_16x16";
+               }).GetHtml();
+            @Html.DevExpress().Button(
+                    MyButton =>
+                    {
+                        MyButton.Name = "btnSua";
+                        MyButton.Width = 90;
+                        MyButton.Text = "Sửa";
+                        //settings.Images.Image.IconID = "actions_cancel_16x16";
+                        MyButton.ClientSideEvents.Click = "function(s, e) { document.location='" + DevExpressHelper.GetUrl(
+                            new { Controller = "Support", Action = "ResendEvent" }) +
+                            "?key=' + s.GetRowKey(e.visibleIndex); }";
+                    }).GetHtml();
+            @Html.DevExpress().Button(
+                    MyButton =>
+                    {
+                        MyButton.Name = "btnXoa";
+                        MyButton.Width = 90;
+                        MyButton.Text = "Xóa";
+                        //settings.Images.Image.IconID = "actions_cancel_16x16";
+                    }).GetHtml();
+        });
+    }).GetHtml()
+
+    </div>*@
+
 @{
-	var grid = Html.DevExpress().GridView(settings => {
+    var grid = Html.DevExpress().GridView(settings =>
+    {
         settings.Name = "SoKhamBenhGridView";
-        settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartial" };
+        settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "GetListSoKhamBenh" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoKhamBenh", Action = "SoKhamBenhGridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+
+        settings.SettingsBehavior.ConfirmDelete = true;
 
 
-		settings.KeyFieldName = "ID_SoKhamBenh";
+        //Column Edit
+        var EditColumnCommand = new MVCxGridViewCommandColumn();
+        EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        EditColumnCommand.EditButton.Visible = true;
+        EditColumnCommand.ShowNewButtonInHeader = true;
+        EditColumnCommand.VisibleIndex = 0;
+        settings.Columns.Add(EditColumnCommand);
 
-		settings.SettingsPager.Visible = true;
-		settings.Settings.ShowGroupPanel = false;
-		settings.Settings.ShowFilterRow = true;
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        //Columm Delete
+        var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        DeleteColumnCommand.DeleteButton.Visible = true;
+        DeleteColumnCommand.VisibleIndex = 14;
+        settings.Columns.Add(DeleteColumnCommand);
+        
+         
+        settings.KeyFieldName = "ID_SoKhamBenh";
 
-				settings.Columns.Add("TrieuChung");
-				settings.Columns.Add("TrangThaiDomDaiThe");
-				settings.Columns.Add("XQ");
-				settings.Columns.Add("NoiGioiThieu");
-				settings.Columns.Add("ToChongLao");
-				settings.Columns.Add("XuTri");
-				settings.Columns.Add("BSKhamBenh");
-				settings.Columns.Add("NgayKhamBenh");
-			});
+        //////////////////////////////////////////POPUP//////////////////////////////////////////////////////
+        settings.SetEditFormTemplateContent(c =>
+        {
+            NTP_MVC.Models.SO_SoKhamBenh editItem;
+            if (c.Grid.IsNewRowEditing)
+                editItem = new NTP_MVC.Models.SO_SoKhamBenh();
+            else
+            {
+                editItem = ViewData["Item"] != null ? (NTP_MVC.Models.SO_SoKhamBenh)ViewData["Item"] : (NTP_MVC.Models.SO_SoKhamBenh)c.Grid.GetRow(c.VisibleIndex);
+            }
+            editItem.ID_BENHNHAN = Convert.ToInt64(System.Web.HttpContext.Current.Session["ID_BenhNhan"]);
+            Html.RenderPartial("_FormDetailSoKBPartial", editItem);
+        });
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = false;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + System.Web.HttpContext.Current.Session["ID_BenhNhan"] + "; }";
+
+        settings.Columns.Add("TrieuChung");
+        settings.Columns.Add("KetQuaXetNghiemDom");
+        settings.Columns.Add("NgayXetNghiemDom");
+        settings.Columns.Add("XQ");
+        settings.Columns.Add("NgayChupXQ");
+        settings.Columns.Add("Khac");
+        settings.Columns.Add("NoiGioiThieu");
+        settings.Columns.Add("ToChongLao");
+        settings.Columns.Add("XuTri");
+        settings.Columns.Add("BSKhamBenh");
+        settings.Columns.Add("Ghichu");
+        settings.Columns.Add("NgayKhamBenh");
+        settings.Columns.Add("MaBNQL");
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(Model).GetHtml();
 }
-@grid.Bind(Model).GetHtml()
+
+

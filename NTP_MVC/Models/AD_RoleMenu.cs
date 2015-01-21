@@ -17,8 +17,5 @@ namespace NTP_MVC.Models
         public int MenuID { get; set; }
         public int RoleID { get; set; }
         public Nullable<bool> AllowAccess { get; set; }
-    
-        public virtual AD_Menu AD_Menu { get; set; }
-        public virtual AD_Roles AD_Roles { get; set; }
     }
 }

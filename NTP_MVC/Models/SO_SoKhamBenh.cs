@@ -15,7 +15,7 @@ namespace NTP_MVC.Models
     public partial class SO_SoKhamBenh
     {
         public long ID_SoKhamBenh { get; set; }
-        public string ID_BENHNHAN { get; set; }
+        public long ID_BENHNHAN { get; set; }
         public string TrieuChung { get; set; }
         public string KetQuaXetNghiemDom { get; set; }
         public string TrangThaiDomDaiThe { get; set; }

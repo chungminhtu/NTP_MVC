@@ -16,6 +16,7 @@ namespace NTP_MVC.Controllers
         }
 
         NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+          
 
         [ValidateInput(false)]
         public ActionResult DMTinhGridViewPartial()

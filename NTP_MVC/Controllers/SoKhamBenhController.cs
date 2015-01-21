@@ -10,22 +10,28 @@ namespace NTP_MVC.Controllers
 {
     public class SoKhamBenhController : Controller
     {
-        // GET: SoKhamBenh
-        public ActionResult Index()
-        { 
-            return View();
-        }
-
         NTP_DBEntities db = new NTP_DBEntities();
 
-        [ValidateInput(false)]
-        public ActionResult SoKhamBenhGridViewPartial()
+        public ActionResult Index()
         {
-            ViewData["ListPXNBenhNhan"] = null;
-            var model = db.SO_SoKhamBenh.Take(0).ToList();
-            return PartialView("_SoKhamBenhGridViewPartial", model);
-        }
+            Session["ID_BenhNhan"] = Request.Params["ID_BenhNhan"] + "";
+            string s = Session["ID_BenhNhan"] + "";
+            if (s != "")//Nếu có ID_BenhNhan thì Edit
+            {
+                ViewData["ListSoKhamBenh"] = db.SO_SoKhamBenh.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
+                var model = (SO_BenhNhan)db.SO_BenhNhan.Where(bn => bn.ID_BenhNhan.ToString().Equals(s)).SingleOrDefault();
+                return View(model);
+            }
+            return View(); //Nếu không edit thì addnew
+        } 
 
+        [ValidateInput(false)]
+        public ActionResult GridSoKhamBenhList()
+        {  
+            GetSoKhamBenhCuaBenhNhan();
+            return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
+        }
+         
         public ActionResult GetDetailBenhNhan()
         {
             var s = Request.Params["ID_BenhNhan"] + "";
@@ -33,19 +39,16 @@ namespace NTP_MVC.Controllers
                                       where bn.SoCMND.Contains(s) || bn.MaBNQL.Contains(s) || bn.HoTen.Contains(s) || bn.ID_BenhNhan.ToString().Contains(s)
                                       select bn).FirstOrDefault();
             //ViewData["IDBenhNhan"] = model.ID_BenhNhan;
-            return PartialView("ThongTinBenhNhan", model);
+            return PartialView("_FormBenhNhan", model);
         }
-         
-        public ActionResult GetListSoKhamBenh()
+        public void GetSoKhamBenhCuaBenhNhan()
         {
-            long IDBenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"].ToString().Split(',')[0]);
-            var model = db.SO_SoKhamBenh.Where(bn => bn.ID_BENHNHAN == IDBenhNhan).ToList();
-            ViewData["IDBenhNhan"] = IDBenhNhan;
-            return PartialView("_SoKhamBenhGridViewPartial", model);
+            string s = Session["ID_BenhNhan"] + ""; 
+            ViewData["ListSoKhamBenh"] = db.SO_SoKhamBenh.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoKhamBenhGridViewPartialAddNew(SO_SoKhamBenh item)
+        public ActionResult GridSoKhamBenhAddNew(SO_SoKhamBenh item)
         {
             var model = db.SO_SoKhamBenh;
             if (ModelState.IsValid)
@@ -62,10 +65,11 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_SoKhamBenhGridViewPartial", model.ToList());
+            GetSoKhamBenhCuaBenhNhan();
+            return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoKhamBenhGridViewPartialUpdate(SO_SoKhamBenh item)
+        public ActionResult GridSoKhamBenhUpdate(SO_SoKhamBenh item)
         {
             var model = db.SO_SoKhamBenh;
             if (ModelState.IsValid)
@@ -86,10 +90,11 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_SoKhamBenhGridViewPartial", model.Take(1000).ToList());
+            GetSoKhamBenhCuaBenhNhan();
+            return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoKhamBenhGridViewPartialDelete(Int64 ID_SoKhamBenh)
+        public ActionResult GridSoKhamBenhDelete(Int64 ID_SoKhamBenh)
         {
             var model = db.SO_SoKhamBenh;
             if (ID_SoKhamBenh >= 0)
@@ -106,79 +111,24 @@ namespace NTP_MVC.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_SoKhamBenhGridViewPartial", model.ToList());
+            GetSoKhamBenhCuaBenhNhan();
+            return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
         }
+         
 
-        [ValidateInput(false)]
-        public ActionResult PhieuXetNghiemGridPartial()
+        public ActionResult ComboSearchBenhNhan()
         {
-            ViewData["ListPXNBenhNhan"] = db.SO_PhieuXetNghiem.Take(8).ToList();
-            return PartialView("_PhieuXetNghiemGridPartial", ViewData["ListPXNBenhNhan"]);
-        }
+            string s = Request.Params["SearchCombobox"] + "";
+            string MaHuyen = HttpContext.Session["MAHUYEN"] + "";// Request.Params["MaHuyen"] + "";
 
-        [HttpPost, ValidateInput(false)]
-        public ActionResult PhieuXetNghiemGridPartialAddNew(NTP_MVC.Models.SO_PhieuXetNghiem item)
-        {
-            var model = db.SO_PhieuXetNghiem;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    model.Add(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_PhieuXetNghiemGridPartial", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult PhieuXetNghiemGridPartialUpdate(NTP_MVC.Models.SO_PhieuXetNghiem item)
-        {
-            var model = db.SO_PhieuXetNghiem;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var modelItem = model.FirstOrDefault(it => it.ID_Phieuxetnghiem == item.ID_Phieuxetnghiem);
-                    if (modelItem != null)
-                    {
-                        this.UpdateModel(modelItem);
-                        db.SaveChanges();
-                    }
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_PhieuXetNghiemGridPartial", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult PhieuXetNghiemGridPartialDelete(System.Int64 ID_Phieuxetnghiem)
-        {
-            var model = db.SO_PhieuXetNghiem;
-            if (ID_Phieuxetnghiem >= 0)
-            {
-                try
-                {
-                    var item = model.FirstOrDefault(it => it.ID_Phieuxetnghiem == ID_Phieuxetnghiem);
-                    if (item != null)
-                        model.Remove(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            return PartialView("_PhieuXetNghiemGridPartial", model.ToList());
+            ViewData["BenhNhan"] = (from d in db.SO_BenhNhan
+                                    where (d.MA_HUYEN.Equals(MaHuyen)) && (
+                                            d.SoCMND.Contains(s) ||
+                                            d.MaBNQL.Contains(s) ||
+                                            d.HoTen.Contains(s))
+                                    orderby d.MA_TINH
+                                    select d).ToList();
+            return PartialView("_ComboSearchBenhNhan", ViewData["BenhNhan"]);
         }
     }
 }

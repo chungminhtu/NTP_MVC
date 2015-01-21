@@ -63,15 +63,7 @@
             pane.PaneStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
             pane.SetContent(RenderBody().ToHtmlString());
         });
-
-        //settings.Panes.Add(pane => {
-        //    pane.Name = "Footer";
-        //    pane.Size = System.Web.UI.WebControls.Unit.Pixel(20);
-        //    pane.PaneStyle.CssClass = "footerPane";
-        //    pane.SetContent(() => {
-        //        Html.RenderPartial("FooterPartialView");
-        //    });
-        //});
+     
     }).GetHtml()
 </body>
 </html>

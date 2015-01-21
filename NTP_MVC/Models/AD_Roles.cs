@@ -14,17 +14,8 @@ namespace NTP_MVC.Models
     
     public partial class AD_Roles
     {
-        public AD_Roles()
-        {
-            this.AD_RoleMenu = new HashSet<AD_RoleMenu>();
-            this.AD_Users = new HashSet<AD_Users>();
-        }
-    
         public int RoleID { get; set; }
         public string RoleName { get; set; }
         public string Description { get; set; }
-    
-        public virtual ICollection<AD_RoleMenu> AD_RoleMenu { get; set; }
-        public virtual ICollection<AD_Users> AD_Users { get; set; }
     }
 }

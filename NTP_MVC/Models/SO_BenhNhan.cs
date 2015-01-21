@@ -14,8 +14,8 @@ namespace NTP_MVC.Models
     
     public partial class SO_BenhNhan
     {
-        public long IDBenhNhan { get; set; }
-        public Nullable<int> ID_Doituong { get; set; }
+        public long ID_BenhNhan { get; set; }
+        public int ID_Doituong { get; set; }
         public string HoTen { get; set; }
         public string MaBNQL { get; set; }
         public string SoCMND { get; set; }
@@ -31,7 +31,7 @@ namespace NTP_MVC.Models
         public string Nguoi_SD { get; set; }
         public Nullable<bool> Huy { get; set; }
         public Nullable<bool> HuyenXN { get; set; }
-        public Nullable<bool> TinhXN { get; set; }
+        public bool TinhXN { get; set; }
         public Nullable<decimal> STT { get; set; }
         public Nullable<decimal> Namsinh { get; set; }
         public Nullable<byte> HIV { get; set; }

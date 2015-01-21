@@ -15,11 +15,11 @@ namespace NTP_MVC.Models
     public partial class SO_PhieuXetNghiem
     {
         public long ID_Phieuxetnghiem { get; set; }
-        public string ID_Benhnhan { get; set; }
+        public long ID_Benhnhan { get; set; }
         public string SoXN { get; set; }
         public string ID_Benhvien { get; set; }
         public Nullable<int> ID_PhanloaiYte { get; set; }
-        public Nullable<int> LydoXN { get; set; }
+        public int LydoXN { get; set; }
         public Nullable<byte> Soluong { get; set; }
         public Nullable<byte> SoThangDT { get; set; }
         public Nullable<byte> HIV { get; set; }

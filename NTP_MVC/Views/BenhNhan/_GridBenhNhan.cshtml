@@ -1,0 +1,134 @@
+﻿<script>
+    var ID_BenhNhan = "";
+    function OnGridFocusedRowChanged(s, e) {
+        ID_BenhNhan = s.GetRowKey(s.GetFocusedRowIndex()); 
+    } 
+</script>
+
+<div>
+    @Html.DevExpress().Panel(settings =>
+    {
+        settings.Name = "Panel";
+        settings.FixedPosition = DevExpress.Web.PanelFixedPosition.None;
+        settings.SettingsCollapsing.ExpandEffect = DevExpress.Web.PanelExpandEffect.Auto;
+        settings.SetContent(() =>
+        {
+            @Html.DevExpress().Button(
+               MyButton =>
+               {
+                   MyButton.Name = "btnThemMoi";
+                   MyButton.Width = 90;
+                   MyButton.Text = "Thêm mới";
+                   MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                            new { Controller = "SoKhamBenh", Action = "Index" })+"' }";
+                   MyButton.Images.Image.Url = "~/Content/Images/add.png";
+               }).GetHtml();
+            ViewContext.Writer.Write(" ");
+            @Html.DevExpress().Button(
+                    MyButton =>
+                    {
+                        MyButton.Name = "btnSua";
+                        MyButton.Width = 90;
+                        MyButton.Text = "Sửa";
+                        MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                        MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                            new { Controller = "SoKhamBenh", Action = "Index" }) +
+                                                            "?ID_BenhNhan=' + ID_BenhNhan; }";
+                    }).GetHtml();
+            ViewContext.Writer.Write(" ");
+            @Html.DevExpress().Button(
+                    MyButton =>
+                    {
+                        MyButton.Name = "btnXoa";
+                        MyButton.Width = 90;
+                        MyButton.Text = "Xóa";
+                        MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                    }).GetHtml();
+        });
+    }).GetHtml()
+
+</div>
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {    
+        /*Initial*/
+        settings.Name = "BenhNhanGridView";
+        settings.Width = Unit.Percentage(100);
+        settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhan" };       
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaHuyen'] = \"" + Session["MAHUYEN"] + "\" }";
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanDelete" };
+        settings.KeyFieldName = "ID_BenhNhan";
+
+        /* Behavior */
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+     
+        /*Buttons*/
+        //var EditColumnCommand = new MVCxGridViewCommandColumn();
+        //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //EditColumnCommand.ShowEditButton = true;
+        //EditColumnCommand.Width = 50;
+        //EditColumnCommand.ShowNewButtonInHeader = true;
+        //EditColumnCommand.VisibleIndex = 0;
+        //settings.Columns.Add(EditColumnCommand);        
+        //var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        //DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //DeleteColumnCommand.ShowDeleteButton = true;
+        //DeleteColumnCommand.Width = 50;
+        //DeleteColumnCommand.VisibleIndex = 14;
+        //settings.Columns.Add(DeleteColumnCommand);
+         
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "All";
+        settings.SettingsPager.NextPageButton.Text = "Next >";
+        settings.SettingsPager.PrevPageButton.Text = "< Prev";
+        settings.SettingsPager.Visible = true; 
+         
+        /* Column Definitions */
+        settings.Columns.Add("HoTen");
+        settings.Columns.Add("SoCMND");
+        settings.Columns.Add("Tuoi");
+        settings.Columns.Add("Gioitinh");
+        settings.Columns.Add("Diachi");
+        settings.Columns.Add("Sodienthoai");
+        settings.Columns.Add("BHYT");
+        settings.Columns.Add("NgheNghiep");
+        settings.Columns.Add("NoiGioiThieu");
+
+        ///*Edit Form*/
+        //settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        //settings.SettingsPopup.EditForm.Modal = true;
+        //settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        //settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.SetEditFormTemplateContent(c =>
+        //{
+        //    NTP_MVC.Models.SO_BenhNhan editItem;
+        //    if (c.Grid.IsNewRowEditing)
+        //        editItem = new NTP_MVC.Models.SO_BenhNhan();
+        //    else
+        //    {
+        //        editItem = ViewData["Item"] != null ? (NTP_MVC.Models.SO_BenhNhan)ViewData["Item"] : (NTP_MVC.Models.SO_BenhNhan)c.Grid.GetRow(c.VisibleIndex);
+        //    }
+        //    Html.RenderPartial("EditBenhNhan", editItem);
+        //});        
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(Model).GetHtml();
+} 

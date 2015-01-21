@@ -291,9 +291,13 @@
   <ItemGroup>
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
+    <Content Include="Content\Images\add.png" />
     <Content Include="Content\Images\AquaHeader.jpg" />
     <Content Include="Content\Images\BlackGlassHeader.jpg" />
+    <Content Include="Content\Images\delete.png" />
+    <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\GlassHeader.jpg" />
+    <Content Include="Content\Images\logo1.png" />
     <Content Include="Content\Images\PlasticBlueHeader.jpg" />
     <Content Include="Content\Images\RedWineHeader.jpg" />
     <Content Include="Content\jquery-ui.css" />
@@ -335,10 +339,13 @@
       <DependentUpon>NTP_DBDataModel.edmx</DependentUpon>
       <LastGenOutput>NTP_DBDataModel.cs</LastGenOutput>
     </Content>
-    <None Include="NTP_MVC.pubxml" />
     <None Include="Properties\PublishProfiles\NTP_MVC.pubxml" />
+    <None Include="Properties\PublishProfiles\NTP_MVC2015.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\BenhNhan\_SearchBenhNhanPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -348,7 +355,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Views\BenhNhan\Index.cshtml" />
-    <Content Include="Views\BenhNhan\_BenhNhanGridViewPartial.cshtml" />
+    <Content Include="Views\BenhNhan\_GridBenhNhan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -384,19 +391,15 @@
     <Content Include="Views\DMHuyen\_DMHuyenGridViewPartial.cshtml" />
     <Content Include="Views\DMNguonKinhPhi\_DMNguonKinhPhiGridViewPartial.cshtml" />
     <Content Include="Views\DMLoaiBenhVien\_DMLoaiBenhVienGridViewPartial.cshtml" />
-    <Content Include="Views\PhieuXetNghiem\Index.cshtml" />
-    <Content Include="Views\PhieuXetNghiem\_PhieuXetNghiemGridViewPartial.cshtml" />
     <Content Include="Views\SoDieuTri\_SoDieuTriDataViewPartial.cshtml" />
-    <Content Include="Views\SoKhamBenh\_SoKhamBenhGridViewPartial.cshtml" />
+    <Content Include="Views\SoKhamBenh\_GridSoKhamBenh.cshtml" />
     <Content Include="Views\DMTinh\Index.cshtml" />
     <Content Include="Views\DMTinh\_DMTinhGridViewPartial.cshtml" />
     <Content Include="Views\NX\Index.cshtml" />
     <Content Include="Views\NX\_NXGridViewPartial.cshtml" />
-    <Content Include="Views\BenhNhan\_ComboBoxHuyenPartial.cshtml" />
-    <Content Include="Views\BenhNhan\_ComboBoxTinhPartial.cshtml" />
-    <Content Include="Views\BenhNhan\_SearchBenhNhanPartial.cshtml" />
+    <Content Include="Views\BenhNhan\_ComboBoxHuyen.cshtml" />
+    <Content Include="Views\BenhNhan\_ComboBoxTinh.cshtml" />
     <Content Include="Views\BenhNhan\_MaBNQLPartial.cshtml" />
-    <Content Include="Views\SoKhamBenh\EditBenhNhan.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Menu\_MenuTreeListPartial.cshtml" />
     <Content Include="Views\PhanQuyen\Index.cshtml" />
@@ -404,6 +407,15 @@
     <Content Include="Views\PhanQuyen\_MenuTreeListPartial.cshtml" />
     <Content Include="Views\NguoiDung\Index.cshtml" />
     <Content Include="Views\NguoiDung\_NguoiDungGridViewPartial.cshtml" />
+    <Content Include="Views\SoKhamBenh\_FormSoKhamBenh.cshtml" />
+    <Content Include="Views\SoKhamBenh\_FormBenhNhan.cshtml" />
+    <Content Include="Views\BenhNhan\_ComboSearchBenhNhan.cshtml" />
+    <Content Include="Views\Shared\_loginLayout.cshtml" />
+    <Content Include="Views\Shared\_rootLayoutLogin.cshtml" />
+    <Content Include="Views\Shared\HeaderPartialViewLogin.cshtml" />
+    <Content Include="Views\BenhNhan\EditBenhNhan.cshtml" />
+    <Content Include="Views\PhieuXetNghiem\_GridPhieuXetNghiem.cshtml" />
+    <Content Include="Views\PhieuXetNghiem\_FormPhieuXetNghiem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -501,6 +513,9 @@
     </Compile>
     <Compile Include="Models\DM_Vung.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyModel.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\NTP_DBDataModel.Context.cs">
       <AutoGen>True</AutoGen>

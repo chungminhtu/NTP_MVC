@@ -9,65 +9,57 @@ namespace NTP_MVC.Controllers
     public class BenhNhanController : Controller
     {
         // GET: BenhNhan
-        public ActionResult Index(string MaTinh, string MaHuyen)
+        public ActionResult Index()
         {
-            ControllerContext.HttpContext.Session["MATINH"] = MaTinh + "";
-            ControllerContext.HttpContext.Session["MAHUYEN"] = MaHuyen + "";
+            var MaTinh = Session["MATINH"] + "";
+            var MaHuyen = Session["MAHUYEN"] + "";
 
             ViewData["Tinhs"] = MaTinh == null ? db.DM_Tinh.ToList() : db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
             ViewData["Huyens"] = MaHuyen == null ? null : db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
 
-            ViewData["BenhNhan"] = null;//db.SO_BenhNhan.Where(b => b.MA_TINH == MaTinh).Where(b => b.MA_HUYEN == MaHuyen).ToList();
+            var model = db.SO_BenhNhan.Where(b => b.MA_HUYEN == MaHuyen).ToList();
             ViewData["MaBNQL"] = null;
             ViewData["StartDate"] = null;
             ViewData["EndDate"] = null;
-            return View();
+            return View(model);
         }
 
         NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
-        public ActionResult BenhNhanGridViewPartial()
+        public ActionResult GridBenhNhan()
         {
             string s = Request.Params["MaHuyen"] + "";
             var model = (from d in db.SO_BenhNhan
                          where d.MA_HUYEN.Equals(s)
                          select d).ToList();
-            return PartialView("_BenhNhanGridViewPartial", model.ToList());
+            return PartialView("_GridBenhNhan", model.ToList());
         }
 
+        //Cập nhật hoặc thêm mới bệnh nhân (bằng external form)
         [HttpPost, ValidateInput(false)]
-        public ActionResult BenhNhanGridViewPartialAddNew(SO_BenhNhan item)
+        public ActionResult CapNhatBenhNhan(SO_BenhNhan item)
         {
-            var model = db.SO_BenhNhan;
-            if (ModelState.IsValid)
+            item.MA_HUYEN = Session["MAHUYEN"] + "";
+            item.MA_TINH = Session["MATINH"] + "";
+            if (Session["ID_BenhNhan"] + "" != "")
             {
-                try
-                {
-                    model.Add(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
+
+                item.ID_BenhNhan = Convert.ToInt64(Session["ID_BenhNhan"]);
             }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_BenhNhanGridViewPartial", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult BenhNhanGridViewPartialUpdate(SO_BenhNhan item)
-        {
             var model = db.SO_BenhNhan;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ID_BenhNhan == item.ID_BenhNhan);
-                    if (modelItem != null)
+                    if (item.ID_BenhNhan != 0)
                     {
-                        this.UpdateModel(modelItem);
+                        this.UpdateModel(item);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        model.Add(item);
                         db.SaveChanges();
                     }
                 }
@@ -78,40 +70,91 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_BenhNhanGridViewPartial", model.Take(1000).ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult BenhNhanGridViewPartialDelete(Int64 IDBenhNhan)
-        {
-            var model = db.SO_BenhNhan;
-            if (IDBenhNhan >= 0)
-            {
-                try
-                {
-                    var item = model.FirstOrDefault(it => it.ID_BenhNhan == IDBenhNhan);
-                    if (item != null)
-                        model.Remove(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            return PartialView("_BenhNhanGridViewPartial", model.ToList());
+            string s = Session["MAHUYEN"] + "";
+            var ListBenhNhan = (from d in db.SO_BenhNhan
+                                where d.MA_HUYEN.Equals(s)
+                                select d).ToList();
+            return PartialView("_GridBenhNhan", ListBenhNhan);
         }
 
-        public ActionResult ComboBoxTinhPartial()
+
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult GridBenhNhanAddNew(SO_BenhNhan item)
+        //{
+        //    var model = db.SO_BenhNhan;
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            model.Add(item);
+        //            db.SaveChanges();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            ViewData["EditError"] = e.Message;
+        //        }
+        //    }
+        //    else
+        //        ViewData["EditError"] = "Please, correct all errors.";
+        //    return PartialView("_GridBenhNhan", model.ToList());
+        //}
+
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult GridBenhNhanUpdate(SO_BenhNhan item)
+        //{
+        //    var model = db.SO_BenhNhan;
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var modelItem = model.FirstOrDefault(it => it.ID_BenhNhan == item.ID_BenhNhan);
+        //            if (modelItem != null)
+        //            {
+        //                this.UpdateModel(modelItem);
+        //                db.SaveChanges();
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            ViewData["EditError"] = e.Message;
+        //        }
+        //    }
+        //    else
+        //        ViewData["EditError"] = "Please, correct all errors.";
+        //    return PartialView("_GridBenhNhan");
+        //}
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult GridBenhNhanDelete(Int64 IDBenhNhan)
+        //{
+        //    var model = db.SO_BenhNhan;
+        //    if (IDBenhNhan >= 0)
+        //    {
+        //        try
+        //        {
+        //            var item = model.FirstOrDefault(it => it.ID_BenhNhan == IDBenhNhan);
+        //            if (item != null)
+        //                model.Remove(item);
+        //            db.SaveChanges();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            ViewData["EditError"] = e.Message;
+        //        }
+        //    }
+        //    return PartialView("_GridBenhNhan", model.ToList());
+        //}
+
+        public ActionResult ComboBoxTinhList()
         {
             ViewData["Tinhs"] = db.DM_Tinh.ToList();
-            return PartialView("_ComboBoxTinhPartial");
+            return PartialView("_ComboBoxTinh", ViewData["Tinhs"]);
         }
 
-        public ActionResult ComboBoxHuyenPartial()
+        public ActionResult ComboBoxHuyenList()
         {
-            string maTinh = Request.Params["MaTinh"] + "";
+            string maTinh = HttpContext.Session["MATINH"] + "";
             ViewData["Huyens"] = db.DM_Huyen.Where(m => m.MA_TINH == maTinh).ToList();
-            return PartialView("_ComboBoxHuyenPartial");
+            return PartialView("_ComboBoxHuyen", ViewData["Huyens"]);
         }
 
         public IEnumerable<SO_BenhNhan> SearchBenhNhan()
@@ -122,50 +165,44 @@ namespace NTP_MVC.Controllers
                          select d).ToList();
             return total;
         }
-        public ActionResult SearchBenhNhanPartial()
+        public ActionResult ComboSearchBenhNhan()
         {
             string s = Request.Params["SearchCombobox"] + "";
+            string MaHuyen = HttpContext.Session["MAHUYEN"] + "";// Request.Params["MaHuyen"] + "";
 
             ViewData["BenhNhan"] = (from d in db.SO_BenhNhan
-                                    join e in db.DM_Huyen on d.MA_HUYEN equals e.MA_HUYEN into Huyen
-                                    from h in Huyen
-                                    join f in db.DM_Tinh on h.MA_TINH equals f.MA_TINH into Tinh
-                                    from tinh in Tinh.DefaultIfEmpty()
-                                    from huyen in Huyen.DefaultIfEmpty()
-                                    where d.SoCMND.Contains(s) || d.MaBNQL.Contains(s) || d.HoTen.Contains(s)
-                                    orderby tinh.TEN_TINH
-                                    select new
-                                    {
-                                        SoCMND = d.SoCMND,
-                                        MaBNQL = d.MaBNQL,
-                                        HoTen = d.HoTen,
-                                        GioiTinh = (d.Gioitinh == true && d.Gioitinh != null ? "Nam" : "Nữ"),
-                                        Tuoi = d.Tuoi,
-                                        TenTinh = tinh.TEN_TINH,
-                                        TenHuyen = huyen.TEN_HUYEN,
-                                        ID_BenhNhan = d.ID_BenhNhan,
-                                        ID_Doituong = d.ID_Doituong,
-                                        MA_TINH = d.MA_TINH,
-                                        MA_HUYEN = d.MA_HUYEN,
-                                        Diachi = d.Diachi,
-                                        Sodienthoai = d.Sodienthoai,
-                                        NGAY_NM = d.NGAY_NM,
-                                        NGUOI_NM = d.NGUOI_NM,
-                                        Ngay_SD = d.Ngay_SD,
-                                        Nguoi_SD = d.Nguoi_SD,
-                                        Huy = d.Huy,
-                                        HuyenXN = d.HuyenXN,
-                                        TinhXN = d.TinhXN,
-                                        STT = d.STT,
-                                        Namsinh = d.Namsinh,
-                                        HIV = d.HIV,
-                                        BHYT = d.BHYT,
-                                        NgheNghiep = d.NgheNghiep,
-                                        NoiGioiThieu = d.NoiGioiThieu,
-                                        MaNoiGioiThieu = d.MaNoiGioiThieu
-                                    }).Distinct().ToList();
+                                    where (d.MA_HUYEN.Equals(MaHuyen)) && (d.SoCMND.Contains(s) || d.MaBNQL.Contains(s) || d.HoTen.Contains(s))
+                                    orderby d.MA_TINH
+                                    select d).ToList();
+            //{
+            //    SoCMND = d.SoCMND,
+            //    MaBNQL = d.MaBNQL,
+            //    HoTen = d.HoTen,
+            //    GioiTinh = (d.Gioitinh == true && d.Gioitinh != null ? "Nam" : "Nữ"),
+            //    Tuoi = d.Tuoi,
+            //    ID_BenhNhan = d.ID_BenhNhan,
+            //    ID_Doituong = d.ID_Doituong,
+            //    MA_TINH = d.MA_TINH,
+            //    MA_HUYEN = d.MA_HUYEN,
+            //    Diachi = d.Diachi,
+            //    Sodienthoai = d.Sodienthoai,
+            //    NGAY_NM = d.NGAY_NM,
+            //    NGUOI_NM = d.NGUOI_NM,
+            //    Ngay_SD = d.Ngay_SD,
+            //    Nguoi_SD = d.Nguoi_SD,
+            //    Huy = d.Huy,
+            //    HuyenXN = d.HuyenXN,
+            //    TinhXN = d.TinhXN,
+            //    STT = d.STT,
+            //    Namsinh = d.Namsinh,
+            //    HIV = d.HIV,
+            //    BHYT = d.BHYT,
+            //    NgheNghiep = d.NgheNghiep,
+            //    NoiGioiThieu = d.NoiGioiThieu,
+            //    MaNoiGioiThieu = d.MaNoiGioiThieu
+            //}).Distinct().ToList();
 
-            return PartialView("~/Views/BenhNhan/_SearchBenhNhanPartial.cshtml");
+            return PartialView("~/Views/BenhNhan/_ComboSearchBenhNhan.cshtml");
         }
 
         //public ActionResult MaBNQLPartial()

@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NTP_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NTP_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AD_Menu">
           <Key>
             <PropertyRef Name="MenuID" />
           </Key>
-          <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="MenuParentID" Type="int" />
         </EntityType>
@@ -43,9 +43,13 @@
           <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
           <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_BenhVien' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_BenhVien">
           <Key>
             <PropertyRef Name="ID_BENHVIEN_KHO" />
+            <PropertyRef Name="ID_BENHVIEN" />
+            <PropertyRef Name="TEN_BENHVIEN" />
           </Key>
           <Property Name="ID_BENHVIEN_KHO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_BENHVIEN" Type="varchar" MaxLength="10" Nullable="false" />
@@ -90,21 +94,29 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="ID_DVT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TEN_DVT" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Huyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_Huyen">
           <Key>
             <PropertyRef Name="MA_HUYEN" />
+            <PropertyRef Name="TEN_HUYEN" />
+            <PropertyRef Name="MA_TINH" />
           </Key>
           <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN_HUYEN" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MA_TINH" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_KQDieuTri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_KQDieuTri">
           <Key>
             <PropertyRef Name="Id_KetQuaDT" />
           </Key>
-          <Property Name="Id_KetQuaDT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_KetQuaDT" Type="int" Nullable="false" />
           <Property Name="Ten_KetQuaDT" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_LoaiBenhVien' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_LoaiBenhVien">
           <Key>
             <PropertyRef Name="ID_LOAIBV" />
@@ -113,14 +125,19 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="TEN_LOAIBV" Type="nvarchar" MaxLength="50" />
           <Property Name="THUTU" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_LyDoNhapXuat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_LyDoNhapXuat">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="TYPE" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MO_TA" Type="nvarchar" MaxLength="250" />
           <Property Name="TYPE" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Mien' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_Mien">
           <Key>
             <PropertyRef Name="ID_MIEN" />
@@ -128,27 +145,37 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="ID_MIEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TEN_MIEN" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_NguonKinhPhi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_NguonKinhPhi">
           <Key>
             <PropertyRef Name="ID_NGUONKINHPHI" />
+            <PropertyRef Name="MO_TA" />
           </Key>
           <Property Name="ID_NGUONKINHPHI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MO_TA" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Nuoc' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_Nuoc">
           <Key>
             <PropertyRef Name="MA_NUOC" />
+            <PropertyRef Name="TEN_NUOC" />
           </Key>
           <Property Name="MA_NUOC" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN_NUOC" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiBenh' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_PhanLoaiBenh">
           <Key>
             <PropertyRef Name="ID_PhanLoaiBenh" />
           </Key>
-          <Property Name="ID_PhanLoaiBenh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PhanLoaiBenh" Type="int" Nullable="false" />
           <Property Name="Ten_PhanLoaiBenh" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiBenhNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_PhanLoaiBenhNhan">
           <Key>
             <PropertyRef Name="ID_PhanloaiBN" />
@@ -156,6 +183,8 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="ID_PhanloaiBN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ten_PhanLoaiBN" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiBenhNhan_BC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_PhanLoaiBenhNhan_BC">
           <Key>
             <PropertyRef Name="ID_Phanloai" />
@@ -166,6 +195,8 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="Cap" Type="tinyint" />
           <Property Name="Ten_Phanloai" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_PhanLoaiYTe">
           <Key>
             <PropertyRef Name="ID_PhanloaiYte" />
@@ -173,9 +204,13 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="ID_PhanloaiYte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ten_PhanloaiYte" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Tinh' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_Tinh">
           <Key>
             <PropertyRef Name="MA_TINH" />
+            <PropertyRef Name="TEN_TINH" />
+            <PropertyRef Name="ID_VUNG" />
           </Key>
           <Property Name="MA_TINH" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN_TINH" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -183,9 +218,12 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="ID_MIEN" Type="int" />
           <Property Name="DANSO" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Vung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_Vung">
           <Key>
             <PropertyRef Name="ID_VUNG" />
+            <PropertyRef Name="ID_MIEN" />
           </Key>
           <Property Name="ID_VUNG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TEN_VUNG" Type="nvarchar" MaxLength="50" />
@@ -193,10 +231,10 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
         </EntityType>
         <EntityType Name="SO_BenhNhan">
           <Key>
-            <PropertyRef Name="IDBenhNhan" />
+            <PropertyRef Name="ID_BenhNhan" />
           </Key>
-          <Property Name="IDBenhNhan" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_Doituong" Type="int" />
+          <Property Name="ID_BenhNhan" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Doituong" Type="int" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
           <Property Name="MaBNQL" Type="nvarchar" MaxLength="15" />
           <Property Name="SoCMND" Type="nvarchar" MaxLength="20" />
@@ -212,7 +250,7 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
           <Property Name="Nguoi_SD" Type="nvarchar" MaxLength="6" />
           <Property Name="Huy" Type="bit" />
           <Property Name="HuyenXN" Type="bit" />
-          <Property Name="TinhXN" Type="bit" />
+          <Property Name="TinhXN" Type="bit" Nullable="false" />
           <Property Name="STT" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Namsinh" Type="numeric" Precision="18" Scale="0" />
           <Property Name="HIV" Type="tinyint" />
@@ -226,11 +264,11 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
             <PropertyRef Name="ID_Phieuxetnghiem" />
           </Key>
           <Property Name="ID_Phieuxetnghiem" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_Benhnhan" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ID_Benhnhan" Type="bigint" Nullable="false" />
           <Property Name="SoXN" Type="nvarchar" MaxLength="15" />
           <Property Name="ID_Benhvien" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_PhanloaiYte" Type="int" />
-          <Property Name="LydoXN" Type="int" />
+          <Property Name="LydoXN" Type="int" Nullable="false" />
           <Property Name="Soluong" Type="tinyint" />
           <Property Name="SoThangDT" Type="tinyint" />
           <Property Name="HIV" Type="tinyint" />
@@ -263,11 +301,14 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_PhieuXetNghiem_KQ' does not have a p
           <Property Name="Maudom" Type="tinyint" Nullable="false" />
           <Property Name="Ketqua" Type="tinyint" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SO_SoDieuTri">
           <Key>
             <PropertyRef Name="ID_Dieutri" />
+            <PropertyRef Name="ID_BENHNHAN" />
           </Key>
-          <Property Name="ID_Dieutri" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Dieutri" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ID_BENHNHAN" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="SoDKDT" Type="nvarchar" MaxLength="10" />
           <Property Name="DVDieutri" Type="nvarchar" MaxLength="10" />
@@ -334,7 +375,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
             <PropertyRef Name="ID_SoKhamBenh" />
           </Key>
           <Property Name="ID_SoKhamBenh" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_BENHNHAN" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ID_BENHNHAN" Type="bigint" Nullable="false" />
           <Property Name="TrieuChung" Type="nvarchar" MaxLength="300" />
           <Property Name="KetQuaXetNghiemDom" Type="nvarchar" MaxLength="300" />
           <Property Name="TrangThaiDomDaiThe" Type="nvarchar" MaxLength="300" />
@@ -388,72 +429,33 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_AD_RoleMenu_AD_Menu">
-          <End Role="AD_Menu" Type="Self.AD_Menu" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AD_RoleMenu" Type="Self.AD_RoleMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AD_Menu">
-              <PropertyRef Name="MenuID" />
-            </Principal>
-            <Dependent Role="AD_RoleMenu">
-              <PropertyRef Name="MenuID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AD_RoleMenu_AD_Roles">
-          <End Role="AD_Roles" Type="Self.AD_Roles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AD_RoleMenu" Type="Self.AD_RoleMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AD_Roles">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="AD_RoleMenu">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AD_Users_AD_Roles">
-          <End Role="AD_Roles" Type="Self.AD_Roles" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AD_Users" Type="Self.AD_Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AD_Roles">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="AD_Users">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="NTP_DBModelStoreContainer">
           <EntitySet Name="AD_Menu" EntityType="Self.AD_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_RoleMenu" EntityType="Self.AD_RoleMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_Roles" EntityType="Self.AD_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_Users" EntityType="Self.AD_Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_Huyen" EntityType="Self.DM_Huyen" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_KQDieuTri" EntityType="Self.DM_KQDieuTri" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_LoaiBenhVien" EntityType="Self.DM_LoaiBenhVien" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_LyDoNhapXuat" EntityType="Self.DM_LyDoNhapXuat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_Mien" EntityType="Self.DM_Mien" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_NguonKinhPhi" EntityType="Self.DM_NguonKinhPhi" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_Nuoc" EntityType="Self.DM_Nuoc" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_PhanLoaiBenh" EntityType="Self.DM_PhanLoaiBenh" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_PhanLoaiBenhNhan" EntityType="Self.DM_PhanLoaiBenhNhan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="Self.DM_PhanLoaiBenhNhan_BC" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_PhanLoaiYTe" EntityType="Self.DM_PhanLoaiYTe" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_Tinh" EntityType="Self.DM_Tinh" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_BenhNhan" EntityType="Self.SO_BenhNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_PhieuXetNghiem" EntityType="Self.SO_PhieuXetNghiem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SO_SoDieuTri" EntityType="Self.SO_SoDieuTri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_BenhVien].[ID_BENHVIEN_KHO] AS [ID_BENHVIEN_KHO], 
+    [DM_BenhVien].[ID_BENHVIEN] AS [ID_BENHVIEN], 
+    [DM_BenhVien].[TEN_BENHVIEN] AS [TEN_BENHVIEN], 
+    [DM_BenhVien].[DIA_CHI] AS [DIA_CHI], 
+    [DM_BenhVien].[ID_VUNG] AS [ID_VUNG], 
+    [DM_BenhVien].[MA_BENHVIEN_CAPTREN] AS [MA_BENHVIEN_CAPTREN], 
+    [DM_BenhVien].[ID_BENHVIEN_CAPTREN] AS [ID_BENHVIEN_CAPTREN], 
+    [DM_BenhVien].[CAPQUANLY] AS [CAPQUANLY], 
+    [DM_BenhVien].[ID_MATINH] AS [ID_MATINH], 
+    [DM_BenhVien].[ID_HUYEN] AS [ID_HUYEN], 
+    [DM_BenhVien].[ID_PHANLOAIYTE] AS [ID_PHANLOAIYTE], 
+    [DM_BenhVien].[PHANBIET] AS [PHANBIET], 
+    [DM_BenhVien].[ID_LOAIBV] AS [ID_LOAIBV], 
+    [DM_BenhVien].[Huy] AS [Huy]
+    FROM [dbo].[DM_BenhVien] AS [DM_BenhVien]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DM_Cap" EntityType="Self.DM_Cap" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DM_Cap].[ID_CAP] AS [ID_CAP], 
@@ -472,6 +474,94 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
     [DM_DonViTinh].[TEN_DVT] AS [TEN_DVT]
     FROM [dbo].[DM_DonViTinh] AS [DM_DonViTinh]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="DM_Huyen" EntityType="Self.DM_Huyen" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_Huyen].[MA_HUYEN] AS [MA_HUYEN], 
+    [DM_Huyen].[TEN_HUYEN] AS [TEN_HUYEN], 
+    [DM_Huyen].[MA_TINH] AS [MA_TINH]
+    FROM [dbo].[DM_Huyen] AS [DM_Huyen]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_KQDieuTri" EntityType="Self.DM_KQDieuTri" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_KQDieuTri].[Id_KetQuaDT] AS [Id_KetQuaDT], 
+    [DM_KQDieuTri].[Ten_KetQuaDT] AS [Ten_KetQuaDT]
+    FROM [dbo].[DM_KQDieuTri] AS [DM_KQDieuTri]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_LoaiBenhVien" EntityType="Self.DM_LoaiBenhVien" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_LoaiBenhVien].[ID_LOAIBV] AS [ID_LOAIBV], 
+    [DM_LoaiBenhVien].[TEN_LOAIBV] AS [TEN_LOAIBV], 
+    [DM_LoaiBenhVien].[THUTU] AS [THUTU]
+    FROM [dbo].[DM_LoaiBenhVien] AS [DM_LoaiBenhVien]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_LyDoNhapXuat" EntityType="Self.DM_LyDoNhapXuat" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_LyDoNhapXuat].[ID] AS [ID], 
+    [DM_LyDoNhapXuat].[MO_TA] AS [MO_TA], 
+    [DM_LyDoNhapXuat].[TYPE] AS [TYPE]
+    FROM [dbo].[DM_LyDoNhapXuat] AS [DM_LyDoNhapXuat]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_Mien" EntityType="Self.DM_Mien" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_Mien].[ID_MIEN] AS [ID_MIEN], 
+    [DM_Mien].[TEN_MIEN] AS [TEN_MIEN]
+    FROM [dbo].[DM_Mien] AS [DM_Mien]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_NguonKinhPhi" EntityType="Self.DM_NguonKinhPhi" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_NguonKinhPhi].[ID_NGUONKINHPHI] AS [ID_NGUONKINHPHI], 
+    [DM_NguonKinhPhi].[MO_TA] AS [MO_TA]
+    FROM [dbo].[DM_NguonKinhPhi] AS [DM_NguonKinhPhi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_Nuoc" EntityType="Self.DM_Nuoc" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_Nuoc].[MA_NUOC] AS [MA_NUOC], 
+    [DM_Nuoc].[TEN_NUOC] AS [TEN_NUOC]
+    FROM [dbo].[DM_Nuoc] AS [DM_Nuoc]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_PhanLoaiBenh" EntityType="Self.DM_PhanLoaiBenh" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_PhanLoaiBenh].[ID_PhanLoaiBenh] AS [ID_PhanLoaiBenh], 
+    [DM_PhanLoaiBenh].[Ten_PhanLoaiBenh] AS [Ten_PhanLoaiBenh]
+    FROM [dbo].[DM_PhanLoaiBenh] AS [DM_PhanLoaiBenh]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_PhanLoaiBenhNhan" EntityType="Self.DM_PhanLoaiBenhNhan" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_PhanLoaiBenhNhan].[ID_PhanloaiBN] AS [ID_PhanloaiBN], 
+    [DM_PhanLoaiBenhNhan].[Ten_PhanLoaiBN] AS [Ten_PhanLoaiBN]
+    FROM [dbo].[DM_PhanLoaiBenhNhan] AS [DM_PhanLoaiBenhNhan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="Self.DM_PhanLoaiBenhNhan_BC" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_PhanLoaiBenhNhan_BC].[ID_Phanloai] AS [ID_Phanloai], 
+    [DM_PhanLoaiBenhNhan_BC].[ID_PhanloaiBenh] AS [ID_PhanloaiBenh], 
+    [DM_PhanLoaiBenhNhan_BC].[ID_PhanloaiBN] AS [ID_PhanloaiBN], 
+    [DM_PhanLoaiBenhNhan_BC].[Cap] AS [Cap], 
+    [DM_PhanLoaiBenhNhan_BC].[Ten_Phanloai] AS [Ten_Phanloai]
+    FROM [dbo].[DM_PhanLoaiBenhNhan_BC] AS [DM_PhanLoaiBenhNhan_BC]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_PhanLoaiYTe" EntityType="Self.DM_PhanLoaiYTe" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_PhanLoaiYTe].[ID_PhanloaiYte] AS [ID_PhanloaiYte], 
+    [DM_PhanLoaiYTe].[Ten_PhanloaiYte] AS [Ten_PhanloaiYte]
+    FROM [dbo].[DM_PhanLoaiYTe] AS [DM_PhanLoaiYTe]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_Tinh" EntityType="Self.DM_Tinh" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_Tinh].[MA_TINH] AS [MA_TINH], 
+    [DM_Tinh].[TEN_TINH] AS [TEN_TINH], 
+    [DM_Tinh].[ID_VUNG] AS [ID_VUNG], 
+    [DM_Tinh].[ID_MIEN] AS [ID_MIEN], 
+    [DM_Tinh].[DANSO] AS [DANSO]
+    FROM [dbo].[DM_Tinh] AS [DM_Tinh]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DM_Vung].[ID_VUNG] AS [ID_VUNG], 
+    [DM_Vung].[TEN_VUNG] AS [TEN_VUNG], 
+    [DM_Vung].[ID_MIEN] AS [ID_MIEN]
+    FROM [dbo].[DM_Vung] AS [DM_Vung]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SO_PhieuXetNghiem_KQ].[ID_Phieuxetnghiem_C] AS [ID_Phieuxetnghiem_C], 
@@ -482,6 +572,47 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
     [SO_PhieuXetNghiem_KQ].[Maudom] AS [Maudom], 
     [SO_PhieuXetNghiem_KQ].[Ketqua] AS [Ketqua]
     FROM [dbo].[SO_PhieuXetNghiem_KQ] AS [SO_PhieuXetNghiem_KQ]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SO_SoDieuTri" EntityType="Self.SO_SoDieuTri" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SO_SoDieuTri].[ID_Dieutri] AS [ID_Dieutri], 
+    [SO_SoDieuTri].[ID_BENHNHAN] AS [ID_BENHNHAN], 
+    [SO_SoDieuTri].[SoDKDT] AS [SoDKDT], 
+    [SO_SoDieuTri].[DVDieutri] AS [DVDieutri], 
+    [SO_SoDieuTri].[NgayVV] AS [NgayVV], 
+    [SO_SoDieuTri].[NgayDT] AS [NgayDT], 
+    [SO_SoDieuTri].[ID_PHANLOAIYTE] AS [ID_PHANLOAIYTE], 
+    [SO_SoDieuTri].[DVGioiThieu] AS [DVGioiThieu], 
+    [SO_SoDieuTri].[ID_PhanLoaiBenh] AS [ID_PhanLoaiBenh], 
+    [SO_SoDieuTri].[ID_PhanLoaiBN] AS [ID_PhanLoaiBN], 
+    [SO_SoDieuTri].[NgayChupXQ] AS [NgayChupXQ], 
+    [SO_SoDieuTri].[KetquaXQ] AS [KetquaXQ], 
+    [SO_SoDieuTri].[XNHIV1] AS [XNHIV1], 
+    [SO_SoDieuTri].[XNHIV2] AS [XNHIV2], 
+    [SO_SoDieuTri].[ART] AS [ART], 
+    [SO_SoDieuTri].[CPT] AS [CPT], 
+    [SO_SoDieuTri].[LymPho] AS [LymPho], 
+    [SO_SoDieuTri].[GiamSatDT] AS [GiamSatDT], 
+    [SO_SoDieuTri].[ID_KetquaDT] AS [ID_KetquaDT], 
+    [SO_SoDieuTri].[NgayRV] AS [NgayRV], 
+    [SO_SoDieuTri].[Ghichu] AS [Ghichu], 
+    [SO_SoDieuTri].[NGAY_NM] AS [NGAY_NM], 
+    [SO_SoDieuTri].[NGUOI_NM] AS [NGUOI_NM], 
+    [SO_SoDieuTri].[Ngay_SD] AS [Ngay_SD], 
+    [SO_SoDieuTri].[Nguoi_SD] AS [Nguoi_SD], 
+    [SO_SoDieuTri].[HuyenXN] AS [HuyenXN], 
+    [SO_SoDieuTri].[TinhXN] AS [TinhXN], 
+    [SO_SoDieuTri].[ID_DieutriChuyen] AS [ID_DieutriChuyen], 
+    [SO_SoDieuTri].[ID_PhacdoDT] AS [ID_PhacdoDT], 
+    [SO_SoDieuTri].[PhacdoKhac] AS [PhacdoKhac], 
+    [SO_SoDieuTri].[Chandoan] AS [Chandoan], 
+    [SO_SoDieuTri].[HUY] AS [HUY], 
+    [SO_SoDieuTri].[NGAYHUY] AS [NGAYHUY], 
+    [SO_SoDieuTri].[MaBNQL] AS [MaBNQL], 
+    [SO_SoDieuTri].[ID_PhacdoTD] AS [ID_PhacdoTD], 
+    [SO_SoDieuTri].[PhacdoTDKhac] AS [PhacdoTDKhac], 
+    [SO_SoDieuTri].[Tuoi] AS [Tuoi]
+    FROM [dbo].[SO_SoDieuTri] AS [SO_SoDieuTri]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -515,32 +646,49 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
     [SO_XetNghiemKhamBenh].[GeneXpert] AS [GeneXpert]
     FROM [dbo].[SO_XetNghiemKhamBenh] AS [SO_XetNghiemKhamBenh]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_AD_RoleMenu_AD_Menu" Association="Self.FK_AD_RoleMenu_AD_Menu">
-            <End Role="AD_Menu" EntitySet="AD_Menu" />
-            <End Role="AD_RoleMenu" EntitySet="AD_RoleMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AD_RoleMenu_AD_Roles" Association="Self.FK_AD_RoleMenu_AD_Roles">
-            <End Role="AD_Roles" EntitySet="AD_Roles" />
-            <End Role="AD_RoleMenu" EntitySet="AD_RoleMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AD_Users_AD_Roles" Association="Self.FK_AD_Users_AD_Roles">
-            <End Role="AD_Roles" EntitySet="AD_Roles" />
-            <End Role="AD_Users" EntitySet="AD_Users" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NTP_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NTP_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AD_Menu" EntityType="NTP_DBModel.AD_Menu" />
+          <EntitySet Name="AD_RoleMenu" EntityType="NTP_DBModel.AD_RoleMenu" />
+          <EntitySet Name="AD_Roles" EntityType="NTP_DBModel.AD_Roles" />
+          <EntitySet Name="AD_Users" EntityType="NTP_DBModel.AD_Users" />
+          <EntitySet Name="SO_BenhNhan" EntityType="NTP_DBModel.SO_BenhNhan" />
+          <EntitySet Name="SO_PhieuXetNghiem" EntityType="NTP_DBModel.SO_PhieuXetNghiem" />
+          <EntitySet Name="SO_SoKhamBenh" EntityType="NTP_DBModel.SO_SoKhamBenh" />
+          <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
+          <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
+          <EntitySet Name="DM_Cap" EntityType="NTP_DBModel.DM_Cap" />
+          <EntitySet Name="DM_DoiTuong" EntityType="NTP_DBModel.DM_DoiTuong" />
+          <EntitySet Name="DM_DonViTinh" EntityType="NTP_DBModel.DM_DonViTinh" />
+          <EntitySet Name="DM_Huyen" EntityType="NTP_DBModel.DM_Huyen" />
+          <EntitySet Name="DM_KQDieuTri" EntityType="NTP_DBModel.DM_KQDieuTri" />
+          <EntitySet Name="DM_LoaiBenhVien" EntityType="NTP_DBModel.DM_LoaiBenhVien" />
+          <EntitySet Name="DM_LyDoNhapXuat" EntityType="NTP_DBModel.DM_LyDoNhapXuat" />
+          <EntitySet Name="DM_Mien" EntityType="NTP_DBModel.DM_Mien" />
+          <EntitySet Name="DM_NguonKinhPhi" EntityType="NTP_DBModel.DM_NguonKinhPhi" />
+          <EntitySet Name="DM_Nuoc" EntityType="NTP_DBModel.DM_Nuoc" />
+          <EntitySet Name="DM_PhanLoaiBenh" EntityType="NTP_DBModel.DM_PhanLoaiBenh" />
+          <EntitySet Name="DM_PhanLoaiBenhNhan" EntityType="NTP_DBModel.DM_PhanLoaiBenhNhan" />
+          <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="NTP_DBModel.DM_PhanLoaiBenhNhan_BC" />
+          <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
+          <EntitySet Name="DM_Tinh" EntityType="NTP_DBModel.DM_Tinh" />
+          <EntitySet Name="DM_Vung" EntityType="NTP_DBModel.DM_Vung" />
+          <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="NTP_DBModel.SO_PhieuXetNghiem_KQ" />
+          <EntitySet Name="SO_SoDieuTri" EntityType="NTP_DBModel.SO_SoDieuTri" />
+          <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
+          <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" />
+        </EntityContainer>
         <EntityType Name="AD_Menu">
           <Key>
             <PropertyRef Name="MenuID" />
           </Key>
           <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MenuName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="MenuParentID" Type="Int32" />
-          <NavigationProperty Name="AD_RoleMenu" Relationship="Self.FK_AD_RoleMenu_AD_Menu" FromRole="AD_Menu" ToRole="AD_RoleMenu" />
         </EntityType>
         <EntityType Name="AD_RoleMenu">
           <Key>
@@ -550,40 +698,129 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
           <Property Name="MenuID" Type="Int32" Nullable="false" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <Property Name="AllowAccess" Type="Boolean" />
-          <NavigationProperty Name="AD_Menu" Relationship="Self.FK_AD_RoleMenu_AD_Menu" FromRole="AD_RoleMenu" ToRole="AD_Menu" />
-          <NavigationProperty Name="AD_Roles" Relationship="Self.FK_AD_RoleMenu_AD_Roles" FromRole="AD_RoleMenu" ToRole="AD_Roles" />
         </EntityType>
         <EntityType Name="AD_Roles">
           <Key>
             <PropertyRef Name="RoleID" />
           </Key>
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AD_RoleMenu" Relationship="Self.FK_AD_RoleMenu_AD_Roles" FromRole="AD_Roles" ToRole="AD_RoleMenu" />
-          <NavigationProperty Name="AD_Users" Relationship="Self.FK_AD_Users_AD_Roles" FromRole="AD_Roles" ToRole="AD_Users" />
         </EntityType>
         <EntityType Name="AD_Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="IsSuperUser" Type="Boolean" />
           <Property Name="RoleID" Type="Int32" />
           <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AD_Roles" Relationship="Self.FK_AD_Users_AD_Roles" FromRole="AD_Users" ToRole="AD_Roles" />
+        </EntityType>
+        <EntityType Name="SO_BenhNhan">
+          <Key>
+            <PropertyRef Name="ID_BenhNhan" />
+          </Key>
+          <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Doituong" Type="Int32" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaBNQL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SoCMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Tuoi" Type="Int32" />
+          <Property Name="Gioitinh" Type="Boolean" />
+          <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Sodienthoai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+          <Property Name="NGUOI_NM" Type="Int32" />
+          <Property Name="Ngay_SD" Type="DateTime" Precision="3" />
+          <Property Name="Nguoi_SD" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Huy" Type="Boolean" />
+          <Property Name="HuyenXN" Type="Boolean" />
+          <Property Name="TinhXN" Type="Boolean" Nullable="false" />
+          <Property Name="STT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Namsinh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="HIV" Type="Byte" />
+          <Property Name="BHYT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MaNoiGioiThieu" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SO_PhieuXetNghiem">
+          <Key>
+            <PropertyRef Name="ID_Phieuxetnghiem" />
+          </Key>
+          <Property Name="ID_Phieuxetnghiem" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Benhnhan" Type="Int64" Nullable="false" />
+          <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Benhvien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PhanloaiYte" Type="Int32" />
+          <Property Name="LydoXN" Type="Int32" Nullable="false" />
+          <Property Name="Soluong" Type="Byte" />
+          <Property Name="SoThangDT" Type="Byte" />
+          <Property Name="HIV" Type="Byte" />
+          <Property Name="SoDKDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="XNVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+          <Property Name="NGUOI_NM" Type="Int32" />
+          <Property Name="HuyenXN" Type="Boolean" />
+          <Property Name="TinhXN" Type="Boolean" />
+          <Property Name="DV_XETNGHIEM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NgayXN" Type="DateTime" Precision="3" />
+          <Property Name="HUY" Type="Boolean" />
+          <Property Name="NGAYHUY" Type="DateTime" Precision="3" />
+          <Property Name="DV_TiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tiepnhan" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SO_SoKhamBenh">
+          <Key>
+            <PropertyRef Name="ID_SoKhamBenh" />
+          </Key>
+          <Property Name="ID_SoKhamBenh" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BENHNHAN" Type="Int64" Nullable="false" />
+          <Property Name="TrieuChung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="KetQuaXetNghiemDom" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThaiDomDaiThe" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="SoMauDom" Type="Int32" />
+          <Property Name="NgayXetNghiemDom" Type="DateTime" Precision="3" />
+          <Property Name="XQ" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NgayChupXQ" Type="DateTime" Precision="3" />
+          <Property Name="Khac" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NoiGioiThieu" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ToChongLao" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="XuTri" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="BSKhamBenh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ghichu" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NgayKhamBenh" Type="DateTime" Precision="3" />
+          <Property Name="HuyenKB" Type="Boolean" />
+          <Property Name="TinhKB" Type="Boolean" />
+          <Property Name="HUY" Type="Boolean" />
+          <Property Name="NGAYHUY" Type="DateTime" Precision="3" />
+          <Property Name="MaBNQL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="DM_BenhVien">
           <Key>
             <PropertyRef Name="ID_BENHVIEN_KHO" />
+            <PropertyRef Name="ID_BENHVIEN" />
+            <PropertyRef Name="TEN_BENHVIEN" />
           </Key>
           <Property Name="ID_BENHVIEN_KHO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_BENHVIEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TEN_BENHVIEN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEN_BENHVIEN" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="DIA_CHI" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="ID_VUNG" Type="Int32" />
           <Property Name="MA_BENHVIEN_CAPTREN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -596,36 +833,61 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
           <Property Name="ID_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Huy" Type="Int64" />
         </EntityType>
+        <EntityType Name="DM_Cap">
+          <Key>
+            <PropertyRef Name="ID_CAP" />
+            <PropertyRef Name="TEN_CAP" />
+          </Key>
+          <Property Name="ID_CAP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_CAP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DM_DoiTuong">
+          <Key>
+            <PropertyRef Name="ID_Doituong" />
+          </Key>
+          <Property Name="ID_Doituong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_DoiTuong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DM_DonViTinh">
+          <Key>
+            <PropertyRef Name="ID_DVT" />
+          </Key>
+          <Property Name="ID_DVT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_DVT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="DM_Huyen">
           <Key>
             <PropertyRef Name="MA_HUYEN" />
+            <PropertyRef Name="TEN_HUYEN" />
+            <PropertyRef Name="MA_TINH" />
           </Key>
-          <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TEN_HUYEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEN_HUYEN" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MA_TINH" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DM_KQDieuTri">
           <Key>
             <PropertyRef Name="Id_KetQuaDT" />
           </Key>
-          <Property Name="Id_KetQuaDT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_KetQuaDT" Type="Int32" Nullable="false" />
           <Property Name="Ten_KetQuaDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DM_LoaiBenhVien">
           <Key>
             <PropertyRef Name="ID_LOAIBV" />
           </Key>
-          <Property Name="ID_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_LOAIBV" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TEN_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="THUTU" Type="Int32" />
         </EntityType>
         <EntityType Name="DM_LyDoNhapXuat">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="TYPE" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MO_TA" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TYPE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="DM_Mien">
           <Key>
@@ -637,22 +899,24 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
         <EntityType Name="DM_NguonKinhPhi">
           <Key>
             <PropertyRef Name="ID_NGUONKINHPHI" />
+            <PropertyRef Name="MO_TA" />
           </Key>
           <Property Name="ID_NGUONKINHPHI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MO_TA" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MO_TA" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DM_Nuoc">
           <Key>
             <PropertyRef Name="MA_NUOC" />
+            <PropertyRef Name="TEN_NUOC" />
           </Key>
-          <Property Name="MA_NUOC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TEN_NUOC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA_NUOC" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEN_NUOC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DM_PhanLoaiBenh">
           <Key>
             <PropertyRef Name="ID_PhanLoaiBenh" />
           </Key>
-          <Property Name="ID_PhanLoaiBenh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PhanLoaiBenh" Type="Int32" Nullable="false" />
           <Property Name="Ten_PhanLoaiBenh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DM_PhanLoaiBenhNhan">
@@ -682,9 +946,11 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
         <EntityType Name="DM_Tinh">
           <Key>
             <PropertyRef Name="MA_TINH" />
+            <PropertyRef Name="TEN_TINH" />
+            <PropertyRef Name="ID_VUNG" />
           </Key>
-          <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TEN_TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MA_TINH" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEN_TINH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_VUNG" Type="Int32" Nullable="false" />
           <Property Name="ID_MIEN" Type="Int32" />
           <Property Name="DANSO" Type="Int32" />
@@ -692,73 +958,33 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
         <EntityType Name="DM_Vung">
           <Key>
             <PropertyRef Name="ID_VUNG" />
+            <PropertyRef Name="ID_MIEN" />
           </Key>
           <Property Name="ID_VUNG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TEN_VUNG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_MIEN" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="SO_BenhNhan">
+        <EntityType Name="SO_PhieuXetNghiem_KQ">
           <Key>
-            <PropertyRef Name="IDBenhNhan" />
-          </Key>
-          <Property Name="IDBenhNhan" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_Doituong" Type="Int32" />
-          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaBNQL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="SoCMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Tuoi" Type="Int32" />
-          <Property Name="Gioitinh" Type="Boolean" />
-          <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Sodienthoai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
-          <Property Name="NGUOI_NM" Type="Int32" />
-          <Property Name="Ngay_SD" Type="DateTime" Precision="3" />
-          <Property Name="Nguoi_SD" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
-          <Property Name="Huy" Type="Boolean" />
-          <Property Name="HuyenXN" Type="Boolean" />
-          <Property Name="TinhXN" Type="Boolean" />
-          <Property Name="STT" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Namsinh" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="HIV" Type="Byte" />
-          <Property Name="BHYT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="MaNoiGioiThieu" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SO_PhieuXetNghiem">
-          <Key>
+            <PropertyRef Name="ID_Phieuxetnghiem_C" />
             <PropertyRef Name="ID_Phieuxetnghiem" />
+            <PropertyRef Name="Maudom" />
           </Key>
-          <Property Name="ID_Phieuxetnghiem" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_Benhnhan" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Phieuxetnghiem_C" Type="Int32" Nullable="false" />
+          <Property Name="ID_Phieuxetnghiem" Type="Int32" Nullable="false" />
           <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Benhvien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ID_PhanloaiYte" Type="Int32" />
-          <Property Name="LydoXN" Type="Int32" />
-          <Property Name="Soluong" Type="Byte" />
-          <Property Name="SoThangDT" Type="Byte" />
-          <Property Name="HIV" Type="Byte" />
-          <Property Name="SoDKDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="XNVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
-          <Property Name="NGUOI_NM" Type="Int32" />
-          <Property Name="HuyenXN" Type="Boolean" />
-          <Property Name="TinhXN" Type="Boolean" />
-          <Property Name="DV_XETNGHIEM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="NgayXN" Type="DateTime" Precision="3" />
-          <Property Name="HUY" Type="Boolean" />
-          <Property Name="NGAYHUY" Type="DateTime" Precision="3" />
-          <Property Name="DV_TiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Tiepnhan" Type="Boolean" />
+          <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
+          <Property Name="TrangthaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Maudom" Type="Byte" Nullable="false" />
+          <Property Name="Ketqua" Type="Byte" />
         </EntityType>
         <EntityType Name="SO_SoDieuTri">
           <Key>
             <PropertyRef Name="ID_Dieutri" />
+            <PropertyRef Name="ID_BENHNHAN" />
           </Key>
-          <Property Name="ID_Dieutri" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_BENHNHAN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Dieutri" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ID_BENHNHAN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="SoDKDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="DVDieutri" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="NgayVV" Type="DateTime" Precision="3" />
@@ -795,78 +1021,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
           <Property Name="PhacdoTDKhac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Tuoi" Type="Int32" />
         </EntityType>
-        <EntityType Name="SO_SoKhamBenh">
-          <Key>
-            <PropertyRef Name="ID_SoKhamBenh" />
-          </Key>
-          <Property Name="ID_SoKhamBenh" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_BENHNHAN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TrieuChung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="KetQuaXetNghiemDom" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="TrangThaiDomDaiThe" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="SoMauDom" Type="Int32" />
-          <Property Name="NgayXetNghiemDom" Type="DateTime" Precision="3" />
-          <Property Name="XQ" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="NgayChupXQ" Type="DateTime" Precision="3" />
-          <Property Name="Khac" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="NoiGioiThieu" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="ToChongLao" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="XuTri" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="BSKhamBenh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Ghichu" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="NgayKhamBenh" Type="DateTime" Precision="3" />
-          <Property Name="HuyenKB" Type="Boolean" />
-          <Property Name="TinhKB" Type="Boolean" />
-          <Property Name="HUY" Type="Boolean" />
-          <Property Name="NGAYHUY" Type="DateTime" Precision="3" />
-          <Property Name="MaBNQL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="DM_Cap">
-          <Key>
-            <PropertyRef Name="ID_CAP" />
-            <PropertyRef Name="TEN_CAP" />
-          </Key>
-          <Property Name="ID_CAP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TEN_CAP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DM_DoiTuong">
-          <Key>
-            <PropertyRef Name="ID_Doituong" />
-          </Key>
-          <Property Name="ID_Doituong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ten_DoiTuong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="DM_DonViTinh">
-          <Key>
-            <PropertyRef Name="ID_DVT" />
-          </Key>
-          <Property Name="ID_DVT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TEN_DVT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SO_PhieuXetNghiem_KQ">
-          <Key>
-            <PropertyRef Name="ID_Phieuxetnghiem_C" />
-            <PropertyRef Name="ID_Phieuxetnghiem" />
-            <PropertyRef Name="Maudom" />
-          </Key>
-          <Property Name="ID_Phieuxetnghiem_C" Type="Int32" Nullable="false" />
-          <Property Name="ID_Phieuxetnghiem" Type="Int32" Nullable="false" />
-          <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
-          <Property Name="TrangthaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Maudom" Type="Byte" Nullable="false" />
-          <Property Name="Ketqua" Type="Byte" />
-        </EntityType>
         <EntityType Name="SO_SoDieuTri_KQ">
           <Key>
             <PropertyRef Name="ID_Xetnghiem_GD" />
@@ -876,9 +1030,9 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
             <PropertyRef Name="NGAY_NM" />
             <PropertyRef Name="NGUOI_NM" />
           </Key>
-          <Property Name="ID_Xetnghiem_GD" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="ID_Dieutri" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="ID_Phieuxetnghiem_C" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_Xetnghiem_GD" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ID_Dieutri" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ID_Phieuxetnghiem_C" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="ThoiGianDT" Type="Byte" Nullable="false" />
           <Property Name="Ngayxn" Type="DateTime" Precision="3" />
           <Property Name="SoXN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -898,8 +1052,8 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
             <PropertyRef Name="NGUOI_NM" />
           </Key>
           <Property Name="ID_Xetnghiem_GE" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ID_SoKhamBenh" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="ID_Phieuxetnghiem_C" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_SoKhamBenh" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ID_Phieuxetnghiem_C" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="ThoiGianDT" Type="Byte" Nullable="false" />
           <Property Name="Ngayxn" Type="DateTime" Precision="3" />
           <Property Name="SoXN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -910,92 +1064,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
           <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
           <Property Name="GeneXpert" Type="Int32" />
         </EntityType>
-        <Association Name="FK_AD_RoleMenu_AD_Menu">
-          <End Role="AD_Menu" Type="Self.AD_Menu" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AD_RoleMenu" Type="Self.AD_RoleMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AD_Menu">
-              <PropertyRef Name="MenuID" />
-            </Principal>
-            <Dependent Role="AD_RoleMenu">
-              <PropertyRef Name="MenuID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AD_RoleMenu_AD_Roles">
-          <End Role="AD_Roles" Type="Self.AD_Roles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AD_RoleMenu" Type="Self.AD_RoleMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AD_Roles">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="AD_RoleMenu">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AD_Users_AD_Roles">
-          <End Role="AD_Roles" Type="Self.AD_Roles" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AD_Users" Type="Self.AD_Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AD_Roles">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="AD_Users">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="NTP_DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AD_Menu" EntityType="Self.AD_Menu" />
-          <EntitySet Name="AD_RoleMenu" EntityType="Self.AD_RoleMenu" />
-          <EntitySet Name="AD_Roles" EntityType="Self.AD_Roles" />
-          <EntitySet Name="AD_Users" EntityType="Self.AD_Users" />
-          <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" />
-          <EntitySet Name="DM_Huyen" EntityType="Self.DM_Huyen" />
-          <EntitySet Name="DM_KQDieuTri" EntityType="Self.DM_KQDieuTri" />
-          <EntitySet Name="DM_LoaiBenhVien" EntityType="Self.DM_LoaiBenhVien" />
-          <EntitySet Name="DM_LyDoNhapXuat" EntityType="Self.DM_LyDoNhapXuat" />
-          <EntitySet Name="DM_Mien" EntityType="Self.DM_Mien" />
-          <EntitySet Name="DM_NguonKinhPhi" EntityType="Self.DM_NguonKinhPhi" />
-          <EntitySet Name="DM_Nuoc" EntityType="Self.DM_Nuoc" />
-          <EntitySet Name="DM_PhanLoaiBenh" EntityType="Self.DM_PhanLoaiBenh" />
-          <EntitySet Name="DM_PhanLoaiBenhNhan" EntityType="Self.DM_PhanLoaiBenhNhan" />
-          <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="Self.DM_PhanLoaiBenhNhan_BC" />
-          <EntitySet Name="DM_PhanLoaiYTe" EntityType="Self.DM_PhanLoaiYTe" />
-          <EntitySet Name="DM_Tinh" EntityType="Self.DM_Tinh" />
-          <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" />
-          <EntitySet Name="SO_BenhNhan" EntityType="Self.SO_BenhNhan" />
-          <EntitySet Name="SO_PhieuXetNghiem" EntityType="Self.SO_PhieuXetNghiem" />
-          <EntitySet Name="SO_SoDieuTri" EntityType="Self.SO_SoDieuTri" />
-          <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="DM_Cap" EntityType="Self.DM_Cap" />
-          <EntitySet Name="DM_DoiTuong" EntityType="Self.DM_DoiTuong" />
-          <EntitySet Name="DM_DonViTinh" EntityType="Self.DM_DonViTinh" />
-          <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" />
-          <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" />
-          <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="Self.SO_XetNghiemKhamBenh" />
-          <AssociationSet Name="FK_AD_RoleMenu_AD_Menu" Association="Self.FK_AD_RoleMenu_AD_Menu">
-            <End Role="AD_Menu" EntitySet="AD_Menu" />
-            <End Role="AD_RoleMenu" EntitySet="AD_RoleMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AD_RoleMenu_AD_Roles" Association="Self.FK_AD_RoleMenu_AD_Roles">
-            <End Role="AD_Roles" EntitySet="AD_Roles" />
-            <End Role="AD_RoleMenu" EntitySet="AD_RoleMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AD_Users_AD_Roles" Association="Self.FK_AD_Users_AD_Roles">
-            <End Role="AD_Roles" EntitySet="AD_Roles" />
-            <End Role="AD_Users" EntitySet="AD_Users" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1004,387 +1073,387 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
           <EntitySetMapping Name="AD_Menu">
             <EntityTypeMapping TypeName="NTP_DBModel.AD_Menu">
               <MappingFragment StoreEntitySet="AD_Menu">
-                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="MenuParentID" ColumnName="MenuParentID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AD_RoleMenu">
             <EntityTypeMapping TypeName="NTP_DBModel.AD_RoleMenu">
               <MappingFragment StoreEntitySet="AD_RoleMenu">
-                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="AllowAccess" ColumnName="AllowAccess" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AD_Roles">
             <EntityTypeMapping TypeName="NTP_DBModel.AD_Roles">
               <MappingFragment StoreEntitySet="AD_Roles">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AD_Users">
             <EntityTypeMapping TypeName="NTP_DBModel.AD_Users">
               <MappingFragment StoreEntitySet="AD_Users">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="IsSuperUser" ColumnName="IsSuperUser" />
+                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
-                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_BenhVien">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_BenhVien">
-              <MappingFragment StoreEntitySet="DM_BenhVien">
-                <ScalarProperty Name="ID_BENHVIEN_KHO" ColumnName="ID_BENHVIEN_KHO" />
-                <ScalarProperty Name="ID_BENHVIEN" ColumnName="ID_BENHVIEN" />
-                <ScalarProperty Name="TEN_BENHVIEN" ColumnName="TEN_BENHVIEN" />
-                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
-                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
-                <ScalarProperty Name="MA_BENHVIEN_CAPTREN" ColumnName="MA_BENHVIEN_CAPTREN" />
-                <ScalarProperty Name="ID_BENHVIEN_CAPTREN" ColumnName="ID_BENHVIEN_CAPTREN" />
-                <ScalarProperty Name="CAPQUANLY" ColumnName="CAPQUANLY" />
-                <ScalarProperty Name="ID_MATINH" ColumnName="ID_MATINH" />
-                <ScalarProperty Name="ID_HUYEN" ColumnName="ID_HUYEN" />
-                <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
-                <ScalarProperty Name="PHANBIET" ColumnName="PHANBIET" />
-                <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
-                <ScalarProperty Name="Huy" ColumnName="Huy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_Huyen">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_Huyen">
-              <MappingFragment StoreEntitySet="DM_Huyen">
-                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
-                <ScalarProperty Name="TEN_HUYEN" ColumnName="TEN_HUYEN" />
-                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_KQDieuTri">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_KQDieuTri">
-              <MappingFragment StoreEntitySet="DM_KQDieuTri">
-                <ScalarProperty Name="Id_KetQuaDT" ColumnName="Id_KetQuaDT" />
-                <ScalarProperty Name="Ten_KetQuaDT" ColumnName="Ten_KetQuaDT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_LoaiBenhVien">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_LoaiBenhVien">
-              <MappingFragment StoreEntitySet="DM_LoaiBenhVien">
-                <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
-                <ScalarProperty Name="TEN_LOAIBV" ColumnName="TEN_LOAIBV" />
-                <ScalarProperty Name="THUTU" ColumnName="THUTU" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_LyDoNhapXuat">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_LyDoNhapXuat">
-              <MappingFragment StoreEntitySet="DM_LyDoNhapXuat">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MO_TA" ColumnName="MO_TA" />
-                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_Mien">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_Mien">
-              <MappingFragment StoreEntitySet="DM_Mien">
-                <ScalarProperty Name="ID_MIEN" ColumnName="ID_MIEN" />
-                <ScalarProperty Name="TEN_MIEN" ColumnName="TEN_MIEN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_NguonKinhPhi">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_NguonKinhPhi">
-              <MappingFragment StoreEntitySet="DM_NguonKinhPhi">
-                <ScalarProperty Name="ID_NGUONKINHPHI" ColumnName="ID_NGUONKINHPHI" />
-                <ScalarProperty Name="MO_TA" ColumnName="MO_TA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_Nuoc">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_Nuoc">
-              <MappingFragment StoreEntitySet="DM_Nuoc">
-                <ScalarProperty Name="MA_NUOC" ColumnName="MA_NUOC" />
-                <ScalarProperty Name="TEN_NUOC" ColumnName="TEN_NUOC" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_PhanLoaiBenh">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiBenh">
-              <MappingFragment StoreEntitySet="DM_PhanLoaiBenh">
-                <ScalarProperty Name="ID_PhanLoaiBenh" ColumnName="ID_PhanLoaiBenh" />
-                <ScalarProperty Name="Ten_PhanLoaiBenh" ColumnName="Ten_PhanLoaiBenh" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_PhanLoaiBenhNhan">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiBenhNhan">
-              <MappingFragment StoreEntitySet="DM_PhanLoaiBenhNhan">
-                <ScalarProperty Name="ID_PhanloaiBN" ColumnName="ID_PhanloaiBN" />
-                <ScalarProperty Name="Ten_PhanLoaiBN" ColumnName="Ten_PhanLoaiBN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_PhanLoaiBenhNhan_BC">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiBenhNhan_BC">
-              <MappingFragment StoreEntitySet="DM_PhanLoaiBenhNhan_BC">
-                <ScalarProperty Name="ID_Phanloai" ColumnName="ID_Phanloai" />
-                <ScalarProperty Name="ID_PhanloaiBenh" ColumnName="ID_PhanloaiBenh" />
-                <ScalarProperty Name="ID_PhanloaiBN" ColumnName="ID_PhanloaiBN" />
-                <ScalarProperty Name="Cap" ColumnName="Cap" />
-                <ScalarProperty Name="Ten_Phanloai" ColumnName="Ten_Phanloai" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_PhanLoaiYTe">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiYTe">
-              <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
-                <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
-                <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_Tinh">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_Tinh">
-              <MappingFragment StoreEntitySet="DM_Tinh">
-                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
-                <ScalarProperty Name="TEN_TINH" ColumnName="TEN_TINH" />
-                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
-                <ScalarProperty Name="ID_MIEN" ColumnName="ID_MIEN" />
-                <ScalarProperty Name="DANSO" ColumnName="DANSO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_Vung">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_Vung">
-              <MappingFragment StoreEntitySet="DM_Vung">
-                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
-                <ScalarProperty Name="TEN_VUNG" ColumnName="TEN_VUNG" />
-                <ScalarProperty Name="ID_MIEN" ColumnName="ID_MIEN" />
+                <ScalarProperty Name="IsSuperUser" ColumnName="IsSuperUser" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SO_BenhNhan">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_BenhNhan">
               <MappingFragment StoreEntitySet="SO_BenhNhan">
-                <ScalarProperty Name="IDBenhNhan" ColumnName="IDBenhNhan" />
-                <ScalarProperty Name="ID_Doituong" ColumnName="ID_Doituong" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
-                <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
-                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
-                <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
-                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
-                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
-                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
-                <ScalarProperty Name="Sodienthoai" ColumnName="Sodienthoai" />
-                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
-                <ScalarProperty Name="Ngay_SD" ColumnName="Ngay_SD" />
-                <ScalarProperty Name="Nguoi_SD" ColumnName="Nguoi_SD" />
-                <ScalarProperty Name="Huy" ColumnName="Huy" />
-                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
-                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
-                <ScalarProperty Name="STT" ColumnName="STT" />
-                <ScalarProperty Name="Namsinh" ColumnName="Namsinh" />
-                <ScalarProperty Name="HIV" ColumnName="HIV" />
-                <ScalarProperty Name="BHYT" ColumnName="BHYT" />
-                <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
-                <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
                 <ScalarProperty Name="MaNoiGioiThieu" ColumnName="MaNoiGioiThieu" />
+                <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
+                <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+                <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+                <ScalarProperty Name="HIV" ColumnName="HIV" />
+                <ScalarProperty Name="Namsinh" ColumnName="Namsinh" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+                <ScalarProperty Name="Huy" ColumnName="Huy" />
+                <ScalarProperty Name="Nguoi_SD" ColumnName="Nguoi_SD" />
+                <ScalarProperty Name="Ngay_SD" ColumnName="Ngay_SD" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="Sodienthoai" ColumnName="Sodienthoai" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
+                <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
+                <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="ID_Doituong" ColumnName="ID_Doituong" />
+                <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SO_PhieuXetNghiem">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem">
               <MappingFragment StoreEntitySet="SO_PhieuXetNghiem">
-                <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
-                <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
-                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-                <ScalarProperty Name="ID_Benhvien" ColumnName="ID_Benhvien" />
-                <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
-                <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
-                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
-                <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
-                <ScalarProperty Name="HIV" ColumnName="HIV" />
-                <ScalarProperty Name="SoDKDT" ColumnName="SoDKDT" />
-                <ScalarProperty Name="XNVien" ColumnName="XNVien" />
-                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
-                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
-                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
-                <ScalarProperty Name="DV_XETNGHIEM" ColumnName="DV_XETNGHIEM" />
-                <ScalarProperty Name="NgayXN" ColumnName="NgayXN" />
-                <ScalarProperty Name="HUY" ColumnName="HUY" />
-                <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
-                <ScalarProperty Name="DV_TiepNhan" ColumnName="DV_TiepNhan" />
                 <ScalarProperty Name="Tiepnhan" ColumnName="Tiepnhan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SO_SoDieuTri">
-            <EntityTypeMapping TypeName="NTP_DBModel.SO_SoDieuTri">
-              <MappingFragment StoreEntitySet="SO_SoDieuTri">
-                <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
-                <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
-                <ScalarProperty Name="SoDKDT" ColumnName="SoDKDT" />
-                <ScalarProperty Name="DVDieutri" ColumnName="DVDieutri" />
-                <ScalarProperty Name="NgayVV" ColumnName="NgayVV" />
-                <ScalarProperty Name="NgayDT" ColumnName="NgayDT" />
-                <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
-                <ScalarProperty Name="DVGioiThieu" ColumnName="DVGioiThieu" />
-                <ScalarProperty Name="ID_PhanLoaiBenh" ColumnName="ID_PhanLoaiBenh" />
-                <ScalarProperty Name="ID_PhanLoaiBN" ColumnName="ID_PhanLoaiBN" />
-                <ScalarProperty Name="NgayChupXQ" ColumnName="NgayChupXQ" />
-                <ScalarProperty Name="KetquaXQ" ColumnName="KetquaXQ" />
-                <ScalarProperty Name="XNHIV1" ColumnName="XNHIV1" />
-                <ScalarProperty Name="XNHIV2" ColumnName="XNHIV2" />
-                <ScalarProperty Name="ART" ColumnName="ART" />
-                <ScalarProperty Name="CPT" ColumnName="CPT" />
-                <ScalarProperty Name="LymPho" ColumnName="LymPho" />
-                <ScalarProperty Name="GiamSatDT" ColumnName="GiamSatDT" />
-                <ScalarProperty Name="ID_KetquaDT" ColumnName="ID_KetquaDT" />
-                <ScalarProperty Name="NgayRV" ColumnName="NgayRV" />
-                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
-                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
-                <ScalarProperty Name="Ngay_SD" ColumnName="Ngay_SD" />
-                <ScalarProperty Name="Nguoi_SD" ColumnName="Nguoi_SD" />
-                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
-                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
-                <ScalarProperty Name="ID_DieutriChuyen" ColumnName="ID_DieutriChuyen" />
-                <ScalarProperty Name="ID_PhacdoDT" ColumnName="ID_PhacdoDT" />
-                <ScalarProperty Name="PhacdoKhac" ColumnName="PhacdoKhac" />
-                <ScalarProperty Name="Chandoan" ColumnName="Chandoan" />
-                <ScalarProperty Name="HUY" ColumnName="HUY" />
+                <ScalarProperty Name="DV_TiepNhan" ColumnName="DV_TiepNhan" />
                 <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
-                <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
-                <ScalarProperty Name="ID_PhacdoTD" ColumnName="ID_PhacdoTD" />
-                <ScalarProperty Name="PhacdoTDKhac" ColumnName="PhacdoTDKhac" />
-                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="HUY" ColumnName="HUY" />
+                <ScalarProperty Name="NgayXN" ColumnName="NgayXN" />
+                <ScalarProperty Name="DV_XETNGHIEM" ColumnName="DV_XETNGHIEM" />
+                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="XNVien" ColumnName="XNVien" />
+                <ScalarProperty Name="SoDKDT" ColumnName="SoDKDT" />
+                <ScalarProperty Name="HIV" ColumnName="HIV" />
+                <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
+                <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
+                <ScalarProperty Name="ID_Benhvien" ColumnName="ID_Benhvien" />
+                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+                <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
+                <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SO_SoKhamBenh">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_SoKhamBenh">
               <MappingFragment StoreEntitySet="SO_SoKhamBenh">
-                <ScalarProperty Name="ID_SoKhamBenh" ColumnName="ID_SoKhamBenh" />
-                <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
-                <ScalarProperty Name="TrieuChung" ColumnName="TrieuChung" />
-                <ScalarProperty Name="KetQuaXetNghiemDom" ColumnName="KetQuaXetNghiemDom" />
-                <ScalarProperty Name="TrangThaiDomDaiThe" ColumnName="TrangThaiDomDaiThe" />
-                <ScalarProperty Name="SoMauDom" ColumnName="SoMauDom" />
-                <ScalarProperty Name="NgayXetNghiemDom" ColumnName="NgayXetNghiemDom" />
-                <ScalarProperty Name="XQ" ColumnName="XQ" />
-                <ScalarProperty Name="NgayChupXQ" ColumnName="NgayChupXQ" />
-                <ScalarProperty Name="Khac" ColumnName="Khac" />
-                <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
-                <ScalarProperty Name="ToChongLao" ColumnName="ToChongLao" />
-                <ScalarProperty Name="XuTri" ColumnName="XuTri" />
-                <ScalarProperty Name="BSKhamBenh" ColumnName="BSKhamBenh" />
-                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
-                <ScalarProperty Name="NgayKhamBenh" ColumnName="NgayKhamBenh" />
-                <ScalarProperty Name="HuyenKB" ColumnName="HuyenKB" />
-                <ScalarProperty Name="TinhKB" ColumnName="TinhKB" />
-                <ScalarProperty Name="HUY" ColumnName="HUY" />
-                <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
                 <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+                <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
+                <ScalarProperty Name="HUY" ColumnName="HUY" />
+                <ScalarProperty Name="TinhKB" ColumnName="TinhKB" />
+                <ScalarProperty Name="HuyenKB" ColumnName="HuyenKB" />
+                <ScalarProperty Name="NgayKhamBenh" ColumnName="NgayKhamBenh" />
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="BSKhamBenh" ColumnName="BSKhamBenh" />
+                <ScalarProperty Name="XuTri" ColumnName="XuTri" />
+                <ScalarProperty Name="ToChongLao" ColumnName="ToChongLao" />
+                <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
+                <ScalarProperty Name="Khac" ColumnName="Khac" />
+                <ScalarProperty Name="NgayChupXQ" ColumnName="NgayChupXQ" />
+                <ScalarProperty Name="XQ" ColumnName="XQ" />
+                <ScalarProperty Name="NgayXetNghiemDom" ColumnName="NgayXetNghiemDom" />
+                <ScalarProperty Name="SoMauDom" ColumnName="SoMauDom" />
+                <ScalarProperty Name="TrangThaiDomDaiThe" ColumnName="TrangThaiDomDaiThe" />
+                <ScalarProperty Name="KetQuaXetNghiemDom" ColumnName="KetQuaXetNghiemDom" />
+                <ScalarProperty Name="TrieuChung" ColumnName="TrieuChung" />
+                <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
+                <ScalarProperty Name="ID_SoKhamBenh" ColumnName="ID_SoKhamBenh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="NTP_DBModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_BenhVien">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_BenhVien">
+              <MappingFragment StoreEntitySet="DM_BenhVien">
+                <ScalarProperty Name="Huy" ColumnName="Huy" />
+                <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
+                <ScalarProperty Name="PHANBIET" ColumnName="PHANBIET" />
+                <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
+                <ScalarProperty Name="ID_HUYEN" ColumnName="ID_HUYEN" />
+                <ScalarProperty Name="ID_MATINH" ColumnName="ID_MATINH" />
+                <ScalarProperty Name="CAPQUANLY" ColumnName="CAPQUANLY" />
+                <ScalarProperty Name="ID_BENHVIEN_CAPTREN" ColumnName="ID_BENHVIEN_CAPTREN" />
+                <ScalarProperty Name="MA_BENHVIEN_CAPTREN" ColumnName="MA_BENHVIEN_CAPTREN" />
+                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="TEN_BENHVIEN" ColumnName="TEN_BENHVIEN" />
+                <ScalarProperty Name="ID_BENHVIEN" ColumnName="ID_BENHVIEN" />
+                <ScalarProperty Name="ID_BENHVIEN_KHO" ColumnName="ID_BENHVIEN_KHO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DM_Cap">
             <EntityTypeMapping TypeName="NTP_DBModel.DM_Cap">
               <MappingFragment StoreEntitySet="DM_Cap">
-                <ScalarProperty Name="ID_CAP" ColumnName="ID_CAP" />
                 <ScalarProperty Name="TEN_CAP" ColumnName="TEN_CAP" />
+                <ScalarProperty Name="ID_CAP" ColumnName="ID_CAP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DM_DoiTuong">
             <EntityTypeMapping TypeName="NTP_DBModel.DM_DoiTuong">
               <MappingFragment StoreEntitySet="DM_DoiTuong">
-                <ScalarProperty Name="ID_Doituong" ColumnName="ID_Doituong" />
                 <ScalarProperty Name="ten_DoiTuong" ColumnName="ten_DoiTuong" />
+                <ScalarProperty Name="ID_Doituong" ColumnName="ID_Doituong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DM_DonViTinh">
             <EntityTypeMapping TypeName="NTP_DBModel.DM_DonViTinh">
               <MappingFragment StoreEntitySet="DM_DonViTinh">
-                <ScalarProperty Name="ID_DVT" ColumnName="ID_DVT" />
                 <ScalarProperty Name="TEN_DVT" ColumnName="TEN_DVT" />
+                <ScalarProperty Name="ID_DVT" ColumnName="ID_DVT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Huyen">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_Huyen">
+              <MappingFragment StoreEntitySet="DM_Huyen">
+                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
+                <ScalarProperty Name="TEN_HUYEN" ColumnName="TEN_HUYEN" />
+                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_KQDieuTri">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_KQDieuTri">
+              <MappingFragment StoreEntitySet="DM_KQDieuTri">
+                <ScalarProperty Name="Ten_KetQuaDT" ColumnName="Ten_KetQuaDT" />
+                <ScalarProperty Name="Id_KetQuaDT" ColumnName="Id_KetQuaDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_LoaiBenhVien">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_LoaiBenhVien">
+              <MappingFragment StoreEntitySet="DM_LoaiBenhVien">
+                <ScalarProperty Name="THUTU" ColumnName="THUTU" />
+                <ScalarProperty Name="TEN_LOAIBV" ColumnName="TEN_LOAIBV" />
+                <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_LyDoNhapXuat">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_LyDoNhapXuat">
+              <MappingFragment StoreEntitySet="DM_LyDoNhapXuat">
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="MO_TA" ColumnName="MO_TA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Mien">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_Mien">
+              <MappingFragment StoreEntitySet="DM_Mien">
+                <ScalarProperty Name="TEN_MIEN" ColumnName="TEN_MIEN" />
+                <ScalarProperty Name="ID_MIEN" ColumnName="ID_MIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_NguonKinhPhi">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_NguonKinhPhi">
+              <MappingFragment StoreEntitySet="DM_NguonKinhPhi">
+                <ScalarProperty Name="MO_TA" ColumnName="MO_TA" />
+                <ScalarProperty Name="ID_NGUONKINHPHI" ColumnName="ID_NGUONKINHPHI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Nuoc">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_Nuoc">
+              <MappingFragment StoreEntitySet="DM_Nuoc">
+                <ScalarProperty Name="TEN_NUOC" ColumnName="TEN_NUOC" />
+                <ScalarProperty Name="MA_NUOC" ColumnName="MA_NUOC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_PhanLoaiBenh">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiBenh">
+              <MappingFragment StoreEntitySet="DM_PhanLoaiBenh">
+                <ScalarProperty Name="Ten_PhanLoaiBenh" ColumnName="Ten_PhanLoaiBenh" />
+                <ScalarProperty Name="ID_PhanLoaiBenh" ColumnName="ID_PhanLoaiBenh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_PhanLoaiBenhNhan">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiBenhNhan">
+              <MappingFragment StoreEntitySet="DM_PhanLoaiBenhNhan">
+                <ScalarProperty Name="Ten_PhanLoaiBN" ColumnName="Ten_PhanLoaiBN" />
+                <ScalarProperty Name="ID_PhanloaiBN" ColumnName="ID_PhanloaiBN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_PhanLoaiBenhNhan_BC">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiBenhNhan_BC">
+              <MappingFragment StoreEntitySet="DM_PhanLoaiBenhNhan_BC">
+                <ScalarProperty Name="Ten_Phanloai" ColumnName="Ten_Phanloai" />
+                <ScalarProperty Name="Cap" ColumnName="Cap" />
+                <ScalarProperty Name="ID_PhanloaiBN" ColumnName="ID_PhanloaiBN" />
+                <ScalarProperty Name="ID_PhanloaiBenh" ColumnName="ID_PhanloaiBenh" />
+                <ScalarProperty Name="ID_Phanloai" ColumnName="ID_Phanloai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_PhanLoaiYTe">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiYTe">
+              <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
+                <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
+                <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Tinh">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_Tinh">
+              <MappingFragment StoreEntitySet="DM_Tinh">
+                <ScalarProperty Name="DANSO" ColumnName="DANSO" />
+                <ScalarProperty Name="ID_MIEN" ColumnName="ID_MIEN" />
+                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
+                <ScalarProperty Name="TEN_TINH" ColumnName="TEN_TINH" />
+                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Vung">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_Vung">
+              <MappingFragment StoreEntitySet="DM_Vung">
+                <ScalarProperty Name="ID_MIEN" ColumnName="ID_MIEN" />
+                <ScalarProperty Name="TEN_VUNG" ColumnName="TEN_VUNG" />
+                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
               <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
-                <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
-                <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
-                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-                <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
-                <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
-                <ScalarProperty Name="Maudom" ColumnName="Maudom" />
                 <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
+                <ScalarProperty Name="Maudom" ColumnName="Maudom" />
+                <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
+                <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+                <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
+                <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SO_SoDieuTri">
+            <EntityTypeMapping TypeName="NTP_DBModel.SO_SoDieuTri">
+              <MappingFragment StoreEntitySet="SO_SoDieuTri">
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="PhacdoTDKhac" ColumnName="PhacdoTDKhac" />
+                <ScalarProperty Name="ID_PhacdoTD" ColumnName="ID_PhacdoTD" />
+                <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+                <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
+                <ScalarProperty Name="HUY" ColumnName="HUY" />
+                <ScalarProperty Name="Chandoan" ColumnName="Chandoan" />
+                <ScalarProperty Name="PhacdoKhac" ColumnName="PhacdoKhac" />
+                <ScalarProperty Name="ID_PhacdoDT" ColumnName="ID_PhacdoDT" />
+                <ScalarProperty Name="ID_DieutriChuyen" ColumnName="ID_DieutriChuyen" />
+                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+                <ScalarProperty Name="Nguoi_SD" ColumnName="Nguoi_SD" />
+                <ScalarProperty Name="Ngay_SD" ColumnName="Ngay_SD" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="NgayRV" ColumnName="NgayRV" />
+                <ScalarProperty Name="ID_KetquaDT" ColumnName="ID_KetquaDT" />
+                <ScalarProperty Name="GiamSatDT" ColumnName="GiamSatDT" />
+                <ScalarProperty Name="LymPho" ColumnName="LymPho" />
+                <ScalarProperty Name="CPT" ColumnName="CPT" />
+                <ScalarProperty Name="ART" ColumnName="ART" />
+                <ScalarProperty Name="XNHIV2" ColumnName="XNHIV2" />
+                <ScalarProperty Name="XNHIV1" ColumnName="XNHIV1" />
+                <ScalarProperty Name="KetquaXQ" ColumnName="KetquaXQ" />
+                <ScalarProperty Name="NgayChupXQ" ColumnName="NgayChupXQ" />
+                <ScalarProperty Name="ID_PhanLoaiBN" ColumnName="ID_PhanLoaiBN" />
+                <ScalarProperty Name="ID_PhanLoaiBenh" ColumnName="ID_PhanLoaiBenh" />
+                <ScalarProperty Name="DVGioiThieu" ColumnName="DVGioiThieu" />
+                <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
+                <ScalarProperty Name="NgayDT" ColumnName="NgayDT" />
+                <ScalarProperty Name="NgayVV" ColumnName="NgayVV" />
+                <ScalarProperty Name="DVDieutri" ColumnName="DVDieutri" />
+                <ScalarProperty Name="SoDKDT" ColumnName="SoDKDT" />
+                <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
+                <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SO_SoDieuTri_KQ">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_SoDieuTri_KQ">
               <MappingFragment StoreEntitySet="SO_SoDieuTri_KQ">
-                <ScalarProperty Name="ID_Xetnghiem_GD" ColumnName="ID_Xetnghiem_GD" />
-                <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
-                <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
-                <ScalarProperty Name="ThoiGianDT" ColumnName="ThoiGianDT" />
-                <ScalarProperty Name="Ngayxn" ColumnName="Ngayxn" />
-                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-                <ScalarProperty Name="KetquaXN" ColumnName="KetquaXN" />
-                <ScalarProperty Name="CanNang" ColumnName="CanNang" />
-                <ScalarProperty Name="Nuoicay" ColumnName="Nuoicay" />
-                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
                 <ScalarProperty Name="GeneXpert" ColumnName="GeneXpert" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="Nuoicay" ColumnName="Nuoicay" />
+                <ScalarProperty Name="CanNang" ColumnName="CanNang" />
+                <ScalarProperty Name="KetquaXN" ColumnName="KetquaXN" />
+                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+                <ScalarProperty Name="Ngayxn" ColumnName="Ngayxn" />
+                <ScalarProperty Name="ThoiGianDT" ColumnName="ThoiGianDT" />
+                <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
+                <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
+                <ScalarProperty Name="ID_Xetnghiem_GD" ColumnName="ID_Xetnghiem_GD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SO_XetNghiemKhamBenh">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_XetNghiemKhamBenh">
               <MappingFragment StoreEntitySet="SO_XetNghiemKhamBenh">
-                <ScalarProperty Name="ID_Xetnghiem_GE" ColumnName="ID_Xetnghiem_GE" />
-                <ScalarProperty Name="ID_SoKhamBenh" ColumnName="ID_SoKhamBenh" />
-                <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
-                <ScalarProperty Name="ThoiGianDT" ColumnName="ThoiGianDT" />
-                <ScalarProperty Name="Ngayxn" ColumnName="Ngayxn" />
-                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-                <ScalarProperty Name="KetquaXN" ColumnName="KetquaXN" />
-                <ScalarProperty Name="CanNang" ColumnName="CanNang" />
-                <ScalarProperty Name="Nuoicay" ColumnName="Nuoicay" />
-                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
                 <ScalarProperty Name="GeneXpert" ColumnName="GeneXpert" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="Nuoicay" ColumnName="Nuoicay" />
+                <ScalarProperty Name="CanNang" ColumnName="CanNang" />
+                <ScalarProperty Name="KetquaXN" ColumnName="KetquaXN" />
+                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+                <ScalarProperty Name="Ngayxn" ColumnName="Ngayxn" />
+                <ScalarProperty Name="ThoiGianDT" ColumnName="ThoiGianDT" />
+                <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
+                <ScalarProperty Name="ID_SoKhamBenh" ColumnName="ID_SoKhamBenh" />
+                <ScalarProperty Name="ID_Xetnghiem_GE" ColumnName="ID_Xetnghiem_GE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

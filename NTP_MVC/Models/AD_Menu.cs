@@ -14,15 +14,8 @@ namespace NTP_MVC.Models
     
     public partial class AD_Menu
     {
-        public AD_Menu()
-        {
-            this.AD_RoleMenu = new HashSet<AD_RoleMenu>();
-        }
-    
         public int MenuID { get; set; }
         public string MenuName { get; set; }
         public Nullable<int> MenuParentID { get; set; }
-    
-        public virtual ICollection<AD_RoleMenu> AD_RoleMenu { get; set; }
     }
 }

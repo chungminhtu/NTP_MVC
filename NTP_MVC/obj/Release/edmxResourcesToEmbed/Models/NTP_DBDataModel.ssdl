@@ -1,8 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="NTP_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AD_Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="MenuParentID" Type="int" />
+  </EntityType>
+  <EntityType Name="AD_RoleMenu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="AllowAccess" Type="bit" />
+  </EntityType>
+  <EntityType Name="AD_Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="AD_Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IsSuperUser" Type="bit" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
+    <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_BenhVien' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_BenhVien">
     <Key>
       <PropertyRef Name="ID_BENHVIEN_KHO" />
+      <PropertyRef Name="ID_BENHVIEN" />
+      <PropertyRef Name="TEN_BENHVIEN" />
     </Key>
     <Property Name="ID_BENHVIEN_KHO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_BENHVIEN" Type="varchar" MaxLength="10" Nullable="false" />
@@ -47,21 +89,29 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="ID_DVT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TEN_DVT" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Huyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_Huyen">
     <Key>
       <PropertyRef Name="MA_HUYEN" />
+      <PropertyRef Name="TEN_HUYEN" />
+      <PropertyRef Name="MA_TINH" />
     </Key>
-    <Property Name="MA_HUYEN" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TEN_HUYEN" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="MA_TINH" Type="bigint" Nullable="false" />
+    <Property Name="MA_TINH" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_KQDieuTri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_KQDieuTri">
     <Key>
       <PropertyRef Name="Id_KetQuaDT" />
     </Key>
-    <Property Name="Id_KetQuaDT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_KetQuaDT" Type="int" Nullable="false" />
     <Property Name="Ten_KetQuaDT" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_LoaiBenhVien' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_LoaiBenhVien">
     <Key>
       <PropertyRef Name="ID_LOAIBV" />
@@ -70,14 +120,19 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="TEN_LOAIBV" Type="nvarchar" MaxLength="50" />
     <Property Name="THUTU" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_LyDoNhapXuat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_LyDoNhapXuat">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="TYPE" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MO_TA" Type="nvarchar" MaxLength="250" />
     <Property Name="TYPE" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Mien' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_Mien">
     <Key>
       <PropertyRef Name="ID_MIEN" />
@@ -85,27 +140,37 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="ID_MIEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TEN_MIEN" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_NguonKinhPhi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_NguonKinhPhi">
     <Key>
       <PropertyRef Name="ID_NGUONKINHPHI" />
+      <PropertyRef Name="MO_TA" />
     </Key>
     <Property Name="ID_NGUONKINHPHI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MO_TA" Type="nvarchar" MaxLength="250" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Nuoc' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_Nuoc">
     <Key>
       <PropertyRef Name="MA_NUOC" />
+      <PropertyRef Name="TEN_NUOC" />
     </Key>
     <Property Name="MA_NUOC" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TEN_NUOC" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiBenh' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_PhanLoaiBenh">
     <Key>
       <PropertyRef Name="ID_PhanLoaiBenh" />
     </Key>
-    <Property Name="ID_PhanLoaiBenh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_PhanLoaiBenh" Type="int" Nullable="false" />
     <Property Name="Ten_PhanLoaiBenh" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiBenhNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_PhanLoaiBenhNhan">
     <Key>
       <PropertyRef Name="ID_PhanloaiBN" />
@@ -113,6 +178,8 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="ID_PhanloaiBN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ten_PhanLoaiBN" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiBenhNhan_BC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_PhanLoaiBenhNhan_BC">
     <Key>
       <PropertyRef Name="ID_Phanloai" />
@@ -123,6 +190,8 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="Cap" Type="tinyint" />
     <Property Name="Ten_Phanloai" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_PhanLoaiYTe">
     <Key>
       <PropertyRef Name="ID_PhanloaiYte" />
@@ -130,9 +199,13 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="ID_PhanloaiYte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ten_PhanloaiYte" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Tinh' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_Tinh">
     <Key>
       <PropertyRef Name="MA_TINH" />
+      <PropertyRef Name="TEN_TINH" />
+      <PropertyRef Name="ID_VUNG" />
     </Key>
     <Property Name="MA_TINH" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TEN_TINH" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -140,9 +213,12 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="ID_MIEN" Type="int" />
     <Property Name="DANSO" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_Vung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DM_Vung">
     <Key>
       <PropertyRef Name="ID_VUNG" />
+      <PropertyRef Name="ID_MIEN" />
     </Key>
     <Property Name="ID_VUNG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TEN_VUNG" Type="nvarchar" MaxLength="50" />
@@ -150,10 +226,10 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
   </EntityType>
   <EntityType Name="SO_BenhNhan">
     <Key>
-      <PropertyRef Name="IDBenhNhan" />
+      <PropertyRef Name="ID_BenhNhan" />
     </Key>
-    <Property Name="IDBenhNhan" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_Doituong" Type="int" />
+    <Property Name="ID_BenhNhan" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Doituong" Type="int" Nullable="false" />
     <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
     <Property Name="MaBNQL" Type="nvarchar" MaxLength="15" />
     <Property Name="SoCMND" Type="nvarchar" MaxLength="20" />
@@ -169,7 +245,7 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
     <Property Name="Nguoi_SD" Type="nvarchar" MaxLength="6" />
     <Property Name="Huy" Type="bit" />
     <Property Name="HuyenXN" Type="bit" />
-    <Property Name="TinhXN" Type="bit" />
+    <Property Name="TinhXN" Type="bit" Nullable="false" />
     <Property Name="STT" Type="decimal" Precision="18" Scale="0" />
     <Property Name="Namsinh" Type="numeric" Precision="18" Scale="0" />
     <Property Name="HIV" Type="tinyint" />
@@ -183,11 +259,11 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_DonViTinh' does not have a primary k
       <PropertyRef Name="ID_Phieuxetnghiem" />
     </Key>
     <Property Name="ID_Phieuxetnghiem" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_Benhnhan" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="ID_Benhnhan" Type="bigint" Nullable="false" />
     <Property Name="SoXN" Type="nvarchar" MaxLength="15" />
     <Property Name="ID_Benhvien" Type="nvarchar" MaxLength="100" />
     <Property Name="ID_PhanloaiYte" Type="int" />
-    <Property Name="LydoXN" Type="int" />
+    <Property Name="LydoXN" Type="int" Nullable="false" />
     <Property Name="Soluong" Type="tinyint" />
     <Property Name="SoThangDT" Type="tinyint" />
     <Property Name="HIV" Type="tinyint" />
@@ -220,11 +296,14 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_PhieuXetNghiem_KQ' does not have a p
     <Property Name="Maudom" Type="tinyint" Nullable="false" />
     <Property Name="Ketqua" Type="tinyint" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SO_SoDieuTri">
     <Key>
       <PropertyRef Name="ID_Dieutri" />
+      <PropertyRef Name="ID_BENHNHAN" />
     </Key>
-    <Property Name="ID_Dieutri" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Dieutri" Type="numeric" Precision="18" Scale="0" Nullable="false" />
     <Property Name="ID_BENHNHAN" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="SoDKDT" Type="nvarchar" MaxLength="10" />
     <Property Name="DVDieutri" Type="nvarchar" MaxLength="10" />
@@ -291,7 +370,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
       <PropertyRef Name="ID_SoKhamBenh" />
     </Key>
     <Property Name="ID_SoKhamBenh" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_BENHNHAN" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="ID_BENHNHAN" Type="bigint" Nullable="false" />
     <Property Name="TrieuChung" Type="nvarchar" MaxLength="300" />
     <Property Name="KetQuaXetNghiemDom" Type="nvarchar" MaxLength="300" />
     <Property Name="TrangThaiDomDaiThe" Type="nvarchar" MaxLength="300" />
@@ -346,25 +425,32 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityContainer Name="NTP_DBModelStoreContainer">
-    <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_Huyen" EntityType="Self.DM_Huyen" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_KQDieuTri" EntityType="Self.DM_KQDieuTri" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_LoaiBenhVien" EntityType="Self.DM_LoaiBenhVien" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_LyDoNhapXuat" EntityType="Self.DM_LyDoNhapXuat" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_Mien" EntityType="Self.DM_Mien" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_NguonKinhPhi" EntityType="Self.DM_NguonKinhPhi" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_Nuoc" EntityType="Self.DM_Nuoc" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_PhanLoaiBenh" EntityType="Self.DM_PhanLoaiBenh" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_PhanLoaiBenhNhan" EntityType="Self.DM_PhanLoaiBenhNhan" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="Self.DM_PhanLoaiBenhNhan_BC" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_PhanLoaiYTe" EntityType="Self.DM_PhanLoaiYTe" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_Tinh" EntityType="Self.DM_Tinh" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AD_Menu" EntityType="Self.AD_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AD_RoleMenu" EntityType="Self.AD_RoleMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AD_Roles" EntityType="Self.AD_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AD_Users" EntityType="Self.AD_Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_BenhNhan" EntityType="Self.SO_BenhNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_PhieuXetNghiem" EntityType="Self.SO_PhieuXetNghiem" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SO_SoDieuTri" EntityType="Self.SO_SoDieuTri" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_BenhVien].[ID_BENHVIEN_KHO] AS [ID_BENHVIEN_KHO], 
+    [DM_BenhVien].[ID_BENHVIEN] AS [ID_BENHVIEN], 
+    [DM_BenhVien].[TEN_BENHVIEN] AS [TEN_BENHVIEN], 
+    [DM_BenhVien].[DIA_CHI] AS [DIA_CHI], 
+    [DM_BenhVien].[ID_VUNG] AS [ID_VUNG], 
+    [DM_BenhVien].[MA_BENHVIEN_CAPTREN] AS [MA_BENHVIEN_CAPTREN], 
+    [DM_BenhVien].[ID_BENHVIEN_CAPTREN] AS [ID_BENHVIEN_CAPTREN], 
+    [DM_BenhVien].[CAPQUANLY] AS [CAPQUANLY], 
+    [DM_BenhVien].[ID_MATINH] AS [ID_MATINH], 
+    [DM_BenhVien].[ID_HUYEN] AS [ID_HUYEN], 
+    [DM_BenhVien].[ID_PHANLOAIYTE] AS [ID_PHANLOAIYTE], 
+    [DM_BenhVien].[PHANBIET] AS [PHANBIET], 
+    [DM_BenhVien].[ID_LOAIBV] AS [ID_LOAIBV], 
+    [DM_BenhVien].[Huy] AS [Huy]
+    FROM [dbo].[DM_BenhVien] AS [DM_BenhVien]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="DM_Cap" EntityType="Self.DM_Cap" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [DM_Cap].[ID_CAP] AS [ID_CAP], 
@@ -383,6 +469,94 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
     [DM_DonViTinh].[TEN_DVT] AS [TEN_DVT]
     FROM [dbo].[DM_DonViTinh] AS [DM_DonViTinh]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="DM_Huyen" EntityType="Self.DM_Huyen" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_Huyen].[MA_HUYEN] AS [MA_HUYEN], 
+    [DM_Huyen].[TEN_HUYEN] AS [TEN_HUYEN], 
+    [DM_Huyen].[MA_TINH] AS [MA_TINH]
+    FROM [dbo].[DM_Huyen] AS [DM_Huyen]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_KQDieuTri" EntityType="Self.DM_KQDieuTri" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_KQDieuTri].[Id_KetQuaDT] AS [Id_KetQuaDT], 
+    [DM_KQDieuTri].[Ten_KetQuaDT] AS [Ten_KetQuaDT]
+    FROM [dbo].[DM_KQDieuTri] AS [DM_KQDieuTri]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_LoaiBenhVien" EntityType="Self.DM_LoaiBenhVien" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_LoaiBenhVien].[ID_LOAIBV] AS [ID_LOAIBV], 
+    [DM_LoaiBenhVien].[TEN_LOAIBV] AS [TEN_LOAIBV], 
+    [DM_LoaiBenhVien].[THUTU] AS [THUTU]
+    FROM [dbo].[DM_LoaiBenhVien] AS [DM_LoaiBenhVien]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_LyDoNhapXuat" EntityType="Self.DM_LyDoNhapXuat" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_LyDoNhapXuat].[ID] AS [ID], 
+    [DM_LyDoNhapXuat].[MO_TA] AS [MO_TA], 
+    [DM_LyDoNhapXuat].[TYPE] AS [TYPE]
+    FROM [dbo].[DM_LyDoNhapXuat] AS [DM_LyDoNhapXuat]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_Mien" EntityType="Self.DM_Mien" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_Mien].[ID_MIEN] AS [ID_MIEN], 
+    [DM_Mien].[TEN_MIEN] AS [TEN_MIEN]
+    FROM [dbo].[DM_Mien] AS [DM_Mien]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_NguonKinhPhi" EntityType="Self.DM_NguonKinhPhi" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_NguonKinhPhi].[ID_NGUONKINHPHI] AS [ID_NGUONKINHPHI], 
+    [DM_NguonKinhPhi].[MO_TA] AS [MO_TA]
+    FROM [dbo].[DM_NguonKinhPhi] AS [DM_NguonKinhPhi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_Nuoc" EntityType="Self.DM_Nuoc" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_Nuoc].[MA_NUOC] AS [MA_NUOC], 
+    [DM_Nuoc].[TEN_NUOC] AS [TEN_NUOC]
+    FROM [dbo].[DM_Nuoc] AS [DM_Nuoc]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_PhanLoaiBenh" EntityType="Self.DM_PhanLoaiBenh" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_PhanLoaiBenh].[ID_PhanLoaiBenh] AS [ID_PhanLoaiBenh], 
+    [DM_PhanLoaiBenh].[Ten_PhanLoaiBenh] AS [Ten_PhanLoaiBenh]
+    FROM [dbo].[DM_PhanLoaiBenh] AS [DM_PhanLoaiBenh]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_PhanLoaiBenhNhan" EntityType="Self.DM_PhanLoaiBenhNhan" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_PhanLoaiBenhNhan].[ID_PhanloaiBN] AS [ID_PhanloaiBN], 
+    [DM_PhanLoaiBenhNhan].[Ten_PhanLoaiBN] AS [Ten_PhanLoaiBN]
+    FROM [dbo].[DM_PhanLoaiBenhNhan] AS [DM_PhanLoaiBenhNhan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="Self.DM_PhanLoaiBenhNhan_BC" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_PhanLoaiBenhNhan_BC].[ID_Phanloai] AS [ID_Phanloai], 
+    [DM_PhanLoaiBenhNhan_BC].[ID_PhanloaiBenh] AS [ID_PhanloaiBenh], 
+    [DM_PhanLoaiBenhNhan_BC].[ID_PhanloaiBN] AS [ID_PhanloaiBN], 
+    [DM_PhanLoaiBenhNhan_BC].[Cap] AS [Cap], 
+    [DM_PhanLoaiBenhNhan_BC].[Ten_Phanloai] AS [Ten_Phanloai]
+    FROM [dbo].[DM_PhanLoaiBenhNhan_BC] AS [DM_PhanLoaiBenhNhan_BC]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_PhanLoaiYTe" EntityType="Self.DM_PhanLoaiYTe" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_PhanLoaiYTe].[ID_PhanloaiYte] AS [ID_PhanloaiYte], 
+    [DM_PhanLoaiYTe].[Ten_PhanloaiYte] AS [Ten_PhanloaiYte]
+    FROM [dbo].[DM_PhanLoaiYTe] AS [DM_PhanLoaiYTe]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_Tinh" EntityType="Self.DM_Tinh" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_Tinh].[MA_TINH] AS [MA_TINH], 
+    [DM_Tinh].[TEN_TINH] AS [TEN_TINH], 
+    [DM_Tinh].[ID_VUNG] AS [ID_VUNG], 
+    [DM_Tinh].[ID_MIEN] AS [ID_MIEN], 
+    [DM_Tinh].[DANSO] AS [DANSO]
+    FROM [dbo].[DM_Tinh] AS [DM_Tinh]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_Vung].[ID_VUNG] AS [ID_VUNG], 
+    [DM_Vung].[TEN_VUNG] AS [TEN_VUNG], 
+    [DM_Vung].[ID_MIEN] AS [ID_MIEN]
+    FROM [dbo].[DM_Vung] AS [DM_Vung]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [SO_PhieuXetNghiem_KQ].[ID_Phieuxetnghiem_C] AS [ID_Phieuxetnghiem_C], 
@@ -393,6 +567,47 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_XetNghiemKhamBenh' does not have a p
     [SO_PhieuXetNghiem_KQ].[Maudom] AS [Maudom], 
     [SO_PhieuXetNghiem_KQ].[Ketqua] AS [Ketqua]
     FROM [dbo].[SO_PhieuXetNghiem_KQ] AS [SO_PhieuXetNghiem_KQ]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SO_SoDieuTri" EntityType="Self.SO_SoDieuTri" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SO_SoDieuTri].[ID_Dieutri] AS [ID_Dieutri], 
+    [SO_SoDieuTri].[ID_BENHNHAN] AS [ID_BENHNHAN], 
+    [SO_SoDieuTri].[SoDKDT] AS [SoDKDT], 
+    [SO_SoDieuTri].[DVDieutri] AS [DVDieutri], 
+    [SO_SoDieuTri].[NgayVV] AS [NgayVV], 
+    [SO_SoDieuTri].[NgayDT] AS [NgayDT], 
+    [SO_SoDieuTri].[ID_PHANLOAIYTE] AS [ID_PHANLOAIYTE], 
+    [SO_SoDieuTri].[DVGioiThieu] AS [DVGioiThieu], 
+    [SO_SoDieuTri].[ID_PhanLoaiBenh] AS [ID_PhanLoaiBenh], 
+    [SO_SoDieuTri].[ID_PhanLoaiBN] AS [ID_PhanLoaiBN], 
+    [SO_SoDieuTri].[NgayChupXQ] AS [NgayChupXQ], 
+    [SO_SoDieuTri].[KetquaXQ] AS [KetquaXQ], 
+    [SO_SoDieuTri].[XNHIV1] AS [XNHIV1], 
+    [SO_SoDieuTri].[XNHIV2] AS [XNHIV2], 
+    [SO_SoDieuTri].[ART] AS [ART], 
+    [SO_SoDieuTri].[CPT] AS [CPT], 
+    [SO_SoDieuTri].[LymPho] AS [LymPho], 
+    [SO_SoDieuTri].[GiamSatDT] AS [GiamSatDT], 
+    [SO_SoDieuTri].[ID_KetquaDT] AS [ID_KetquaDT], 
+    [SO_SoDieuTri].[NgayRV] AS [NgayRV], 
+    [SO_SoDieuTri].[Ghichu] AS [Ghichu], 
+    [SO_SoDieuTri].[NGAY_NM] AS [NGAY_NM], 
+    [SO_SoDieuTri].[NGUOI_NM] AS [NGUOI_NM], 
+    [SO_SoDieuTri].[Ngay_SD] AS [Ngay_SD], 
+    [SO_SoDieuTri].[Nguoi_SD] AS [Nguoi_SD], 
+    [SO_SoDieuTri].[HuyenXN] AS [HuyenXN], 
+    [SO_SoDieuTri].[TinhXN] AS [TinhXN], 
+    [SO_SoDieuTri].[ID_DieutriChuyen] AS [ID_DieutriChuyen], 
+    [SO_SoDieuTri].[ID_PhacdoDT] AS [ID_PhacdoDT], 
+    [SO_SoDieuTri].[PhacdoKhac] AS [PhacdoKhac], 
+    [SO_SoDieuTri].[Chandoan] AS [Chandoan], 
+    [SO_SoDieuTri].[HUY] AS [HUY], 
+    [SO_SoDieuTri].[NGAYHUY] AS [NGAYHUY], 
+    [SO_SoDieuTri].[MaBNQL] AS [MaBNQL], 
+    [SO_SoDieuTri].[ID_PhacdoTD] AS [ID_PhacdoTD], 
+    [SO_SoDieuTri].[PhacdoTDKhac] AS [PhacdoTDKhac], 
+    [SO_SoDieuTri].[Tuoi] AS [Tuoi]
+    FROM [dbo].[SO_SoDieuTri] AS [SO_SoDieuTri]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

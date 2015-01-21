@@ -1,32 +1,135 @@
-﻿@Html.DevExpress().Splitter(settings =>
+﻿<script>
+    var ID_SoKhamBenh = "";
+    function OnGridFocusedRowChanged(s, e) {
+        ID_SoKhamBenh = s.GetRowKey(s.GetFocusedRowIndex());
+    }
+    function OnGridRowDblClick(s, e) {
+        s.StartEditRow(s.GetFocusedRowIndex());
+    } 
+    
+</script>
+
+
+@Html.DevExpress().Splitter(settings =>
 {
     settings.Name = "Splitter";
     settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-    settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Height = System.Web.UI.WebControls.Unit.Pixel(800);
     settings.AllowResize = true;
     settings.FullscreenMode = true;
     settings.ShowCollapseBackwardButton = true;
     settings.Panes.Add(pane =>
     {
-        pane.MaxSize = 250;
+        pane.MaxSize = 240;
         pane.MinSize = 200;
         pane.Collapsed = false;
         pane.ScrollBars = ScrollBars.Vertical;
         pane.SetContent(() =>
         {
-            Html.RenderPartial("EditBenhNhan");
+            using (Html.BeginForm("CapNhatBenhNhan", "BenhNhan", FormMethod.Post))
+            {
+                ViewContext.Writer.Write("<div id=\"DivFormBenhNhan\">");
+                Html.RenderPartial("_FormBenhNhan", null);
+                ViewContext.Writer.Write("<div style='float:right'>");
+                Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnUpdate";
+                        btnSettings.Text = "Cập nhật thông tin bệnh nhân";
+                        btnSettings.UseSubmitBehavior = true; 
+                    }).Render();
+                ViewContext.Writer.Write("</div>"); 
+            }
         });
     });
     settings.Panes.Add(pane =>
     {
         pane.SetContent(() =>
-        { 
-            Html.RenderAction("SoKhamBenhGridViewPartial");  
+        {
+            //////////////////////////////////////////////////FORM SO KHAM BENH
+            //@Html.DevExpress().FormLayout(settings1 =>
+            //{
+            //    settings1.Name = "FormSoKhamBenh";
+            //    settings1.Items.AddGroupItem(group =>
+            //    {
+            //        group.Name = "Thông tin SỔ KHÁM BỆNH của bệnh nhân";
+            //        group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+            //        group.Items.Add(item =>
+            //        {
+            //            item.Caption = "";
+            //            item.SetNestedContent(() =>
+            //            {
+            //                ViewContext.Writer.Write("<div id=\"DivSoKhamBenh\">");
+            //                Html.RenderPartial("GridSoKhamBenh");
+            //                ViewContext.Writer.Write("</div>");
+            //            });
+            //        });
+            //    });
+            //});
+            @Html.DevExpress().Panel(PanelButton =>
+            {
+                PanelButton.Name = "Panel";
+                PanelButton.FixedPosition = DevExpress.Web.PanelFixedPosition.None;
+                PanelButton.SettingsCollapsing.ExpandEffect = DevExpress.Web.PanelExpandEffect.Auto;
+                PanelButton.SetContent(() =>
+                {
+                    @Html.DevExpress().Button(
+                        MyButton =>
+                        {
+                            MyButton.Name = "btnThemMoi";
+                            MyButton.Text = "Thêm sổ khám bệnh";
+                            MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                            MyButton.ClientSideEvents.Click = "function() { GridSoKhamBenh.AddNewRow(); }";
+                        }).GetHtml();
+                    ViewContext.Writer.Write(" ");
+                    @Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnSua";
+                                MyButton.Text = "Sửa thông tin";
+                                MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                                MyButton.ClientSideEvents.Click = "function( ) { GridSoKhamBenh.StartEditRow(GridSoKhamBenh.GetFocusedRowIndex()); }";
+                            }).GetHtml();
+                    ViewContext.Writer.Write(" ");
+                    @Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnXoa";
+                                MyButton.Text = "Xóa";
+                                MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                MyButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) GridSoKhamBenh.DeleteRow(GridSoKhamBenh.GetFocusedRowIndex()); }";
+                            }).GetHtml();
+                    ViewContext.Writer.Write(" ");
+                    @Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnIn";
+                                MyButton.Text = "In";
+                                //MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoKhamBenh.DeleteRow(); } }";
+                            }).GetHtml();
+                });
+            }).GetHtml();
+            Html.RenderPartial("_GridSoKhamBenh");
+            /////////////////////////////////////////////////////////////FORM SO DIEU TRI
+
+            //@Html.DevExpress().FormLayout(settings1 =>
+            //{
+            //    settings1.Name = "FormDieuTri";
+            //    settings1.Items.AddGroupItem(group =>
+            //    {
+            //        group.Name = "Thông tin SỔ ĐIỀU TRỊ của bệnh nhân";
+            //        group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+            //        group.Items.Add(item =>
+            //        {
+            //            item.Caption = "";
+            //            item.SetNestedContent(() =>
+            //            {
+            //                Html.RenderAction("GridSoKhamBenh", new { IDBenhNhan = 0 });
+            //            });
+            //        });
+            //    });
+            //});
         });
     });
 }).GetHtml()
-
-
-
-
-
