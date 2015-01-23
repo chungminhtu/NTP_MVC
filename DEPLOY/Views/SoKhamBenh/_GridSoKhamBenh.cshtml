@@ -3,7 +3,7 @@
     {
         /*Initial*/
         settings.Name = "GridSoKhamBenh";
-        settings.Width = Unit.Percentage(100);
+        //settings.Width = Unit.Percentage(100);
         settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhList" };
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhUpdate" };
@@ -19,7 +19,7 @@
         settings.SettingsBehavior.ConfirmDelete = true;
         //settings.SettingsSearchPanel.Visible = true;
         settings.SettingsBehavior.AllowDragDrop = false;
-          
+
         /*Events*/
         settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
         settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";
@@ -48,87 +48,27 @@
 
 
         settings.KeyFieldName = "ID_SoKhamBenh";
-           
-        settings.Columns.Add(i =>
-        {
-            i.FieldName = "NgayKhamBenh";
-            i.Caption = "Ngày đến khám";
-            i.Width = Unit.Pixel(80);
-            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-        });
-        settings.Columns.Add(i =>{
-            i.FieldName = "TrieuChung";
-            i.Caption = "Triệu chứng";
-            i.Width = Unit.Pixel(350);
-            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-        });
-        //BAND Cận lâm sàng
-        settings.Columns.AddBand(CanLamSangBand =>
-        {
-            CanLamSangBand.Caption = "Cận lâm sàng";
-            CanLamSangBand.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-            CanLamSangBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-
-            CanLamSangBand.Columns.Add(i =>
-            {
-                i.FieldName = "KetQuaXetNghiemDom";
-                i.Caption = "XN đờm TT";
-                i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-            });
-            //CanLamSangBand.Columns.Add("NgayXetNghiemDom", "Ngày XN đờm");
-            CanLamSangBand.Columns.Add(i =>
-            {
-                i.FieldName = "XQ";
-                i.Caption = "XQ";
-                i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-            }); 
-            //CanLamSangBand.Columns.Add("NgayChupXQ", "Ngày chụp XQ");
-            CanLamSangBand.Columns.Add(i =>
-            {
-                i.FieldName = "Khac";
-                i.Caption = "Khác";
-                i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-            });
-        });
-        //BAND Chẩn đoán
-        settings.Columns.AddBand(ChanDoanBand =>
-        {
-            ChanDoanBand.Caption = "Chẩn đoán";
-            ChanDoanBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-            ChanDoanBand.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-
-            ChanDoanBand.Columns.Add(i =>
-            {
-                i.FieldName = "NoiGioiThieu";
-                i.Caption = "Nơi giới thiệu";
-                i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-            });
-            ChanDoanBand.Columns.Add(i =>
-            {
-                i.FieldName = "ToChongLao";
-                i.Caption = "Tổ chống lao";
-                i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-            }); 
-        });
-         
-        settings.Columns.Add("XuTri","Xử trí");
-        settings.Columns.Add("BSKhamBenh","BS khám bệnh");
-        settings.Columns.Add("Ghichu","Ghi chú");        
-        settings.Columns.Add("MaBNQL","Mã BNQL");
+        settings.Columns.Add("TrieuChung");
+        settings.Columns.Add("KetQuaXetNghiemDom");
+        settings.Columns.Add("NgayXetNghiemDom");
+        settings.Columns.Add("XQ");
+        settings.Columns.Add("NgayChupXQ");
+        settings.Columns.Add("Khac");
+        settings.Columns.Add("NoiGioiThieu");
+        settings.Columns.Add("ToChongLao");
+        settings.Columns.Add("XuTri");
+        settings.Columns.Add("BSKhamBenh");
+        settings.Columns.Add("Ghichu");
+        settings.Columns.Add("NgayKhamBenh");
+        settings.Columns.Add("MaBNQL");
 
         /*Edit Form*/
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         settings.SettingsPopup.EditForm.Modal = true;
         settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
         settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
-        settings.SettingsText.PopupEditFormCaption = "Cập nhật thông tin sổ khám bệnh của bệnh nhân: " + Session["HoTen"]+", "+Session["Gioitinh"]+", "+Session["Tuoi"]+" tuổi, ở địa chỉ: "+Session["Diachi"];
         settings.SetEditFormTemplateContent(c =>
-        { 
+        {
             NTP_MVC.Models.SO_SoKhamBenh editItem;
             if (c.Grid.IsNewRowEditing)
                 editItem = new NTP_MVC.Models.SO_SoKhamBenh();

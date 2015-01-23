@@ -14,7 +14,7 @@ namespace NTP_MVC.Models
     
     public partial class SO_XetNghiemKhamBenh
     {
-        public Nullable<decimal> ID_Xetnghiem_GE { get; set; }
+        public decimal ID_Xetnghiem_GE { get; set; }
         public decimal ID_SoKhamBenh { get; set; }
         public decimal ID_Phieuxetnghiem_C { get; set; }
         public byte ThoiGianDT { get; set; }

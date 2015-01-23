@@ -54,7 +54,8 @@ namespace NTP_MVC.Controllers
                 {
                     if (item.ID_BenhNhan != 0)
                     {
-                        this.UpdateModel(item);
+                       var modelItem = model.FirstOrDefault(it => it.ID_BenhNhan == item.ID_BenhNhan);
+                       this.UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                     else
@@ -71,10 +72,8 @@ namespace NTP_MVC.Controllers
             else
                 ViewData["EditError"] = "Please, correct all errors.";
             string s = Session["MAHUYEN"] + "";
-            var ListBenhNhan = (from d in db.SO_BenhNhan
-                                where d.MA_HUYEN.Equals(s)
-                                select d).ToList();
-            return PartialView("_GridBenhNhan", ListBenhNhan);
+            SO_BenhNhan bn = (SO_BenhNhan)db.SO_BenhNhan.Where(i => i.ID_BenhNhan == item.ID_BenhNhan).SingleOrDefault();
+            return PartialView("_FormBenhNhan", bn);
         }
 
 

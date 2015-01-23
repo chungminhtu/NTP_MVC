@@ -18,5 +18,27 @@
     settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
     settings.Styles.Style.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
     settings.Styles.Style.BorderTop.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+
+
+    settings.Orientation = Orientation.Horizontal;
+    settings.AllowSelectItem = true; 
+    settings.ShowPopOutImages = DefaultBoolean.True;
+    settings.AllowSelectItem = true;
+    settings.EnableHotTrack = true;
+    settings.EnableAnimation = true;   
+    
+    
+    settings.ItemDataBound = (source, e) =>
+    {
+        IHierarchyData itemHierarchyData = (IHierarchyData)e.Item.DataItem;
+        System.Xml.XmlElement element = (System.Xml.XmlElement)itemHierarchyData.Item;
+        if (element.Attributes["Index"] != null)
+        {
+            int imageIndex = int.Parse(element.Attributes["Index"].Value);
+            e.Item.Image.Url = "~/Content/Images/save.png";
+        }
+    };
+    
+    
 }).BindToXML(HttpContext.Current.Server.MapPath("~/App_Data/TopMenu.xml"), "/items/*").GetHtml()
 </div>

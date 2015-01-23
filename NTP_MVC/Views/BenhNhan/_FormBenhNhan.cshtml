@@ -1,0 +1,247 @@
+﻿@model NTP_MVC.Models.SO_BenhNhan
+
+@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "BenhNhanFormLayout";
+
+    var groupItem = settings.Items.AddGroupItem(groupSettings =>
+    {
+        groupSettings.Caption = "Thông tin bệnh nhân";
+        groupSettings.ShowCaption = DefaultBoolean.True;
+        groupSettings.GroupBoxDecoration = GroupBoxDecoration.Box;
+        groupSettings.CellStyle.Paddings.Padding = Unit.Pixel(0);
+    });
+
+    groupItem.SettingsItems.ShowCaption = DefaultBoolean.True;
+    groupItem.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
+    groupItem.ParentContainerStyle.Paddings.Padding = Unit.Pixel(0);
+
+     
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "HoTen";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.HoTen, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100); 
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "Tuoi";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().SpinEditFor(i => i.Tuoi, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    }); 
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "GioiTinh";
+        m.CaptionStyle.Font.Bold = true; 
+        m.SetNestedContent(() =>
+            {
+                Html.DevExpress().RadioButtonListFor(i => i.Gioitinh, mySettings =>
+                {
+                    mySettings.Width = Unit.Percentage(100);
+                    mySettings.Properties.ValueType = typeof(bool);
+                    mySettings.Properties.RepeatLayout = RepeatLayout.Flow;
+                    mySettings.Properties.RepeatDirection = RepeatDirection.Horizontal;
+                    mySettings.Properties.RepeatColumns = 2;
+                    mySettings.Properties.Items.Add("Nam", true);
+                    mySettings.Properties.Items.Add("Nữ", false);
+                }).Render();
+            });
+    });
+    //groupItem.Items.Add(m => m.MA_TINH);
+    //groupItem.Items.Add(m => m.MA_HUYEN);
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "Diachi";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().MemoFor(i => i.Diachi, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "Sodienthoai";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().SpinEditFor(i => i.Sodienthoai, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "SoCMND";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().SpinEditFor(i => i.SoCMND, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "MaBNQL";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.MaBNQL, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "NGUOI_NM";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.NGUOI_NM, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "NGAY_NM";
+        m.CaptionStyle.Font.Bold = true;
+        m.NestedExtensionSettings.Width = Unit.Percentage(100);
+    }).SetNestedContent(() =>
+    {
+        Html.DevExpress().DateEditFor(i => i.NGAY_NM, mySettings =>
+        {
+            mySettings.Width = Unit.Percentage(100);
+            mySettings.Properties.Width = Unit.Percentage(100);
+        }).Render();
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "Nguoi_SD";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.Nguoi_SD, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "Ngay_SD";
+        m.CaptionStyle.Font.Bold = true;
+        m.NestedExtensionSettings.Width = Unit.Percentage(100);
+    }).SetNestedContent(() =>
+        {
+            Html.DevExpress().DateEditFor(i => i.Ngay_SD, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+                mySettings.Properties.Width = Unit.Percentage(100);
+            }).Render();
+        }); 
+    //groupItem.Items.Add(m => m.Namsinh);
+    //groupItem.Items.Add(m => m.HIV);
+
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "BHYT";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().MemoFor(i => i.BHYT, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "NgheNghiep";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().MemoFor(i => i.NgheNghiep, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "NoiGioiThieu";
+        m.CaptionStyle.Font.Bold = true;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().MemoFor(i => i.NoiGioiThieu, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "MaNoiGioiThieu";
+        m.CaptionStyle.Font.Bold = true;
+        m.NestedExtensionSettings.Width = Unit.Percentage(100);
+    }).SetNestedContent(() =>
+    {
+        Html.DevExpress().ComboBoxFor(i => i.MaNoiGioiThieu, cbSettings =>
+        {
+            cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+            cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+            cbSettings.Properties.Items.Add("Thuộc hệ thống CTCL", 1);
+            cbSettings.Properties.Items.Add("Y tế công tham gia CTCL", 2);
+            cbSettings.Properties.Items.Add("Y tế tư", 3);
+            cbSettings.Properties.Items.Add("Cộng đồng", 4);
+            cbSettings.Properties.Items.Add("Tự đến", 5);
+            cbSettings.Width = Unit.Percentage(100);
+            cbSettings.Properties.Width = Unit.Percentage(100);
+        }).Render();
+    }); 
+
+    groupItem.Items.Add(m =>
+    {
+        m.ShowCaption = DefaultBoolean.False;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().Button(
+                        btnSettings =>
+                        {
+                            btnSettings.Name = "btnUpdate";
+                            btnSettings.Width = Unit.Percentage(90);
+                            btnSettings.Images.Image.Url = "~/Content/Images/save.png";
+                            btnSettings.Text = "Lưu thông tin bệnh nhân";
+                            btnSettings.UseSubmitBehavior = true;
+                        }).Render();
+
+        });
+    });
+
+    Session["ID_BenhNhan"] = Model != null ? Model.ID_BenhNhan + "" : "";
+    Session["HoTen"] = Model != null ? Model.HoTen + "" : "";
+    Session["Gioitinh"] = Model != null ? Model.Gioitinh == true ? "Nam" : "Nữ" : "";
+    Session["Tuoi"] = Model != null ? Model.Tuoi + "" : "";
+    Session["Diachi"] = Model != null ? Model.Diachi + "" : "";
+
+}).GetHtml()

@@ -2,13 +2,12 @@
 
 <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
 
-
-
+ 
 <table style="background-color:#0ca3d2; width:100%; height: 100%">
     <tr>
-        <td style="padding: 50px 50px 50px 200px;vertical-align: middle;">
+        <td style="padding: 50px 100px 50px 100px;vertical-align: middle;">
             <div class="login">
-                <h1>Chương trình chống lao</h1>
+                <h1>ĐĂNG NHẬP HỆ THỐNG</h1>
                 @using (Html.BeginForm("Login", "Home"))
                 {
                     <p>
@@ -17,7 +16,7 @@
                     <p>
                         @Html.PasswordFor(model => model.Password, new { placeholder = "Mật khẩu" })
                     </p>
-                    <p class="submit"><input type="submit" name="commit" value="Đăng nhập"></p>
+                    <p class="submit"><input type="submit" name="commit" value="Đăng nhập"></p> 
                 }
             </div>
             <div>
@@ -29,17 +28,21 @@
                 }
             </div>
         </td>
-        <td>
+        <td style="vertical-align:middle">
             @Html.DevExpress().ImageSlider(
                     settings =>
                     {
                         settings.Name = "ImageSlider";
                         settings.ShowNavigationBar = true;
-                        settings.Width = 600;
+                        settings.Width = 650;
+                        settings.Height = 450;
 
                         settings.SettingsImageArea.ItemTextVisibility = ElementVisibilityMode.OnMouseOver;
                         settings.SettingsImageArea.NavigationButtonVisibility = ElementVisibilityMode.OnMouseOver;
                         settings.SettingsImageArea.ImageSizeMode = ImageSizeMode.FillAndCrop;
+
+                        settings.SettingsSlideShow.AutoPlay = true;
+                        settings.SettingsSlideShow.Interval = 2000;
 
                     }
                  ).BindToFolder(@"~\Content\Slides").GetHtml()
@@ -47,4 +50,4 @@
 
     </tr>
 
-</table>
+</table> 

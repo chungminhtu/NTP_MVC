@@ -1,0 +1,60 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridPhieuXetNghiem";
+        settings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiem" };
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm; 
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        //Column Edit
+        var EditColumnCommand = new MVCxGridViewCommandColumn();
+        EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        EditColumnCommand.EditButton.Visible = true;
+        EditColumnCommand.ShowNewButtonInHeader = true;
+        EditColumnCommand.VisibleIndex = 0;
+        settings.Columns.Add(EditColumnCommand);
+
+        //Columm Delete
+        var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        DeleteColumnCommand.DeleteButton.Visible = true;
+        DeleteColumnCommand.VisibleIndex = 7;
+        settings.Columns.Add(DeleteColumnCommand);
+
+
+        settings.Width = Unit.Percentage(100);
+
+        settings.KeyFieldName = "ID_Phieuxetnghiem";
+        settings.SettingsPager.PageSize = 3;
+        settings.SettingsPager.Visible = true;
+
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+        settings.Settings.VerticalScrollableHeight = 600;
+
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add("ID_BenhNhan");
+        settings.Columns.Add("SoXN");
+        settings.Columns.Add("LydoXN");
+        settings.Columns.Add("Soluong");
+        settings.Columns.Add("XNVien");
+        settings.Columns.Add("DV_XETNGHIEM");
+        settings.Columns.Add("NgayXN");
+        settings.Columns.Add("DV_TiepNhan");
+        
+        
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(ViewData["ListPXNBenhNhan"]).GetHtml()

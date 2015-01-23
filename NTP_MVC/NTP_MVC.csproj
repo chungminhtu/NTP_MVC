@@ -299,7 +299,9 @@
     <Content Include="Content\Images\GlassHeader.jpg" />
     <Content Include="Content\Images\logo1.png" />
     <Content Include="Content\Images\PlasticBlueHeader.jpg" />
+    <Content Include="Content\Images\print.png" />
     <Content Include="Content\Images\RedWineHeader.jpg" />
+    <Content Include="Content\Images\save.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Site.css" />
@@ -339,7 +341,6 @@
       <DependentUpon>NTP_DBDataModel.edmx</DependentUpon>
       <LastGenOutput>NTP_DBDataModel.cs</LastGenOutput>
     </Content>
-    <None Include="Properties\PublishProfiles\NTP_MVC.pubxml" />
     <None Include="Properties\PublishProfiles\NTP_MVC2015.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -408,7 +409,7 @@
     <Content Include="Views\NguoiDung\Index.cshtml" />
     <Content Include="Views\NguoiDung\_NguoiDungGridViewPartial.cshtml" />
     <Content Include="Views\SoKhamBenh\_FormSoKhamBenh.cshtml" />
-    <Content Include="Views\SoKhamBenh\_FormBenhNhan.cshtml" />
+    <Content Include="Views\BenhNhan\_FormBenhNhan.cshtml" />
     <Content Include="Views\BenhNhan\_ComboSearchBenhNhan.cshtml" />
     <Content Include="Views\Shared\_loginLayout.cshtml" />
     <Content Include="Views\Shared\_rootLayoutLogin.cshtml" />

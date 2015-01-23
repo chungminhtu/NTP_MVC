@@ -15,7 +15,7 @@ namespace NTP_MVC.Controllers
         public ActionResult Index()
         {
             Session["ID_BenhNhan"] = Request.Params["ID_BenhNhan"] + "";
-            string s = Session["ID_BenhNhan"] + "";
+            var s = Request.Params["ID_BenhNhan"] + "";
             if (s != "")//Nếu có ID_BenhNhan thì Edit
             {
                 ViewData["ListSoKhamBenh"] = db.SO_SoKhamBenh.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
@@ -32,6 +32,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
         }
          
+  
         public ActionResult GetDetailBenhNhan()
         {
             var s = Request.Params["ID_BenhNhan"] + "";
@@ -40,10 +41,11 @@ namespace NTP_MVC.Controllers
                                       select bn).FirstOrDefault();
             //ViewData["IDBenhNhan"] = model.ID_BenhNhan;
             return PartialView("_FormBenhNhan", model);
-        }
+        } 
+
         public void GetSoKhamBenhCuaBenhNhan()
         {
-            string s = Session["ID_BenhNhan"] + ""; 
+            var s = Session["ID_BenhNhan"] + "";
             ViewData["ListSoKhamBenh"] = db.SO_SoKhamBenh.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
         }
 

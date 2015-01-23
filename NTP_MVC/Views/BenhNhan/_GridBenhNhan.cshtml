@@ -1,6 +1,6 @@
 ﻿<script>
     var ID_BenhNhan = "";
-    function OnGridFocusedRowChanged(s, e) {
+    function OnGridBNFocusedRowChanged(s, e) {
         ID_BenhNhan = s.GetRowKey(s.GetFocusedRowIndex()); 
     } 
 </script>
@@ -74,7 +74,7 @@
         settings.SettingsBehavior.AllowDragDrop = false;
         
         /*Events*/
-        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridBNFocusedRowChanged";
      
         /*Buttons*/
         //var EditColumnCommand = new MVCxGridViewCommandColumn();

@@ -108,13 +108,13 @@ namespace NTP_MVC.Models
 
             [Display(Name = "Số điện thoại")]
             public string Sodienthoai { get; set; }
-
+             
             [Display(Name = "Ngày NM")]
             public Nullable<System.DateTime> NGAY_NM { get; set; }
 
             [Display(Name = "Triệu chứng")]
             public Nullable<int> NGUOI_NM { get; set; }
-
+             
             [Display(Name = "Ngày soi đờm")]
             public Nullable<System.DateTime> Ngay_SD { get; set; }
 

@@ -42,122 +42,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SO_BenhNhan">
-      <EntityTypeMapping TypeName="NTP_DBModel.SO_BenhNhan">
-        <MappingFragment StoreEntitySet="SO_BenhNhan">
-          <ScalarProperty Name="MaNoiGioiThieu" ColumnName="MaNoiGioiThieu" />
-          <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
-          <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
-          <ScalarProperty Name="BHYT" ColumnName="BHYT" />
-          <ScalarProperty Name="HIV" ColumnName="HIV" />
-          <ScalarProperty Name="Namsinh" ColumnName="Namsinh" />
-          <ScalarProperty Name="STT" ColumnName="STT" />
-          <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
-          <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
-          <ScalarProperty Name="Huy" ColumnName="Huy" />
-          <ScalarProperty Name="Nguoi_SD" ColumnName="Nguoi_SD" />
-          <ScalarProperty Name="Ngay_SD" ColumnName="Ngay_SD" />
-          <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
-          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-          <ScalarProperty Name="Sodienthoai" ColumnName="Sodienthoai" />
-          <ScalarProperty Name="Diachi" ColumnName="Diachi" />
-          <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
-          <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
-          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
-          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
-          <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
-          <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="ID_Doituong" ColumnName="ID_Doituong" />
-          <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SO_PhieuXetNghiem">
-      <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem">
-        <MappingFragment StoreEntitySet="SO_PhieuXetNghiem">
-          <ScalarProperty Name="Tiepnhan" ColumnName="Tiepnhan" />
-          <ScalarProperty Name="DV_TiepNhan" ColumnName="DV_TiepNhan" />
-          <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
-          <ScalarProperty Name="HUY" ColumnName="HUY" />
-          <ScalarProperty Name="NgayXN" ColumnName="NgayXN" />
-          <ScalarProperty Name="DV_XETNGHIEM" ColumnName="DV_XETNGHIEM" />
-          <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
-          <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
-          <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
-          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-          <ScalarProperty Name="XNVien" ColumnName="XNVien" />
-          <ScalarProperty Name="SoDKDT" ColumnName="SoDKDT" />
-          <ScalarProperty Name="HIV" ColumnName="HIV" />
-          <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
-          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
-          <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
-          <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
-          <ScalarProperty Name="ID_Benhvien" ColumnName="ID_Benhvien" />
-          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-          <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
-          <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SO_SoKhamBenh">
-      <EntityTypeMapping TypeName="NTP_DBModel.SO_SoKhamBenh">
-        <MappingFragment StoreEntitySet="SO_SoKhamBenh">
-          <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
-          <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
-          <ScalarProperty Name="HUY" ColumnName="HUY" />
-          <ScalarProperty Name="TinhKB" ColumnName="TinhKB" />
-          <ScalarProperty Name="HuyenKB" ColumnName="HuyenKB" />
-          <ScalarProperty Name="NgayKhamBenh" ColumnName="NgayKhamBenh" />
-          <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
-          <ScalarProperty Name="BSKhamBenh" ColumnName="BSKhamBenh" />
-          <ScalarProperty Name="XuTri" ColumnName="XuTri" />
-          <ScalarProperty Name="ToChongLao" ColumnName="ToChongLao" />
-          <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
-          <ScalarProperty Name="Khac" ColumnName="Khac" />
-          <ScalarProperty Name="NgayChupXQ" ColumnName="NgayChupXQ" />
-          <ScalarProperty Name="XQ" ColumnName="XQ" />
-          <ScalarProperty Name="NgayXetNghiemDom" ColumnName="NgayXetNghiemDom" />
-          <ScalarProperty Name="SoMauDom" ColumnName="SoMauDom" />
-          <ScalarProperty Name="TrangThaiDomDaiThe" ColumnName="TrangThaiDomDaiThe" />
-          <ScalarProperty Name="KetQuaXetNghiemDom" ColumnName="KetQuaXetNghiemDom" />
-          <ScalarProperty Name="TrieuChung" ColumnName="TrieuChung" />
-          <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
-          <ScalarProperty Name="ID_SoKhamBenh" ColumnName="ID_SoKhamBenh" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="NTP_DBModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DM_BenhVien">
-      <EntityTypeMapping TypeName="NTP_DBModel.DM_BenhVien">
-        <MappingFragment StoreEntitySet="DM_BenhVien">
-          <ScalarProperty Name="Huy" ColumnName="Huy" />
-          <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
-          <ScalarProperty Name="PHANBIET" ColumnName="PHANBIET" />
-          <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
-          <ScalarProperty Name="ID_HUYEN" ColumnName="ID_HUYEN" />
-          <ScalarProperty Name="ID_MATINH" ColumnName="ID_MATINH" />
-          <ScalarProperty Name="CAPQUANLY" ColumnName="CAPQUANLY" />
-          <ScalarProperty Name="ID_BENHVIEN_CAPTREN" ColumnName="ID_BENHVIEN_CAPTREN" />
-          <ScalarProperty Name="MA_BENHVIEN_CAPTREN" ColumnName="MA_BENHVIEN_CAPTREN" />
-          <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
-          <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
-          <ScalarProperty Name="TEN_BENHVIEN" ColumnName="TEN_BENHVIEN" />
-          <ScalarProperty Name="ID_BENHVIEN" ColumnName="ID_BENHVIEN" />
-          <ScalarProperty Name="ID_BENHVIEN_KHO" ColumnName="ID_BENHVIEN_KHO" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DM_Cap">
       <EntityTypeMapping TypeName="NTP_DBModel.DM_Cap">
         <MappingFragment StoreEntitySet="DM_Cap">
@@ -268,14 +152,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DM_PhanLoaiYTe">
-      <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiYTe">
-        <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
-          <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
-          <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DM_Tinh">
       <EntityTypeMapping TypeName="NTP_DBModel.DM_Tinh">
         <MappingFragment StoreEntitySet="DM_Tinh">
@@ -296,16 +172,61 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
-      <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
-        <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
-          <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
-          <ScalarProperty Name="Maudom" ColumnName="Maudom" />
-          <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
-          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+    <EntitySetMapping Name="SO_BenhNhan">
+      <EntityTypeMapping TypeName="NTP_DBModel.SO_BenhNhan">
+        <MappingFragment StoreEntitySet="SO_BenhNhan">
+          <ScalarProperty Name="MaNoiGioiThieu" ColumnName="MaNoiGioiThieu" />
+          <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
+          <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+          <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+          <ScalarProperty Name="HIV" ColumnName="HIV" />
+          <ScalarProperty Name="Namsinh" ColumnName="Namsinh" />
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+          <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+          <ScalarProperty Name="Huy" ColumnName="Huy" />
+          <ScalarProperty Name="Nguoi_SD" ColumnName="Nguoi_SD" />
+          <ScalarProperty Name="Ngay_SD" ColumnName="Ngay_SD" />
+          <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+          <ScalarProperty Name="Sodienthoai" ColumnName="Sodienthoai" />
+          <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+          <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+          <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
+          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
+          <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="ID_Doituong" ColumnName="ID_Doituong" />
+          <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SO_PhieuXetNghiem">
+      <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem">
+        <MappingFragment StoreEntitySet="SO_PhieuXetNghiem">
+          <ScalarProperty Name="Tiepnhan" ColumnName="Tiepnhan" />
+          <ScalarProperty Name="DV_TiepNhan" ColumnName="DV_TiepNhan" />
+          <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
+          <ScalarProperty Name="HUY" ColumnName="HUY" />
+          <ScalarProperty Name="NgayXN" ColumnName="NgayXN" />
+          <ScalarProperty Name="DV_XETNGHIEM" ColumnName="DV_XETNGHIEM" />
+          <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+          <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+          <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+          <ScalarProperty Name="XNVien" ColumnName="XNVien" />
+          <ScalarProperty Name="SoDKDT" ColumnName="SoDKDT" />
+          <ScalarProperty Name="HIV" ColumnName="HIV" />
+          <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
+          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+          <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
+          <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
+          <ScalarProperty Name="ID_Benhvien" ColumnName="ID_Benhvien" />
           <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+          <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
           <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
-          <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -352,21 +273,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SO_SoDieuTri_KQ">
-      <EntityTypeMapping TypeName="NTP_DBModel.SO_SoDieuTri_KQ">
-        <MappingFragment StoreEntitySet="SO_SoDieuTri_KQ">
-          <ScalarProperty Name="GeneXpert" ColumnName="GeneXpert" />
-          <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
-          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
-          <ScalarProperty Name="Nuoicay" ColumnName="Nuoicay" />
-          <ScalarProperty Name="CanNang" ColumnName="CanNang" />
-          <ScalarProperty Name="KetquaXN" ColumnName="KetquaXN" />
-          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-          <ScalarProperty Name="Ngayxn" ColumnName="Ngayxn" />
-          <ScalarProperty Name="ThoiGianDT" ColumnName="ThoiGianDT" />
-          <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
-          <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
-          <ScalarProperty Name="ID_Xetnghiem_GD" ColumnName="ID_Xetnghiem_GD" />
+    <EntitySetMapping Name="SO_SoKhamBenh">
+      <EntityTypeMapping TypeName="NTP_DBModel.SO_SoKhamBenh">
+        <MappingFragment StoreEntitySet="SO_SoKhamBenh">
+          <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+          <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
+          <ScalarProperty Name="HUY" ColumnName="HUY" />
+          <ScalarProperty Name="TinhKB" ColumnName="TinhKB" />
+          <ScalarProperty Name="HuyenKB" ColumnName="HuyenKB" />
+          <ScalarProperty Name="NgayKhamBenh" ColumnName="NgayKhamBenh" />
+          <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+          <ScalarProperty Name="BSKhamBenh" ColumnName="BSKhamBenh" />
+          <ScalarProperty Name="XuTri" ColumnName="XuTri" />
+          <ScalarProperty Name="ToChongLao" ColumnName="ToChongLao" />
+          <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
+          <ScalarProperty Name="Khac" ColumnName="Khac" />
+          <ScalarProperty Name="NgayChupXQ" ColumnName="NgayChupXQ" />
+          <ScalarProperty Name="XQ" ColumnName="XQ" />
+          <ScalarProperty Name="NgayXetNghiemDom" ColumnName="NgayXetNghiemDom" />
+          <ScalarProperty Name="SoMauDom" ColumnName="SoMauDom" />
+          <ScalarProperty Name="TrangThaiDomDaiThe" ColumnName="TrangThaiDomDaiThe" />
+          <ScalarProperty Name="KetQuaXetNghiemDom" ColumnName="KetQuaXetNghiemDom" />
+          <ScalarProperty Name="TrieuChung" ColumnName="TrieuChung" />
+          <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
+          <ScalarProperty Name="ID_SoKhamBenh" ColumnName="ID_SoKhamBenh" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -385,6 +315,76 @@
           <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
           <ScalarProperty Name="ID_SoKhamBenh" ColumnName="ID_SoKhamBenh" />
           <ScalarProperty Name="ID_Xetnghiem_GE" ColumnName="ID_Xetnghiem_GE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="NTP_DBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DM_BenhVien">
+      <EntityTypeMapping TypeName="NTP_DBModel.DM_BenhVien">
+        <MappingFragment StoreEntitySet="DM_BenhVien">
+          <ScalarProperty Name="Huy" ColumnName="Huy" />
+          <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
+          <ScalarProperty Name="PHANBIET" ColumnName="PHANBIET" />
+          <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
+          <ScalarProperty Name="ID_HUYEN" ColumnName="ID_HUYEN" />
+          <ScalarProperty Name="ID_MATINH" ColumnName="ID_MATINH" />
+          <ScalarProperty Name="CAPQUANLY" ColumnName="CAPQUANLY" />
+          <ScalarProperty Name="ID_BENHVIEN_CAPTREN" ColumnName="ID_BENHVIEN_CAPTREN" />
+          <ScalarProperty Name="MA_BENHVIEN_CAPTREN" ColumnName="MA_BENHVIEN_CAPTREN" />
+          <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
+          <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+          <ScalarProperty Name="TEN_BENHVIEN" ColumnName="TEN_BENHVIEN" />
+          <ScalarProperty Name="ID_BENHVIEN" ColumnName="ID_BENHVIEN" />
+          <ScalarProperty Name="ID_BENHVIEN_KHO" ColumnName="ID_BENHVIEN_KHO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DM_PhanLoaiYTe">
+      <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiYTe">
+        <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
+          <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
+          <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
+      <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
+        <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
+          <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
+          <ScalarProperty Name="Maudom" ColumnName="Maudom" />
+          <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+          <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
+          <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SO_SoDieuTri_KQ">
+      <EntityTypeMapping TypeName="NTP_DBModel.SO_SoDieuTri_KQ">
+        <MappingFragment StoreEntitySet="SO_SoDieuTri_KQ">
+          <ScalarProperty Name="GeneXpert" ColumnName="GeneXpert" />
+          <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+          <ScalarProperty Name="Nuoicay" ColumnName="Nuoicay" />
+          <ScalarProperty Name="CanNang" ColumnName="CanNang" />
+          <ScalarProperty Name="KetquaXN" ColumnName="KetquaXN" />
+          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+          <ScalarProperty Name="Ngayxn" ColumnName="Ngayxn" />
+          <ScalarProperty Name="ThoiGianDT" ColumnName="ThoiGianDT" />
+          <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
+          <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
+          <ScalarProperty Name="ID_Xetnghiem_GD" ColumnName="ID_Xetnghiem_GD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

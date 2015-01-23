@@ -1,9 +1,11 @@
 @{
-    var grid = Html.DevExpress().GridView(settings =>
+    var gridPXN = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "GridPhieuXetNghiem";
+        settings.Width = Unit.Percentage(100);
+        
         settings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiem" };
-        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
+       // settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemUpdate" };
@@ -11,36 +13,35 @@
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm; 
         settings.SettingsBehavior.ConfirmDelete = true;
 
-        //Column Edit
-        var EditColumnCommand = new MVCxGridViewCommandColumn();
-        EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
-        EditColumnCommand.EditButton.Visible = true;
-        EditColumnCommand.ShowNewButtonInHeader = true;
-        EditColumnCommand.VisibleIndex = 0;
-        settings.Columns.Add(EditColumnCommand);
-
-        //Columm Delete
-        var DeleteColumnCommand = new MVCxGridViewCommandColumn();
-        DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
-        DeleteColumnCommand.DeleteButton.Visible = true;
-        DeleteColumnCommand.VisibleIndex = 7;
-        settings.Columns.Add(DeleteColumnCommand);
-
-
-        settings.Width = Unit.Percentage(100);
 
         settings.KeyFieldName = "ID_Phieuxetnghiem";
-        settings.SettingsPager.PageSize = 3;
+        
+        
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "All";
+        settings.SettingsPager.NextPageButton.Text = "Next >";
+        settings.SettingsPager.PrevPageButton.Text = "< Prev";
         settings.SettingsPager.Visible = true;
 
-        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
-        settings.Settings.VerticalScrollableHeight = 600;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
 
-        settings.Settings.ShowGroupPanel = false;
-        settings.Settings.ShowFilterRow = false;
-        settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-        settings.Columns.Add("ID_BenhNhan");
+        /* Behavior */
+        //settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridPXNFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridPXNRowDblClick";
+         
         settings.Columns.Add("SoXN");
         settings.Columns.Add("LydoXN");
         settings.Columns.Add("Soluong");
@@ -48,13 +49,30 @@
         settings.Columns.Add("DV_XETNGHIEM");
         settings.Columns.Add("NgayXN");
         settings.Columns.Add("DV_TiepNhan");
-        
-        
 
+
+        /*Edit Form*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.SetEditFormTemplateContent(c =>
+        {
+            NTP_MVC.Models.SO_PhieuXetNghiem editItem;
+            if (c.Grid.IsNewRowEditing)
+                editItem = new NTP_MVC.Models.SO_PhieuXetNghiem();
+            else
+            {
+                editItem = ViewData["Item"] != null ? (NTP_MVC.Models.SO_PhieuXetNghiem)ViewData["Item"] : (NTP_MVC.Models.SO_PhieuXetNghiem)c.Grid.GetRow(c.VisibleIndex);
+            } 
+            Html.RenderPartial("_FormPhieuXetNghiem", editItem);
+        });
+        
+        
     });
     if (ViewData["EditError"] != null)
     {
-        grid.SetEditErrorText((string)ViewData["EditError"]);
+        gridPXN.SetEditErrorText((string)ViewData["EditError"]);
     }
 }
-@grid.Bind(ViewData["ListPXNBenhNhan"]).GetHtml()
+@gridPXN.Bind( ViewData["ListPXNBenhNhan"]).GetHtml()

@@ -676,6 +676,6 @@ D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraScheduler.v14.
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraScheduler.v14.2.Core.resources.dll
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraScheduler.v14.2.Core.resources.dll
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraScheduler.v14.2.Core.resources.dll
-D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.csprojResolveAssemblyReference.cache
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.dll
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.pdb
+D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.csprojResolveAssemblyReference.cache
