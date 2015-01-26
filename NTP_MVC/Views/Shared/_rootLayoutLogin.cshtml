@@ -1,3 +1,4 @@
+@using System.Drawing
 <!DOCTYPE html>
 
 <html>
@@ -37,17 +38,17 @@
     @Html.DevExpress().Splitter(settings => {
         settings.Name = "MainSplitter";
         settings.AllowResize = false;
-        settings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
+        settings.Orientation = Orientation.Vertical;
         settings.FullscreenMode = true;
         settings.SeparatorVisible = false;
-        settings.Styles.Pane.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
-        settings.Styles.Pane.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.Styles.Pane.Border.BorderWidth = Unit.Pixel(0);
+        settings.Styles.Pane.Paddings.Padding = Unit.Pixel(0);
 
         settings.Panes.Add(pane =>
         {
             pane.Name = "Header";
             pane.AutoHeight = true;
-            pane.PaneStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+            pane.PaneStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
             pane.PaneStyle.CssClass = "headerPane";
             pane.SetContent(() =>
             {
@@ -58,9 +59,9 @@
         settings.Panes.Add(pane => {
             pane.Name = "Content";
             pane.PaneStyle.CssClass = "mainContentPane";
-            pane.MinSize = System.Web.UI.WebControls.Unit.Pixel(375);
-            pane.PaneStyle.BackColor = System.Drawing.Color.White;
-            pane.PaneStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+            pane.MinSize = Unit.Pixel(375);
+            pane.PaneStyle.BackColor = Color.White;
+            pane.PaneStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
             pane.SetContent(RenderBody().ToHtmlString());
         });
 

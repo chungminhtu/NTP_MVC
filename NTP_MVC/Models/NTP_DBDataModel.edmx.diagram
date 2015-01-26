@@ -26,14 +26,14 @@
         <EntityTypeShape EntityType="NTP_DBModel.DM_Vung" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="NTP_DBModel.SO_BenhNhan" Width="1.5" PointX="10.75" PointY="3.75" />
         <EntityTypeShape EntityType="NTP_DBModel.SO_PhieuXetNghiem" Width="1.5" PointX="10.75" PointY="10.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.SO_SoKhamBenh" Width="1.5" PointX="0.75" PointY="12.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.SO_PhieuXetNghiem_KQ" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.SO_SoKhamBenh" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" Width="1.5" PointX="12.75" PointY="3.75" />
         <EntityTypeShape EntityType="NTP_DBModel.sysdiagram" Width="1.5" PointX="4.75" PointY="12.75" />
         <EntityTypeShape EntityType="NTP_DBModel.DM_BenhVien" Width="1.5" PointX="6.75" PointY="12.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.DM_PhanLoaiYTe" Width="1.5" PointX="12.75" PointY="9.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.SO_PhieuXetNghiem_KQ" Width="1.5" PointX="12.75" PointY="12.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri_KQ" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.DM_PhanLoaiYTe" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri_KQ" Width="1.5" PointX="12.75" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -246,20 +246,17 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
           <Property Name="DV_TiepNhan" Type="nvarchar" MaxLength="50" />
           <Property Name="Tiepnhan" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'NTP_DB.dbo.SO_PhieuXetNghiem_KQ' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SO_PhieuXetNghiem_KQ">
           <Key>
-            <PropertyRef Name="ID_Phieuxetnghiem_C" />
             <PropertyRef Name="ID_Phieuxetnghiem" />
+            <PropertyRef Name="SoXN" />
             <PropertyRef Name="Maudom" />
           </Key>
-          <Property Name="ID_Phieuxetnghiem_C" Type="int" Nullable="false" />
           <Property Name="ID_Phieuxetnghiem" Type="int" Nullable="false" />
-          <Property Name="SoXN" Type="nvarchar" MaxLength="15" />
+          <Property Name="SoXN" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Maudom" Type="tinyint" Nullable="false" />
           <Property Name="NgayNhanMau" Type="datetime" />
           <Property Name="TrangthaiDom" Type="nvarchar" MaxLength="15" />
-          <Property Name="Maudom" Type="tinyint" Nullable="false" />
           <Property Name="Ketqua" Type="tinyint" />
         </EntityType>
         <EntityType Name="SO_SoDieuTri">
@@ -403,6 +400,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_BenhNhan" EntityType="Self.SO_BenhNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_PhieuXetNghiem" EntityType="Self.SO_PhieuXetNghiem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_SoDieuTri" EntityType="Self.SO_SoDieuTri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="Self.SO_XetNghiemKhamBenh" Schema="dbo" store:Type="Tables" />
@@ -430,17 +428,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     [DM_PhanLoaiYTe].[ID_PhanloaiYte] AS [ID_PhanloaiYte], 
     [DM_PhanLoaiYTe].[Ten_PhanloaiYte] AS [Ten_PhanloaiYte]
     FROM [dbo].[DM_PhanLoaiYTe] AS [DM_PhanLoaiYTe]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SO_PhieuXetNghiem_KQ].[ID_Phieuxetnghiem_C] AS [ID_Phieuxetnghiem_C], 
-    [SO_PhieuXetNghiem_KQ].[ID_Phieuxetnghiem] AS [ID_Phieuxetnghiem], 
-    [SO_PhieuXetNghiem_KQ].[SoXN] AS [SoXN], 
-    [SO_PhieuXetNghiem_KQ].[NgayNhanMau] AS [NgayNhanMau], 
-    [SO_PhieuXetNghiem_KQ].[TrangthaiDom] AS [TrangthaiDom], 
-    [SO_PhieuXetNghiem_KQ].[Maudom] AS [Maudom], 
-    [SO_PhieuXetNghiem_KQ].[Ketqua] AS [Ketqua]
-    FROM [dbo].[SO_PhieuXetNghiem_KQ] AS [SO_PhieuXetNghiem_KQ]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -485,13 +472,13 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySet Name="DM_Vung" EntityType="NTP_DBModel.DM_Vung" />
           <EntitySet Name="SO_BenhNhan" EntityType="NTP_DBModel.SO_BenhNhan" />
           <EntitySet Name="SO_PhieuXetNghiem" EntityType="NTP_DBModel.SO_PhieuXetNghiem" />
+          <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="NTP_DBModel.SO_PhieuXetNghiem_KQ" />
           <EntitySet Name="SO_SoDieuTri" EntityType="NTP_DBModel.SO_SoDieuTri" />
           <EntitySet Name="SO_SoKhamBenh" EntityType="NTP_DBModel.SO_SoKhamBenh" />
           <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" />
           <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
           <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
           <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
-          <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="NTP_DBModel.SO_PhieuXetNghiem_KQ" />
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
         </EntityContainer>
         <EntityType Name="AD_Menu">
@@ -703,6 +690,19 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="DV_TiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Tiepnhan" Type="Boolean" />
         </EntityType>
+        <EntityType Name="SO_PhieuXetNghiem_KQ">
+          <Key>
+            <PropertyRef Name="ID_Phieuxetnghiem" />
+            <PropertyRef Name="SoXN" />
+            <PropertyRef Name="Maudom" />
+          </Key>
+          <Property Name="ID_Phieuxetnghiem" Type="Int32" Nullable="false" />
+          <Property Name="SoXN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Maudom" Type="Byte" Nullable="false" />
+          <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
+          <Property Name="TrangthaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Ketqua" Type="Byte" />
+        </EntityType>
         <EntityType Name="SO_SoDieuTri">
           <Key>
             <PropertyRef Name="ID_Dieutri" />
@@ -825,20 +825,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           </Key>
           <Property Name="ID_PhanloaiYte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten_PhanloaiYte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SO_PhieuXetNghiem_KQ">
-          <Key>
-            <PropertyRef Name="ID_Phieuxetnghiem_C" />
-            <PropertyRef Name="ID_Phieuxetnghiem" />
-            <PropertyRef Name="Maudom" />
-          </Key>
-          <Property Name="ID_Phieuxetnghiem_C" Type="Int32" Nullable="false" />
-          <Property Name="ID_Phieuxetnghiem" Type="Int32" Nullable="false" />
-          <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
-          <Property Name="TrangthaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Maudom" Type="Byte" Nullable="false" />
-          <Property Name="Ketqua" Type="Byte" />
         </EntityType>
         <EntityType Name="SO_SoDieuTri_KQ">
           <Key>
@@ -1097,6 +1083,18 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
+            <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
+              <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
+                <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
+                <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
+                <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+                <ScalarProperty Name="Maudom" ColumnName="Maudom" />
+                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+                <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SO_SoDieuTri">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_SoDieuTri">
               <MappingFragment StoreEntitySet="SO_SoDieuTri">
@@ -1221,19 +1219,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
               <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
                 <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
                 <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
-            <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
-              <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
-                <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
-                <ScalarProperty Name="Maudom" ColumnName="Maudom" />
-                <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
-                <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
-                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-                <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
-                <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

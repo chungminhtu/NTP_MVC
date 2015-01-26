@@ -241,20 +241,17 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
     <Property Name="DV_TiepNhan" Type="nvarchar" MaxLength="50" />
     <Property Name="Tiepnhan" Type="bit" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'NTP_DB.dbo.SO_PhieuXetNghiem_KQ' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SO_PhieuXetNghiem_KQ">
     <Key>
-      <PropertyRef Name="ID_Phieuxetnghiem_C" />
       <PropertyRef Name="ID_Phieuxetnghiem" />
+      <PropertyRef Name="SoXN" />
       <PropertyRef Name="Maudom" />
     </Key>
-    <Property Name="ID_Phieuxetnghiem_C" Type="int" Nullable="false" />
     <Property Name="ID_Phieuxetnghiem" Type="int" Nullable="false" />
-    <Property Name="SoXN" Type="nvarchar" MaxLength="15" />
+    <Property Name="SoXN" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Maudom" Type="tinyint" Nullable="false" />
     <Property Name="NgayNhanMau" Type="datetime" />
     <Property Name="TrangthaiDom" Type="nvarchar" MaxLength="15" />
-    <Property Name="Maudom" Type="tinyint" Nullable="false" />
     <Property Name="Ketqua" Type="tinyint" />
   </EntityType>
   <EntityType Name="SO_SoDieuTri">
@@ -398,6 +395,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_BenhNhan" EntityType="Self.SO_BenhNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_PhieuXetNghiem" EntityType="Self.SO_PhieuXetNghiem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_SoDieuTri" EntityType="Self.SO_SoDieuTri" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="Self.SO_XetNghiemKhamBenh" Schema="dbo" store:Type="Tables" />
@@ -425,17 +423,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     [DM_PhanLoaiYTe].[ID_PhanloaiYte] AS [ID_PhanloaiYte], 
     [DM_PhanLoaiYTe].[Ten_PhanloaiYte] AS [Ten_PhanloaiYte]
     FROM [dbo].[DM_PhanLoaiYTe] AS [DM_PhanLoaiYTe]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [SO_PhieuXetNghiem_KQ].[ID_Phieuxetnghiem_C] AS [ID_Phieuxetnghiem_C], 
-    [SO_PhieuXetNghiem_KQ].[ID_Phieuxetnghiem] AS [ID_Phieuxetnghiem], 
-    [SO_PhieuXetNghiem_KQ].[SoXN] AS [SoXN], 
-    [SO_PhieuXetNghiem_KQ].[NgayNhanMau] AS [NgayNhanMau], 
-    [SO_PhieuXetNghiem_KQ].[TrangthaiDom] AS [TrangthaiDom], 
-    [SO_PhieuXetNghiem_KQ].[Maudom] AS [Maudom], 
-    [SO_PhieuXetNghiem_KQ].[Ketqua] AS [Ketqua]
-    FROM [dbo].[SO_PhieuXetNghiem_KQ] AS [SO_PhieuXetNghiem_KQ]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

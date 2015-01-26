@@ -14,12 +14,11 @@ namespace NTP_MVC.Models
     
     public partial class SO_PhieuXetNghiem_KQ
     {
-        public int ID_Phieuxetnghiem_C { get; set; }
         public int ID_Phieuxetnghiem { get; set; }
         public string SoXN { get; set; }
+        public byte Maudom { get; set; }
         public Nullable<System.DateTime> NgayNhanMau { get; set; }
         public string TrangthaiDom { get; set; }
-        public byte Maudom { get; set; }
         public Nullable<byte> Ketqua { get; set; }
     }
 }

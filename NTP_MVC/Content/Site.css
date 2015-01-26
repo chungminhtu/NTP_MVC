@@ -27,7 +27,7 @@
     color: white;
     display: block;
     padding: 40px;
-    margin-left:100px;
+    margin-left: 100px;
 }
 
 .templateTitle {
@@ -552,6 +552,44 @@
         border-color: White;
     }
 
+    .dxflGroup_PlasticBlue, .dxflGroupBox_PlasticBlue, .dxflGroupCell_PlasticBlue {
+        padding: 1px !important;
+    }
+    .dxflGroupBox_PlasticBlue {
+        margin-top:8px !important;
+        margin-bottom:3px !important;
+    }
+
+    .dxflItem_PlasticBlue {
+        padding-top:1px !important;
+    }
+    .dxeMemoEditArea_PlasticBlue {
+        height: 40px !important;
+        line-height: 150% !important; 
+    }
+    
+    .dxflCaptionCell_PlasticBlue{
+        font-weight: bold !important;
+    }
+
+    .dxflGroupBoxCaption_PlasticBlue {
+        background-color: whitesmoke !important;
+        font-weight: bold !important;
+        color: red !important;
+    }
+    .dxbButton_PlasticBlue{
+        margin-left:0px !important;
+        margin-right:5px !important;
+        background: #e3e3e3 !important;
+        color: black !important;
+        font-weight:bold !important;
+    }
+    .dxbButton_PlasticBlue :hover { 
+    background-color: #3cb0fd;
+    }
+    .dxeErrorCell_PlasticBlue, .dxeErrorCell_PlasticBlue td{
+        display:none !important;
+    } 
 
 /* RedWine */
 .dxsplControl_RedWine {

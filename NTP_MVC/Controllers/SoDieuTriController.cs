@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult SoDieuTriDataViewPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartialAddNew(NTP_MVC.Models.SO_SoDieuTri item)
+        public ActionResult SoDieuTriDataViewPartialAddNew(SO_SoDieuTri item)
         {
             var model = db.SO_SoDieuTri;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_SoDieuTriDataViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartialUpdate(NTP_MVC.Models.SO_SoDieuTri item)
+        public ActionResult SoDieuTriDataViewPartialUpdate(SO_SoDieuTri item)
         {
             var model = db.SO_SoDieuTri;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_Dieutri == item.ID_Dieutri);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_SoDieuTriDataViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartialDelete(System.Int64 ID_Dieutri)
+        public ActionResult SoDieuTriDataViewPartialDelete(Int64 ID_Dieutri)
         {
             var model = db.SO_SoDieuTri;
             if (ID_Dieutri >= 0)

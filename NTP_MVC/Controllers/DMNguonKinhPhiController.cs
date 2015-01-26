@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult DMNguonKinhPhiGridViewPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMNguonKinhPhiGridViewPartialAddNew(NTP_MVC.Models.DM_NguonKinhPhi item)
+        public ActionResult DMNguonKinhPhiGridViewPartialAddNew(DM_NguonKinhPhi item)
         {
             var model = db.DM_NguonKinhPhi;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMNguonKinhPhiGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMNguonKinhPhiGridViewPartialUpdate(NTP_MVC.Models.DM_NguonKinhPhi item)
+        public ActionResult DMNguonKinhPhiGridViewPartialUpdate(DM_NguonKinhPhi item)
         {
             var model = db.DM_NguonKinhPhi;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_NGUONKINHPHI == item.ID_NGUONKINHPHI);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMNguonKinhPhiGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMNguonKinhPhiGridViewPartialDelete(System.Int32 ID_NGUONKINHPHI)
+        public ActionResult DMNguonKinhPhiGridViewPartialDelete(Int32 ID_NGUONKINHPHI)
         {
             var model = db.DM_NguonKinhPhi;
             if (ID_NGUONKINHPHI >= 0)

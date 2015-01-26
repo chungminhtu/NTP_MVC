@@ -81,7 +81,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_SoKhamBenh == item.ID_SoKhamBenh);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }

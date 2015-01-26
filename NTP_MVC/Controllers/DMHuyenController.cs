@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
         
         public ActionResult ComboBoxHuyenPartial()
         {
@@ -32,7 +33,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMHuyenGridViewPartialAddNew(NTP_MVC.Models.DM_Huyen item)
+        public ActionResult DMHuyenGridViewPartialAddNew(DM_Huyen item)
         {
             var model = db.DM_Huyen;
             if (ModelState.IsValid)
@@ -52,7 +53,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMHuyenGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMHuyenGridViewPartialUpdate(NTP_MVC.Models.DM_Huyen item)
+        public ActionResult DMHuyenGridViewPartialUpdate(DM_Huyen item)
         {
             var model = db.DM_Huyen;
             if (ModelState.IsValid)
@@ -62,7 +63,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.MA_HUYEN == item.MA_HUYEN);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }

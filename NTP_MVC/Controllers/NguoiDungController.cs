@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult NguoiDungGridViewPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult NguoiDungGridViewPartialAddNew(NTP_MVC.Models.AD_Users item)
+        public ActionResult NguoiDungGridViewPartialAddNew(AD_Users item)
         {
             var model = db.AD_Users;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_NguoiDungGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult NguoiDungGridViewPartialUpdate(NTP_MVC.Models.AD_Users item)
+        public ActionResult NguoiDungGridViewPartialUpdate(AD_Users item)
         {
             var model = db.AD_Users;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.UserID == item.UserID);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_NguoiDungGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult NguoiDungGridViewPartialDelete(System.Int32 UserID)
+        public ActionResult NguoiDungGridViewPartialDelete(Int32 UserID)
         {
             var model = db.AD_Users;
             if (UserID >= 0)

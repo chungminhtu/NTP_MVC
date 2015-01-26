@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult DMTinhGridViewPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMTinhGridViewPartialAddNew(NTP_MVC.Models.DM_Tinh item)
+        public ActionResult DMTinhGridViewPartialAddNew(DM_Tinh item)
         {
             var model = db.DM_Tinh;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMTinhGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMTinhGridViewPartialUpdate(NTP_MVC.Models.DM_Tinh item)
+        public ActionResult DMTinhGridViewPartialUpdate(DM_Tinh item)
         {
             var model = db.DM_Tinh;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.MA_TINH == item.MA_TINH);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMTinhGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMTinhGridViewPartialDelete(System.String MA_TINH)
+        public ActionResult DMTinhGridViewPartialDelete(String MA_TINH)
         {
             var model = db.DM_Tinh;
             if (MA_TINH != null)
@@ -89,7 +90,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMTinhGridViewPartial", model.ToList());
         }
 
-        NTP_MVC.Models.NTP_DBEntities db1 = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db1 = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult DMLoaiBenhVienGridViewPartial()
@@ -99,7 +100,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMLoaiBenhVienGridViewPartialAddNew(NTP_MVC.Models.DM_LoaiBenhVien item)
+        public ActionResult DMLoaiBenhVienGridViewPartialAddNew(DM_LoaiBenhVien item)
         {
             var model = db1.DM_LoaiBenhVien;
             if (ModelState.IsValid)
@@ -119,7 +120,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMLoaiBenhVienGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMLoaiBenhVienGridViewPartialUpdate(NTP_MVC.Models.DM_LoaiBenhVien item)
+        public ActionResult DMLoaiBenhVienGridViewPartialUpdate(DM_LoaiBenhVien item)
         {
             var model = db1.DM_LoaiBenhVien;
             if (ModelState.IsValid)
@@ -129,7 +130,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_LOAIBV == item.ID_LOAIBV);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db1.SaveChanges();
                     }
                 }
@@ -143,7 +144,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMLoaiBenhVienGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMLoaiBenhVienGridViewPartialDelete(System.String ID_LOAIBV)
+        public ActionResult DMLoaiBenhVienGridViewPartialDelete(String ID_LOAIBV)
         {
             var model = db1.DM_LoaiBenhVien;
             if (ID_LOAIBV != null)

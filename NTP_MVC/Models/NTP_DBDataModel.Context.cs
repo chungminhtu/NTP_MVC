@@ -46,13 +46,13 @@ namespace NTP_MVC.Models
         public virtual DbSet<DM_Vung> DM_Vung { get; set; }
         public virtual DbSet<SO_BenhNhan> SO_BenhNhan { get; set; }
         public virtual DbSet<SO_PhieuXetNghiem> SO_PhieuXetNghiem { get; set; }
+        public virtual DbSet<SO_PhieuXetNghiem_KQ> SO_PhieuXetNghiem_KQ { get; set; }
         public virtual DbSet<SO_SoDieuTri> SO_SoDieuTri { get; set; }
         public virtual DbSet<SO_SoKhamBenh> SO_SoKhamBenh { get; set; }
         public virtual DbSet<SO_XetNghiemKhamBenh> SO_XetNghiemKhamBenh { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<DM_BenhVien> DM_BenhVien { get; set; }
         public virtual DbSet<DM_PhanLoaiYTe> DM_PhanLoaiYTe { get; set; }
-        public virtual DbSet<SO_PhieuXetNghiem_KQ> SO_PhieuXetNghiem_KQ { get; set; }
         public virtual DbSet<SO_SoDieuTri_KQ> SO_SoDieuTri_KQ { get; set; }
     }
 }

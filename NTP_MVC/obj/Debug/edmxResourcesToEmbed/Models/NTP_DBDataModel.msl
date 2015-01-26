@@ -230,6 +230,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
+      <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
+        <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
+          <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
+          <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+          <ScalarProperty Name="Maudom" ColumnName="Maudom" />
+          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+          <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SO_SoDieuTri">
       <EntityTypeMapping TypeName="NTP_DBModel.SO_SoDieuTri">
         <MappingFragment StoreEntitySet="SO_SoDieuTri">
@@ -354,19 +366,6 @@
         <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
           <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
           <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
-      <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
-        <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
-          <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
-          <ScalarProperty Name="Maudom" ColumnName="Maudom" />
-          <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
-          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
-          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-          <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
-          <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

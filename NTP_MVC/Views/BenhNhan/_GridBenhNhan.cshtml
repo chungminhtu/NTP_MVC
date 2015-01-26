@@ -9,8 +9,8 @@
     @Html.DevExpress().Panel(settings =>
     {
         settings.Name = "Panel";
-        settings.FixedPosition = DevExpress.Web.PanelFixedPosition.None;
-        settings.SettingsCollapsing.ExpandEffect = DevExpress.Web.PanelExpandEffect.Auto;
+        settings.FixedPosition = PanelFixedPosition.None;
+        settings.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
         settings.SetContent(() =>
         {
             @Html.DevExpress().Button(

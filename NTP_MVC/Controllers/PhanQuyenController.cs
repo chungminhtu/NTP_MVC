@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult RoleGridViewPartial()
@@ -24,7 +25,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_RoleGridViewPartial", model.ToList());
         }
 
-        NTP_MVC.Models.NTP_DBEntities db1 = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db1 = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult MenuTreeListPartial()

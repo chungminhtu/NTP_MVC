@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult BenhVienGridViewPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult BenhVienGridViewPartialAddNew(NTP_MVC.Models.DM_BenhVien item)
+        public ActionResult BenhVienGridViewPartialAddNew(DM_BenhVien item)
         {
             var model = db.DM_BenhVien;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_BenhVienGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult BenhVienGridViewPartialUpdate(NTP_MVC.Models.DM_BenhVien item)
+        public ActionResult BenhVienGridViewPartialUpdate(DM_BenhVien item)
         {
             var model = db.DM_BenhVien;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_BENHVIEN_KHO == item.ID_BENHVIEN_KHO);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_BenhVienGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult BenhVienGridViewPartialDelete(System.Int64 ID_BENHVIEN_KHO)
+        public ActionResult BenhVienGridViewPartialDelete(Int64 ID_BENHVIEN_KHO)
         {
             var model = db.DM_BenhVien;
             if (ID_BENHVIEN_KHO >= 0)

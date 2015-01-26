@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DevExpress.Web;
+using DevExpress.Web.Mvc;
 
 namespace NTP_MVC
 {
@@ -22,9 +24,9 @@ namespace NTP_MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AuthConfig.RegisterAuth();
             
-            ModelBinders.Binders.DefaultBinder = new DevExpress.Web.Mvc.DevExpressEditorsBinder();
+            ModelBinders.Binders.DefaultBinder = new DevExpressEditorsBinder();
 
-            DevExpress.Web.ASPxWebControl.CallbackError += Application_Error;
+            ASPxWebControl.CallbackError += Application_Error;
         }
 
         protected void Application_Error(object sender, EventArgs e)

@@ -383,7 +383,6 @@
     <Content Include="Views\DMHuyen\Index.cshtml" />
     <Content Include="Views\DMNguonKinhPhi\Index.cshtml" />
     <Content Include="Views\DMLoaiBenhVien\Index.cshtml" />
-    <Content Include="Views\SoDieuTri\Index.cshtml" />
     <Content Include="Views\SoKhamBenh\Index.cshtml" />
     <Content Include="Views\BenhVien\_BenhVienGridViewPartial.cshtml" />
     <Content Include="Views\DMCap\_DMCapGridView1Partial.cshtml" />
@@ -392,7 +391,6 @@
     <Content Include="Views\DMHuyen\_DMHuyenGridViewPartial.cshtml" />
     <Content Include="Views\DMNguonKinhPhi\_DMNguonKinhPhiGridViewPartial.cshtml" />
     <Content Include="Views\DMLoaiBenhVien\_DMLoaiBenhVienGridViewPartial.cshtml" />
-    <Content Include="Views\SoDieuTri\_SoDieuTriDataViewPartial.cshtml" />
     <Content Include="Views\SoKhamBenh\_GridSoKhamBenh.cshtml" />
     <Content Include="Views\DMTinh\Index.cshtml" />
     <Content Include="Views\DMTinh\_DMTinhGridViewPartial.cshtml" />
@@ -417,6 +415,10 @@
     <Content Include="Views\BenhNhan\EditBenhNhan.cshtml" />
     <Content Include="Views\PhieuXetNghiem\_GridPhieuXetNghiem.cshtml" />
     <Content Include="Views\PhieuXetNghiem\_FormPhieuXetNghiem.cshtml" />
+    <Content Include="Views\PhieuXetNghiem\_GridKetQuaXetNghiem.cshtml" />
+    <Content Include="Views\SoDieuTri\_FormSoDieuTri.cshtml" />
+    <Content Include="Views\SoDieuTri\_GridSoDieuTri.cshtml" />
+    <Content Include="Views\SoDieuTri\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

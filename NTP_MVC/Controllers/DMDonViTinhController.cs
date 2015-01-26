@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult DMDonViTinhGridViewPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMDonViTinhGridViewPartialAddNew(NTP_MVC.Models.DM_DonViTinh item)
+        public ActionResult DMDonViTinhGridViewPartialAddNew(DM_DonViTinh item)
         {
             var model = db.DM_DonViTinh;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMDonViTinhGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMDonViTinhGridViewPartialUpdate(NTP_MVC.Models.DM_DonViTinh item)
+        public ActionResult DMDonViTinhGridViewPartialUpdate(DM_DonViTinh item)
         {
             var model = db.DM_DonViTinh;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_DVT == item.ID_DVT);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMDonViTinhGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMDonViTinhGridViewPartialDelete(System.Int32 ID_DVT)
+        public ActionResult DMDonViTinhGridViewPartialDelete(Int32 ID_DVT)
         {
             var model = db.DM_DonViTinh;
             if (ID_DVT >= 0)

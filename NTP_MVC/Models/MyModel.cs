@@ -29,13 +29,13 @@ namespace NTP_MVC.Models
 
 
         [Display(Name = "Ngày xét nghiệm đờm")]
-        public Nullable<System.DateTime> NgayXetNghiemDom { get; set; }
+        public Nullable<DateTime> NgayXetNghiemDom { get; set; }
 
         [Display(Name = "Kết quả XQ")]
         public string XQ { get; set; }
 
         [Display(Name = "Ngày chụp XQ")]
-        public Nullable<System.DateTime> NgayChupXQ { get; set; }
+        public Nullable<DateTime> NgayChupXQ { get; set; }
 
         [Display(Name = "Kết quả khác")]
         public string Khac { get; set; }
@@ -56,7 +56,7 @@ namespace NTP_MVC.Models
         public string Ghichu { get; set; }
 
         [Display(Name = "Ngày khám bệnh")]
-        public Nullable<System.DateTime> NgayKhamBenh { get; set; }
+        public Nullable<DateTime> NgayKhamBenh { get; set; }
 
         [Display(Name = "Huyện xét nghiệm")]
         public Nullable<bool> HuyenKB { get; set; }
@@ -68,7 +68,7 @@ namespace NTP_MVC.Models
         public Nullable<bool> HUY { get; set; }
 
         [Display(Name = "Ngày hủy")]
-        public Nullable<System.DateTime> NGAYHUY { get; set; }
+        public Nullable<DateTime> NGAYHUY { get; set; }
 
         [Display(Name = "Mã bệnh nhân")]
         public string MaBNQL { get; set; }
@@ -110,13 +110,13 @@ namespace NTP_MVC.Models
             public string Sodienthoai { get; set; }
              
             [Display(Name = "Ngày NM")]
-            public Nullable<System.DateTime> NGAY_NM { get; set; }
+            public Nullable<DateTime> NGAY_NM { get; set; }
 
             [Display(Name = "Triệu chứng")]
             public Nullable<int> NGUOI_NM { get; set; }
              
             [Display(Name = "Ngày soi đờm")]
-            public Nullable<System.DateTime> Ngay_SD { get; set; }
+            public Nullable<DateTime> Ngay_SD { get; set; }
 
             [Display(Name = "Người soi đờm")]
             public string Nguoi_SD { get; set; }

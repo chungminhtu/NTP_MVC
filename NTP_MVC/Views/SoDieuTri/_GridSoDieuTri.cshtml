@@ -3,12 +3,12 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         /*Initial*/
-        settings.Name = "GridSoKhamBenh";
+        settings.Name = "GridSoDieuTri";
         settings.Width = Unit.Percentage(100);
-        settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhList" };
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhAddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhUpdate" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhDelete" };
+        settings.CallbackRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriList" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriDelete" };
 
         /* Behavior */
         //settings.SettingsBehavior.AllowSelectByRowClick = true;
@@ -48,7 +48,7 @@
         settings.SettingsPager.Visible = true;
 
 
-        settings.KeyFieldName = "ID_SoKhamBenh";
+        settings.KeyFieldName = "ID_SoDieuTri";
            
         settings.Columns.Add(i =>
         {
@@ -67,7 +67,7 @@
         settings.Columns.AddBand(CanLamSangBand =>
         {
             CanLamSangBand.Caption = "Cận lâm sàng";
-            CanLamSangBand.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            CanLamSangBand.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
             CanLamSangBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
 
             CanLamSangBand.Columns.Add(i =>
@@ -75,7 +75,7 @@
                 i.FieldName = "KetQuaXetNghiemDom";
                 i.Caption = "XN đờm TT";
                 i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
             });
             //CanLamSangBand.Columns.Add("NgayXetNghiemDom", "Ngày XN đờm");
             CanLamSangBand.Columns.Add(i =>
@@ -83,7 +83,7 @@
                 i.FieldName = "XQ";
                 i.Caption = "XQ";
                 i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
             }); 
             //CanLamSangBand.Columns.Add("NgayChupXQ", "Ngày chụp XQ");
             CanLamSangBand.Columns.Add(i =>
@@ -91,7 +91,7 @@
                 i.FieldName = "Khac";
                 i.Caption = "Khác";
                 i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
             });
         });
         //BAND Chẩn đoán
@@ -99,21 +99,21 @@
         {
             ChanDoanBand.Caption = "Chẩn đoán";
             ChanDoanBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-            ChanDoanBand.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            ChanDoanBand.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
 
             ChanDoanBand.Columns.Add(i =>
             {
                 i.FieldName = "NoiGioiThieu";
                 i.Caption = "Nơi giới thiệu";
                 i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
             });
             ChanDoanBand.Columns.Add(i =>
             {
                 i.FieldName = "ToChongLao";
                 i.Caption = "Tổ chống lao";
                 i.Width = Unit.Pixel(80);
-                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
             }); 
         });
          
@@ -130,15 +130,15 @@
         settings.SettingsText.PopupEditFormCaption = "Cập nhật thông tin sổ khám bệnh của bệnh nhân: " + Session["HoTen"]+", "+Session["Gioitinh"]+", "+Session["Tuoi"]+" tuổi, ở địa chỉ: "+Session["Diachi"];
         settings.SetEditFormTemplateContent(c =>
         { 
-            SO_SoKhamBenh editItem;
+            SO_SoDieuTri editItem;
             if (c.Grid.IsNewRowEditing)
-                editItem = new SO_SoKhamBenh();
+                editItem = new SO_SoDieuTri();
             else
             {
-                editItem = ViewData["Item"] != null ? (SO_SoKhamBenh)ViewData["Item"] : (SO_SoKhamBenh)c.Grid.GetRow(c.VisibleIndex);
+                editItem = ViewData["Item"] != null ? (SO_SoDieuTri)ViewData["Item"] : (SO_SoDieuTri)c.Grid.GetRow(c.VisibleIndex);
             }
-            editItem.ID_BENHNHAN = Convert.ToInt64(Session["ID_BenhNhan"]);
-            Html.RenderPartial("_FormSoKhamBenh", editItem); 
+            editItem.ID_BENHNHAN = Session["ID_BenhNhan"]+"";
+            Html.RenderPartial("_FormSoDieuTri", editItem); 
         });
 
     });
@@ -146,6 +146,6 @@
     {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
-    grid.Bind(ViewData["ListSoKhamBenh"]).GetHtml();
+    grid.Bind(ViewData["ListSoDieuTri"]).GetHtml();
 }
 

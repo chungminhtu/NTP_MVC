@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult MenuTreeListPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuTreeListPartialAddNew(NTP_MVC.Models.AD_Menu item)
+        public ActionResult MenuTreeListPartialAddNew(AD_Menu item)
         {
             var model = db.AD_Menu;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_MenuTreeListPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuTreeListPartialUpdate(NTP_MVC.Models.AD_Menu item)
+        public ActionResult MenuTreeListPartialUpdate(AD_Menu item)
         {
             var model = db.AD_Menu;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.MenuID == item.MenuID);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_MenuTreeListPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuTreeListPartialDelete(System.Int32 MenuID)
+        public ActionResult MenuTreeListPartialDelete(Int32 MenuID)
         {
             var model = db.AD_Menu;
             if (MenuID != null)
@@ -89,7 +90,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_MenuTreeListPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuTreeListPartialMove(System.Int32 MenuID, System.Int32? MenuParentID)
+        public ActionResult MenuTreeListPartialMove(Int32 MenuID, Int32? MenuParentID)
         {
             var model = db.AD_Menu;
             try

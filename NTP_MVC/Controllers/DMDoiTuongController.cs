@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Models;
 
 namespace NTP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-        NTP_MVC.Models.NTP_DBEntities db = new NTP_MVC.Models.NTP_DBEntities();
+        NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult DMDoiTuongGridViewPartial()
@@ -25,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMDoiTuongGridViewPartialAddNew(NTP_MVC.Models.DM_DoiTuong item)
+        public ActionResult DMDoiTuongGridViewPartialAddNew(DM_DoiTuong item)
         {
             var model = db.DM_DoiTuong;
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMDoiTuongGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMDoiTuongGridViewPartialUpdate(NTP_MVC.Models.DM_DoiTuong item)
+        public ActionResult DMDoiTuongGridViewPartialUpdate(DM_DoiTuong item)
         {
             var model = db.DM_DoiTuong;
             if (ModelState.IsValid)
@@ -55,7 +56,7 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_Doituong == item.ID_Doituong);
                     if (modelItem != null)
                     {
-                        this.UpdateModel(modelItem);
+                        UpdateModel(modelItem);
                         db.SaveChanges();
                     }
                 }
@@ -69,7 +70,7 @@ namespace NTP_MVC.Controllers
             return PartialView("_DMDoiTuongGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DMDoiTuongGridViewPartialDelete(System.Int32 ID_Doituong)
+        public ActionResult DMDoiTuongGridViewPartialDelete(Int32 ID_Doituong)
         {
             var model = db.DM_DoiTuong;
             if (ID_Doituong >= 0)
