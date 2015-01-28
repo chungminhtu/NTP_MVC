@@ -177,6 +177,18 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
     <Property Name="ID_MIEN" Type="int" />
     <Property Name="DANSO" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.DM_User_Kho' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DM_User_Kho">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="ID_KHO_QLVT" Type="bigint" />
+    <Property Name="ID_KHO_TTBI" Type="bigint" />
+    <Property Name="ID_KHO_THUOC" Type="bigint" />
+    <Property Name="MA_BENHVIEN" Type="varchar" MaxLength="10" />
+  </EntityType>
   <EntityType Name="DM_Vung">
     <Key>
       <PropertyRef Name="ID_VUNG" />
@@ -217,9 +229,9 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
   </EntityType>
   <EntityType Name="SO_PhieuXetNghiem">
     <Key>
-      <PropertyRef Name="ID_Phieuxetnghiem" />
+      <PropertyRef Name="ID_PhieuXetNghiem" />
     </Key>
-    <Property Name="ID_Phieuxetnghiem" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_PhieuXetNghiem" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_Benhnhan" Type="bigint" Nullable="false" />
     <Property Name="SoXN" Type="nvarchar" MaxLength="15" />
     <Property Name="ID_Benhvien" Type="nvarchar" MaxLength="100" />
@@ -243,11 +255,11 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
   </EntityType>
   <EntityType Name="SO_PhieuXetNghiem_KQ">
     <Key>
-      <PropertyRef Name="ID_Phieuxetnghiem" />
+      <PropertyRef Name="ID_PhieuXetNghiem" />
       <PropertyRef Name="SoXN" />
       <PropertyRef Name="Maudom" />
     </Key>
-    <Property Name="ID_Phieuxetnghiem" Type="int" Nullable="false" />
+    <Property Name="ID_PhieuXetNghiem" Type="int" Nullable="false" />
     <Property Name="SoXN" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="Maudom" Type="tinyint" Nullable="false" />
     <Property Name="NgayNhanMau" Type="datetime" />
@@ -256,9 +268,9 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
   </EntityType>
   <EntityType Name="SO_SoDieuTri">
     <Key>
-      <PropertyRef Name="ID_Dieutri" />
+      <PropertyRef Name="ID_SoDieuTri" />
     </Key>
-    <Property Name="ID_Dieutri" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="numeric" Precision="18" Scale="0" Nullable="false" />
     <Property Name="ID_BENHNHAN" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="SoDKDT" Type="nvarchar" MaxLength="10" />
     <Property Name="DVDieutri" Type="nvarchar" MaxLength="10" />
@@ -423,6 +435,15 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     [DM_PhanLoaiYTe].[ID_PhanloaiYte] AS [ID_PhanloaiYte], 
     [DM_PhanLoaiYTe].[Ten_PhanloaiYte] AS [Ten_PhanloaiYte]
     FROM [dbo].[DM_PhanLoaiYTe] AS [DM_PhanLoaiYTe]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DM_User_Kho" EntityType="Self.DM_User_Kho" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DM_User_Kho].[USERID] AS [USERID], 
+    [DM_User_Kho].[ID_KHO_QLVT] AS [ID_KHO_QLVT], 
+    [DM_User_Kho].[ID_KHO_TTBI] AS [ID_KHO_TTBI], 
+    [DM_User_Kho].[ID_KHO_THUOC] AS [ID_KHO_THUOC], 
+    [DM_User_Kho].[MA_BENHVIEN] AS [MA_BENHVIEN]
+    FROM [dbo].[DM_User_Kho] AS [DM_User_Kho]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

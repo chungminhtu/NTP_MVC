@@ -1,60 +1,127 @@
+﻿@using NTP_MVC.Models
 @{
-    var grid = Html.DevExpress().GridView(settings =>
+    var gridPXN = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "GridPhieuXetNghiem";
+        settings.Width = Unit.Percentage(100);
+
         settings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiem" };
-        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
+        // settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemDelete" };
-        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm; 
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         settings.SettingsBehavior.ConfirmDelete = true;
 
-        //Column Edit
-        var EditColumnCommand = new MVCxGridViewCommandColumn();
-        EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
-        EditColumnCommand.EditButton.Visible = true;
-        EditColumnCommand.ShowNewButtonInHeader = true;
-        EditColumnCommand.VisibleIndex = 0;
-        settings.Columns.Add(EditColumnCommand);
-
-        //Columm Delete
-        var DeleteColumnCommand = new MVCxGridViewCommandColumn();
-        DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
-        DeleteColumnCommand.DeleteButton.Visible = true;
-        DeleteColumnCommand.VisibleIndex = 7;
-        settings.Columns.Add(DeleteColumnCommand);
-
-
-        settings.Width = Unit.Percentage(100);
 
         settings.KeyFieldName = "ID_Phieuxetnghiem";
-        settings.SettingsPager.PageSize = 3;
+
+
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "All";
+        settings.SettingsPager.NextPageButton.Text = "Next >";
+        settings.SettingsPager.PrevPageButton.Text = "< Prev";
         settings.SettingsPager.Visible = true;
 
-        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
-        settings.Settings.VerticalScrollableHeight = 600;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
 
-        settings.Settings.ShowGroupPanel = false;
-        settings.Settings.ShowFilterRow = false;
-        settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-        settings.Columns.Add("ID_BenhNhan");
-        settings.Columns.Add("SoXN");
-        settings.Columns.Add("LydoXN");
-        settings.Columns.Add("Soluong");
-        settings.Columns.Add("XNVien");
-        settings.Columns.Add("DV_XETNGHIEM");
-        settings.Columns.Add("NgayXN");
-        settings.Columns.Add("DV_TiepNhan");
-        
-        
+        /* Behavior */
+        //settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridPXNFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridPXNRowDblClick";
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NgayXN";
+            i.Caption = "Ngày xét nghiệm";
+            i.Width = Unit.Pixel(80);
+            i.ColumnType = MVCxGridViewColumnType.DateEdit;
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "SoXN";
+            i.Caption = "Số xét nghiệm";
+            i.Width = Unit.Pixel(80);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "LydoXN";
+            i.Caption = "Lý do xét nghiệm";
+            //i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "Soluong";
+            i.Caption = "Số lượng";
+            //  i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "XNVien";
+            i.Caption = "Người xét nghiệm";
+            //  i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "ID_Benhnhan";
+            i.Caption = "ID_Benhnhan";
+            //  i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+
+        /*Edit Form*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        //settings.SettingsPopup.EditForm.Modal = true;
+        //settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        //settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.CellEditorInitialize = (sender, e) =>
+        {
+            MVCxGridView gridView = sender as MVCxGridView;
+            if (sender == null || !gridView.IsNewRowEditing)
+                return;
+            if (e.Column.FieldName.Equals("ID_Benhnhan") && e.Editor.Value == null)
+                e.Editor.Value = Convert.ToInt64(Session["ID_BenhNhan"]);
+            if (e.Column.FieldName.Equals("NgayXN") && e.Editor.Value == null)
+                e.Editor.Value = DateTime.Now;
+        };
+
+        settings.SetEditFormTemplateContent(c =>
+        {
+            SO_PhieuXetNghiem editItem;
+            if (c.Grid.IsNewRowEditing)
+                editItem = new SO_PhieuXetNghiem();
+            else
+            {
+                editItem = ViewData["Item"] != null ? (SO_PhieuXetNghiem)ViewData["Item"] : (SO_PhieuXetNghiem)c.Grid.GetRow(c.VisibleIndex);
+            }
+            editItem.ID_Benhnhan = Convert.ToInt64(Session["ID_BenhNhan"]);
+            Html.RenderPartial("_FormPhieuXetNghiem", editItem);
+        });
+
 
     });
     if (ViewData["EditError"] != null)
     {
-        grid.SetEditErrorText((string)ViewData["EditError"]);
+        gridPXN.SetEditErrorText((string)ViewData["EditError"]);
     }
 }
-@grid.Bind(ViewData["ListPXNBenhNhan"]).GetHtml()
+@gridPXN.Bind(ViewData["ListPXNBenhNhan"]).GetHtml()

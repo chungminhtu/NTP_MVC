@@ -122,7 +122,7 @@
                                 myButton =>
                                 {
                                     myButton.Name = "btnThemMoiPXN";
-                                    myButton.Text = "Thêm phiếu xét nghiệm";
+                                    myButton.Text = "Thêm PXN";
                                     myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                     myButton.Images.Image.Url = "~/Content/Images/add.png";
                                     myButton.ClientSideEvents.Click = "function() { GridPhieuXetNghiem.AddNewRow(); }";
@@ -147,17 +147,28 @@
                                         myButton.Text = "Xóa PXN";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                         myButton.Images.Image.Url = "~/Content/Images/delete.png";
-                                        myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) GridPhieuXetNghiem.DeleteRow(GridSoKhamBenh.GetFocusedRowIndex()); }";
+                                        myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) GridPhieuXetNghiem.DeleteRow(GridPhieuXetNghiem.GetFocusedRowIndex()); }";
                                         myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");
                                         myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                     }).GetHtml();
                             @Html.DevExpress().Button(
+                                 myButton =>
+                                 {
+                                     myButton.Name = "btnLuuPXN";
+                                     myButton.Text = "Hủy";
+                                     myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                     myButton.Images.Image.Url = "~/Content/Images/save.png";
+                                     myButton.ClientSideEvents.Click = "function( ) { GridPhieuXetNghiem.CancelEdit();  }";
+                                     myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");
+                                     myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                 }).GetHtml();
+                            @Html.DevExpress().Button(
                                   myButton =>
                                   {
-                                      myButton.Name = "btnLuuPXN";
+                                      myButton.Name = "btnHuyPXN";
                                       myButton.Text = "Lưu PXN";
                                       myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
-                                      myButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                      myButton.Images.Image.Url = "~/Content/Images/save.png";
                                       myButton.ClientSideEvents.Click = "function( ) { GridPhieuXetNghiem.UpdateEdit();  }";
                                       myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");
                                       myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
@@ -209,7 +220,7 @@
                                     myButton.Text = "Thêm";
                                     myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                     myButton.Images.Image.Url = "~/Content/Images/add.png";
-                                    myButton.ClientSideEvents.Click = "function() { GridPhieuXetNghiem.AddNewRow(); }";
+                                    myButton.ClientSideEvents.Click = "function() { GridKetQuaXetNghiem.AddNewRow(); }";
                                     myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");
                                     myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                 }).GetHtml();
@@ -220,7 +231,7 @@
                                         myButton.Text = "Sửa";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                         myButton.Images.Image.Url = "~/Content/Images/edit.png";
-                                        myButton.ClientSideEvents.Click = "function( ) { GridPhieuXetNghiem.StartEditRow(GridPhieuXetNghiem.GetFocusedRowIndex()); }";
+                                        myButton.ClientSideEvents.Click = "function( ) { GridKetQuaXetNghiem.StartEditRow(GridKetQuaXetNghiem.GetFocusedRowIndex()); }";
                                         myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");
                                         myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                     }).GetHtml();
@@ -231,7 +242,7 @@
                                         myButton.Text = "Xóa";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                         myButton.Images.Image.Url = "~/Content/Images/delete.png";
-                                        myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) GridPhieuXetNghiem.DeleteRow(GridSoKhamBenh.GetFocusedRowIndex()); }";
+                                        myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) GridKetQuaXetNghiem.DeleteRow(GridKetQuaXetNghiem.GetFocusedRowIndex()); }";
                                         myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");
                                         myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                     }).GetHtml();

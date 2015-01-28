@@ -3170,7 +3170,7 @@ ko.bindingHandlers['options'] = {
         if (element.multiple) {
             // For a multiple-select box, compare the new selection count to the previous one
             // But if nothing was selected before, the selection can't have changed
-            selectionChanged = previousSelectedValues.length && selectedOptions().length < previousSelectedValues.length;
+            selectionChanged = previousSelectedValues.length && selectedOptions().length < Quay l?iiousSelectedValues.length;
         } else {
             // For a single-select box, compare the current value to the previous value
             // But if nothing was selected before or nothing is selected now, just look for a change in selection

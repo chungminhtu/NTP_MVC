@@ -29,6 +29,7 @@
     <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
     <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
     <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
+    <EntitySet Name="DM_User_Kho" EntityType="NTP_DBModel.DM_User_Kho" />
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
   </EntityContainer>
   <EntityType Name="AD_Menu">
@@ -216,9 +217,9 @@
   </EntityType>
   <EntityType Name="SO_PhieuXetNghiem">
     <Key>
-      <PropertyRef Name="ID_Phieuxetnghiem" />
+      <PropertyRef Name="ID_PhieuXetNghiem" />
     </Key>
-    <Property Name="ID_Phieuxetnghiem" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_PhieuXetNghiem" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ID_Benhnhan" Type="Int64" Nullable="false" />
     <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="ID_Benhvien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -242,11 +243,11 @@
   </EntityType>
   <EntityType Name="SO_PhieuXetNghiem_KQ">
     <Key>
-      <PropertyRef Name="ID_Phieuxetnghiem" />
+      <PropertyRef Name="ID_PhieuXetNghiem" />
       <PropertyRef Name="SoXN" />
       <PropertyRef Name="Maudom" />
     </Key>
-    <Property Name="ID_Phieuxetnghiem" Type="Int32" Nullable="false" />
+    <Property Name="ID_PhieuXetNghiem" Type="Int32" Nullable="false" />
     <Property Name="SoXN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="Maudom" Type="Byte" Nullable="false" />
     <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
@@ -255,9 +256,9 @@
   </EntityType>
   <EntityType Name="SO_SoDieuTri">
     <Key>
-      <PropertyRef Name="ID_Dieutri" />
+      <PropertyRef Name="ID_SoDieuTri" />
     </Key>
-    <Property Name="ID_Dieutri" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ID_SoDieuTri" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="ID_BENHNHAN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="SoDKDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="DVDieutri" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -375,6 +376,16 @@
     </Key>
     <Property Name="ID_PhanloaiYte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ten_PhanloaiYte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DM_User_Kho">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="Int32" Nullable="false" />
+    <Property Name="ID_KHO_QLVT" Type="Int64" />
+    <Property Name="ID_KHO_TTBI" Type="Int64" />
+    <Property Name="ID_KHO_THUOC" Type="Int64" />
+    <Property Name="MA_BENHVIEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="SO_SoDieuTri_KQ">
     <Key>

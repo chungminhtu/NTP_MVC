@@ -226,7 +226,7 @@
           <ScalarProperty Name="ID_Benhvien" ColumnName="ID_Benhvien" />
           <ScalarProperty Name="SoXN" ColumnName="SoXN" />
           <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
-          <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
+          <ScalarProperty Name="ID_PhieuXetNghiem" ColumnName="ID_PhieuXetNghiem" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -238,7 +238,7 @@
           <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
           <ScalarProperty Name="Maudom" ColumnName="Maudom" />
           <ScalarProperty Name="SoXN" ColumnName="SoXN" />
-          <ScalarProperty Name="ID_Phieuxetnghiem" ColumnName="ID_Phieuxetnghiem" />
+          <ScalarProperty Name="ID_PhieuXetNghiem" ColumnName="ID_PhieuXetNghiem" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -281,7 +281,7 @@
           <ScalarProperty Name="DVDieutri" ColumnName="DVDieutri" />
           <ScalarProperty Name="SoDKDT" ColumnName="SoDKDT" />
           <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
-          <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
+          <ScalarProperty Name="ID_SoDieuTri" ColumnName="ID_SoDieuTri" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -366,6 +366,17 @@
         <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
           <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
           <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DM_User_Kho">
+      <EntityTypeMapping TypeName="NTP_DBModel.DM_User_Kho">
+        <MappingFragment StoreEntitySet="DM_User_Kho">
+          <ScalarProperty Name="MA_BENHVIEN" ColumnName="MA_BENHVIEN" />
+          <ScalarProperty Name="ID_KHO_THUOC" ColumnName="ID_KHO_THUOC" />
+          <ScalarProperty Name="ID_KHO_TTBI" ColumnName="ID_KHO_TTBI" />
+          <ScalarProperty Name="ID_KHO_QLVT" ColumnName="ID_KHO_QLVT" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

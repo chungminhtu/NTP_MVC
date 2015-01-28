@@ -16,7 +16,7 @@ namespace NTP_MVC.Models
     {
         public decimal ID_Xetnghiem_GD { get; set; }
         public decimal ID_Dieutri { get; set; }
-        public decimal ID_Phieuxetnghiem_C { get; set; }
+        public decimal ID_PhieuXetNghiem_C { get; set; }
         public byte ThoiGianDT { get; set; }
         public Nullable<System.DateTime> Ngayxn { get; set; }
         public string SoXN { get; set; }

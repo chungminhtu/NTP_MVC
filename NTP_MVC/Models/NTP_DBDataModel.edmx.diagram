@@ -33,7 +33,8 @@
         <EntityTypeShape EntityType="NTP_DBModel.sysdiagram" Width="1.5" PointX="4.75" PointY="12.75" />
         <EntityTypeShape EntityType="NTP_DBModel.DM_BenhVien" Width="1.5" PointX="6.75" PointY="12.75" />
         <EntityTypeShape EntityType="NTP_DBModel.DM_PhanLoaiYTe" Width="1.5" PointX="12.75" PointY="8.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri_KQ" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.DM_User_Kho" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri_KQ" Width="1.5" PointX="14.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

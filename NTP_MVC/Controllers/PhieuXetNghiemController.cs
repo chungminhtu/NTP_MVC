@@ -68,7 +68,7 @@ namespace NTP_MVC.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ID_Phieuxetnghiem == item.ID_Phieuxetnghiem);
+                    var modelItem = model.FirstOrDefault(it => it.ID_PhieuXetNghiem == item.ID_PhieuXetNghiem);
                     if (modelItem != null)
                     {
                         UpdateModel(modelItem);
@@ -86,14 +86,14 @@ namespace NTP_MVC.Controllers
             return PartialView("_GridPhieuXetNghiem", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridPhieuXetNghiemDelete(Int64 ID_Phieuxetnghiem)
+        public ActionResult GridPhieuXetNghiemDelete(Int64 ID_PhieuXetNghiem)
         {
             var model = db.SO_PhieuXetNghiem;
-            if (ID_Phieuxetnghiem >= 0)
+            if (ID_PhieuXetNghiem >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ID_Phieuxetnghiem == ID_Phieuxetnghiem);
+                    var item = model.FirstOrDefault(it => it.ID_PhieuXetNghiem == ID_PhieuXetNghiem);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -108,25 +108,33 @@ namespace NTP_MVC.Controllers
         }
         #endregion
 
-        NTP_DBEntities db1 = new NTP_DBEntities();
 
         [ValidateInput(false)]
         public ActionResult GridKetQuaXetNghiem()
         {
-            var model = db1.SO_PhieuXetNghiem_KQ;
-            return PartialView("_GridKetQuaXetNghiem", model.Take(3).ToList());
+            GetKetQuaXetNghiem_PXN();
+            return PartialView("_GridKetQuaXetNghiem");
+        }
+
+        private void GetKetQuaXetNghiem_PXN()
+        {
+            var ID_PhieuXetNghiem = Request.Params["ID_PhieuXetNghiem"] != "" ? Convert.ToInt32(Request.Params["ID_PhieuXetNghiem"]) : 0;
+            HttpContext.Session["ID_PhieuXetNghiem"] = ID_PhieuXetNghiem;
+            HttpContext.Session["SoXN"] = Request.Params["SoXN"] + "";
+            HttpContext.Session["NgayNhanMau"] = Request.Params["NgayNhanMau"];
+            ViewData["ListKQXN"] = db.SO_PhieuXetNghiem_KQ.Where(m => m.ID_PhieuXetNghiem.Equals(ID_PhieuXetNghiem)).ToList();
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult GridKetQuaXetNghiemAddNew(SO_PhieuXetNghiem_KQ item)
         {
-            var model = db1.SO_PhieuXetNghiem_KQ;
+            var model = db.SO_PhieuXetNghiem_KQ;
             if (ModelState.IsValid)
             {
                 try
                 {
                     model.Add(item);
-                    db1.SaveChanges();
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -135,21 +143,22 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridKetQuaXetNghiem", model.ToList());
+            GetKetQuaXetNghiem_PXN();
+            return PartialView("_GridKetQuaXetNghiem");
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridKetQuaXetNghiemUpdate(SO_PhieuXetNghiem_KQ item)
         {
-            var model = db1.SO_PhieuXetNghiem_KQ;
+            var model = db.SO_PhieuXetNghiem_KQ;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ID_Phieuxetnghiem == item.ID_Phieuxetnghiem);
+                    var modelItem = model.FirstOrDefault(it => it.ID_PhieuXetNghiem == item.ID_PhieuXetNghiem);
                     if (modelItem != null)
                     {
                         UpdateModel(modelItem);
-                        db1.SaveChanges();
+                        db.SaveChanges();
                     }
                 }
                 catch (Exception e)
@@ -159,27 +168,29 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridKetQuaXetNghiem", model.Take(3).ToList());
+            GetKetQuaXetNghiem_PXN();
+            return PartialView("_GridKetQuaXetNghiem");
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridKetQuaXetNghiemDelete(Int32 ID_Phieuxetnghiem)
+        public ActionResult GridKetQuaXetNghiemDelete(Int32 ID_PhieuXetNghiem)
         {
-            var model = db1.SO_PhieuXetNghiem_KQ;
-            if (ID_Phieuxetnghiem >= 0)
+            var model = db.SO_PhieuXetNghiem_KQ;
+            if (ID_PhieuXetNghiem >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ID_Phieuxetnghiem == ID_Phieuxetnghiem);
+                    var item = model.FirstOrDefault(it => it.ID_PhieuXetNghiem == ID_PhieuXetNghiem);
                     if (item != null)
                         model.Remove(item);
-                    db1.SaveChanges();
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_GridKetQuaXetNghiem", model.ToList());
+            GetKetQuaXetNghiem_PXN();
+            return PartialView("_GridKetQuaXetNghiem");
         }
     }
 }

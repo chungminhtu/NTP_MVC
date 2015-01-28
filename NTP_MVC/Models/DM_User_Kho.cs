@@ -12,13 +12,12 @@ namespace NTP_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SO_PhieuXetNghiem_KQ
+    public partial class DM_User_Kho
     {
-        public int ID_PhieuXetNghiem { get; set; }
-        public string SoXN { get; set; }
-        public byte Maudom { get; set; }
-        public Nullable<System.DateTime> NgayNhanMau { get; set; }
-        public string TrangthaiDom { get; set; }
-        public Nullable<byte> Ketqua { get; set; }
+        public int USERID { get; set; }
+        public Nullable<long> ID_KHO_QLVT { get; set; }
+        public Nullable<long> ID_KHO_TTBI { get; set; }
+        public Nullable<long> ID_KHO_THUOC { get; set; }
+        public string MA_BENHVIEN { get; set; }
     }
 }

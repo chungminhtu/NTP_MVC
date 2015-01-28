@@ -514,6 +514,9 @@
     <Compile Include="Models\DM_Tinh.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DM_User_Kho.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DM_Vung.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>

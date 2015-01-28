@@ -53,7 +53,7 @@ namespace NTP_MVC.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ID_Dieutri == item.ID_Dieutri);
+                    var modelItem = model.FirstOrDefault(it => it.ID_SoDieuTri == item.ID_SoDieuTri);
                     if (modelItem != null)
                     {
                         UpdateModel(modelItem);
@@ -70,14 +70,14 @@ namespace NTP_MVC.Controllers
             return PartialView("_SoDieuTriDataViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartialDelete(Int64 ID_Dieutri)
+        public ActionResult SoDieuTriDataViewPartialDelete(Int64 ID_SoDieuTri)
         {
             var model = db.SO_SoDieuTri;
-            if (ID_Dieutri >= 0)
+            if (ID_SoDieuTri >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ID_Dieutri == ID_Dieutri);
+                    var item = model.FirstOrDefault(it => it.ID_SoDieuTri == ID_SoDieuTri);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();

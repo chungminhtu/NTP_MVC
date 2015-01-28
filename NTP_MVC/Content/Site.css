@@ -590,6 +590,9 @@
     .dxeErrorCell_PlasticBlue, .dxeErrorCell_PlasticBlue td{
         display:none !important;
     } 
+    .dxgvFocusedRow_PlasticBlue {
+        background-color: #009FFF !important;
+    }
 
 /* RedWine */
 .dxsplControl_RedWine {
