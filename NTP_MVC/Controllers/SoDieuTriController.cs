@@ -19,6 +19,23 @@ namespace NTP_MVC.Controllers
         NTP_DBEntities db = new NTP_DBEntities();
 
         [ValidateInput(false)]
+        public ActionResult GridSoDieuTriList()
+        {
+            GetSoDieuTriCuaBenhNhan();
+            return PartialView("_GridSoDieuTri", ViewData["ListSoDieuTri"]);
+        }
+
+        public void GetSoDieuTriCuaBenhNhan()
+        {
+            var s = Session["ID_BenhNhan"] + "";
+            if (s != "")
+            {
+                ViewData["ListSoDieuTri"] = db.SO_SoDieuTri.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
+            }
+        }
+
+
+        [ValidateInput(false)]
         public ActionResult SoDieuTriDataViewPartial()
         {
             var model = db.SO_SoDieuTri;

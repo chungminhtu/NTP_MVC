@@ -12,12 +12,14 @@ namespace NTP_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DM_User_Kho
+    public partial class AD_User_Kho
     {
         public int USERID { get; set; }
-        public Nullable<long> ID_KHO_QLVT { get; set; }
-        public Nullable<long> ID_KHO_TTBI { get; set; }
-        public Nullable<long> ID_KHO_THUOC { get; set; }
+        public long ID_KHO_QLVT { get; set; }
+        public long ID_KHO_TTBI { get; set; }
+        public long ID_KHO_THUOC { get; set; }
         public string MA_BENHVIEN { get; set; }
+    
+        public virtual AD_Users AD_Users { get; set; }
     }
 }

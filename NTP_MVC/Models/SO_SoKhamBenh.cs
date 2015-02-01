@@ -18,9 +18,6 @@ namespace NTP_MVC.Models
         public long ID_BENHNHAN { get; set; }
         public string TrieuChung { get; set; }
         public string KetQuaXetNghiemDom { get; set; }
-        public string TrangThaiDomDaiThe { get; set; }
-        public Nullable<int> SoMauDom { get; set; }
-        public Nullable<System.DateTime> NgayXetNghiemDom { get; set; }
         public string XQ { get; set; }
         public Nullable<System.DateTime> NgayChupXQ { get; set; }
         public string Khac { get; set; }

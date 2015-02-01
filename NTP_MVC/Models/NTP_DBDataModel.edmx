@@ -30,11 +30,25 @@
           <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="AD_User_Kho">
+          <Key>
+            <PropertyRef Name="USERID" />
+            <PropertyRef Name="ID_KHO_QLVT" />
+            <PropertyRef Name="ID_KHO_TTBI" />
+            <PropertyRef Name="ID_KHO_THUOC" />
+            <PropertyRef Name="MA_BENHVIEN" />
+          </Key>
+          <Property Name="USERID" Type="int" Nullable="false" />
+          <Property Name="ID_KHO_QLVT" Type="bigint" Nullable="false" />
+          <Property Name="ID_KHO_TTBI" Type="bigint" Nullable="false" />
+          <Property Name="ID_KHO_THUOC" Type="bigint" Nullable="false" />
+          <Property Name="MA_BENHVIEN" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="AD_Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -43,15 +57,10 @@
           <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
           <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'NTP_DB.dbo.DM_BenhVien' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DM_BenhVien">
           <Key>
-            <PropertyRef Name="ID_BENHVIEN_KHO" />
             <PropertyRef Name="ID_BENHVIEN" />
-            <PropertyRef Name="TEN_BENHVIEN" />
           </Key>
-          <Property Name="ID_BENHVIEN_KHO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_BENHVIEN" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN_BENHVIEN" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="DIA_CHI" Type="nvarchar" MaxLength="2000" />
@@ -182,18 +191,6 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
           <Property Name="ID_MIEN" Type="int" />
           <Property Name="DANSO" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'NTP_DB.dbo.DM_User_Kho' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="DM_User_Kho">
-          <Key>
-            <PropertyRef Name="USERID" />
-          </Key>
-          <Property Name="USERID" Type="int" Nullable="false" />
-          <Property Name="ID_KHO_QLVT" Type="bigint" />
-          <Property Name="ID_KHO_TTBI" Type="bigint" />
-          <Property Name="ID_KHO_THUOC" Type="bigint" />
-          <Property Name="MA_BENHVIEN" Type="varchar" MaxLength="10" />
-        </EntityType>
         <EntityType Name="DM_Vung">
           <Key>
             <PropertyRef Name="ID_VUNG" />
@@ -240,7 +237,7 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_User_Kho' does not have a primary ke
           <Property Name="ID_Benhnhan" Type="bigint" Nullable="false" />
           <Property Name="SoXN" Type="nvarchar" MaxLength="15" />
           <Property Name="ID_Benhvien" Type="nvarchar" MaxLength="100" />
-          <Property Name="ID_PhanloaiYte" Type="int" />
+          <Property Name="PhanLoaiYte" Type="int" />
           <Property Name="LydoXN" Type="int" Nullable="false" />
           <Property Name="Soluong" Type="tinyint" />
           <Property Name="SoThangDT" Type="tinyint" />
@@ -257,19 +254,23 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_User_Kho' does not have a primary ke
           <Property Name="NGAYHUY" Type="datetime" />
           <Property Name="DV_TiepNhan" Type="nvarchar" MaxLength="50" />
           <Property Name="Tiepnhan" Type="bit" />
+          <Property Name="NuoiCay" Type="nvarchar" MaxLength="100" />
+          <Property Name="GeneXpert" Type="int" />
+          <Property Name="KetQuaPXN" Type="int" />
+          <Property Name="Htest" Type="bit" />
         </EntityType>
         <EntityType Name="SO_PhieuXetNghiem_KQ">
           <Key>
             <PropertyRef Name="ID_PhieuXetNghiem" />
             <PropertyRef Name="SoXN" />
-            <PropertyRef Name="Maudom" />
+            <PropertyRef Name="MauDom" />
           </Key>
-          <Property Name="ID_PhieuXetNghiem" Type="int" Nullable="false" />
+          <Property Name="ID_PhieuXetNghiem" Type="bigint" Nullable="false" />
           <Property Name="SoXN" Type="nvarchar" MaxLength="15" Nullable="false" />
-          <Property Name="Maudom" Type="tinyint" Nullable="false" />
+          <Property Name="MauDom" Type="tinyint" Nullable="false" />
           <Property Name="NgayNhanMau" Type="datetime" />
-          <Property Name="TrangthaiDom" Type="nvarchar" MaxLength="15" />
-          <Property Name="Ketqua" Type="tinyint" />
+          <Property Name="TrangThaiDom" Type="nvarchar" MaxLength="15" />
+          <Property Name="KetQua" Type="tinyint" />
         </EntityType>
         <EntityType Name="SO_SoDieuTri">
           <Key>
@@ -345,9 +346,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="ID_BENHNHAN" Type="bigint" Nullable="false" />
           <Property Name="TrieuChung" Type="nvarchar" MaxLength="300" />
           <Property Name="KetQuaXetNghiemDom" Type="nvarchar" MaxLength="300" />
-          <Property Name="TrangThaiDomDaiThe" Type="nvarchar" MaxLength="300" />
-          <Property Name="SoMauDom" Type="int" />
-          <Property Name="NgayXetNghiemDom" Type="datetime" />
           <Property Name="XQ" Type="nvarchar" MaxLength="300" />
           <Property Name="NgayChupXQ" Type="datetime" />
           <Property Name="Khac" Type="nvarchar" MaxLength="300" />
@@ -390,11 +388,25 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_AD_User_Kho_AD_Users">
+          <End Role="AD_Users" Type="Self.AD_Users" Multiplicity="1" />
+          <End Role="AD_User_Kho" Type="Self.AD_User_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AD_User_Kho">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NTP_DBModelStoreContainer">
           <EntitySet Name="AD_Menu" EntityType="Self.AD_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_RoleMenu" EntityType="Self.AD_RoleMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_Roles" EntityType="Self.AD_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AD_User_Kho" EntityType="Self.AD_User_Kho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_Users" EntityType="Self.AD_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_Cap" EntityType="Self.DM_Cap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_DoiTuong" EntityType="Self.DM_DoiTuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_DonViTinh" EntityType="Self.DM_DonViTinh" Schema="dbo" store:Type="Tables" />
@@ -417,38 +429,11 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="Self.SO_XetNghiemKhamBenh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [DM_BenhVien].[ID_BENHVIEN_KHO] AS [ID_BENHVIEN_KHO], 
-    [DM_BenhVien].[ID_BENHVIEN] AS [ID_BENHVIEN], 
-    [DM_BenhVien].[TEN_BENHVIEN] AS [TEN_BENHVIEN], 
-    [DM_BenhVien].[DIA_CHI] AS [DIA_CHI], 
-    [DM_BenhVien].[ID_VUNG] AS [ID_VUNG], 
-    [DM_BenhVien].[MA_BENHVIEN_CAPTREN] AS [MA_BENHVIEN_CAPTREN], 
-    [DM_BenhVien].[ID_BENHVIEN_CAPTREN] AS [ID_BENHVIEN_CAPTREN], 
-    [DM_BenhVien].[CAPQUANLY] AS [CAPQUANLY], 
-    [DM_BenhVien].[ID_MATINH] AS [ID_MATINH], 
-    [DM_BenhVien].[ID_HUYEN] AS [ID_HUYEN], 
-    [DM_BenhVien].[ID_PHANLOAIYTE] AS [ID_PHANLOAIYTE], 
-    [DM_BenhVien].[PHANBIET] AS [PHANBIET], 
-    [DM_BenhVien].[ID_LOAIBV] AS [ID_LOAIBV], 
-    [DM_BenhVien].[Huy] AS [Huy]
-    FROM [dbo].[DM_BenhVien] AS [DM_BenhVien]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="DM_PhanLoaiYTe" EntityType="Self.DM_PhanLoaiYTe" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DM_PhanLoaiYTe].[ID_PhanloaiYte] AS [ID_PhanloaiYte], 
     [DM_PhanLoaiYTe].[Ten_PhanloaiYte] AS [Ten_PhanloaiYte]
     FROM [dbo].[DM_PhanLoaiYTe] AS [DM_PhanLoaiYTe]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="DM_User_Kho" EntityType="Self.DM_User_Kho" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [DM_User_Kho].[USERID] AS [USERID], 
-    [DM_User_Kho].[ID_KHO_QLVT] AS [ID_KHO_QLVT], 
-    [DM_User_Kho].[ID_KHO_TTBI] AS [ID_KHO_TTBI], 
-    [DM_User_Kho].[ID_KHO_THUOC] AS [ID_KHO_THUOC], 
-    [DM_User_Kho].[MA_BENHVIEN] AS [MA_BENHVIEN]
-    FROM [dbo].[DM_User_Kho] AS [DM_User_Kho]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -466,6 +451,10 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     [SO_SoDieuTri_KQ].[GeneXpert] AS [GeneXpert]
     FROM [dbo].[SO_SoDieuTri_KQ] AS [SO_SoDieuTri_KQ]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_AD_User_Kho_AD_Users" Association="Self.FK_AD_User_Kho_AD_Users">
+            <End Role="AD_Users" EntitySet="AD_Users" />
+            <End Role="AD_User_Kho" EntitySet="AD_User_Kho" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -475,7 +464,9 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySet Name="AD_Menu" EntityType="NTP_DBModel.AD_Menu" />
           <EntitySet Name="AD_RoleMenu" EntityType="NTP_DBModel.AD_RoleMenu" />
           <EntitySet Name="AD_Roles" EntityType="NTP_DBModel.AD_Roles" />
+          <EntitySet Name="AD_User_Kho" EntityType="NTP_DBModel.AD_User_Kho" />
           <EntitySet Name="AD_Users" EntityType="NTP_DBModel.AD_Users" />
+          <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
           <EntitySet Name="DM_Cap" EntityType="NTP_DBModel.DM_Cap" />
           <EntitySet Name="DM_DoiTuong" EntityType="NTP_DBModel.DM_DoiTuong" />
           <EntitySet Name="DM_DonViTinh" EntityType="NTP_DBModel.DM_DonViTinh" />
@@ -498,10 +489,12 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySet Name="SO_SoKhamBenh" EntityType="NTP_DBModel.SO_SoKhamBenh" />
           <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" />
           <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
-          <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
           <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
-          <EntitySet Name="DM_User_Kho" EntityType="NTP_DBModel.DM_User_Kho" />
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
+          <AssociationSet Name="FK_AD_User_Kho_AD_Users" Association="NTP_DBModel.FK_AD_User_Kho_AD_Users">
+            <End Role="AD_Users" EntitySet="AD_Users" />
+            <End Role="AD_User_Kho" EntitySet="AD_User_Kho" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AD_Menu">
           <Key>
@@ -528,11 +521,26 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="AD_User_Kho">
+          <Key>
+            <PropertyRef Name="USERID" />
+            <PropertyRef Name="ID_KHO_QLVT" />
+            <PropertyRef Name="ID_KHO_TTBI" />
+            <PropertyRef Name="ID_KHO_THUOC" />
+            <PropertyRef Name="MA_BENHVIEN" />
+          </Key>
+          <Property Name="USERID" Type="Int32" Nullable="false" />
+          <Property Name="ID_KHO_QLVT" Type="Int64" Nullable="false" />
+          <Property Name="ID_KHO_TTBI" Type="Int64" Nullable="false" />
+          <Property Name="ID_KHO_THUOC" Type="Int64" Nullable="false" />
+          <Property Name="MA_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AD_Users" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_User_Kho" ToRole="AD_Users" />
+        </EntityType>
         <EntityType Name="AD_Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -540,6 +548,25 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="RoleID" Type="Int32" />
           <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AD_User_Kho" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_Users" ToRole="AD_User_Kho" />
+        </EntityType>
+        <EntityType Name="DM_BenhVien">
+          <Key>
+            <PropertyRef Name="ID_BENHVIEN" />
+          </Key>
+          <Property Name="ID_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEN_BENHVIEN" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ID_VUNG" Type="Int32" />
+          <Property Name="MA_BENHVIEN_CAPTREN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID_BENHVIEN_CAPTREN" Type="Int64" />
+          <Property Name="CAPQUANLY" Type="Byte" />
+          <Property Name="ID_MATINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ID_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PHANLOAIYTE" Type="Byte" />
+          <Property Name="PHANBIET" Type="Byte" />
+          <Property Name="ID_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Huy" Type="Int64" />
         </EntityType>
         <EntityType Name="DM_Cap">
           <Key>
@@ -694,7 +721,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="ID_Benhnhan" Type="Int64" Nullable="false" />
           <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="ID_Benhvien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ID_PhanloaiYte" Type="Int32" />
+          <Property Name="PhanLoaiYte" Type="Int32" />
           <Property Name="LydoXN" Type="Int32" Nullable="false" />
           <Property Name="Soluong" Type="Byte" />
           <Property Name="SoThangDT" Type="Byte" />
@@ -711,19 +738,23 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="NGAYHUY" Type="DateTime" Precision="3" />
           <Property Name="DV_TiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Tiepnhan" Type="Boolean" />
+          <Property Name="NuoiCay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GeneXpert" Type="Int32" />
+          <Property Name="KetQuaPXN" Type="Int32" />
+          <Property Name="Htest" Type="Boolean" />
         </EntityType>
         <EntityType Name="SO_PhieuXetNghiem_KQ">
           <Key>
             <PropertyRef Name="ID_PhieuXetNghiem" />
             <PropertyRef Name="SoXN" />
-            <PropertyRef Name="Maudom" />
+            <PropertyRef Name="MauDom" />
           </Key>
-          <Property Name="ID_PhieuXetNghiem" Type="Int32" Nullable="false" />
+          <Property Name="ID_PhieuXetNghiem" Type="Int64" Nullable="false" />
           <Property Name="SoXN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Maudom" Type="Byte" Nullable="false" />
+          <Property Name="MauDom" Type="Byte" Nullable="false" />
           <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
-          <Property Name="TrangthaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Ketqua" Type="Byte" />
+          <Property Name="TrangThaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="KetQua" Type="Byte" />
         </EntityType>
         <EntityType Name="SO_SoDieuTri">
           <Key>
@@ -775,9 +806,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="ID_BENHNHAN" Type="Int64" Nullable="false" />
           <Property Name="TrieuChung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="KetQuaXetNghiemDom" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="TrangThaiDomDaiThe" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="SoMauDom" Type="Int32" />
-          <Property Name="NgayXetNghiemDom" Type="DateTime" Precision="3" />
           <Property Name="XQ" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="NgayChupXQ" Type="DateTime" Precision="3" />
           <Property Name="Khac" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -820,43 +848,12 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="DM_BenhVien">
-          <Key>
-            <PropertyRef Name="ID_BENHVIEN_KHO" />
-            <PropertyRef Name="ID_BENHVIEN" />
-            <PropertyRef Name="TEN_BENHVIEN" />
-          </Key>
-          <Property Name="ID_BENHVIEN_KHO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TEN_BENHVIEN" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="DIA_CHI" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="ID_VUNG" Type="Int32" />
-          <Property Name="MA_BENHVIEN_CAPTREN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ID_BENHVIEN_CAPTREN" Type="Int64" />
-          <Property Name="CAPQUANLY" Type="Byte" />
-          <Property Name="ID_MATINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ID_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ID_PHANLOAIYTE" Type="Byte" />
-          <Property Name="PHANBIET" Type="Byte" />
-          <Property Name="ID_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Huy" Type="Int64" />
-        </EntityType>
         <EntityType Name="DM_PhanLoaiYTe">
           <Key>
             <PropertyRef Name="ID_PhanloaiYte" />
           </Key>
           <Property Name="ID_PhanloaiYte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten_PhanloaiYte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="DM_User_Kho">
-          <Key>
-            <PropertyRef Name="USERID" />
-          </Key>
-          <Property Name="USERID" Type="Int32" Nullable="false" />
-          <Property Name="ID_KHO_QLVT" Type="Int64" />
-          <Property Name="ID_KHO_TTBI" Type="Int64" />
-          <Property Name="ID_KHO_THUOC" Type="Int64" />
-          <Property Name="MA_BENHVIEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SO_SoDieuTri_KQ">
           <Key>
@@ -880,6 +877,18 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
           <Property Name="GeneXpert" Type="Int32" />
         </EntityType>
+        <Association Name="FK_AD_User_Kho_AD_Users">
+          <End Type="NTP_DBModel.AD_Users" Role="AD_Users" Multiplicity="1" />
+          <End Type="NTP_DBModel.AD_User_Kho" Role="AD_User_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AD_User_Kho">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -913,6 +922,17 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AD_User_Kho">
+            <EntityTypeMapping TypeName="NTP_DBModel.AD_User_Kho">
+              <MappingFragment StoreEntitySet="AD_User_Kho">
+                <ScalarProperty Name="MA_BENHVIEN" ColumnName="MA_BENHVIEN" />
+                <ScalarProperty Name="ID_KHO_THUOC" ColumnName="ID_KHO_THUOC" />
+                <ScalarProperty Name="ID_KHO_TTBI" ColumnName="ID_KHO_TTBI" />
+                <ScalarProperty Name="ID_KHO_QLVT" ColumnName="ID_KHO_QLVT" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AD_Users">
             <EntityTypeMapping TypeName="NTP_DBModel.AD_Users">
               <MappingFragment StoreEntitySet="AD_Users">
@@ -924,6 +944,25 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_BenhVien">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_BenhVien">
+              <MappingFragment StoreEntitySet="DM_BenhVien">
+                <ScalarProperty Name="Huy" ColumnName="Huy" />
+                <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
+                <ScalarProperty Name="PHANBIET" ColumnName="PHANBIET" />
+                <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
+                <ScalarProperty Name="ID_HUYEN" ColumnName="ID_HUYEN" />
+                <ScalarProperty Name="ID_MATINH" ColumnName="ID_MATINH" />
+                <ScalarProperty Name="CAPQUANLY" ColumnName="CAPQUANLY" />
+                <ScalarProperty Name="ID_BENHVIEN_CAPTREN" ColumnName="ID_BENHVIEN_CAPTREN" />
+                <ScalarProperty Name="MA_BENHVIEN_CAPTREN" ColumnName="MA_BENHVIEN_CAPTREN" />
+                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="TEN_BENHVIEN" ColumnName="TEN_BENHVIEN" />
+                <ScalarProperty Name="ID_BENHVIEN" ColumnName="ID_BENHVIEN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1091,6 +1130,10 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySetMapping Name="SO_PhieuXetNghiem">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem">
               <MappingFragment StoreEntitySet="SO_PhieuXetNghiem">
+                <ScalarProperty Name="Htest" ColumnName="Htest" />
+                <ScalarProperty Name="KetQuaPXN" ColumnName="KetQuaPXN" />
+                <ScalarProperty Name="GeneXpert" ColumnName="GeneXpert" />
+                <ScalarProperty Name="NuoiCay" ColumnName="NuoiCay" />
                 <ScalarProperty Name="Tiepnhan" ColumnName="Tiepnhan" />
                 <ScalarProperty Name="DV_TiepNhan" ColumnName="DV_TiepNhan" />
                 <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
@@ -1107,7 +1150,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
                 <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
                 <ScalarProperty Name="Soluong" ColumnName="Soluong" />
                 <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
-                <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
+                <ScalarProperty Name="PhanLoaiYte" ColumnName="PhanLoaiYte" />
                 <ScalarProperty Name="ID_Benhvien" ColumnName="ID_Benhvien" />
                 <ScalarProperty Name="SoXN" ColumnName="SoXN" />
                 <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
@@ -1118,10 +1161,10 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySetMapping Name="SO_PhieuXetNghiem_KQ">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_PhieuXetNghiem_KQ">
               <MappingFragment StoreEntitySet="SO_PhieuXetNghiem_KQ">
-                <ScalarProperty Name="Ketqua" ColumnName="Ketqua" />
-                <ScalarProperty Name="TrangthaiDom" ColumnName="TrangthaiDom" />
+                <ScalarProperty Name="KetQua" ColumnName="KetQua" />
+                <ScalarProperty Name="TrangThaiDom" ColumnName="TrangThaiDom" />
                 <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
-                <ScalarProperty Name="Maudom" ColumnName="Maudom" />
+                <ScalarProperty Name="MauDom" ColumnName="MauDom" />
                 <ScalarProperty Name="SoXN" ColumnName="SoXN" />
                 <ScalarProperty Name="ID_PhieuXetNghiem" ColumnName="ID_PhieuXetNghiem" />
               </MappingFragment>
@@ -1187,9 +1230,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
                 <ScalarProperty Name="Khac" ColumnName="Khac" />
                 <ScalarProperty Name="NgayChupXQ" ColumnName="NgayChupXQ" />
                 <ScalarProperty Name="XQ" ColumnName="XQ" />
-                <ScalarProperty Name="NgayXetNghiemDom" ColumnName="NgayXetNghiemDom" />
-                <ScalarProperty Name="SoMauDom" ColumnName="SoMauDom" />
-                <ScalarProperty Name="TrangThaiDomDaiThe" ColumnName="TrangThaiDomDaiThe" />
                 <ScalarProperty Name="KetQuaXetNghiemDom" ColumnName="KetQuaXetNghiemDom" />
                 <ScalarProperty Name="TrieuChung" ColumnName="TrieuChung" />
                 <ScalarProperty Name="ID_BENHNHAN" ColumnName="ID_BENHNHAN" />
@@ -1226,42 +1266,11 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DM_BenhVien">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_BenhVien">
-              <MappingFragment StoreEntitySet="DM_BenhVien">
-                <ScalarProperty Name="Huy" ColumnName="Huy" />
-                <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
-                <ScalarProperty Name="PHANBIET" ColumnName="PHANBIET" />
-                <ScalarProperty Name="ID_PHANLOAIYTE" ColumnName="ID_PHANLOAIYTE" />
-                <ScalarProperty Name="ID_HUYEN" ColumnName="ID_HUYEN" />
-                <ScalarProperty Name="ID_MATINH" ColumnName="ID_MATINH" />
-                <ScalarProperty Name="CAPQUANLY" ColumnName="CAPQUANLY" />
-                <ScalarProperty Name="ID_BENHVIEN_CAPTREN" ColumnName="ID_BENHVIEN_CAPTREN" />
-                <ScalarProperty Name="MA_BENHVIEN_CAPTREN" ColumnName="MA_BENHVIEN_CAPTREN" />
-                <ScalarProperty Name="ID_VUNG" ColumnName="ID_VUNG" />
-                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
-                <ScalarProperty Name="TEN_BENHVIEN" ColumnName="TEN_BENHVIEN" />
-                <ScalarProperty Name="ID_BENHVIEN" ColumnName="ID_BENHVIEN" />
-                <ScalarProperty Name="ID_BENHVIEN_KHO" ColumnName="ID_BENHVIEN_KHO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DM_PhanLoaiYTe">
             <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiYTe">
               <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
                 <ScalarProperty Name="Ten_PhanloaiYte" ColumnName="Ten_PhanloaiYte" />
                 <ScalarProperty Name="ID_PhanloaiYte" ColumnName="ID_PhanloaiYte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DM_User_Kho">
-            <EntityTypeMapping TypeName="NTP_DBModel.DM_User_Kho">
-              <MappingFragment StoreEntitySet="DM_User_Kho">
-                <ScalarProperty Name="MA_BENHVIEN" ColumnName="MA_BENHVIEN" />
-                <ScalarProperty Name="ID_KHO_THUOC" ColumnName="ID_KHO_THUOC" />
-                <ScalarProperty Name="ID_KHO_TTBI" ColumnName="ID_KHO_TTBI" />
-                <ScalarProperty Name="ID_KHO_QLVT" ColumnName="ID_KHO_QLVT" />
-                <ScalarProperty Name="USERID" ColumnName="USERID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

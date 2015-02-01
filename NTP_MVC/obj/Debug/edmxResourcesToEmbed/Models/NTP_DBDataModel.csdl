@@ -4,7 +4,9 @@
     <EntitySet Name="AD_Menu" EntityType="NTP_DBModel.AD_Menu" />
     <EntitySet Name="AD_RoleMenu" EntityType="NTP_DBModel.AD_RoleMenu" />
     <EntitySet Name="AD_Roles" EntityType="NTP_DBModel.AD_Roles" />
+    <EntitySet Name="AD_User_Kho" EntityType="NTP_DBModel.AD_User_Kho" />
     <EntitySet Name="AD_Users" EntityType="NTP_DBModel.AD_Users" />
+    <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
     <EntitySet Name="DM_Cap" EntityType="NTP_DBModel.DM_Cap" />
     <EntitySet Name="DM_DoiTuong" EntityType="NTP_DBModel.DM_DoiTuong" />
     <EntitySet Name="DM_DonViTinh" EntityType="NTP_DBModel.DM_DonViTinh" />
@@ -27,10 +29,12 @@
     <EntitySet Name="SO_SoKhamBenh" EntityType="NTP_DBModel.SO_SoKhamBenh" />
     <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" />
     <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
-    <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
     <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
-    <EntitySet Name="DM_User_Kho" EntityType="NTP_DBModel.DM_User_Kho" />
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
+    <AssociationSet Name="FK_AD_User_Kho_AD_Users" Association="NTP_DBModel.FK_AD_User_Kho_AD_Users">
+      <End Role="AD_Users" EntitySet="AD_Users" />
+      <End Role="AD_User_Kho" EntitySet="AD_User_Kho" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AD_Menu">
     <Key>
@@ -57,11 +61,26 @@
     <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="AD_User_Kho">
+    <Key>
+      <PropertyRef Name="USERID" />
+      <PropertyRef Name="ID_KHO_QLVT" />
+      <PropertyRef Name="ID_KHO_TTBI" />
+      <PropertyRef Name="ID_KHO_THUOC" />
+      <PropertyRef Name="MA_BENHVIEN" />
+    </Key>
+    <Property Name="USERID" Type="Int32" Nullable="false" />
+    <Property Name="ID_KHO_QLVT" Type="Int64" Nullable="false" />
+    <Property Name="ID_KHO_TTBI" Type="Int64" Nullable="false" />
+    <Property Name="ID_KHO_THUOC" Type="Int64" Nullable="false" />
+    <Property Name="MA_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AD_Users" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_User_Kho" ToRole="AD_Users" />
+  </EntityType>
   <EntityType Name="AD_Users">
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
-    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
     <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -69,6 +88,25 @@
     <Property Name="RoleID" Type="Int32" />
     <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AD_User_Kho" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_Users" ToRole="AD_User_Kho" />
+  </EntityType>
+  <EntityType Name="DM_BenhVien">
+    <Key>
+      <PropertyRef Name="ID_BENHVIEN" />
+    </Key>
+    <Property Name="ID_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TEN_BENHVIEN" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DIA_CHI" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_VUNG" Type="Int32" />
+    <Property Name="MA_BENHVIEN_CAPTREN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_BENHVIEN_CAPTREN" Type="Int64" />
+    <Property Name="CAPQUANLY" Type="Byte" />
+    <Property Name="ID_MATINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ID_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ID_PHANLOAIYTE" Type="Byte" />
+    <Property Name="PHANBIET" Type="Byte" />
+    <Property Name="ID_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Huy" Type="Int64" />
   </EntityType>
   <EntityType Name="DM_Cap">
     <Key>
@@ -223,7 +261,7 @@
     <Property Name="ID_Benhnhan" Type="Int64" Nullable="false" />
     <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="ID_Benhvien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="ID_PhanloaiYte" Type="Int32" />
+    <Property Name="PhanLoaiYte" Type="Int32" />
     <Property Name="LydoXN" Type="Int32" Nullable="false" />
     <Property Name="Soluong" Type="Byte" />
     <Property Name="SoThangDT" Type="Byte" />
@@ -240,19 +278,23 @@
     <Property Name="NGAYHUY" Type="DateTime" Precision="3" />
     <Property Name="DV_TiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Tiepnhan" Type="Boolean" />
+    <Property Name="NuoiCay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GeneXpert" Type="Int32" />
+    <Property Name="KetQuaPXN" Type="Int32" />
+    <Property Name="Htest" Type="Boolean" />
   </EntityType>
   <EntityType Name="SO_PhieuXetNghiem_KQ">
     <Key>
       <PropertyRef Name="ID_PhieuXetNghiem" />
       <PropertyRef Name="SoXN" />
-      <PropertyRef Name="Maudom" />
+      <PropertyRef Name="MauDom" />
     </Key>
-    <Property Name="ID_PhieuXetNghiem" Type="Int32" Nullable="false" />
+    <Property Name="ID_PhieuXetNghiem" Type="Int64" Nullable="false" />
     <Property Name="SoXN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Maudom" Type="Byte" Nullable="false" />
+    <Property Name="MauDom" Type="Byte" Nullable="false" />
     <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
-    <Property Name="TrangthaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Ketqua" Type="Byte" />
+    <Property Name="TrangThaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="KetQua" Type="Byte" />
   </EntityType>
   <EntityType Name="SO_SoDieuTri">
     <Key>
@@ -304,9 +346,6 @@
     <Property Name="ID_BENHNHAN" Type="Int64" Nullable="false" />
     <Property Name="TrieuChung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="KetQuaXetNghiemDom" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="TrangThaiDomDaiThe" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="SoMauDom" Type="Int32" />
-    <Property Name="NgayXetNghiemDom" Type="DateTime" Precision="3" />
     <Property Name="XQ" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="NgayChupXQ" Type="DateTime" Precision="3" />
     <Property Name="Khac" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -349,43 +388,12 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="DM_BenhVien">
-    <Key>
-      <PropertyRef Name="ID_BENHVIEN_KHO" />
-      <PropertyRef Name="ID_BENHVIEN" />
-      <PropertyRef Name="TEN_BENHVIEN" />
-    </Key>
-    <Property Name="ID_BENHVIEN_KHO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ID_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="TEN_BENHVIEN" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="DIA_CHI" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-    <Property Name="ID_VUNG" Type="Int32" />
-    <Property Name="MA_BENHVIEN_CAPTREN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="ID_BENHVIEN_CAPTREN" Type="Int64" />
-    <Property Name="CAPQUANLY" Type="Byte" />
-    <Property Name="ID_MATINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="ID_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="ID_PHANLOAIYTE" Type="Byte" />
-    <Property Name="PHANBIET" Type="Byte" />
-    <Property Name="ID_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Huy" Type="Int64" />
-  </EntityType>
   <EntityType Name="DM_PhanLoaiYTe">
     <Key>
       <PropertyRef Name="ID_PhanloaiYte" />
     </Key>
     <Property Name="ID_PhanloaiYte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ten_PhanloaiYte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="DM_User_Kho">
-    <Key>
-      <PropertyRef Name="USERID" />
-    </Key>
-    <Property Name="USERID" Type="Int32" Nullable="false" />
-    <Property Name="ID_KHO_QLVT" Type="Int64" />
-    <Property Name="ID_KHO_TTBI" Type="Int64" />
-    <Property Name="ID_KHO_THUOC" Type="Int64" />
-    <Property Name="MA_BENHVIEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="SO_SoDieuTri_KQ">
     <Key>
@@ -409,4 +417,16 @@
     <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
     <Property Name="GeneXpert" Type="Int32" />
   </EntityType>
+  <Association Name="FK_AD_User_Kho_AD_Users">
+    <End Type="NTP_DBModel.AD_Users" Role="AD_Users" Multiplicity="1" />
+    <End Type="NTP_DBModel.AD_User_Kho" Role="AD_User_Kho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AD_Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="AD_User_Kho">
+        <PropertyRef Name="USERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

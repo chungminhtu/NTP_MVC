@@ -7,17 +7,36 @@
         settings.Width = Unit.Percentage(100);
 
         settings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiem" };
-        // settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
+        ///settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemDelete" };
-        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
         settings.SettingsBehavior.ConfirmDelete = true;
-
+        settings.SettingsEditing.NewItemRowPosition = GridViewNewItemRowPosition.Bottom;
 
         settings.KeyFieldName = "ID_PhieuXetNghiem";
 
+        settings.HtmlDataCellPrepared = (sender, e) =>
+        {
+            if (e.DataColumn.FieldName == "KetQuaPXN")
+            {
+                int kq = e.GetValue("KetQuaPXN") != null ? (int)e.GetValue("KetQuaPXN") : 0;
+                if (kq == 10 || kq == 11 || kq == 12)
+                {
+                    e.Cell.ForeColor = System.Drawing.Color.Red;
+                    e.Cell.Font.Bold = true;
+                }
+            }
+        };
+        //if (e.RowType != GridViewRowType.Data) return;
+
+        //int kq = e.GetValue("KetQuaPXN") != null ? (int)e.GetValue("KetQuaPXN") : 0;
+        //if (kq == 10 || kq == 11 || kq == 12)
+        //{
+        //    e.Row.ForeColor = System.Drawing.Color.Red;
+        //}
 
         /* Pager */
         settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
@@ -27,6 +46,7 @@
         settings.SettingsPager.Visible = true;
 
         settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
         //settings.HtmlEditFormCreated = (s, e) =>
         //{
         //    GridViewHtmlEditFormPopupContainer container = e.EditForm as GridViewHtmlEditFormPopupContainer;
@@ -46,17 +66,53 @@
         settings.SettingsBehavior.AllowDragDrop = false;
 
         /*Events*/
-        settings.ClientSideEvents.FocusedRowChanged = "OnGridPXNFocusedRowChanged";
+        settings.ClientSideEvents.Init = "OnGridPXNInit";
         settings.ClientSideEvents.RowDblClick = "OnGridPXNRowDblClick";
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridPXNFocusedRowChanged";
 
         settings.Columns.Add(i =>
         {
-            i.FieldName = "NgayXN";
-            i.Caption = "Ngày xét nghiệm";
-            i.Width = Unit.Pixel(100);
-            i.ColumnType = MVCxGridViewColumnType.DateEdit;
+            i.FieldName = "PhanLoaiYte";
+            i.Caption = "Phân loại";
+            i.Width = Unit.Pixel(60);
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("CTCL", 0);
+            comboBoxProperties.Items.Add("Y tế công", 1);
+            comboBoxProperties.Items.Add("Y tế tư", 2);
+            comboBoxProperties.Items.Add("Tự đến", 3);
+            comboBoxProperties.DropDownRows = 5;
         });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "LydoXN";
+            i.Caption = "Lý do xét nghiệm";
+            i.Width = Unit.Pixel(100);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.ValueType = typeof(int);
+            comboBoxProperties.Items.Add("Phát hiện", 0);
+            comboBoxProperties.Items.Add("Theo dõi", 1);
+        });
+
+        settings.Columns.Add(i =>
+           {
+               i.FieldName = "SoThangDT";
+               i.Caption = "Số tháng ĐT";
+               i.Width = Unit.Pixel(100);
+               i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+               i.ColumnType = MVCxGridViewColumnType.ComboBox;
+               var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+               comboBoxProperties.Items.Add(" ", 0);
+               comboBoxProperties.Items.Add("2,(3) tháng", 1);
+               comboBoxProperties.Items.Add("4*,5 tháng", 2);
+               comboBoxProperties.Items.Add("6*,7,(8) tháng", 3);
+               comboBoxProperties.DropDownRows = 5;
+           });
+
         settings.Columns.Add(i =>
         {
             i.FieldName = "SoXN";
@@ -66,16 +122,18 @@
         });
         settings.Columns.Add(i =>
         {
-            i.FieldName = "LydoXN";
-            i.Caption = "Lý do xét nghiệm";
-            i.Width = Unit.Pixel(200);
+            i.FieldName = "NgayXN";
+            i.Caption = "Ngày nhận mẫu";
+            i.Width = Unit.Pixel(100);
+            i.ColumnType = MVCxGridViewColumnType.DateEdit;
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
         });
+
         settings.Columns.Add(i =>
         {
             i.FieldName = "Soluong";
             i.Caption = "Số lượng";
-            //  i.Width = Unit.Pixel(350);
+            i.Width = Unit.Pixel(55); 
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
         });
         settings.Columns.Add(i =>
@@ -85,14 +143,80 @@
             //  i.Width = Unit.Pixel(350);
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
         });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "KetQuaPXN";
+            i.Caption = "Kết quả";
+            i.Width = Unit.Pixel(50);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            i.ReadOnly = true;
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties; 
+            comboBoxProperties.DropDownHeight = 0;
+            comboBoxProperties.Items.Add("Âm", 0);
+            comboBoxProperties.Items.Add("1AFB", 1);
+            comboBoxProperties.Items.Add("2AFB", 2);
+            comboBoxProperties.Items.Add("3AFB", 3);
+            comboBoxProperties.Items.Add("4AFB", 4);
+            comboBoxProperties.Items.Add("5AFB", 5);
+            comboBoxProperties.Items.Add("6AFB", 6);
+            comboBoxProperties.Items.Add("7AFB", 7);
+            comboBoxProperties.Items.Add("8AFB", 8);
+            comboBoxProperties.Items.Add("9AFB", 9);
+            comboBoxProperties.Items.Add("1+", 10);
+            comboBoxProperties.Items.Add("2+", 11);
+            comboBoxProperties.Items.Add("3+", 12);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "DV_XETNGHIEM";
+            i.Caption = "Đơn vị XN";
+            i.Width = Unit.Pixel(150);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+        });
 
-        //settings.Columns.Add(i =>
-        //{
-        //    i.FieldName = "ID_Benhnhan";
-        //    i.Caption = "ID_Benhnhan";
-        //    //  i.Width = Unit.Pixel(350);
-        //    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
-        //});
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "DV_TiepNhan";
+            i.Caption = "ĐV tiếp nhận";
+            i.Width = Unit.Pixel(150);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NuoiCay";
+            i.Caption = "Nuôi cấy";
+            i.Width = Unit.Pixel(150);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "GeneXpert";
+            i.Caption = "GeneXpert";
+            i.Width = Unit.Pixel(150);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DropDownRows = 6;
+            comboBoxProperties.Items.Add("Không xác định/Báo lỗi", 1);
+            comboBoxProperties.Items.Add("Không có Vi khuẩn lao", 2);
+            comboBoxProperties.Items.Add("Có VK lao và không kháng RIF", 3);
+            comboBoxProperties.Items.Add("Có VK lao và không xác định kháng RIF", 4);
+            comboBoxProperties.Items.Add("Có VK Lao và kháng RIF", 5);
+        });
+
+
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "ID_Benhnhan";
+            i.Width = Unit.Pixel(0);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
 
         /*Edit Form*/
         settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
@@ -108,20 +232,24 @@
                 e.Editor.Value = Convert.ToInt64(Session["ID_BenhNhan"]);
             if (e.Column.FieldName.Equals("NgayXN") && e.Editor.Value == null)
                 e.Editor.Value = DateTime.Now;
+            if (e.Column.FieldName.Equals("SoXN") && e.Editor.Value == null)
+                e.Editor.Value = Session["Max1SoXN"];
+            if (e.Column.FieldName.Equals("LydoXN") && e.Editor.Value == null)
+                e.Editor.Value = 0;
         };
 
-        settings.SetEditFormTemplateContent(c =>
-        {
-            SO_PhieuXetNghiem editItem;
-            if (c.Grid.IsNewRowEditing)
-                editItem = new SO_PhieuXetNghiem();
-            else
-            {
-                editItem = ViewData["Item"] != null ? (SO_PhieuXetNghiem)ViewData["Item"] : (SO_PhieuXetNghiem)c.Grid.GetRow(c.VisibleIndex);
-            }
-            editItem.ID_Benhnhan = Convert.ToInt64(Session["ID_BenhNhan"]);
-            Html.RenderPartial("_FormPhieuXetNghiem", editItem);
-        });
+        //settings.SetEditFormTemplateContent(c =>
+        //{
+        //    SO_PhieuXetNghiem editItem;
+        //    if (c.Grid.IsNewRowEditing)
+        //        editItem = new SO_PhieuXetNghiem();
+        //    else
+        //    {
+        //        editItem = ViewData["Item"] != null ? (SO_PhieuXetNghiem)ViewData["Item"] : (SO_PhieuXetNghiem)c.Grid.GetRow(c.VisibleIndex);
+        //    }
+        //    editItem.ID_Benhnhan = Convert.ToInt64(Session["ID_BenhNhan"]);
+        //    Html.RenderPartial("_FormPhieuXetNghiem", editItem);
+        //});
 
 
     });

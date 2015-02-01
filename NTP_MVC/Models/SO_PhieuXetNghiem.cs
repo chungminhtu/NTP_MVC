@@ -18,7 +18,7 @@ namespace NTP_MVC.Models
         public long ID_Benhnhan { get; set; }
         public string SoXN { get; set; }
         public string ID_Benhvien { get; set; }
-        public Nullable<int> ID_PhanloaiYte { get; set; }
+        public Nullable<int> PhanLoaiYte { get; set; }
         public int LydoXN { get; set; }
         public Nullable<byte> Soluong { get; set; }
         public Nullable<byte> SoThangDT { get; set; }
@@ -35,5 +35,9 @@ namespace NTP_MVC.Models
         public Nullable<System.DateTime> NGAYHUY { get; set; }
         public string DV_TiepNhan { get; set; }
         public Nullable<bool> Tiepnhan { get; set; }
+        public string NuoiCay { get; set; }
+        public Nullable<int> GeneXpert { get; set; }
+        public Nullable<int> KetQuaPXN { get; set; }
+        public Nullable<bool> Htest { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     var ID_SoKhamBenh = "";
     var ID_PhieuXetNghiem = "";
     var SoXN = "";
-    var NgayNhanMau ;
+    var NgayNhanMau;
 
     function OnGridFocusedRowChanged(s, e) {
         ID_SoKhamBenh = s.GetRowKey(s.GetFocusedRowIndex());
@@ -13,39 +13,25 @@
     }
 
     function OnGridPXNFocusedRowChanged(s, e) {
-        s.GetRowValues(s.GetFocusedRowIndex(), 'ID_PhieuXetNghiem;SoXN;NgayXN', OnGetRowValues);
-        GridKetQuaXetNghiem.PerformCallback();
-    }
+        if (s.GetFocusedRowIndex()!=-1) {
+            ID_PhieuXetNghiem = s.GetRowKey(s.GetFocusedRowIndex());
+            GridKetQuaXetNghiem.PerformCallback();
+        }
+    } 
 
-    function OnGetRowValues(Value) {
-        ID_PhieuXetNghiem = Value[0];
-        SoXN = Value[1];
-        NgayNhanMau =  Value[2].toLocaleDateString('vi');
+    function OnGridPXNInit(s, e) {
+        s.SetFocusedRowIndex(-1);
     }
 
     function GridKQPXN_OnBeginCallback(s, e) {
         e.customArgs["ID_PhieuXetNghiem"] = ID_PhieuXetNghiem;
-        e.customArgs["SoXN"] = SoXN;
-        e.customArgs["NgayNhanMau"] = NgayNhanMau;
     }
     function OnGridPXNRowDblClick(s, e) {
         s.StartEditRow(s.GetFocusedRowIndex());
     }
-
-    //$(function () {
-    //    $('#FormBenhNhan').on("submit",function (e) {
-    //        e.preventDefault();
-    //        $.ajax({
-    //            url: this.action,
-    //            type: this.method,
-    //            data: $(this).serialize(),
-    //            success: function (result) {
-    //                alert(result);
-    //                //$('#DivFormBenhNhan #BenhNhanFormLayout').html(result);
-    //            }
-    //        });
-    //    });
-    //});
+    function OnGridKQXNRowDblClick(s, e) {
+        s.StartEditRow(s.GetFocusedRowIndex());
+    }
 
 </script>
 
@@ -220,6 +206,7 @@
                  settings2.Panes.Add(pane2 =>
                  {
                      pane2.PaneStyle.Paddings.Padding = Unit.Pixel(0);
+                     pane2.Enabled = false;
                      pane2.SetContent(() =>
                      {
 

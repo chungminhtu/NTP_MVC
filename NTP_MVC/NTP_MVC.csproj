@@ -294,6 +294,7 @@
     <Content Include="Content\Images\add.png" />
     <Content Include="Content\Images\AquaHeader.jpg" />
     <Content Include="Content\Images\BlackGlassHeader.jpg" />
+    <Content Include="Content\Images\cancel.png" />
     <Content Include="Content\Images\delete.png" />
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\GlassHeader.jpg" />
@@ -466,6 +467,9 @@
     <Compile Include="Models\AD_Users.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AD_User_Kho.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DM_BenhVien.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
@@ -512,9 +516,6 @@
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DM_Tinh.cs">
-      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DM_User_Kho.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DM_Vung.cs">

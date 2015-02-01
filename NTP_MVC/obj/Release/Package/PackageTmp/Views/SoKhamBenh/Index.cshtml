@@ -2,6 +2,9 @@
 
     var ID_SoKhamBenh = "";
     var ID_PhieuXetNghiem = "";
+    var SoXN = "";
+    var NgayNhanMau;
+
     function OnGridFocusedRowChanged(s, e) {
         ID_SoKhamBenh = s.GetRowKey(s.GetFocusedRowIndex());
     }
@@ -9,32 +12,26 @@
         s.StartEditRow(s.GetFocusedRowIndex());
     }
 
-    function OnGridPXNFocusedRowChanged(s, e) { 
-        GridKetQuaXetNghiem.PerformCallback(); 
+    function OnGridPXNFocusedRowChanged(s, e) {
+        if (s.GetFocusedRowIndex()!=-1) {
+            ID_PhieuXetNghiem = s.GetRowKey(s.GetFocusedRowIndex());
+            GridKetQuaXetNghiem.PerformCallback();
+        }
     } 
+
+    function OnGridPXNInit(s, e) {
+        s.SetFocusedRowIndex(-1);
+    }
+
     function GridKQPXN_OnBeginCallback(s, e) {
-        e.customArgs["ID_PhieuXetNghiem"] = GridPhieuXetNghiem.GetRowKey(GridPhieuXetNghiem.GetFocusedRowIndex());
-        e.customArgs["SoXN"] = GridPhieuXetNghiem.GetRowValues(GridPhieuXetNghiem.GetFocusedRowIndex(), "SoXN");
-        e.customArgs["NgayNhanMau"] = GridPhieuXetNghiem.GetRowValues(GridPhieuXetNghiem.GetFocusedRowIndex(), "NgayXN");
+        e.customArgs["ID_PhieuXetNghiem"] = ID_PhieuXetNghiem;
     }
     function OnGridPXNRowDblClick(s, e) {
         s.StartEditRow(s.GetFocusedRowIndex());
     }
-
-    //$(function () {
-    //    $('#FormBenhNhan').on("submit",function (e) {
-    //        e.preventDefault();
-    //        $.ajax({
-    //            url: this.action,
-    //            type: this.method,
-    //            data: $(this).serialize(),
-    //            success: function (result) {
-    //                alert(result);
-    //                //$('#DivFormBenhNhan #BenhNhanFormLayout').html(result);
-    //            }
-    //        });
-    //    });
-    //});
+    function OnGridKQXNRowDblClick(s, e) {
+        s.StartEditRow(s.GetFocusedRowIndex());
+    }
 
 </script>
 
@@ -133,7 +130,7 @@
                              PanelButton.Name = "Panel2";
                              PanelButton.FixedPosition = PanelFixedPosition.None;
                              PanelButton.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
-                             
+
                              PanelButton.SetContent(() =>
                              {
                                  @Html.DevExpress().Button(
@@ -209,6 +206,7 @@
                  settings2.Panes.Add(pane2 =>
                  {
                      pane2.PaneStyle.Paddings.Padding = Unit.Pixel(0);
+                     pane2.Enabled = false;
                      pane2.SetContent(() =>
                      {
 
@@ -217,7 +215,7 @@
                              PanelButton.Name = "PanelSDT";
                              PanelButton.FixedPosition = PanelFixedPosition.None;
                              PanelButton.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
-                             
+
                              PanelButton.SetContent(() =>
                              {
                                  @Html.DevExpress().Button(

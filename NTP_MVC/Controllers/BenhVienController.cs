@@ -53,7 +53,7 @@ namespace NTP_MVC.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ID_BENHVIEN_KHO == item.ID_BENHVIEN_KHO);
+                    var modelItem = model.FirstOrDefault(it => it.ID_BENHVIEN == item.ID_BENHVIEN);
                     if (modelItem != null)
                     {
                         UpdateModel(modelItem);
@@ -70,14 +70,14 @@ namespace NTP_MVC.Controllers
             return PartialView("_BenhVienGridViewPartial", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult BenhVienGridViewPartialDelete(Int64 ID_BENHVIEN_KHO)
+        public ActionResult BenhVienGridViewPartialDelete(string ID_BENHVIEN)
         {
             var model = db.DM_BenhVien;
-            if (ID_BENHVIEN_KHO >= 0)
+            if (ID_BENHVIEN !="")
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ID_BENHVIEN_KHO == ID_BENHVIEN_KHO);
+                    var item = model.FirstOrDefault(it => it.ID_BENHVIEN == ID_BENHVIEN);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();

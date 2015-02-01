@@ -23,16 +23,16 @@ namespace NTP_MVC.Controllers
                 return View(model);
             }
             return View(); //Nếu không edit thì addnew
-        } 
+        }
 
         [ValidateInput(false)]
         public ActionResult GridSoKhamBenhList()
-        {  
+        {
             GetSoKhamBenhCuaBenhNhan();
             return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
         }
-         
-  
+
+
         public ActionResult GetDetailBenhNhan()
         {
             var s = Request.Params["ID_BenhNhan"] + "";
@@ -41,18 +41,22 @@ namespace NTP_MVC.Controllers
                                       select bn).FirstOrDefault();
             //ViewData["IDBenhNhan"] = model.ID_BenhNhan;
             return PartialView("_FormBenhNhan", model);
-        } 
+        }
 
         public void GetSoKhamBenhCuaBenhNhan()
         {
             var s = Session["ID_BenhNhan"] + "";
-            ViewData["ListSoKhamBenh"] = db.SO_SoKhamBenh.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
+            if (s != "")
+            {
+                ViewData["ListSoKhamBenh"] = db.SO_SoKhamBenh.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
+            }
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult GridSoKhamBenhAddNew(SO_SoKhamBenh item)
         {
             var model = db.SO_SoKhamBenh;
+            var modelPXN = db.SO_PhieuXetNghiem;
             if (ModelState.IsValid)
             {
                 try
@@ -81,6 +85,13 @@ namespace NTP_MVC.Controllers
                     var modelItem = model.FirstOrDefault(it => it.ID_SoKhamBenh == item.ID_SoKhamBenh);
                     if (modelItem != null)
                     {
+                        //Update Ket qua xet nghiem cho So kham benh
+                        var id = HttpContext.Session["ID_BenhNhan"] + "";
+                        var data = db.SO_PhieuXetNghiem.Where(p => p.ID_Benhnhan.ToString().Equals(id)).ToList();
+                        if (data.Count != 0)
+                        {
+                            modelItem.KetQuaXetNghiemDom = data.Single(m => m.ID_PhieuXetNghiem.Equals(data.Max(n => n.ID_PhieuXetNghiem))).KetQuaPXN + "";
+                        }
                         UpdateModel(modelItem);
                         db.SaveChanges();
                     }
@@ -116,7 +127,7 @@ namespace NTP_MVC.Controllers
             GetSoKhamBenhCuaBenhNhan();
             return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
         }
-         
+
 
         public ActionResult ComboSearchBenhNhan()
         {

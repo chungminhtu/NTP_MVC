@@ -14,7 +14,6 @@ namespace NTP_MVC.Models
     
     public partial class DM_BenhVien
     {
-        public long ID_BENHVIEN_KHO { get; set; }
         public string ID_BENHVIEN { get; set; }
         public string TEN_BENHVIEN { get; set; }
         public string DIA_CHI { get; set; }

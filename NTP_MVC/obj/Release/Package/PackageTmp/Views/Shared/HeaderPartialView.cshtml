@@ -5,9 +5,9 @@
     </div>
     <div class="templateTitle">
         @Html.ActionLink("CHƯƠNG TRÌNH PHÒNG CHỐNG LAO VIỆT NAM - HỆ THỐNG GIÁM SÁT VÀ QUẢN LÝ THÔNG TIN", "Index", "Home")
-    </div>
+    </div> 
     <div class="loginControl">
-        @Html.Partial("LogOnPartialView")
+       <span>Đơn vị:</span> <span>@Session["TenBV"]</span> <span><a href="@Href("~/")">Thoát</a></span>
     </div>
 </div>
 <div class="headerMenu">
