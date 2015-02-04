@@ -31,10 +31,6 @@
     <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
     <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
-    <AssociationSet Name="FK_AD_User_Kho_AD_Users" Association="NTP_DBModel.FK_AD_User_Kho_AD_Users">
-      <End Role="AD_Users" EntitySet="AD_Users" />
-      <End Role="AD_User_Kho" EntitySet="AD_User_Kho" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AD_Menu">
     <Key>
@@ -74,7 +70,6 @@
     <Property Name="ID_KHO_TTBI" Type="Int64" Nullable="false" />
     <Property Name="ID_KHO_THUOC" Type="Int64" Nullable="false" />
     <Property Name="MA_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="AD_Users" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_User_Kho" ToRole="AD_Users" />
   </EntityType>
   <EntityType Name="AD_Users">
     <Key>
@@ -88,7 +83,6 @@
     <Property Name="RoleID" Type="Int32" />
     <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="AD_User_Kho" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_Users" ToRole="AD_User_Kho" />
   </EntityType>
   <EntityType Name="DM_BenhVien">
     <Key>
@@ -300,8 +294,8 @@
     <Key>
       <PropertyRef Name="ID_SoDieuTri" />
     </Key>
-    <Property Name="ID_SoDieuTri" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="ID_BENHNHAN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ID_SoDieuTri" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BENHNHAN" Type="Int64" Nullable="false" />
     <Property Name="SoDKDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="DVDieutri" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="NgayVV" Type="DateTime" Precision="3" />
@@ -417,16 +411,4 @@
     <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
     <Property Name="GeneXpert" Type="Int32" />
   </EntityType>
-  <Association Name="FK_AD_User_Kho_AD_Users">
-    <End Type="NTP_DBModel.AD_Users" Role="AD_Users" Multiplicity="1" />
-    <End Type="NTP_DBModel.AD_User_Kho" Role="AD_User_Kho" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AD_Users">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="AD_User_Kho">
-        <PropertyRef Name="USERID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

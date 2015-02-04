@@ -1,18 +1,26 @@
-﻿@Html.DevExpress().FormLayout(settings =>
+﻿<script>
+    var ID_BenhNhan = "";
+    function OnGridBNFocusedRowChanged(s, e) {
+        ID_BenhNhan = s.GetRowKey(s.GetFocusedRowIndex());
+    }
+</script>
+@Html.DevExpress().FormLayout(settings =>
 {
-    settings.Name = "Picker";
+    settings.Name = "ListBenhNhan";
     settings.RequiredMarkDisplayMode = RequiredMarkMode.None;
-    settings.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
-    settings.ColCount = 4;
+    settings.Width = Unit.Percentage(100);
+    settings.ColCount = 5;
     settings.Items.AddGroupItem(group =>
     {
         group.Caption = "Tìm kiếm bệnh nhân";
         group.GroupBoxDecoration = GroupBoxDecoration.Box;
-        group.ColSpan = 4;
-        group.ColCount = 4;
-
+        group.ColSpan = 5;
+        group.ColCount = 5;
+        group.Width = Unit.Pixel(200);
         group.Items.Add(item =>
         {
+            item.Caption = "Thuộc đơn vị";
+            item.ColSpan = 2;
             item.ShowCaption = DefaultBoolean.False;
             item.SetNestedContent(() =>
             {
@@ -24,7 +32,264 @@
             });
         });
 
+        group.Items.Add(m =>
+        {
+            m.ShowCaption = DefaultBoolean.False;
+            m.ColSpan = 3;
+        }).SetNestedContent(() =>
+        {
+            ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+            Html.DevExpress().TextBox(mySettings =>
+            {
+                mySettings.Name = "txtHoTen";
+                mySettings.Properties.Caption = "Họ tên";
+                mySettings.Width = Unit.Pixel(300);
+            }).Render();
+            ViewContext.Writer.Write("</td><td style=\"padding-right:5px;\">");
+            Html.DevExpress().TextBox(mySettings =>
+            {
+                mySettings.Name = "txtMaBNQL";
+                mySettings.Properties.Caption = "Mã BNQL";
+                mySettings.Width = Unit.Pixel(100);
+            }).Render();
+            ViewContext.Writer.Write("</td><td>");
+            Html.DevExpress().TextBox(mySettings =>
+            {
+                mySettings.Name = "txtSoCMND";
+                mySettings.Properties.Caption = "Số CMND";
+                mySettings.Width = Unit.Pixel(100);
+            }).Render();
+            ViewContext.Writer.Write("</td></tr></table>");
+        });
+
+        //ngày khám bệnh
+        group.Items.AddGroupItem(mGroup =>
+        {
+            mGroup.Caption = "Ngày khám bệnh";
+            mGroup.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Center;
+            mGroup.GroupBoxDecoration = GroupBoxDecoration.Box;
+            mGroup.Items.Add(m =>
+            {
+                m.ShowCaption = DefaultBoolean.False;
+            }).SetNestedContent(() =>
+            {
+                ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+                Html.DevExpress().DateEdit(mySettings =>
+                {
+                    mySettings.Name = "NKBFrom";
+                    mySettings.Properties.Caption = "Từ";
+                    mySettings.Width = Unit.Pixel(100);
+                }).Render();
+                ViewContext.Writer.Write("</td><td>");
+                Html.DevExpress().DateEdit(mySettings =>
+                {
+                    mySettings.Name = "NKBTo";
+                    mySettings.Properties.Caption = "Đến";
+                    mySettings.Width = Unit.Pixel(100);
+                }).Render();
+                ViewContext.Writer.Write("</td></tr></table>");
+            });
+        });
+        //ngày xét nghiệm
+        group.Items.AddGroupItem(mGroup =>
+        {
+            mGroup.Caption = "Ngày xét nghiệm";
+            mGroup.GroupBoxDecoration = GroupBoxDecoration.Box;
+            mGroup.ParentContainerStyle.CssClass = "dxflSearchBNGroupBox_PlasticBlue";
+            mGroup.Items.Add(m =>
+            {
+                m.ShowCaption = DefaultBoolean.False;
+            }).SetNestedContent(() =>
+            {
+                ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+                Html.DevExpress().DateEdit(mySettings =>
+                {
+                    mySettings.Name = "NXNFrom";
+                    mySettings.Properties.Caption = "Từ";
+                    mySettings.Width = Unit.Pixel(100);
+                }).Render();
+                ViewContext.Writer.Write("</td><td>");
+                Html.DevExpress().DateEdit(mySettings =>
+                {
+                    mySettings.Name = "NXNTo";
+                    mySettings.Properties.Caption = "Đến";
+                    mySettings.Width = Unit.Pixel(100);
+                }).Render();
+                ViewContext.Writer.Write("</td></tr></table>");
+            });
+        });
+
+
+        //Ngày bắt đầu điều trị
+        group.Items.AddGroupItem(mGroup =>
+        {
+            mGroup.Caption = "Ngày bắt đầu điều trị";
+            mGroup.ParentContainerStyle.CssClass = "dxflSearchBNGroupBox_PlasticBlue";
+            mGroup.GroupBoxDecoration = GroupBoxDecoration.Box;
+            mGroup.Items.Add(m =>
+            {
+                m.ShowCaption = DefaultBoolean.False;
+            }).SetNestedContent(() =>
+            {
+                ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+                Html.DevExpress().DateEdit(mySettings =>
+                {
+                    mySettings.Name = "NDTFrom";
+                    mySettings.Properties.Caption = "Từ";
+                    mySettings.Width = Unit.Pixel(100);
+                }).Render();
+                ViewContext.Writer.Write("</td><td>");
+                Html.DevExpress().DateEdit(mySettings =>
+                {
+                    mySettings.Name = "NDTTo";
+                    mySettings.Properties.Caption = "Đến";
+                    mySettings.Width = Unit.Pixel(100);
+                }).Render();
+                ViewContext.Writer.Write("</td></tr></table>");
+            });
+        });
+
+        ////ngày ra viện
+        //group.Items.AddGroupItem(mGroup =>
+        //{
+        //    mGroup.Caption = "Ngày ra viện";
+        //    mGroup.ParentContainerStyle.CssClass = "dxflSearchBNGroupBox_PlasticBlue";
+        //    mGroup.GroupBoxDecoration = GroupBoxDecoration.Box;
+        //    mGroup.Items.Add(m =>
+        //    {
+        //        m.ShowCaption = DefaultBoolean.False;
+        //    }).SetNestedContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+        //        Html.DevExpress().DateEdit(mySettings =>
+        //        {
+        //            mySettings.Name = "NRVFrom";
+        //            mySettings.Properties.Caption = "Từ";
+        //            mySettings.Width = Unit.Pixel(100);
+        //        }).Render();
+        //        ViewContext.Writer.Write("</td><td>");
+        //        Html.DevExpress().DateEdit(mySettings =>
+        //        {
+        //            mySettings.Name = "NRVTo";
+        //            mySettings.Properties.Caption = "Đến";
+        //            mySettings.Width = Unit.Pixel(100);
+        //        }).Render();
+
+        //        ViewContext.Writer.Write("</td></tr></table>");
+        //    });
+        //});
+
+        group.Items.Add(m =>
+        {
+            m.ShowCaption = DefaultBoolean.False;
+            m.ColSpan = 1;
+        }).SetNestedContent(() =>
+        {
+            //ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+            Html.DevExpress().Button(
+                MyButton =>
+                {
+                    MyButton.Name = "btnSearch";
+                    MyButton.Text = "Tìm kiếm";
+                    MyButton.Images.Image.Url = "~/Content/Images/search.png";
+                    MyButton.ClientSideEvents.Click = "function() { GridBenhNhan.PerformCallback(); }";
+                    MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "50px";
+                }).Render();
+        });
+    });
+
+    settings.Items.AddTabbedGroupItem(tabGroup =>
+    {
+        tabGroup.Height = Unit.Percentage(100);
+        tabGroup.Styles.ContentStyle.Paddings.Padding = Unit.Pixel(5);
+        tabGroup.Width = Unit.Percentage(100);
+        tabGroup.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Danh sách bệnh nhân";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.None;
+            group.Width = Unit.Percentage(100);
+
+            group.Items.Add(m =>
+            {
+                m.ShowCaption = DefaultBoolean.False;
+                m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+            }).SetNestedContent(() =>
+            {
+                Html.DevExpress().Panel(settings5 =>
+                {
+                    settings5.Name = "Panel";
+                    settings5.FixedPosition = PanelFixedPosition.None;
+                    settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+                    settings5.SetContent(() =>
+                    {
+                        Html.DevExpress().Button(
+                           MyButton =>
+                           {
+                               MyButton.Name = "btnThemMoi";
+                               MyButton.Width = 90;
+                               MyButton.Text = "Thêm mới";
+                               MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "SoKhamBenh", Action = "Index" }) + "' }";
+                               MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                           }).Render();
+                        Html.DevExpress().Button(
+                                MyButton =>
+                                {
+                                    MyButton.Name = "btnSua";
+                                    MyButton.Width = 90;
+                                    MyButton.Text = "Sửa";
+                                    MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                    MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "SoKhamBenh", Action = "Index" }) +
+                                                                        "?ID_BenhNhan=' + ID_BenhNhan; }";
+                                }).Render();
+                        Html.DevExpress().Button(
+                                MyButton =>
+                                {
+                                    MyButton.Name = "btnXoa";
+                                    MyButton.Width = 90;
+                                    MyButton.Text = "Xóa";
+                                    MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                }).Render();
+                        Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnInBN";
+                                MyButton.Text = "In danh sách bệnh nhân";
+                                MyButton.Images.Image.Url = "~/Content/Images/print.png";
+                                //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoKhamBenh.DeleteRow(); } }";
+                                MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                MyButton.Enabled = Session["ID_BenhNhan"] != "";
+                            }).Render();
+                    });
+                }).Render();
+
+                Html.RenderPartial("_GridBenhNhan");
+            });
+        });
+        tabGroup.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Danh sách bệnh nhân chuyển đến";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.None;
+            group.Width = Unit.Percentage(100);
+
+            group.Items.Add(m =>
+            {
+                m.ShowCaption = DefaultBoolean.False;
+                m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+            }).SetNestedContent(() =>
+            {  
+                Html.RenderPartial("_GridBenhNhanChuyenDen");
+            });
+        });
     });
 }).GetHtml()
 
-@Html.Partial("_GridBenhNhan")
+

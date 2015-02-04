@@ -14,8 +14,8 @@ namespace NTP_MVC.Models
     
     public partial class SO_SoDieuTri
     {
-        public decimal ID_SoDieuTri { get; set; }
-        public string ID_BENHNHAN { get; set; }
+        public long ID_SoDieuTri { get; set; }
+        public long ID_BENHNHAN { get; set; }
         public string SoDKDT { get; set; }
         public string DVDieutri { get; set; }
         public Nullable<System.DateTime> NgayVV { get; set; }

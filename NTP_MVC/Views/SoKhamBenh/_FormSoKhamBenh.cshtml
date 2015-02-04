@@ -21,7 +21,7 @@
             group.GroupBoxDecoration = GroupBoxDecoration.Box;
             group.ColSpan = 2;
             group.ColCount = 2;
-            group.Width = Unit.Percentage(60);
+            group.Width = Unit.Percentage(50);
             group.Items.Add(m =>
             {
                 m.FieldName = "NgayKhamBenh";
@@ -30,7 +30,7 @@
             }).SetNestedContent(() => Html.DevExpress().DateEditFor(i => i.NgayKhamBenh, mySettings =>
             {
                 mySettings.Width = Unit.Pixel(100);
-                mySettings.Properties.Width = Unit.Pixel(100);
+                
             }).Render());
             group.Items.Add(m =>
             {
@@ -68,7 +68,7 @@
             }).SetNestedContent(() => Html.DevExpress().DateEditFor(i => i.NgayChupXQ, mySettings =>
             {
                 mySettings.Width = Unit.Pixel(100);
-                mySettings.Properties.Width = Unit.Pixel(100);
+                
             }).Render());
             group.Items.Add(m =>
             {

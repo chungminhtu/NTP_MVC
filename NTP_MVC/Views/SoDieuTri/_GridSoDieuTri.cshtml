@@ -23,7 +23,7 @@
 
         /*Events*/
         settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
-        settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";
+        settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";  
 
         /*Buttons*/
         //var EditColumnCommand = new MVCxGridViewCommandColumn();
@@ -49,6 +49,36 @@
 
 
         settings.KeyFieldName = "ID_SoDieuTri";
+
+         
+        //settings.HtmlDataCellPrepared = (sender, e) =>
+        //{
+        //    if (e.DataColumn.FieldName == "DVDieutri")
+        //    {
+        //        int Huyen = e.GetValue("DVDieutri") != null ? (int)e.GetValue("DVDieutri") : 0;
+        //        if (Session["MAHUYEN"] != "" && Huyen != Convert.ToInt32(Session["MAHUYEN"]))
+        //        {
+        //            e.Cell.Font.Bold = true;
+        //        }
+        //    }
+        //};
+
+        settings.HtmlRowPrepared = (s, e) =>
+        {
+            if (e.RowType != GridViewRowType.Data) return;
+            var sender = (MVCxGridView)s;
+            string Huyen = e.GetValue("DVDieutri") + "";
+            string idSoDieuTri = e.GetValue("ID_SoDieuTri") + "";
+            if (Huyen != Session["MAHUYEN"] + "")
+            {
+                e.Row.ForeColor = System.Drawing.Color.Gray;
+                Session[idSoDieuTri] = true;
+            }
+            else
+            {
+                Session[idSoDieuTri] = false;
+            }
+        };
 
         settings.Columns.Add(i =>
         {
@@ -143,7 +173,20 @@
             comboBoxProperties.Items.Add("Không đánh giá", 7);
             comboBoxProperties.DropDownRows = 5;
         });
-        settings.Columns.Add("DVDieutri", "Đơn vị ĐT");
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "DVDieutri";
+            i.Caption = "Đơn vị điều trị";
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = ViewData["ListHuyen"];
+            comboBoxProperties.TextField = "TEN_HUYEN";
+            comboBoxProperties.ValueField = "MA_HUYEN";
+        });
+
 
         /*Edit Form*/
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
@@ -160,7 +203,8 @@
             {
                 editItem = ViewData["Item"] != null ? (SO_SoDieuTri)ViewData["Item"] : (SO_SoDieuTri)c.Grid.GetRow(c.VisibleIndex);
             }
-            editItem.ID_BENHNHAN = Session["ID_BenhNhan"] + "";
+            editItem.ID_BENHNHAN = Convert.ToInt64(Session["ID_BenhNhan"]);
+            editItem.DVDieutri = Session["MAHUYEN"] + "";
             Html.RenderPartial("_FormSoDieuTri", editItem);
         });
 

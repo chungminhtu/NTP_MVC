@@ -19,7 +19,5 @@ namespace NTP_MVC.Models
         public long ID_KHO_TTBI { get; set; }
         public long ID_KHO_THUOC { get; set; }
         public string MA_BENHVIEN { get; set; }
-    
-        public virtual AD_Users AD_Users { get; set; }
     }
 }

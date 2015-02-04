@@ -14,11 +14,6 @@ namespace NTP_MVC.Models
     
     public partial class AD_Users
     {
-        public AD_Users()
-        {
-            this.AD_User_Kho = new HashSet<AD_User_Kho>();
-        }
-    
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -27,7 +22,5 @@ namespace NTP_MVC.Models
         public Nullable<int> RoleID { get; set; }
         public string MA_TINH { get; set; }
         public string MA_HUYEN { get; set; }
-    
-        public virtual ICollection<AD_User_Kho> AD_User_Kho { get; set; }
     }
 }

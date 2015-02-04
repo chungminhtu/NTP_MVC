@@ -303,6 +303,7 @@
     <Content Include="Content\Images\print.png" />
     <Content Include="Content\Images\RedWineHeader.jpg" />
     <Content Include="Content\Images\save.png" />
+    <Content Include="Content\Images\search.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Site.css" />
@@ -420,6 +421,7 @@
     <Content Include="Views\SoDieuTri\_FormSoDieuTri.cshtml" />
     <Content Include="Views\SoDieuTri\_GridSoDieuTri.cshtml" />
     <Content Include="Views\SoDieuTri\Index.cshtml" />
+    <Content Include="Views\BenhNhan\_GridBenhNhanChuyenDen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

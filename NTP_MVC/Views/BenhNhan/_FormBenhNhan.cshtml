@@ -20,7 +20,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "HoTen";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().TextBoxFor(i => i.HoTen, mySettings =>
@@ -32,7 +32,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "Tuoi";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().SpinEditFor(i => i.Tuoi, mySettings =>
@@ -44,7 +44,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "GioiTinh";
-        m.CaptionStyle.Font.Bold = true; 
+        //m.CaptionStyle.Font.Bold = true; 
         m.SetNestedContent(() =>
             {
                 Html.DevExpress().RadioButtonListFor(i => i.Gioitinh, mySettings =>
@@ -64,7 +64,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "Diachi";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().MemoFor(i => i.Diachi, mySettings =>
@@ -76,7 +76,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "Sodienthoai";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().SpinEditFor(i => i.Sodienthoai, mySettings =>
@@ -89,7 +89,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "SoCMND";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().SpinEditFor(i => i.SoCMND, mySettings =>
@@ -101,7 +101,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "MaBNQL";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().TextBoxFor(i => i.MaBNQL, mySettings =>
@@ -113,7 +113,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "NGUOI_NM";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().TextBoxFor(i => i.NGUOI_NM, mySettings =>
@@ -125,7 +125,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "NGAY_NM";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.NestedExtensionSettings.Width = Unit.Percentage(100);
     }).SetNestedContent(() =>
     {
@@ -138,7 +138,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "Nguoi_SD";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().TextBoxFor(i => i.Nguoi_SD, mySettings =>
@@ -150,7 +150,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "Ngay_SD";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.NestedExtensionSettings.Width = Unit.Percentage(100);
     }).SetNestedContent(() =>
         {
@@ -166,7 +166,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "BHYT";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().MemoFor(i => i.BHYT, mySettings =>
@@ -178,7 +178,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "NgheNghiep";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().MemoFor(i => i.NgheNghiep, mySettings =>
@@ -190,7 +190,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "NoiGioiThieu";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.SetNestedContent(() =>
         {
             Html.DevExpress().MemoFor(i => i.NoiGioiThieu, mySettings =>
@@ -202,7 +202,7 @@
     groupItem.Items.Add(m =>
     {
         m.FieldName = "MaNoiGioiThieu";
-        m.CaptionStyle.Font.Bold = true;
+        //m.CaptionStyle.Font.Bold = true;
         m.NestedExtensionSettings.Width = Unit.Percentage(100);
     }).SetNestedContent(() =>
     {
@@ -243,5 +243,7 @@
     Session["Gioitinh"] = Model != null ? Model.Gioitinh == true ? "Nam" : "Nữ" : "";
     Session["Tuoi"] = Model != null ? Model.Tuoi + "" : "";
     Session["Diachi"] = Model != null ? Model.Diachi + "" : "";
+    Session["MATINH"] = Model != null ? Model.MA_TINH + "" : "";
+    Session["MAHUYEN"] = Model != null ? Model.MA_HUYEN + "" : "";
 
 }).GetHtml()

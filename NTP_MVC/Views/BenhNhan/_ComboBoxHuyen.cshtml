@@ -10,7 +10,7 @@
     settings.Properties.TextField = "TEN_HUYEN";
     settings.Properties.ValueType = typeof(string);
     settings.Properties.Caption = "Huyện";
-    settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaTinh'] = " + Session["MATINH"] + " }";
+    settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaTinh'] = '" + Session["MATINH"] + "' }";
     settings.Properties.ClientSideEvents.SelectedIndexChanged = "function(s, e) { GridBenhNhan.PerformCallback(); }";
     settings.SelectedIndex = 0; 
     settings.Enabled = Session["MAHUYEN"] == ""; 

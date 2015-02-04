@@ -1,0 +1,228 @@
+﻿@model NTP_MVC.Models.SO_SoKhamBenh
+
+@*@Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "MetropolisBlue" },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "MetropolisBlue" },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "MetropolisBlue" }
+    )*@
+
+@Html.DevExpress().FormLayout(settings =>
+    {
+        settings.Name = "FormDetailSoKB";
+        //settings.Theme = "MetropolisBlue"; ///Thay đổi giao diện
+        settings.ColCount = 4;
+        settings.Width = 900; 
+        
+        settings.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Thông tin cơ bản";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.Box;
+            group.ColSpan = 2;
+            group.ColCount = 2;
+            group.Width = Unit.Percentage(80);
+            group.Items.Add(m =>
+            {
+                m.FieldName = "NgayKhamBenh";
+                m.NestedExtensionSettings.Width = Unit.Pixel(100);
+            }).SetNestedContent(() =>
+            {
+                Html.DevExpress().DateEditFor(i => i.NgayKhamBenh, mySettings =>
+                {
+                    mySettings.Width = Unit.Pixel(100);
+                    mySettings.Properties.Width = Unit.Pixel(100);
+                }).Render();
+            });
+            group.Items.Add(m =>
+            {
+                m.FieldName = "MaBNQL";
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+            }).SetNestedContent(() =>
+            {
+                Html.DevExpress().TextBoxFor(i => i.MaBNQL, mySettings =>
+                {
+                    mySettings.Width = Unit.Percentage(100);
+                    mySettings.Properties.Width = Unit.Percentage(100);
+                }).Render();
+            });
+            group.Items.Add(m =>
+            {
+                m.FieldName = "TrieuChung";
+                m.ColSpan = 2;
+                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+            });
+        });
+         
+        ///////////////////////////////////////KẾT QUẢ CẬN LÂM SÀNG
+        settings.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Kết quả cận lâm sàng";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.Box;
+            group.ColSpan = 2;
+            group.ColCount = 2;
+            group.Width = Unit.Percentage(100);
+            group.Items.Add(m =>
+            {
+                m.FieldName = "NgayChupXQ";
+                m.NestedExtensionSettings.Width = Unit.Pixel(100);
+            }).SetNestedContent(() =>
+            {
+                Html.DevExpress().DateEditFor(i => i.NgayChupXQ, mySettings =>
+                {
+                    mySettings.Width = Unit.Pixel(100);
+                    mySettings.Properties.Width = Unit.Pixel(100);
+                }).Render();
+            });
+            group.Items.Add(m =>
+            {
+                m.FieldName = "XQ";
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+            }).SetNestedContent(() =>
+            {
+                Html.DevExpress().ComboBoxFor(i => i.XQ, cbSettings =>
+                {
+                    cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                    cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                    cbSettings.Properties.Items.Add("Không chụp XQ", "Không chụp XQ");
+                    cbSettings.Properties.Items.Add("Kết quả XQ bình thường", "Kết quả XQ bình thường");
+                    cbSettings.Properties.Items.Add("Kết quả XQ bất thường không nghi lao", "Kết quả XQ bất thường không nghi lao");
+                    cbSettings.Properties.Items.Add("Kết quả XQ bất thường nghi lao", "Kết quả XQ bất thường nghi lao");
+                    cbSettings.Width = Unit.Percentage(100);
+                    cbSettings.Properties.Width = Unit.Percentage(100);
+                }).Render();
+            });
+
+            group.Items.Add(m =>
+            {
+                m.FieldName = "Khac";
+                m.ColSpan = 2;
+                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+            });
+
+        });
+
+
+        //////////////////////////////////////GRID THÔNG TIN PHIẾU KHÁM BỆNH CỦA BỆNH NHÂN
+        settings.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Thông tin Phiếu khám bệnh của Bệnh nhân";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.Box;
+
+            group.ColSpan = 4;
+            group.ColCount = 4;
+
+            group.Items.Add(m =>
+            {
+                m.Caption = "";
+                m.SetNestedContent(() =>
+                {
+                    Html.RenderAction("PhieuXetNghiemGridPartial");
+                });
+            });
+        });
+
+         
+        ///////////////////////////////////////Ý KIẾN CHẨN ĐOÁN CỦA BÁC SỸ
+        settings.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Ý kiến chẩn đoán của bác sỹ";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.Box;
+            group.ColSpan = 4;
+            group.ColCount = 4;
+            group.Width = Unit.Percentage(100);
+            group.Items.Add(m =>
+            {
+                m.FieldName = "NoiGioiThieu";
+                m.ColSpan = 2;
+                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                m.NestedExtensionSettings.Width = Unit.Percentage(80);
+            });
+            group.Items.Add(m =>
+            {
+                m.FieldName = "ToChongLao";
+                m.ColSpan = 2;
+                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+            });
+
+            group.Items.Add(m =>
+            {
+                m.FieldName = "XuTri";
+                m.ColSpan = 2;
+                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                m.NestedExtensionSettings.Width = Unit.Percentage(80);
+            });
+            group.Items.Add(m =>
+            {
+                m.FieldName = "BSKhamBenh";
+                m.ColSpan = 2;
+                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
+            });
+            group.Items.Add(m =>
+            {
+                m.FieldName = "GhiChu";
+                m.ColSpan = 2;
+                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                m.NestedExtensionSettings.Width = Unit.Percentage(80);
+            });
+        });
+         
+        ///////////////////////////////////////////FOOTER
+        settings.Items.Add(itemSettings =>
+        {
+            itemSettings.ShowCaption = DefaultBoolean.False;
+            itemSettings.ColSpan = 4;
+        }).SetNestedContent(() =>
+            {
+                ViewContext.Writer.Write("<div style='float:right'>");
+                Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnUpdate";
+                        btnSettings.Text = "Cập nhật dữ liệu";
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ SoKhamBenhGridView.UpdateEdit(); }";
+                    }).Render();
+                Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnCancel";
+                        btnSettings.Text = "Đóng";
+                        btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ SoKhamBenhGridView.CancelEdit(); }";
+                    }).Render();
+                ViewContext.Writer.Write("</div>");
+        });
+
+        //var groupItem = settings.Items.AddGroupItem(groupSettings =>
+        //{
+        //    groupSettings.Caption = "Thông tin chi tiết";
+        //    groupSettings.ShowCaption = DefaultBoolean.True;
+        //    groupSettings.GroupBoxDecoration = GroupBoxDecoration.Box;
+
+        //    groupSettings.ColSpan = 4;
+        //    groupSettings.ColCount = 4;
+        //});
+
+        //groupItem.SettingsItems.ShowCaption = DefaultBoolean.True;
+        //groupItem.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+
+        //groupItem.Items.Add(m => m.ID_SoKhamBenh);
+        //groupItem.Items.Add(m => m.ID_BENHNHAN);
+        //groupItem.Items.Add(m => m.KetQuaXetNghiemDom);
+        //groupItem.Items.Add(m => m.TrangThaiDomDaiThe);
+        //groupItem.Items.Add(m => m.SoMauDom);
+        //groupItem.Items.Add(m => m.NgayXetNghiemDom);
+
+        //groupItem.Items.Add(m => m.HuyenKB);
+        //groupItem.Items.Add(m => m.TinhKB);
+        //groupItem.Items.Add(m => m.HUY);
+        //groupItem.Items.Add(m => m.NGAYHUY);
+
+    }).GetHtml();
+

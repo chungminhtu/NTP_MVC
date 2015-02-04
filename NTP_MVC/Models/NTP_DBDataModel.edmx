@@ -276,8 +276,8 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
           <Key>
             <PropertyRef Name="ID_SoDieuTri" />
           </Key>
-          <Property Name="ID_SoDieuTri" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="ID_BENHNHAN" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ID_SoDieuTri" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BENHNHAN" Type="bigint" Nullable="false" />
           <Property Name="SoDKDT" Type="nvarchar" MaxLength="10" />
           <Property Name="DVDieutri" Type="nvarchar" MaxLength="10" />
           <Property Name="NgayVV" Type="datetime" />
@@ -388,15 +388,17 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_AD_User_Kho_AD_Users">
-          <End Role="AD_Users" Type="Self.AD_Users" Multiplicity="1" />
-          <End Role="AD_User_Kho" Type="Self.AD_User_Kho" Multiplicity="*" />
+        <Association Name="FK_SO_BenhNhan_DM_Huyen">
+          <End Role="DM_Huyen" Type="Self.DM_Huyen" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SO_BenhNhan" Type="Self.SO_BenhNhan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AD_Users">
-              <PropertyRef Name="UserID" />
+            <Principal Role="DM_Huyen">
+              <PropertyRef Name="MA_HUYEN" />
             </Principal>
-            <Dependent Role="AD_User_Kho">
-              <PropertyRef Name="USERID" />
+            <Dependent Role="SO_BenhNhan">
+              <PropertyRef Name="MA_HUYEN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -451,9 +453,9 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     [SO_SoDieuTri_KQ].[GeneXpert] AS [GeneXpert]
     FROM [dbo].[SO_SoDieuTri_KQ] AS [SO_SoDieuTri_KQ]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_AD_User_Kho_AD_Users" Association="Self.FK_AD_User_Kho_AD_Users">
-            <End Role="AD_Users" EntitySet="AD_Users" />
-            <End Role="AD_User_Kho" EntitySet="AD_User_Kho" />
+          <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="Self.FK_SO_BenhNhan_DM_Huyen">
+            <End Role="DM_Huyen" EntitySet="DM_Huyen" />
+            <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -491,9 +493,9 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
           <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
-          <AssociationSet Name="FK_AD_User_Kho_AD_Users" Association="NTP_DBModel.FK_AD_User_Kho_AD_Users">
-            <End Role="AD_Users" EntitySet="AD_Users" />
-            <End Role="AD_User_Kho" EntitySet="AD_User_Kho" />
+          <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen">
+            <End Role="DM_Huyen" EntitySet="DM_Huyen" />
+            <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AD_Menu">
@@ -534,7 +536,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="ID_KHO_TTBI" Type="Int64" Nullable="false" />
           <Property Name="ID_KHO_THUOC" Type="Int64" Nullable="false" />
           <Property Name="MA_BENHVIEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AD_Users" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_User_Kho" ToRole="AD_Users" />
         </EntityType>
         <EntityType Name="AD_Users">
           <Key>
@@ -548,7 +549,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="RoleID" Type="Int32" />
           <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AD_User_Kho" Relationship="NTP_DBModel.FK_AD_User_Kho_AD_Users" FromRole="AD_Users" ToRole="AD_User_Kho" />
         </EntityType>
         <EntityType Name="DM_BenhVien">
           <Key>
@@ -596,6 +596,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TEN_HUYEN" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MA_TINH" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SO_BenhNhan" Relationship="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen" FromRole="DM_Huyen" ToRole="SO_BenhNhan" />
         </EntityType>
         <EntityType Name="DM_KQDieuTri">
           <Key>
@@ -712,6 +713,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="MaNoiGioiThieu" Type="Int32" />
+          <NavigationProperty Name="DM_Huyen" Relationship="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen" FromRole="SO_BenhNhan" ToRole="DM_Huyen" />
         </EntityType>
         <EntityType Name="SO_PhieuXetNghiem">
           <Key>
@@ -760,8 +762,8 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Key>
             <PropertyRef Name="ID_SoDieuTri" />
           </Key>
-          <Property Name="ID_SoDieuTri" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="ID_BENHNHAN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ID_SoDieuTri" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BENHNHAN" Type="Int64" Nullable="false" />
           <Property Name="SoDKDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="DVDieutri" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="NgayVV" Type="DateTime" Precision="3" />
@@ -877,15 +879,17 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
           <Property Name="GeneXpert" Type="Int32" />
         </EntityType>
-        <Association Name="FK_AD_User_Kho_AD_Users">
-          <End Type="NTP_DBModel.AD_Users" Role="AD_Users" Multiplicity="1" />
-          <End Type="NTP_DBModel.AD_User_Kho" Role="AD_User_Kho" Multiplicity="*" />
+        <Association Name="FK_SO_BenhNhan_DM_Huyen">
+          <End Type="NTP_DBModel.DM_Huyen" Role="DM_Huyen" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NTP_DBModel.SO_BenhNhan" Role="SO_BenhNhan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AD_Users">
-              <PropertyRef Name="UserID" />
+            <Principal Role="DM_Huyen">
+              <PropertyRef Name="MA_HUYEN" />
             </Principal>
-            <Dependent Role="AD_User_Kho">
-              <PropertyRef Name="USERID" />
+            <Dependent Role="SO_BenhNhan">
+              <PropertyRef Name="MA_HUYEN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

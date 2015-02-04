@@ -2,27 +2,24 @@
 {
     settings.Name = "SearchCombobox";
     settings.Properties.Caption = "Nhập thông tin tìm kiếm bệnh nhân";
-    settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
     settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-    settings.Properties.DropDownHeight = 350;
-    settings.Width = Unit.Pixel(210);
-
-    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboSearchBenhNhan" };
+    settings.Properties.DropDownHeight = 350; 
+    settings.Width = Unit.Pixel(800);
+    
+    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "SearchBenhNhanPartial" };
     settings.Properties.CallbackPageSize = 20;
     settings.Properties.ValueField = "ID_BenhNhan";
     settings.Properties.TextField = "HoTen";
     settings.Properties.FilterMinLength = 4;
-   // settings.Properties.ValueType = typeof(long); 
-    settings.Properties.TextFormatString = "{0} {1} {2} {3} {4} {5} {6}";
     settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['SearchCombobox'] = SearchCombobox.GetValue(); }";
 
     settings.Properties.Columns.Add("HoTen", "Họ và Tên", 130);
-    settings.Properties.Columns.Add("Gioitinh", "Giới tính", 60);
-    settings.Properties.Columns.Add("Tuoi", "Tuổi", 40);
+    settings.Properties.Columns.Add("GioiTinh", "Giới tính", 60);
+    settings.Properties.Columns.Add("Tuoi", "Tuổi", 40); 
     settings.Properties.Columns.Add("SoCMND", "Số Chứng Minh Thư", 120);
     settings.Properties.Columns.Add("MaBNQL", "Mã Bệnh Nhân", 120);
     settings.Properties.Columns.Add("TenTinh", "Tỉnh", 100);
     settings.Properties.Columns.Add("TenHuyen", "Huyện", 250);
-    settings.Properties.ClientSideEvents.SelectedIndexChanged = "RedirectToBenhNhanID";
+    settings.Properties.ClientSideEvents.SelectedIndexChanged = "getBenhNhanAndSoKhamBenh";
 }).BindList(ViewData["BenhNhan"]).GetHtml()

@@ -32,18 +32,19 @@ namespace NTP_MVC.Controllers
             {
                 ViewData["ListSoDieuTri"] = db.SO_SoDieuTri.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
             }
+            ViewData["ListHuyen"] = db.DM_Huyen.ToList(); 
         }
 
 
         [ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartial()
+        public ActionResult GridSoDieuTri()
         {
             var model = db.SO_SoDieuTri;
-            return PartialView("_SoDieuTriDataViewPartial", model.ToList());
+            return PartialView("_GridSoDieuTri", model.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartialAddNew(SO_SoDieuTri item)
+        public ActionResult GridSoDieuTriAddNew(SO_SoDieuTri item)
         {
             var model = db.SO_SoDieuTri;
             if (ModelState.IsValid)
@@ -60,10 +61,11 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_SoDieuTriDataViewPartial", model.ToList());
+            GetSoDieuTriCuaBenhNhan();
+            return PartialView("_GridSoDieuTri", ViewData["ListSoKhamBenh"]);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartialUpdate(SO_SoDieuTri item)
+        public ActionResult GridSoDieuTriUpdate(SO_SoDieuTri item)
         {
             var model = db.SO_SoDieuTri;
             if (ModelState.IsValid)
@@ -84,10 +86,11 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_SoDieuTriDataViewPartial", model.ToList());
+            GetSoDieuTriCuaBenhNhan();
+            return PartialView("_GridSoDieuTri", ViewData["ListSoKhamBenh"]);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult SoDieuTriDataViewPartialDelete(Int64 ID_SoDieuTri)
+        public ActionResult GridSoDieuTriDelete(Int64 ID_SoDieuTri)
         {
             var model = db.SO_SoDieuTri;
             if (ID_SoDieuTri >= 0)
@@ -104,7 +107,8 @@ namespace NTP_MVC.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_SoDieuTriDataViewPartial", model.ToList());
+            GetSoDieuTriCuaBenhNhan();
+            return PartialView("_GridSoDieuTri", ViewData["ListSoKhamBenh"]);
         }
     }
 }

@@ -591,8 +591,9 @@
         display:none !important;
     } 
     .dxgvFocusedRow_PlasticBlue {
-        background-color: #009FFF !important;
-    }
+        background-color: #D7F7FF !important;
+        color: black !important;
+    } 
 
 /* RedWine */
 .dxsplControl_RedWine {

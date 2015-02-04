@@ -31,18 +31,7 @@ namespace NTP_MVC.Controllers
             GetSoKhamBenhCuaBenhNhan();
             return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
         }
-
-
-        public ActionResult GetDetailBenhNhan()
-        {
-            var s = Request.Params["ID_BenhNhan"] + "";
-            var model = (SO_BenhNhan)(from bn in db.SO_BenhNhan
-                                      where bn.SoCMND.Contains(s) || bn.MaBNQL.Contains(s) || bn.HoTen.Contains(s) || bn.ID_BenhNhan.ToString().Contains(s)
-                                      select bn).FirstOrDefault();
-            //ViewData["IDBenhNhan"] = model.ID_BenhNhan;
-            return PartialView("_FormBenhNhan", model);
-        }
-
+         
         public void GetSoKhamBenhCuaBenhNhan()
         {
             var s = Session["ID_BenhNhan"] + "";
@@ -126,22 +115,6 @@ namespace NTP_MVC.Controllers
             }
             GetSoKhamBenhCuaBenhNhan();
             return PartialView("_GridSoKhamBenh", ViewData["ListSoKhamBenh"]);
-        }
-
-
-        public ActionResult ComboSearchBenhNhan()
-        {
-            string s = Request.Params["SearchCombobox"] + "";
-            string MaHuyen = HttpContext.Session["MAHUYEN"] + "";// Request.Params["MaHuyen"] + "";
-
-            ViewData["BenhNhan"] = (from d in db.SO_BenhNhan
-                                    where (d.MA_HUYEN.Equals(MaHuyen)) && (
-                                            d.SoCMND.Contains(s) ||
-                                            d.MaBNQL.Contains(s) ||
-                                            d.HoTen.Contains(s))
-                                    orderby d.MA_TINH
-                                    select d).ToList();
-            return PartialView("_ComboSearchBenhNhan", ViewData["BenhNhan"]);
-        }
+        } 
     }
 }

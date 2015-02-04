@@ -39,5 +39,7 @@ namespace NTP_MVC.Models
         public string NgheNghiep { get; set; }
         public string NoiGioiThieu { get; set; }
         public Nullable<int> MaNoiGioiThieu { get; set; }
+    
+        public virtual DM_Huyen DM_Huyen { get; set; }
     }
 }

@@ -271,8 +271,8 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
     <Key>
       <PropertyRef Name="ID_SoDieuTri" />
     </Key>
-    <Property Name="ID_SoDieuTri" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="ID_BENHNHAN" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BENHNHAN" Type="bigint" Nullable="false" />
     <Property Name="SoDKDT" Type="nvarchar" MaxLength="10" />
     <Property Name="DVDieutri" Type="nvarchar" MaxLength="10" />
     <Property Name="NgayVV" Type="datetime" />
@@ -383,18 +383,6 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="FK_AD_User_Kho_AD_Users">
-    <End Role="AD_Users" Type="Self.AD_Users" Multiplicity="1" />
-    <End Role="AD_User_Kho" Type="Self.AD_User_Kho" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AD_Users">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="AD_User_Kho">
-        <PropertyRef Name="USERID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="NTP_DBModelStoreContainer">
     <EntitySet Name="AD_Menu" EntityType="Self.AD_Menu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AD_RoleMenu" EntityType="Self.AD_RoleMenu" Schema="dbo" store:Type="Tables" />
@@ -446,9 +434,5 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     [SO_SoDieuTri_KQ].[GeneXpert] AS [GeneXpert]
     FROM [dbo].[SO_SoDieuTri_KQ] AS [SO_SoDieuTri_KQ]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_AD_User_Kho_AD_Users" Association="Self.FK_AD_User_Kho_AD_Users">
-      <End Role="AD_Users" EntitySet="AD_Users" />
-      <End Role="AD_User_Kho" EntitySet="AD_User_Kho" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

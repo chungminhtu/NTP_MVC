@@ -5,8 +5,12 @@
     var SoXN = "";
     var NgayNhanMau;
 
+    function RedirectToBenhNhanID(s, e) {
+        window.location = '~/SoKhamBenh?ID_BenhNhan=' + s.GetValue();
+    }
+
     function OnGridFocusedRowChanged(s, e) {
-        ID_SoKhamBenh = s.GetRowKey(s.GetFocusedRowIndex());
+        ID_SoKhamBenh = s.GetRowKey(s.GetFocusedRowIndex()); 
     }
     function OnGridRowDblClick(s, e) {
         s.StartEditRow(s.GetFocusedRowIndex());
@@ -33,6 +37,9 @@
         s.StartEditRow(s.GetFocusedRowIndex());
     }
 
+    $(document).ready(function () {
+        GridSoDieuTri.PerformCallback();
+    });
 </script>
 
 @{
@@ -67,6 +74,9 @@
                                         InsertionMode = InsertionMode.Replace
                                     }))
             {
+                ViewContext.Writer.Write("<div id='SearchBN'>");
+                Html.RenderPartial("~/Views/BenhNhan/_ComboSearchBenhNhan.cshtml", null);
+                ViewContext.Writer.Write("</div>");
                 ViewContext.Writer.Write("<div id='FormBenhNhan'>");
                 Html.RenderPartial("~/Views/BenhNhan/_FormBenhNhan.cshtml", null);
                 ViewContext.Writer.Write("</div>");

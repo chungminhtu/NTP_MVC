@@ -5,6 +5,10 @@
     var SoXN = "";
     var NgayNhanMau;
 
+    function RedirectToBenhNhanID(s, e) { 
+        window.location.href = '@Url.Content("~")'+"SoKhamBenh?ID_BenhNhan=" + s.GetValue();
+    }
+
     function OnGridFocusedRowChanged(s, e) {
         ID_SoKhamBenh = s.GetRowKey(s.GetFocusedRowIndex());
     }
@@ -13,11 +17,11 @@
     }
 
     function OnGridPXNFocusedRowChanged(s, e) {
-        if (s.GetFocusedRowIndex()!=-1) {
+        if (s.GetFocusedRowIndex() != -1) {
             ID_PhieuXetNghiem = s.GetRowKey(s.GetFocusedRowIndex());
             GridKetQuaXetNghiem.PerformCallback();
         }
-    } 
+    }
 
     function OnGridPXNInit(s, e) {
         s.SetFocusedRowIndex(-1);
@@ -33,6 +37,9 @@
         s.StartEditRow(s.GetFocusedRowIndex());
     }
 
+    $(document).ready(function () {
+        GridSoDieuTri.PerformCallback();
+    });
 </script>
 
 @{
@@ -47,15 +54,17 @@
     settings.Width = Unit.Percentage(100);
     settings.Height = Unit.Pixel(800);
     settings.AllowResize = true;
-    settings.FullscreenMode = true;
-    settings.ShowCollapseBackwardButton = true;
+    settings.FullscreenMode = true; 
+    settings.ShowCollapseBackwardButton = true; 
+    settings.ShowSeparatorImage = true;
     settings.Panes.Add(pane =>
     {
-        pane.AllowResize = DefaultBoolean.False;
+        pane.AllowResize = DefaultBoolean.True;
         pane.PaneStyle.Paddings.Padding = Unit.Pixel(0);
         pane.Collapsed = false;
         pane.ScrollBars = ScrollBars.Vertical;
-        pane.AutoWidth = true;
+        pane.MaxSize = 230;
+        pane.MinSize = 230;
         pane.SetContent(() =>
         {
 
@@ -67,17 +76,13 @@
                                         InsertionMode = InsertionMode.Replace
                                     }))
             {
+                ViewContext.Writer.Write("<div id='SearchBN'>");
+                Html.RenderPartial("~/Views/BenhNhan/_ComboSearchBenhNhan.cshtml", null);
+                ViewContext.Writer.Write("</div>");
                 ViewContext.Writer.Write("<div id='FormBenhNhan'>");
                 Html.RenderPartial("~/Views/BenhNhan/_FormBenhNhan.cshtml", null);
                 ViewContext.Writer.Write("</div>");
             }
-
-            //using (Html.BeginForm("CapNhatBenhNhan", "BenhNhan", FormMethod.Post))
-            //{
-            //    ViewContext.Writer.Write("<div id='FormBenhNhan'>");
-            //    Html.RenderPartial("~/Views/BenhNhan/_FormBenhNhan.cshtml", null);
-            //    ViewContext.Writer.Write("</div>");
-            //}
         });
     });
 
@@ -99,7 +104,9 @@
                  settings2.AllowResize = true;
                  settings2.FullscreenMode = true;
                  settings2.ShowCollapseBackwardButton = true;
+                 settings2.ShowCollapseForwardButton = true; 
                  settings2.Orientation = Orientation.Vertical;
+                 settings2.ShowSeparatorImage = true;
                  settings2.Panes.Add(pane1 =>
                  {
                      pane1.PaneStyle.Paddings.Padding = Unit.Pixel(0);
@@ -269,8 +276,7 @@
                      });
                  });
 
-             }).GetHtml();
-
+             }).GetHtml(); 
       });
   });
 }).GetHtml()
