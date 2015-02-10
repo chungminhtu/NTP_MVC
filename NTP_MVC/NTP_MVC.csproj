@@ -73,6 +73,7 @@
     <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.SpellChecker.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -291,19 +292,45 @@
   <ItemGroup>
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
+    <Content Include="Content\Images\about.png" />
     <Content Include="Content\Images\add.png" />
+    <Content Include="Content\Images\aid_kit.png" />
     <Content Include="Content\Images\AquaHeader.jpg" />
+    <Content Include="Content\Images\bed.png" />
     <Content Include="Content\Images\BlackGlassHeader.jpg" />
+    <Content Include="Content\Images\blue_book.png" />
+    <Content Include="Content\Images\blue_search.png" />
+    <Content Include="Content\Images\books.png" />
+    <Content Include="Content\Images\books1.png" />
+    <Content Include="Content\Images\books2.png" />
+    <Content Include="Content\Images\books3.png" />
+    <Content Include="Content\Images\books4.png" />
     <Content Include="Content\Images\cancel.png" />
     <Content Include="Content\Images\delete.png" />
     <Content Include="Content\Images\edit.png" />
+    <Content Include="Content\Images\edit3.png" />
+    <Content Include="Content\Images\fax.png" />
     <Content Include="Content\Images\GlassHeader.jpg" />
+    <Content Include="Content\Images\help.png" />
+    <Content Include="Content\Images\help_book.png" />
+    <Content Include="Content\Images\hospital.png" />
+    <Content Include="Content\Images\lock.png" />
     <Content Include="Content\Images\logo1.png" />
+    <Content Include="Content\Images\mail.png" />
+    <Content Include="Content\Images\meric.png" />
+    <Content Include="Content\Images\ms-excel.png" />
+    <Content Include="Content\Images\note.png" />
+    <Content Include="Content\Images\pie_chart.png" />
+    <Content Include="Content\Images\pill.png" />
     <Content Include="Content\Images\PlasticBlueHeader.jpg" />
     <Content Include="Content\Images\print.png" />
     <Content Include="Content\Images\RedWineHeader.jpg" />
     <Content Include="Content\Images\save.png" />
     <Content Include="Content\Images\search.png" />
+    <Content Include="Content\Images\statistics.png" />
+    <Content Include="Content\Images\user1.png" />
+    <Content Include="Content\Images\user3.png" />
+    <Content Include="Content\Images\white_excel.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Site.css" />
@@ -344,6 +371,17 @@
       <LastGenOutput>NTP_DBDataModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\NTP_MVC2015.pubxml" />
+    <Content Include="Reports\NTPDataSet.xsc">
+      <DependentUpon>NTPDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\NTPDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NTPDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\NTPDataSet.xss">
+      <DependentUpon>NTPDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\BenhNhan\_SearchBenhNhanPartial.cshtml">
@@ -364,7 +402,9 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -422,6 +462,7 @@
     <Content Include="Views\SoDieuTri\_GridSoDieuTri.cshtml" />
     <Content Include="Views\SoDieuTri\Index.cshtml" />
     <Content Include="Views\BenhNhan\_GridBenhNhanChuyenDen.cshtml" />
+    <Content Include="Views\PhieuXetNghiem\_PrintPXN.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -523,6 +564,9 @@
     <Compile Include="Models\DM_Vung.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\InPhieuXetNghiem.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MyModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -566,12 +610,37 @@
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\InPhieuXetNghiem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InPhieuXetNghiem.Designer.cs">
+      <DependentUpon>InPhieuXetNghiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\NTPDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NTPDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PhieuXetNghiem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PhieuXetNghiem.Designer.cs">
+      <DependentUpon>PhieuXetNghiem.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\InPhieuXetNghiem.resx">
+      <DependentUpon>InPhieuXetNghiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PhieuXetNghiem.resx">
+      <DependentUpon>PhieuXetNghiem.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

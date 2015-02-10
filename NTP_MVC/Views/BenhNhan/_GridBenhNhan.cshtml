@@ -15,9 +15,7 @@
                                                                 "e.customArgs['NKBFrom'] = NKBFrom.GetText() != ''? NKBFrom.GetText() : '' ;" +
                                                                 "e.customArgs['NKBTo'] = NKBTo.GetText() != ''? NKBTo.GetText(): '' ;" +
                                                                 "e.customArgs['NDTFrom'] = NDTFrom.GetText() != ''? NDTFrom.GetText(): '' ;" +
-                                                                "e.customArgs['NDTTo'] = NDTTo.GetText() != ''? NDTTo.GetText(): '' ;" +
-                                                                "e.customArgs['NXNFrom'] = NXNFrom.GetText() != ''? NXNFrom.GetText(): '' ;" +
-                                                                "e.customArgs['NXNTo'] = NXNTo.GetText() != ''? NXNTo.GetText(): '' ;" +
+                                                                "e.customArgs['NDTTo'] = NDTTo.GetText() != ''? NDTTo.GetText(): '' ;" + 
                                                                "}";
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanUpdate" };
@@ -37,6 +35,7 @@
         
         /*Events*/
         settings.ClientSideEvents.FocusedRowChanged = "OnGridBNFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridBNRowDblClick";
      
         /*Buttons*/
         //var EditColumnCommand = new MVCxGridViewCommandColumn();

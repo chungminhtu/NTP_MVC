@@ -1,8 +1,15 @@
 ﻿<script>
     var ID_BenhNhan = "";
+    var ID_BenhNhanCD = "";
     function OnGridBNFocusedRowChanged(s, e) {
         ID_BenhNhan = s.GetRowKey(s.GetFocusedRowIndex());
     }
+    function OnGridBNCDFocusedRowChanged(s, e) {
+        ID_BenhNhanCD = s.GetRowKey(s.GetFocusedRowIndex());
+    }
+    function OnGridBNRowDblClick(s, e) {
+        window.location.href = '@Url.Content("~")' + "SoKhamBenh?ID_BenhNhan=" + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex());
+     }
 </script>
 @Html.DevExpress().FormLayout(settings =>
 {
@@ -90,34 +97,34 @@
                 ViewContext.Writer.Write("</td></tr></table>");
             });
         });
-        //ngày xét nghiệm
-        group.Items.AddGroupItem(mGroup =>
-        {
-            mGroup.Caption = "Ngày xét nghiệm";
-            mGroup.GroupBoxDecoration = GroupBoxDecoration.Box;
-            mGroup.ParentContainerStyle.CssClass = "dxflSearchBNGroupBox_PlasticBlue";
-            mGroup.Items.Add(m =>
-            {
-                m.ShowCaption = DefaultBoolean.False;
-            }).SetNestedContent(() =>
-            {
-                ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
-                Html.DevExpress().DateEdit(mySettings =>
-                {
-                    mySettings.Name = "NXNFrom";
-                    mySettings.Properties.Caption = "Từ";
-                    mySettings.Width = Unit.Pixel(100);
-                }).Render();
-                ViewContext.Writer.Write("</td><td>");
-                Html.DevExpress().DateEdit(mySettings =>
-                {
-                    mySettings.Name = "NXNTo";
-                    mySettings.Properties.Caption = "Đến";
-                    mySettings.Width = Unit.Pixel(100);
-                }).Render();
-                ViewContext.Writer.Write("</td></tr></table>");
-            });
-        });
+        ////ngày xét nghiệm
+        //group.Items.AddGroupItem(mGroup =>
+        //{
+        //    mGroup.Caption = "Ngày xét nghiệm";
+        //    mGroup.GroupBoxDecoration = GroupBoxDecoration.Box;
+        //    mGroup.ParentContainerStyle.CssClass = "dxflSearchBNGroupBox_PlasticBlue";
+        //    mGroup.Items.Add(m =>
+        //    {
+        //        m.ShowCaption = DefaultBoolean.False;
+        //    }).SetNestedContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+        //        Html.DevExpress().DateEdit(mySettings =>
+        //        {
+        //            mySettings.Name = "NXNFrom";
+        //            mySettings.Properties.Caption = "Từ";
+        //            mySettings.Width = Unit.Pixel(100);
+        //        }).Render();
+        //        ViewContext.Writer.Write("</td><td>");
+        //        Html.DevExpress().DateEdit(mySettings =>
+        //        {
+        //            mySettings.Name = "NXNTo";
+        //            mySettings.Properties.Caption = "Đến";
+        //            mySettings.Width = Unit.Pixel(100);
+        //        }).Render();
+        //        ViewContext.Writer.Write("</td></tr></table>");
+        //    });
+        //});
 
 
         //Ngày bắt đầu điều trị
@@ -245,7 +252,7 @@
                                     MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                     MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
                                                                         new { Controller = "SoKhamBenh", Action = "Index" }) +
-                                                                        "?ID_BenhNhan=' + ID_BenhNhan; }";
+                                                                        "?ID_BenhNhan=' + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex()); }";
                                 }).Render();
                         Html.DevExpress().Button(
                                 MyButton =>
@@ -273,22 +280,57 @@
                 Html.RenderPartial("_GridBenhNhan");
             });
         });
-        tabGroup.Items.AddGroupItem(group =>
-        {
-            group.Caption = "Danh sách bệnh nhân chuyển đến";
-            group.ShowCaption = DefaultBoolean.True;
-            group.GroupBoxDecoration = GroupBoxDecoration.None;
-            group.Width = Unit.Percentage(100);
+        //tabGroup.Items.AddGroupItem(group =>
+        //{
+        //    group.Caption = "Danh sách bệnh nhân chuyển đến";
+        //    group.ShowCaption = DefaultBoolean.True;
+        //    group.GroupBoxDecoration = GroupBoxDecoration.None;
+        //    group.Width = Unit.Percentage(100);
 
-            group.Items.Add(m =>
-            {
-                m.ShowCaption = DefaultBoolean.False;
-                m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
-            }).SetNestedContent(() =>
-            {  
-                Html.RenderPartial("_GridBenhNhanChuyenDen");
-            });
-        });
+        //    group.Items.Add(m =>
+        //    {
+        //        m.ShowCaption = DefaultBoolean.False;
+        //        m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+        //    }).SetNestedContent(() =>
+        //    {  
+        //        Html.RenderPartial("_GridBenhNhanChuyenDen");
+        //    });
+        //});
+    });
+}).GetHtml()
+
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "PopupHelp";
+    settings.AllowResize = true;
+    settings.ShowHeader = true;
+    settings.ShowFooter = false;
+    settings.ShowOnPageLoad = false;
+    settings.AllowDragging = true;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.CloseOnEscape = true;
+    settings.Modal = true;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.Width = 700;
+    settings.Height = 500;
+
+    settings.SetContent(() =>
+    {
+        @Html.DevExpress().ImageSlider(
+                 myPopup =>
+                 {
+                     myPopup.Name = "ImageSlider";
+                     myPopup.ShowNavigationBar = true;
+                     myPopup.Width = Unit.Percentage(100);
+                     myPopup.Height = Unit.Percentage(100);
+
+                     myPopup.SettingsImageArea.ItemTextVisibility = ElementVisibilityMode.OnMouseOver;
+                     myPopup.SettingsImageArea.NavigationButtonVisibility = ElementVisibilityMode.OnMouseOver;
+                     myPopup.SettingsImageArea.ImageSizeMode = ImageSizeMode.FillAndCrop;
+                     myPopup.ShowNavigationBar = false;
+                 }
+              ).BindToFolder(@"~\Content\Slides").GetHtml();
     });
 }).GetHtml()
 

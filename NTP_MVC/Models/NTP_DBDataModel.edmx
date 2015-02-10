@@ -388,6 +388,35 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InPhieuXetNghiem">
+          <Key>
+            <PropertyRef Name="MauDom" />
+          </Key>
+          <Property Name="SoXN" Type="nvarchar" MaxLength="15" />
+          <Property Name="LydoXN" Type="int" />
+          <Property Name="SoThangDT" Type="tinyint" />
+          <Property Name="NGAY_NM" Type="datetime" />
+          <Property Name="MauDom" Type="tinyint" Nullable="false" />
+          <Property Name="NgayNhanMau" Type="datetime" />
+          <Property Name="TrangThaiDom" Type="nvarchar" MaxLength="15" />
+          <Property Name="KetQua" Type="tinyint" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaBNQL" Type="nvarchar" MaxLength="15" />
+          <Property Name="SoCMND" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tuoi" Type="int" />
+          <Property Name="Gioitinh" Type="bit" />
+          <Property Name="Diachi" Type="nvarchar" MaxLength="150" />
+          <Property Name="NgheNghiep" Type="nvarchar" MaxLength="250" />
+          <Property Name="NoiGioiThieu" Type="nvarchar" MaxLength="250" />
+          <Property Name="BHYT" Type="nvarchar" MaxLength="50" />
+          <Property Name="TEN_HUYEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN_TINH" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonViXetNghiem" Type="nvarchar" MaxLength="153" />
+          <Property Name="ID_PhieuXetNghiem" Type="bigint" />
+          <Property Name="ID_Benhnhan" Type="bigint" />
+        </EntityType>
         <Association Name="FK_SO_BenhNhan_DM_Huyen">
           <End Role="DM_Huyen" Type="Self.DM_Huyen" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -453,6 +482,32 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
     [SO_SoDieuTri_KQ].[GeneXpert] AS [GeneXpert]
     FROM [dbo].[SO_SoDieuTri_KQ] AS [SO_SoDieuTri_KQ]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="InPhieuXetNghiem" EntityType="Self.InPhieuXetNghiem" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InPhieuXetNghiem].[SoXN] AS [SoXN], 
+    [InPhieuXetNghiem].[LydoXN] AS [LydoXN], 
+    [InPhieuXetNghiem].[SoThangDT] AS [SoThangDT], 
+    [InPhieuXetNghiem].[NGAY_NM] AS [NGAY_NM], 
+    [InPhieuXetNghiem].[MauDom] AS [MauDom], 
+    [InPhieuXetNghiem].[NgayNhanMau] AS [NgayNhanMau], 
+    [InPhieuXetNghiem].[TrangThaiDom] AS [TrangThaiDom], 
+    [InPhieuXetNghiem].[KetQua] AS [KetQua], 
+    [InPhieuXetNghiem].[HoTen] AS [HoTen], 
+    [InPhieuXetNghiem].[MaBNQL] AS [MaBNQL], 
+    [InPhieuXetNghiem].[SoCMND] AS [SoCMND], 
+    [InPhieuXetNghiem].[Tuoi] AS [Tuoi], 
+    [InPhieuXetNghiem].[Gioitinh] AS [Gioitinh], 
+    [InPhieuXetNghiem].[Diachi] AS [Diachi], 
+    [InPhieuXetNghiem].[NgheNghiep] AS [NgheNghiep], 
+    [InPhieuXetNghiem].[NoiGioiThieu] AS [NoiGioiThieu], 
+    [InPhieuXetNghiem].[BHYT] AS [BHYT], 
+    [InPhieuXetNghiem].[TEN_HUYEN] AS [TEN_HUYEN], 
+    [InPhieuXetNghiem].[TEN_TINH] AS [TEN_TINH], 
+    [InPhieuXetNghiem].[DonViXetNghiem] AS [DonViXetNghiem], 
+    [InPhieuXetNghiem].[ID_PhieuXetNghiem] AS [ID_PhieuXetNghiem], 
+    [InPhieuXetNghiem].[ID_Benhnhan] AS [ID_Benhnhan]
+    FROM [dbo].[InPhieuXetNghiem] AS [InPhieuXetNghiem]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="Self.FK_SO_BenhNhan_DM_Huyen">
             <End Role="DM_Huyen" EntitySet="DM_Huyen" />
             <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
@@ -493,6 +548,7 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
           <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
+          <EntitySet Name="InPhieuXetNghiems" EntityType="NTP_DBModel.InPhieuXetNghiem" />
           <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen">
             <End Role="DM_Huyen" EntitySet="DM_Huyen" />
             <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
@@ -878,6 +934,33 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
           <Property Name="NGAY_NM" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
           <Property Name="GeneXpert" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InPhieuXetNghiem">
+          <Key>
+            <PropertyRef Name="MauDom" />
+          </Key>
+          <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LydoXN" Type="Int32" />
+          <Property Name="SoThangDT" Type="Byte" />
+          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+          <Property Name="MauDom" Type="Byte" Nullable="false" />
+          <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
+          <Property Name="TrangThaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="KetQua" Type="Byte" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaBNQL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SoCMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Tuoi" Type="Int32" />
+          <Property Name="Gioitinh" Type="Boolean" />
+          <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BHYT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_HUYEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonViXetNghiem" Type="String" MaxLength="153" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PhieuXetNghiem" Type="Int64" />
+          <Property Name="ID_Benhnhan" Type="Int64" />
         </EntityType>
         <Association Name="FK_SO_BenhNhan_DM_Huyen">
           <End Type="NTP_DBModel.DM_Huyen" Role="DM_Huyen" Multiplicity="0..1">
@@ -1293,6 +1376,34 @@ warning 6002: The table/view 'NTP_DB.dbo.SO_SoDieuTri_KQ' does not have a primar
                 <ScalarProperty Name="ID_Phieuxetnghiem_C" ColumnName="ID_Phieuxetnghiem_C" />
                 <ScalarProperty Name="ID_Dieutri" ColumnName="ID_Dieutri" />
                 <ScalarProperty Name="ID_Xetnghiem_GD" ColumnName="ID_Xetnghiem_GD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InPhieuXetNghiems">
+            <EntityTypeMapping TypeName="NTP_DBModel.InPhieuXetNghiem">
+              <MappingFragment StoreEntitySet="InPhieuXetNghiem">
+                <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
+                <ScalarProperty Name="ID_PhieuXetNghiem" ColumnName="ID_PhieuXetNghiem" />
+                <ScalarProperty Name="DonViXetNghiem" ColumnName="DonViXetNghiem" />
+                <ScalarProperty Name="TEN_TINH" ColumnName="TEN_TINH" />
+                <ScalarProperty Name="TEN_HUYEN" ColumnName="TEN_HUYEN" />
+                <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+                <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
+                <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
+                <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="KetQua" ColumnName="KetQua" />
+                <ScalarProperty Name="TrangThaiDom" ColumnName="TrangThaiDom" />
+                <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+                <ScalarProperty Name="MauDom" ColumnName="MauDom" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
+                <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
+                <ScalarProperty Name="SoXN" ColumnName="SoXN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

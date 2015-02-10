@@ -13,18 +13,13 @@ namespace NTP_MVC.Controllers
         public ActionResult Index()
         {
             var MaTinh = Session["MATINH"] + "";
-
             if (MaTinh != "")
             {
                 var MaHuyen = Session["MAHUYEN"] + "";
-
                 ViewData["Tinhs"] = MaTinh == null ? db.DM_Tinh.ToList() : db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
                 ViewData["Huyens"] = MaHuyen == null ? null : db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
 
                 var model = db.SO_BenhNhan.Where(b => b.MA_HUYEN == MaHuyen).ToList();
-                ViewData["MaBNQL"] = null;
-                ViewData["StartDate"] = null;
-                ViewData["EndDate"] = null;
                 return View(model);
             }
             else
@@ -75,6 +70,19 @@ namespace NTP_MVC.Controllers
             return PartialView("_ComboSearchBenhNhan");
         }
 
+        public ActionResult GridBenhNhanChuyenDen()
+        {
+            string matinh = Request.Params["MaTinh"] + "";
+            string mahuyen = Request.Params["MaHuyen"] + "";
+
+            List<SO_BenhNhan> ListBN = (from d in db.SO_BenhNhan
+                                        join e in db.SO_SoDieuTri on d.ID_BenhNhan equals e.ID_BENHNHAN
+                                        where d.MA_HUYEN.Equals(mahuyen)
+                                        && d.MA_TINH.Equals(matinh)  
+                                        select d).ToList();
+            return PartialView("_GridBenhNhanChuyenDen", ListBN);
+        }
+
         [ValidateInput(false)]
         public ActionResult GridBenhNhan()
         {
@@ -90,56 +98,61 @@ namespace NTP_MVC.Controllers
             DateTime ndtfrom = Request.Params["NDTFrom"] + "" != "" ? DateTime.Parse(Request.Params["NDTFrom"] + "") : DateTime.MinValue;
             DateTime ndtto = Request.Params["NDTTo"] + "" != "" ? DateTime.Parse(Request.Params["NDTTo"] + "") : DateTime.MinValue;
 
-            DateTime nxnfrom = Request.Params["NXNFrom"] + "" != "" ? DateTime.Parse(Request.Params["NXNFrom"] + "") : DateTime.MinValue;
-            DateTime nxnto = Request.Params["NXNTo"] + "" != "" ? DateTime.Parse(Request.Params["NXNTo"] + "") : DateTime.MinValue;
+            //DateTime nxnfrom = Request.Params["NXNFrom"] + "" != "" ? DateTime.Parse(Request.Params["NXNFrom"] + "") : DateTime.MinValue;
+            //DateTime nxnto = Request.Params["NXNTo"] + "" != "" ? DateTime.Parse(Request.Params["NXNTo"] + "") : DateTime.MinValue;
 
-            var ListBN = from d in db.SO_BenhNhan
-                         where d.MA_HUYEN.Equals(mahuyen)
-                         && d.MA_TINH.Equals(matinh)
-                         && (hoten != "" ? d.HoTen.Contains(hoten) : true)
-                         && (mabnql != "" ? d.MaBNQL.Contains(mabnql) : true)
-                         && (socmnd != "" ? d.SoCMND.Contains(socmnd) : true)
-                         select d;
+            List<SO_BenhNhan> ListBN = (from d in db.SO_BenhNhan
+                                        where d.MA_HUYEN.Equals(mahuyen)
+                                        && d.MA_TINH.Equals(matinh)
+                                        && (hoten != "" ? d.HoTen.Contains(hoten) : true)
+                                        && (mabnql != "" ? d.MaBNQL.Contains(mabnql) : true)
+                                        && (socmnd != "" ? d.SoCMND.Contains(socmnd) : true)
+                                        select d).ToList();
+            List<long> ListIDBN = ListBN.Select(b => b.ID_BenhNhan).ToList();
+            List<long> ListIDBNFromSKB = new List<long>();
+            List<long> ListIDBNFromSDT = new List<long>();
+            List<SO_BenhNhan> ListBNSearched = ListBN;
+            if ((nkbfrom != DateTime.MinValue || nkbto != DateTime.MinValue) && (ndtfrom != DateTime.MinValue || ndtto != DateTime.MinValue))
+            {
+                ListIDBNFromSKB = (from a in db.SO_SoKhamBenh
+                                   where ListIDBN.Contains(a.ID_BENHNHAN)
+                                    && (nkbfrom != DateTime.MinValue ? a.NgayKhamBenh >= nkbfrom : true)
+                                    && (nkbto != DateTime.MinValue ? a.NgayKhamBenh <= nkbto : true)
+                                   select a.ID_BENHNHAN).ToList();
+                ListIDBNFromSDT = (from a in db.SO_SoDieuTri
+                                   where ListIDBN.Contains(a.ID_BENHNHAN)
+                                    && (ndtfrom != DateTime.MinValue ? a.NgayDT >= ndtfrom : true)
+                                    && (ndtto != DateTime.MinValue ? a.NgayDT <= ndtto : true)
+                                   select a.ID_BENHNHAN).ToList();
+                ListBNSearched = (from a in ListBN
+                                  where ListIDBNFromSKB.Contains(a.ID_BenhNhan)
+                                     && ListIDBNFromSDT.Contains(a.ID_BenhNhan)
+                                  select a).ToList();
+            }
+            else if (nkbfrom != DateTime.MinValue || nkbto != DateTime.MinValue)
+            {
+                ListIDBNFromSKB = (from a in db.SO_SoKhamBenh
+                                   where ListIDBN.Contains(a.ID_BENHNHAN)
+                                    && (nkbfrom != DateTime.MinValue ? a.NgayKhamBenh >= nkbfrom : true)
+                                    && (nkbto != DateTime.MinValue ? a.NgayKhamBenh <= nkbto : true)
+                                   select a.ID_BENHNHAN).ToList();
+                ListBNSearched = (from a in ListBN
+                                  where ListIDBNFromSKB.Contains(a.ID_BenhNhan)
+                                  select a).ToList();
+            }
+            else if (ndtfrom != DateTime.MinValue || ndtto != DateTime.MinValue)
+            {
 
-            var ListSKB = from bn in ListBN
-                          join e in db.SO_SoKhamBenh on bn.ID_BenhNhan equals e.ID_BENHNHAN into j
-                          from m in j.DefaultIfEmpty()
-                          where (nkbfrom != DateTime.MinValue ? m.NgayKhamBenh >= nkbfrom : true)
-                          && (nkbto != DateTime.MinValue ? m.NgayKhamBenh <= nkbto : true)
-                          select new
-                          {
-                              ID_BenhNhan = bn.ID_BenhNhan,
-                              ID_Doituong = bn.ID_Doituong,
-                              HoTen = bn.HoTen,
-                              MaBNQL = bn.MaBNQL,
-                              SoCMND = bn.SoCMND,
-                              Tuoi = bn.Tuoi,
-                              Gioitinh = bn.Gioitinh,
-                              MA_TINH = bn.MA_TINH,
-                              MA_HUYEN = bn.MA_HUYEN,
-                              Diachi = bn.Diachi,
-                              Sodienthoai = bn.Sodienthoai,
-                              NGAY_NM = bn.NGAY_NM,
-                              NGUOI_NM = bn.NGUOI_NM,
-                              Ngay_SD = bn.Ngay_SD,
-                              Nguoi_SD = bn.Nguoi_SD,
-                              Huy = bn.Huy,
-                              HuyenXN = bn.HuyenXN,
-                              TinhXN = bn.TinhXN,
-                              STT = bn.STT,
-                              Namsinh = bn.Namsinh,
-                              HIV = bn.HIV,
-                              BHYT = bn.BHYT,
-                              NgheNghiep = bn.NgheNghiep,
-                              NoiGioiThieu = bn.NoiGioiThieu,
-                              MaNoiGioiThieu = bn.MaNoiGioiThieu,
-                              NgayKB = m.NgayKhamBenh
-                          };
-            var ListBNSearch = (from skb in ListSKB
-                               join bn in ListBN on skb.ID_BenhNhan equals bn.ID_BenhNhan into j
-                               from m in j
-                               select m).Distinct();
-            return PartialView("_GridBenhNhan", ListBNSearch.ToList());
+                ListIDBNFromSDT = (from a in db.SO_SoDieuTri
+                                   where ListIDBN.Contains(a.ID_BENHNHAN)
+                                    && (ndtfrom != DateTime.MinValue ? a.NgayDT >= ndtfrom : true)
+                                    && (ndtto != DateTime.MinValue ? a.NgayDT <= ndtto : true)
+                                   select a.ID_BENHNHAN).ToList();
+                ListBNSearched = (from a in ListBN
+                                  where ListIDBNFromSDT.Contains(a.ID_BenhNhan)
+                                  select a).ToList();
+            }
+            return PartialView("_GridBenhNhan", ListBNSearched);
         }
 
         //Cập nhật hoặc thêm mới bệnh nhân (bằng external form)

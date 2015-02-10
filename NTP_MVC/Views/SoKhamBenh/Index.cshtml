@@ -280,3 +280,34 @@
       });
   });
 }).GetHtml()
+
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "PopupReport";
+    settings.AllowResize = true;
+    settings.ShowHeader = true; 
+    settings.ShowFooter = false;
+    settings.ShowOnPageLoad = false;
+    settings.AllowDragging = true;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.CloseOnEscape = true;
+    settings.Modal = true;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.Width = 800;
+    settings.Height = 500;
+    settings.ShowPageScrollbarWhenModal = true;
+    settings.ScrollBars = ScrollBars.Auto;
+
+    settings.SetContent(() =>
+    {
+        @Html.DevExpress().DocumentViewer(rpSettings =>
+        {
+            rpSettings.Name = "documentViewer1";
+            rpSettings.Width = Unit.Percentage(100);
+            rpSettings.Report = (NTP_MVC.Reports.PhieuXetNghiem)ViewData["ReportPhieuXetNghiem"];
+            rpSettings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "PrintPXN" };
+            rpSettings.ExportRouteValues = new { Controller = "PhieuXetNghiem", Action = "ExportPXN" };
+        }).GetHtml();
+    });
+}).GetHtml()

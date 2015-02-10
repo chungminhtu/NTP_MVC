@@ -35,6 +35,7 @@
         <EntityTypeShape EntityType="NTP_DBModel.sysdiagram" Width="1.5" PointX="13.75" PointY="5.75" />
         <EntityTypeShape EntityType="NTP_DBModel.DM_PhanLoaiYTe" Width="1.5" PointX="13.75" PointY="8.75" />
         <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri_KQ" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.InPhieuXetNghiem" Width="1.5" PointX="15.75" PointY="0.75" />
         <AssociationConnector Association="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen" />
       </Diagram>
     </edmx:Diagrams>

@@ -20,11 +20,21 @@ namespace NTP_MVC.Controllers
         ////////////////////////Phieu Xet Nghiem
         [ValidateInput(false)]
         public ActionResult GridPhieuXetNghiem()
-        {
+        { 
             GetPhieuXetNghiem_BenhNhan();
             return PartialView("_GridPhieuXetNghiem");
         }
 
+        public ActionResult PrintPXN()
+        {
+            ViewData["ReportPhieuXetNghiem"] = new NTP_MVC.Reports.InPhieuXetNghiem();
+            return PartialView("_PrintPXN");
+        }
+
+        public ActionResult ExportPXN()
+        {
+            return DevExpress.Web.Mvc.DocumentViewerExtension.ExportTo(new NTP_MVC.Reports.InPhieuXetNghiem());
+        }
 
         public void GetPhieuXetNghiem_BenhNhan()
         {

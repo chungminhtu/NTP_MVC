@@ -55,5 +55,6 @@ namespace NTP_MVC.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<DM_PhanLoaiYTe> DM_PhanLoaiYTe { get; set; }
         public virtual DbSet<SO_SoDieuTri_KQ> SO_SoDieuTri_KQ { get; set; }
+        public virtual DbSet<InPhieuXetNghiem> InPhieuXetNghiems { get; set; }
     }
 }

@@ -5,11 +5,18 @@
     </div>
     <div class="templateTitle">
         @Html.ActionLink("CHƯƠNG TRÌNH PHÒNG CHỐNG LAO VIỆT NAM - HỆ THỐNG GIÁM SÁT VÀ QUẢN LÝ THÔNG TIN", "Index", "Home")
-    </div> 
+    </div>
     <div class="loginControl">
-       <span>Đơn vị:</span> <span>@Session["TenBV"]</span> <span><a href="@Href("~/")">Thoát</a></span>
+        <span>Đơn vị:</span> <span>@Session["TenBV"]</span> <span><a href="@Href("~/")">Thoát</a></span>
     </div>
 </div>
+<script>
+    function GetMenuItemClick(s, e) {
+        if (e.item.name == 'HuongDanSuDung') {
+            PopupHelp.Show();
+        };
+    }
+</script>
 <div class="headerMenu">
     @* DXCOMMENT: Configure the header menu *@
     @Html.DevExpress().Menu(settings =>
@@ -22,24 +29,75 @@
 
 
     settings.Orientation = Orientation.Horizontal;
-    settings.AllowSelectItem = true; 
+    settings.AllowSelectItem = true;
     settings.ShowPopOutImages = DefaultBoolean.True;
     settings.AllowSelectItem = true;
     settings.EnableHotTrack = true;
-    settings.EnableAnimation = true;   
-    
-    
+    settings.EnableAnimation = true;
+
+    settings.Items.Add(item =>
+    {
+        item.Text = "Quản lý bệnh nhân";
+        item.Name = "QuanLyBenhNhan";
+        item.Image.Url = "~/Content/Images/user3.png";
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Danh sách bệnh nhân";
+            subItem.Name = "DanhSachBenhNhan";
+            subItem.Image.Url = "~/Content/Images/books.png";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Sổ khám bệnh";
+            subItem.Name = "SoKhamBenh";
+            subItem.Image.Url = "~/Content/Images/books1.png";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Phiếu xét nghiệm soi đờm trực tiếp";
+            subItem.Name = "PhieuXetNghiem";
+            subItem.Image.Url = "~/Content/Images/books4.png";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Sổ điều trị";
+            subItem.Name = "SoDieuTri";
+            subItem.Image.Url = "~/Content/Images/books3.png";
+        });
+    });
+
+    settings.Items.Add(item =>
+    {
+        item.Text = "Trợ giúp";
+        item.Name = "TroGiup";
+        item.Image.Url = "~/Content/Images/help_book.png";
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Hướng dẫn sử dụng";
+            subItem.Name = "HuongDanSuDung";
+            subItem.Image.Url = "~/Content/Images/help.png";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Giới thiệu";
+            subItem.Name = "GioiThieu";
+            subItem.Image.Url = "~/Content/Images/about.png";
+        }); 
+    });
+
     settings.ItemDataBound = (source, e) =>
     {
         IHierarchyData itemHierarchyData = (IHierarchyData)e.Item.DataItem;
         XmlElement element = (XmlElement)itemHierarchyData.Item;
         if (element.Attributes["Index"] != null)
         {
-            int imageIndex = int.Parse(element.Attributes["Index"].Value);
+            e.Item.Name = element.Name;
+            //int imageIndex = int.Parse(element.Attributes["Index"].Value);
             e.Item.Image.Url = "~/Content/Images/save.png";
         }
     };
-    
-    
-}).BindToXML(HttpContext.Current.Server.MapPath("~/App_Data/TopMenu.xml"), "/items/*").GetHtml()
-</div>
+
+    settings.ClientSideEvents.ItemClick = "GetMenuItemClick";
+    //}).BindToXML(HttpContext.Current.Server.MapPath("~/App_Data/TopMenu.xml"), "/items/*").GetHtml()
+}).GetHtml()
+    </div>
