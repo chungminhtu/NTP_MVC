@@ -398,5 +398,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="InPhieuXetNghiems">
+      <EntityTypeMapping TypeName="NTP_DBModel.InPhieuXetNghiem">
+        <MappingFragment StoreEntitySet="InPhieuXetNghiem">
+          <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
+          <ScalarProperty Name="ID_PhieuXetNghiem" ColumnName="ID_PhieuXetNghiem" />
+          <ScalarProperty Name="DonViXetNghiem" ColumnName="DonViXetNghiem" />
+          <ScalarProperty Name="TEN_TINH" ColumnName="TEN_TINH" />
+          <ScalarProperty Name="TEN_HUYEN" ColumnName="TEN_HUYEN" />
+          <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+          <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
+          <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+          <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
+          <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="KetQua" ColumnName="KetQua" />
+          <ScalarProperty Name="TrangThaiDom" ColumnName="TrangThaiDom" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+          <ScalarProperty Name="MauDom" ColumnName="MauDom" />
+          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+          <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
+          <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
+          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

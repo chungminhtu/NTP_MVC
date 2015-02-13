@@ -683,3 +683,9 @@ D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.Reports.PhieuXetNg
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.csproj.GenerateResource.Cache
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.csprojResolveAssemblyReference.cache
 D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.Reports.InPhieuXetNghiem.resources
+D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Sparkline.v14.2.Core.dll
+D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Sparkline.v14.2.Core.xml
+D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Sparkline.v14.2.Core.resources.dll
+D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Sparkline.v14.2.Core.resources.dll
+D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Sparkline.v14.2.Core.resources.dll
+D:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Sparkline.v14.2.Core.resources.dll

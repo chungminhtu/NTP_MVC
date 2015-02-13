@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NTP_DBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="InPhieuXetNghiem">
+    <Key>
+      <PropertyRef Name="MauDom" />
+    </Key>
+    <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="LydoXN" Type="Int32" />
+    <Property Name="SoThangDT" Type="Byte" />
+    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+    <Property Name="MauDom" Type="Byte" Nullable="false" />
+    <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
+    <Property Name="TrangThaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="KetQua" Type="Byte" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaBNQL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="SoCMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Tuoi" Type="Int32" />
+    <Property Name="Gioitinh" Type="Boolean" />
+    <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BHYT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TEN_HUYEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TEN_TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonViXetNghiem" Type="String" MaxLength="153" FixedLength="false" Unicode="true" />
+    <Property Name="ID_PhieuXetNghiem" Type="Int64" />
+    <Property Name="ID_BenhNhan" Type="Int64" />
+  </EntityType>
+  <EntityContainer Name="NTP_DBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="InPhieuXetNghiems" EntityType="Self.InPhieuXetNghiem" />
+  </EntityContainer>
+</Schema>

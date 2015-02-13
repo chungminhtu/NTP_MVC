@@ -1,0 +1,37 @@
+﻿@model NTP_MVC.Models.SO_BenhNhan
+
+@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "BenhNhanFormLayout";
+
+    var groupItem = settings.Items.AddGroupItem(groupSettings =>
+    {
+        groupSettings.Caption = "Thông tin bệnh nhân";
+        groupSettings.ShowCaption = DefaultBoolean.True;
+        groupSettings.GroupBoxDecoration = GroupBoxDecoration.Box;
+    });
+
+    groupItem.SettingsItems.ShowCaption = DefaultBoolean.True;
+    groupItem.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
+
+
+    groupItem.Items.Add(m => m.HoTen);
+    groupItem.Items.Add(m => m.MaBNQL);
+    groupItem.Items.Add(m => m.SoCMND);
+    groupItem.Items.Add(m => m.Tuoi);
+    groupItem.Items.Add(m => m.Gioitinh);
+    groupItem.Items.Add(m => m.MA_TINH);
+    groupItem.Items.Add(m => m.MA_HUYEN);
+    groupItem.Items.Add(m => m.Diachi);
+    groupItem.Items.Add(m => m.Sodienthoai);
+    groupItem.Items.Add(m => m.Ngay_SD);
+    groupItem.Items.Add(m => m.Nguoi_SD);
+    groupItem.Items.Add(m => m.Namsinh);
+    groupItem.Items.Add(m => m.HIV);
+    groupItem.Items.Add(m => m.BHYT);
+    groupItem.Items.Add(m => m.NgheNghiep);
+    groupItem.Items.Add(m => m.NoiGioiThieu);
+    groupItem.Items.Add(m => m.MaNoiGioiThieu);
+
+    System.Web.HttpContext.Current.Session["ID_BenhNhan"] = Model != null ? Model.ID_BenhNhan : 0;
+}).GetHtml()

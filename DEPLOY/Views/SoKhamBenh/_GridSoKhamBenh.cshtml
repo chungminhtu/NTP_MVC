@@ -4,7 +4,7 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         /*Initial*/
-        settings.Name = "GridSoKhamBenh";
+        settings.Name = "GridSoKhamBenh"; 
         settings.Width = Unit.Percentage(100);
         settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhList" };
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhAddNew" };

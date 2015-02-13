@@ -1,0 +1,21 @@
+﻿@Html.DevExpress().Splitter(settings =>
+{
+    settings.Name = "Splitter";
+    settings.Height = 400;
+    settings.Width = Unit.Percentage(100);
+    settings.AllowResize = true;
+    settings.Panes.Add(pane =>
+    {
+        pane.SetContent(() =>
+        {
+            @Html.Action("RoleGridViewPartial"); 
+        });
+    });
+    settings.Panes.Add(pane =>
+    {
+        pane.SetContent(() =>
+        {
+            @Html.Action("MenuTreeListPartial");
+        });
+    });
+}).GetHtml()

@@ -1,0 +1,38 @@
+@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
+        settings.Name = "MenuTreeList";
+        settings.CallbackRouteValues = new { Controller = "Menu", Action = "MenuTreeListPartial" };
+
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "Menu", Action = "MenuTreeListPartialAddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "Menu", Action = "MenuTreeListPartialUpdate" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "Menu", Action = "MenuTreeListPartialDelete" };
+        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "Menu", Action = "MenuTreeListPartialMove" };
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        
+        settings.AutoGenerateColumns = false;
+
+        settings.KeyFieldName = "MenuID";
+        settings.ParentFieldName = "MenuParentID";
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "MenuName";
+        column.Width = 600;
+    }
+);
+
+        settings.SettingsPager.Visible = true;
+        settings.SettingsSelection.Enabled = true;
+    });
+    if (ViewData["EditError"] != null)
+    {
+        treeList.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@treeList.Bind(Model).GetHtml()

@@ -1,0 +1,20 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "DMTinhGridView";
+        settings.CallbackRouteValues = new { Controller = "DMTinh", Action = "DMTinhGridViewPartial" };
+
+
+		settings.KeyFieldName = "MA_TINH";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true; 
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("TEN_TINH");
+				settings.Columns.Add("ID_VUNG");
+				settings.Columns.Add("ID_MIEN");
+				settings.Columns.Add("DANSO");
+			});
+}
+@grid.Bind(Model).GetHtml()

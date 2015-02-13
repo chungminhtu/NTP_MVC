@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NTP_DBModel1StoreContainer" CdmEntityContainer="NTP_DBEntities2">
+    <EntitySetMapping Name="InPhieuXetNghiems">
+      <EntityTypeMapping TypeName="NTP_DBModel1.InPhieuXetNghiem">
+        <MappingFragment StoreEntitySet="InPhieuXetNghiem">
+          <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+          <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
+          <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
+          <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+          <ScalarProperty Name="MauDom" ColumnName="MauDom" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+          <ScalarProperty Name="TrangThaiDom" ColumnName="TrangThaiDom" />
+          <ScalarProperty Name="KetQua" ColumnName="KetQua" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />
+          <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+          <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+          <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+          <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
+          <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+          <ScalarProperty Name="TEN_HUYEN" ColumnName="TEN_HUYEN" />
+          <ScalarProperty Name="TEN_TINH" ColumnName="TEN_TINH" />
+          <ScalarProperty Name="DonViXetNghiem" ColumnName="DonViXetNghiem" />
+          <ScalarProperty Name="ID_PhieuXetNghiem" ColumnName="ID_PhieuXetNghiem" />
+          <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,95 @@
+﻿
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {    
+        /*Initial*/
+        settings.Name = "GridBenhNhan";
+        settings.Width = Unit.Percentage(100);
+        settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhan" };       
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { "+
+                                                                "e.customArgs['MaTinh'] = '" + Session["MATINH"] + "';" +
+                                                                "e.customArgs['MaHuyen'] = '" + Session["MAHUYEN"] + "';" +
+                                                                "e.customArgs['HoTen'] = txtHoTen.GetValue() ;" +
+                                                                "e.customArgs['MaBNQL'] = txtMaBNQL.GetValue() ;" +
+                                                                "e.customArgs['SoCMND'] = txtSoCMND.GetValue() ;" +
+                                                                "e.customArgs['NKBFrom'] = NKBFrom.GetText() != ''? NKBFrom.GetText() : '' ;" +
+                                                                "e.customArgs['NKBTo'] = NKBTo.GetText() != ''? NKBTo.GetText(): '' ;" +
+                                                                "e.customArgs['NDTFrom'] = NDTFrom.GetText() != ''? NDTFrom.GetText(): '' ;" +
+                                                                "e.customArgs['NDTTo'] = NDTTo.GetText() != ''? NDTTo.GetText(): '' ;" + 
+                                                               "}";
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanDelete" };
+        settings.KeyFieldName = "ID_BenhNhan";
+
+        /* Behavior */
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridBNFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridBNRowDblClick";
+     
+        /*Buttons*/
+        //var EditColumnCommand = new MVCxGridViewCommandColumn();
+        //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //EditColumnCommand.ShowEditButton = true;
+        //EditColumnCommand.Width = 50;
+        //EditColumnCommand.ShowNewButtonInHeader = true;
+        //EditColumnCommand.VisibleIndex = 0;
+        //settings.Columns.Add(EditColumnCommand);        
+        //var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        //DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //DeleteColumnCommand.ShowDeleteButton = true;
+        //DeleteColumnCommand.Width = 50;
+        //DeleteColumnCommand.VisibleIndex = 14;
+        //settings.Columns.Add(DeleteColumnCommand);
+         
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "Tất cả";
+        settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
+        settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
+        settings.SettingsPager.Visible = true; 
+         
+        /* Column Definitions */
+        settings.Columns.Add("HoTen");
+        settings.Columns.Add("SoCMND");
+        settings.Columns.Add("Tuoi");
+        settings.Columns.Add("Gioitinh");
+        settings.Columns.Add("Diachi");
+        settings.Columns.Add("Sodienthoai");
+        settings.Columns.Add("BHYT");
+        settings.Columns.Add("NgheNghiep");
+        settings.Columns.Add("NoiGioiThieu"); 
+
+        ///*Edit Form*/
+        //settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        //settings.SettingsPopup.EditForm.Modal = true;
+        //settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        //settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.SetEditFormTemplateContent(c =>
+        //{
+        //    NTP_MVC.Models.SO_BenhNhan editItem;
+        //    if (c.Grid.IsNewRowEditing)
+        //        editItem = new NTP_MVC.Models.SO_BenhNhan();
+        //    else
+        //    {
+        //        editItem = ViewData["Item"] != null ? (NTP_MVC.Models.SO_BenhNhan)ViewData["Item"] : (NTP_MVC.Models.SO_BenhNhan)c.Grid.GetRow(c.VisibleIndex);
+        //    }
+        //    Html.RenderPartial("EditBenhNhan", editItem);
+        //});        
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(Model).GetHtml();
+} 
