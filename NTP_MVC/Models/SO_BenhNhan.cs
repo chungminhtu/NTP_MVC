@@ -23,6 +23,7 @@ namespace NTP_MVC.Models
         public Nullable<bool> Gioitinh { get; set; }
         public string MA_TINH { get; set; }
         public string MA_HUYEN { get; set; }
+        public string MA_XA { get; set; }
         public string Diachi { get; set; }
         public string Sodienthoai { get; set; }
         public Nullable<System.DateTime> NGAY_NM { get; set; }

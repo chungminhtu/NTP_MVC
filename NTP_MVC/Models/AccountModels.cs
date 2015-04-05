@@ -9,9 +9,9 @@ using System.Web.Security;
 
 namespace NTP_MVC.Models {
         public class UsersContext : DbContext {
-        public UsersContext()
-            : base("DefaultConnection") {
-        }
+        //public UsersContext()
+        //    : base("DefaultConnection") {
+        //}
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
     [Table("UserProfile")]

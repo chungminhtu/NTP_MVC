@@ -12,14 +12,28 @@ namespace NTP_MVC.Controllers
         // GET: BenhNhan
         public ActionResult Index()
         {
+            Session["MATINH"] = "07";
+            Session["MAHUYEN"] = "0703";
             var MaTinh = Session["MATINH"] + "";
             if (MaTinh != "")
             {
                 var MaHuyen = Session["MAHUYEN"] + "";
-                ViewData["Tinhs"] = MaTinh == null ? db.DM_Tinh.ToList() : db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
-                ViewData["Huyens"] = MaHuyen == null ? null : db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
+                //ViewData["Tinhs"] = MaTinh == null ? db.DM_Tinh.ToList() : db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
+                //ViewData["Huyens"] = MaHuyen == null ? null : db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
 
-                var model = db.SO_BenhNhan.Where(b => b.MA_HUYEN == MaHuyen).ToList();
+                ViewData["Tinhs"] = db.DM_Tinh.ToList();
+                ViewData["Huyens"] = db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
+
+                //ViewData["STinh"] = db.DM_Tinh.ToList();
+                //ViewData["SHuyen"] = db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
+                //ViewData["SXa"] = db.DM_Xa.ToList();
+
+                SoKhamBenhModel model = new SoKhamBenhModel();
+
+
+                model.ListBN = db.SO_BenhNhan.Where(b => b.MA_HUYEN == MaHuyen).ToList();
+                model.ListSKB = new List<SO_SoKhamBenh>();
+
                 return View(model);
             }
             else
@@ -78,7 +92,7 @@ namespace NTP_MVC.Controllers
             List<SO_BenhNhan> ListBN = (from d in db.SO_BenhNhan
                                         join e in db.SO_SoDieuTri on d.ID_BenhNhan equals e.ID_BENHNHAN
                                         where d.MA_HUYEN.Equals(mahuyen)
-                                        && d.MA_TINH.Equals(matinh)  
+                                        && d.MA_TINH.Equals(matinh)
                                         select d).ToList();
             return PartialView("_GridBenhNhanChuyenDen", ListBN);
         }
@@ -270,9 +284,15 @@ namespace NTP_MVC.Controllers
 
         public ActionResult ComboBoxHuyenList()
         {
-            string maTinh = HttpContext.Session["MATINH"] + "";
+            string maTinh = Request.Params["MaTinh"] + "";
             ViewData["Huyens"] = db.DM_Huyen.Where(m => m.MA_TINH == maTinh).ToList();
             return PartialView("_ComboBoxHuyen", ViewData["Huyens"]);
+        }
+
+        public ActionResult ComboBoxXaList()
+        {
+            ViewData["Xas"] = db.DM_Xa.ToList();
+            return PartialView("_ComboBoxXa", ViewData["Xas"]);
         }
 
         public IEnumerable<SO_BenhNhan> SearchBenhNhan()

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
 using NTP_MVC.Models;
+using System.Data.Entity;
 
 namespace NTP_MVC.Controllers
 {
@@ -13,7 +14,23 @@ namespace NTP_MVC.Controllers
         // GET: SoDieuTri
         public ActionResult Index()
         {
-            return View();
+            var MaTinh = Session["MATINH"] + "";
+            if (MaTinh != "")
+            {
+                var MaHuyen = Session["MAHUYEN"] + "";
+                ViewData["Tinhs"] = db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
+                ViewData["Huyens"] = db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
+
+                SoDieuTriModel model = new SoDieuTriModel();
+                model.ListBN = db.SO_BenhNhan.Where(b => b.MA_HUYEN == MaHuyen).ToList();
+                model.ListSDT = new List<SO_SoDieuTri>();
+
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
         NTP_DBEntities db = new NTP_DBEntities();
@@ -23,6 +40,89 @@ namespace NTP_MVC.Controllers
         {
             GetSoDieuTriCuaBenhNhan();
             return PartialView("_GridSoDieuTri", ViewData["ListSoDieuTri"]);
+        }
+
+        public ActionResult Edit()
+        {
+            long ID_BenhNhan = 0;
+            long ID_SoDieuTri = 0;
+            if (Request.Params["ID_BenhNhan"] != "")
+            {
+                ID_BenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"]);
+            }
+
+            if (Request.Params["ID_SoDieuTri"] != "")
+            {
+                ID_SoDieuTri = Convert.ToInt64(Request.Params["ID_SoDieuTri"]);
+            }
+
+            SoDieuTriModel model = new SoDieuTriModel();
+
+            model.BN = db.SO_BenhNhan.Where(b => b.ID_BenhNhan == ID_BenhNhan).SingleOrDefault();
+            model.BN.ID_BenhNhan = ID_BenhNhan;
+            model.SDT = db.SO_SoDieuTri.Where(b => b.ID_SoDieuTri == ID_SoDieuTri).SingleOrDefault();
+
+            if (model.BN == null)
+            {
+                model.BN = new SO_BenhNhan();
+            }
+            if (model.SDT == null)
+            {
+                model.SDT = new SO_SoDieuTri();
+            }
+
+            return View(model);
+        }
+
+
+
+        [HttpPost, ValidateInput(false)]
+        public string Edit(SO_BenhNhan bn, SO_SoDieuTri sdt)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    bn.MA_HUYEN = Session["MAHUYEN"] + "";
+                    bn.MA_TINH = Session["MATINH"] + "";
+                    bn.ID_BenhNhan = Request.Params["ID_BenhNhan"] + "" != "" ? Convert.ToInt64(Request.Params["ID_BenhNhan"].Split(',')[0]) : 0;
+                    sdt.ID_SoDieuTri = Request.Params["ID_SoDieuTri"] + "" != "" ? Convert.ToInt64(Request.Params["ID_SoDieuTri"]) : 0;
+                    if (bn.ID_BenhNhan != 0)
+                    {
+                        db.SO_BenhNhan.Attach(bn);
+                        db.Entry(bn).State = EntityState.Modified;
+                        db.SaveChanges();
+                        sdt.ID_BENHNHAN = bn.ID_BenhNhan;
+                        if (sdt.ID_SoDieuTri != 0)
+                        {
+                            db.SO_SoDieuTri.Attach(sdt);
+                            db.Entry(sdt).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            db.SO_SoDieuTri.Add(sdt);
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        db.SO_BenhNhan.Add(bn);
+                        db.SaveChanges();
+
+                        sdt.ID_BENHNHAN = bn.ID_BenhNhan;
+                        db.SO_SoDieuTri.Add(sdt);
+                        db.SaveChanges();
+                    }
+                    return "Cập nhật thành công";
+                }
+                catch (Exception e)
+                {
+                    return "Cập nhật thất bại, lỗi:" + e.Message;
+                }
+            }
+            else
+                return "Có lỗi khi nhập dữ liệu, hãy kiểm tra và thử lại";
         }
 
         public void GetSoDieuTriCuaBenhNhan()
@@ -62,7 +162,7 @@ namespace NTP_MVC.Controllers
             else
                 ViewData["EditError"] = "Please, correct all errors.";
             GetSoDieuTriCuaBenhNhan();
-            return PartialView("_GridSoDieuTri", ViewData["ListSoKhamBenh"]);
+            return PartialView("_GridSoDieuTri", ViewData["ListSoDieuTri"]);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridSoDieuTriUpdate(SO_SoDieuTri item)
@@ -87,7 +187,7 @@ namespace NTP_MVC.Controllers
             else
                 ViewData["EditError"] = "Please, correct all errors.";
             GetSoDieuTriCuaBenhNhan();
-            return PartialView("_GridSoDieuTri", ViewData["ListSoKhamBenh"]);
+            return PartialView("_GridSoDieuTri", ViewData["ListSoDieuTri"]);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridSoDieuTriDelete(Int64 ID_SoDieuTri)
@@ -108,7 +208,7 @@ namespace NTP_MVC.Controllers
                 }
             }
             GetSoDieuTriCuaBenhNhan();
-            return PartialView("_GridSoDieuTri", ViewData["ListSoKhamBenh"]);
+            return PartialView("_GridSoDieuTri", ViewData["ListSoDieuTri"]);
         }
     }
 }

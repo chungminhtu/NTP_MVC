@@ -26,7 +26,7 @@ namespace NTP_MVC.Models
         public string MaBNQL { get; set; }
         public string SoCMND { get; set; }
         public Nullable<int> Tuoi { get; set; }
-        public Nullable<bool> Gioitinh { get; set; }
+        public string GioiTinh { get; set; }
         public string Diachi { get; set; }
         public string NgheNghiep { get; set; }
         public string NoiGioiThieu { get; set; }
@@ -35,6 +35,6 @@ namespace NTP_MVC.Models
         public string TEN_TINH { get; set; }
         public string DonViXetNghiem { get; set; }
         public Nullable<long> ID_PhieuXetNghiem { get; set; }
-        public Nullable<long> ID_Benhnhan { get; set; }
+        public Nullable<long> ID_BenhNhan { get; set; }
     }
 }

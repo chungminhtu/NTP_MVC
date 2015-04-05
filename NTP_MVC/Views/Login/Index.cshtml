@@ -8,7 +8,7 @@
         <td style="padding: 50px 100px 50px 100px;vertical-align: middle;">
             <div class="login">
                 <h1>ĐĂNG NHẬP HỆ THỐNG</h1>
-                @using (Html.BeginForm("Login", "Home"))
+                @using (Html.BeginForm("Login", "Login"))
                 {
                     <p>
                         @Html.TextBoxFor(model => model.Username, new { placeholder = "Tên đăng nhập" })
@@ -47,7 +47,6 @@
                     }
                  ).BindToFolder(@"~\Content\Slides").GetHtml()
         </td>
-
     </tr>
 
 </table> 

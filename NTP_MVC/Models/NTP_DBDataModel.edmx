@@ -57,6 +57,205 @@
           <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
           <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.BC_KetQuaDT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BC_KetQuaDT">
+          <Key>
+            <PropertyRef Name="ID_BC_KetquaDT" />
+            <PropertyRef Name="Quy" />
+            <PropertyRef Name="Nam" />
+            <PropertyRef Name="DVBaocao" />
+          </Key>
+          <Property Name="ID_BC_KetquaDT" Type="int" Nullable="false" />
+          <Property Name="Quy" Type="tinyint" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
+          <Property Name="DVBaocao" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
+          <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
+          <Property Name="NguoiBC" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayBC" Type="datetime" />
+          <Property Name="NGAY_NM" Type="datetime" />
+          <Property Name="NGUOI_NM" Type="int" />
+          <Property Name="HuyenXN" Type="bit" />
+          <Property Name="TinhXN" Type="bit" />
+          <Property Name="PTNhap" Type="bit" />
+          <Property Name="Huy" Type="bit" />
+          <Property Name="Ngayhuy" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.BC_KetQuaDTLaoIN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BC_KetQuaDTLaoIN">
+          <Key>
+            <PropertyRef Name="ID_PHANLOAI" />
+            <PropertyRef Name="TEN_TINH" />
+          </Key>
+          <Property Name="ID_PHANLOAI" Type="tinyint" Nullable="false" />
+          <Property Name="TEN_VUNG" Type="nvarchar" MaxLength="50" />
+          <Property Name="TEN_MIEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="TEN_TINH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TEN_PHANLOAI" Type="nvarchar" MaxLength="101" />
+          <Property Name="KHOI" Type="int" />
+          <Property Name="HOANTHANH" Type="int" />
+          <Property Name="CHET" Type="int" />
+          <Property Name="THATBAI" Type="int" />
+          <Property Name="BOTRI" Type="int" />
+          <Property Name="CHUYEN" Type="int" />
+          <Property Name="KHONGDANHGIA" Type="int" />
+          <Property Name="TONGSOBNDK" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.BC_KetQuaXN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BC_KetQuaXN">
+          <Key>
+            <PropertyRef Name="ID_BC_KetquaXN" />
+            <PropertyRef Name="Quy" />
+            <PropertyRef Name="Nam" />
+            <PropertyRef Name="DVBaocao" />
+          </Key>
+          <Property Name="ID_BC_KetquaXN" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quy" Type="tinyint" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
+          <Property Name="DVBaocao" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NguoiBC" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayBC" Type="datetime" />
+          <Property Name="LaoDTMoi" Type="int" />
+          <Property Name="LaoTaitri" Type="int" />
+          <Property Name="DuongHaiT" Type="int" />
+          <Property Name="AmHaiT" Type="int" />
+          <Property Name="KhongHaiT" Type="int" />
+          <Property Name="DuongBaT" Type="int" />
+          <Property Name="AmBaT" Type="int" />
+          <Property Name="KhongBaT" Type="int" />
+          <Property Name="HuyenXN" Type="bit" />
+          <Property Name="TinhXN" Type="bit" />
+          <Property Name="PTNhap" Type="bit" />
+          <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
+          <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
+          <Property Name="NGAY_NM" Type="datetime" />
+          <Property Name="NGUOI_NM" Type="int" />
+          <Property Name="Huy" Type="bit" />
+          <Property Name="Ngayhuy" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.BC_ThuNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BC_ThuNhan">
+          <Key>
+            <PropertyRef Name="id_benhvien" />
+          </Key>
+          <Property Name="id_PL" Type="int" />
+          <Property Name="TenPL" Type="nvarchar" MaxLength="80" />
+          <Property Name="id_benhvien" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NAM0" Type="int" />
+          <Property Name="NU0" Type="int" />
+          <Property Name="NAM5" Type="int" />
+          <Property Name="NU5" Type="int" />
+          <Property Name="NAM15" Type="int" />
+          <Property Name="NU15" Type="int" />
+          <Property Name="NAM25" Type="int" />
+          <Property Name="NU25" Type="int" />
+          <Property Name="NAM35" Type="int" />
+          <Property Name="NU35" Type="int" />
+          <Property Name="NAM45" Type="int" />
+          <Property Name="NU45" Type="int" />
+          <Property Name="NAM55" Type="int" />
+          <Property Name="NU55" Type="int" />
+          <Property Name="NAM65" Type="int" />
+          <Property Name="NU65" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_DB.dbo.BC_ThuNhan_LaoHIV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BC_ThuNhan_LaoHIV">
+          <Key>
+            <PropertyRef Name="id_benhvien" />
+          </Key>
+          <Property Name="id_PL" Type="int" />
+          <Property Name="TenPL" Type="nvarchar" MaxLength="80" />
+          <Property Name="id_benhvien" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NAM0" Type="int" />
+          <Property Name="NU0" Type="int" />
+          <Property Name="NAM5" Type="int" />
+          <Property Name="NU5" Type="int" />
+          <Property Name="NAM15" Type="int" />
+          <Property Name="NU15" Type="int" />
+          <Property Name="NAM25" Type="int" />
+          <Property Name="NU25" Type="int" />
+          <Property Name="NAM35" Type="int" />
+          <Property Name="NU35" Type="int" />
+          <Property Name="NAM45" Type="int" />
+          <Property Name="NU45" Type="int" />
+          <Property Name="NAM55" Type="int" />
+          <Property Name="NU55" Type="int" />
+          <Property Name="NAM65" Type="int" />
+          <Property Name="NU65" Type="int" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhanBNLao">
+          <Key>
+            <PropertyRef Name="ID_BCThunhanBNLao" />
+          </Key>
+          <Property Name="ID_BCThunhanBNLao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quy" Type="tinyint" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
+          <Property Name="DVBaocao" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NguoiBC" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayBC" Type="datetime" />
+          <Property Name="HuyenXN" Type="bit" />
+          <Property Name="TinhXN" Type="bit" />
+          <Property Name="PTNhap" Type="bit" />
+          <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
+          <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
+          <Property Name="NGAY_NM" Type="datetime" />
+          <Property Name="NGUOI_NM" Type="int" />
+          <Property Name="Huy" Type="bit" />
+          <Property Name="Ngayhuy" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhanBNLao1">
+          <Key>
+            <PropertyRef Name="ID_BCThunhanBNLao" />
+            <PropertyRef Name="Phanloai" />
+          </Key>
+          <Property Name="ID_BCThunhanBNLaoP1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BCThunhanBNLao" Type="int" Nullable="false" />
+          <Property Name="Phanloai" Type="int" Nullable="false" />
+          <Property Name="Moi" Type="int" />
+          <Property Name="Taiphat" Type="int" />
+          <Property Name="Thatbai" Type="int" />
+          <Property Name="Taitri" Type="int" />
+          <Property Name="AFBKhac" Type="int" />
+          <Property Name="AmNho" Type="int" />
+          <Property Name="AmTrung" Type="int" />
+          <Property Name="AmLon" Type="int" />
+          <Property Name="NgoaiPhoiNho" Type="int" />
+          <Property Name="NgoaiPhoiTrung" Type="int" />
+          <Property Name="NgoaiPhoiLon" Type="int" />
+          <Property Name="NgoaiphoiKhac" Type="int" />
+          <Property Name="Huy" Type="bit" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhanBNLao2">
+          <Key>
+            <PropertyRef Name="ID_BCThunhanBNLao" />
+            <PropertyRef Name="Phanloai" />
+          </Key>
+          <Property Name="ID_BCThunhanBNLaoP2" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BCThunhanBNLao" Type="int" Nullable="false" />
+          <Property Name="Phanloai" Type="int" Nullable="false" />
+          <Property Name="Nam0" Type="int" />
+          <Property Name="Nu0" Type="int" />
+          <Property Name="Nam5" Type="int" />
+          <Property Name="Nu5" Type="int" />
+          <Property Name="Nam15" Type="int" />
+          <Property Name="Nu15" Type="int" />
+          <Property Name="Nam25" Type="int" />
+          <Property Name="Nu25" Type="int" />
+          <Property Name="Nam35" Type="int" />
+          <Property Name="Nu35" Type="int" />
+          <Property Name="Nam45" Type="int" />
+          <Property Name="Nu45" Type="int" />
+          <Property Name="Nam55" Type="int" />
+          <Property Name="Nu55" Type="int" />
+          <Property Name="Nam65" Type="int" />
+          <Property Name="Nu65" Type="int" />
+          <Property Name="HUY" Type="bit" />
+        </EntityType>
         <EntityType Name="DM_BenhVien">
           <Key>
             <PropertyRef Name="ID_BENHVIEN" />
@@ -199,6 +398,14 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
           <Property Name="TEN_VUNG" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_MIEN" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DM_Xa">
+          <Key>
+            <PropertyRef Name="MA_XA" />
+          </Key>
+          <Property Name="MA_XA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TEN_XA" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="SO_BenhNhan">
           <Key>
             <PropertyRef Name="ID_BenhNhan" />
@@ -212,6 +419,7 @@ warning 6002: The table/view 'NTP_DB.dbo.DM_PhanLoaiYTe' does not have a primary
           <Property Name="Gioitinh" Type="bit" />
           <Property Name="MA_TINH" Type="varchar" MaxLength="10" />
           <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" />
+          <Property Name="MA_XA" Type="varchar" MaxLength="10" />
           <Property Name="Diachi" Type="nvarchar" MaxLength="150" />
           <Property Name="Sodienthoai" Type="nvarchar" MaxLength="150" />
           <Property Name="NGAY_NM" Type="datetime" />
@@ -406,7 +614,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="MaBNQL" Type="nvarchar" MaxLength="15" />
           <Property Name="SoCMND" Type="nvarchar" MaxLength="20" />
           <Property Name="Tuoi" Type="int" />
-          <Property Name="Gioitinh" Type="bit" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="3" />
           <Property Name="Diachi" Type="nvarchar" MaxLength="150" />
           <Property Name="NgheNghiep" Type="nvarchar" MaxLength="250" />
           <Property Name="NoiGioiThieu" Type="nvarchar" MaxLength="250" />
@@ -415,7 +623,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="TEN_TINH" Type="nvarchar" MaxLength="50" />
           <Property Name="DonViXetNghiem" Type="nvarchar" MaxLength="153" />
           <Property Name="ID_PhieuXetNghiem" Type="bigint" />
-          <Property Name="ID_Benhnhan" Type="bigint" />
+          <Property Name="ID_BenhNhan" Type="bigint" />
         </EntityType>
         <Association Name="FK_SO_BenhNhan_DM_Huyen">
           <End Role="DM_Huyen" Type="Self.DM_Huyen" Multiplicity="0..1">
@@ -437,6 +645,9 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <EntitySet Name="AD_Roles" EntityType="Self.AD_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_User_Kho" EntityType="Self.AD_User_Kho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AD_Users" EntityType="Self.AD_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BC_ThuNhanBNLao" EntityType="Self.BC_ThuNhanBNLao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BC_ThuNhanBNLao1" EntityType="Self.BC_ThuNhanBNLao1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BC_ThuNhanBNLao2" EntityType="Self.BC_ThuNhanBNLao2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_BenhVien" EntityType="Self.DM_BenhVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_Cap" EntityType="Self.DM_Cap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_DoiTuong" EntityType="Self.DM_DoiTuong" Schema="dbo" store:Type="Tables" />
@@ -453,6 +664,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="Self.DM_PhanLoaiBenhNhan_BC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_Tinh" EntityType="Self.DM_Tinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_Vung" EntityType="Self.DM_Vung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Xa" EntityType="Self.DM_Xa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_BenhNhan" EntityType="Self.SO_BenhNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_PhieuXetNghiem" EntityType="Self.SO_PhieuXetNghiem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="Self.SO_PhieuXetNghiem_KQ" Schema="dbo" store:Type="Tables" />
@@ -460,6 +672,115 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="Self.SO_XetNghiemKhamBenh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BC_KetQuaDT" EntityType="Self.BC_KetQuaDT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BC_KetQuaDT].[ID_BC_KetquaDT] AS [ID_BC_KetquaDT], 
+    [BC_KetQuaDT].[Quy] AS [Quy], 
+    [BC_KetQuaDT].[Nam] AS [Nam], 
+    [BC_KetQuaDT].[DVBaocao] AS [DVBaocao], 
+    [BC_KetQuaDT].[MA_TINH] AS [MA_TINH], 
+    [BC_KetQuaDT].[MA_HUYEN] AS [MA_HUYEN], 
+    [BC_KetQuaDT].[NguoiBC] AS [NguoiBC], 
+    [BC_KetQuaDT].[NgayBC] AS [NgayBC], 
+    [BC_KetQuaDT].[NGAY_NM] AS [NGAY_NM], 
+    [BC_KetQuaDT].[NGUOI_NM] AS [NGUOI_NM], 
+    [BC_KetQuaDT].[HuyenXN] AS [HuyenXN], 
+    [BC_KetQuaDT].[TinhXN] AS [TinhXN], 
+    [BC_KetQuaDT].[PTNhap] AS [PTNhap], 
+    [BC_KetQuaDT].[Huy] AS [Huy], 
+    [BC_KetQuaDT].[Ngayhuy] AS [Ngayhuy]
+    FROM [dbo].[BC_KetQuaDT] AS [BC_KetQuaDT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BC_KetQuaDTLaoIN" EntityType="Self.BC_KetQuaDTLaoIN" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BC_KetQuaDTLaoIN].[ID_PHANLOAI] AS [ID_PHANLOAI], 
+    [BC_KetQuaDTLaoIN].[TEN_VUNG] AS [TEN_VUNG], 
+    [BC_KetQuaDTLaoIN].[TEN_MIEN] AS [TEN_MIEN], 
+    [BC_KetQuaDTLaoIN].[TEN_TINH] AS [TEN_TINH], 
+    [BC_KetQuaDTLaoIN].[TEN_PHANLOAI] AS [TEN_PHANLOAI], 
+    [BC_KetQuaDTLaoIN].[KHOI] AS [KHOI], 
+    [BC_KetQuaDTLaoIN].[HOANTHANH] AS [HOANTHANH], 
+    [BC_KetQuaDTLaoIN].[CHET] AS [CHET], 
+    [BC_KetQuaDTLaoIN].[THATBAI] AS [THATBAI], 
+    [BC_KetQuaDTLaoIN].[BOTRI] AS [BOTRI], 
+    [BC_KetQuaDTLaoIN].[CHUYEN] AS [CHUYEN], 
+    [BC_KetQuaDTLaoIN].[KHONGDANHGIA] AS [KHONGDANHGIA], 
+    [BC_KetQuaDTLaoIN].[TONGSOBNDK] AS [TONGSOBNDK]
+    FROM [dbo].[BC_KetQuaDTLaoIN] AS [BC_KetQuaDTLaoIN]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BC_KetQuaXN" EntityType="Self.BC_KetQuaXN" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BC_KetQuaXN].[ID_BC_KetquaXN] AS [ID_BC_KetquaXN], 
+    [BC_KetQuaXN].[Quy] AS [Quy], 
+    [BC_KetQuaXN].[Nam] AS [Nam], 
+    [BC_KetQuaXN].[DVBaocao] AS [DVBaocao], 
+    [BC_KetQuaXN].[NguoiBC] AS [NguoiBC], 
+    [BC_KetQuaXN].[NgayBC] AS [NgayBC], 
+    [BC_KetQuaXN].[LaoDTMoi] AS [LaoDTMoi], 
+    [BC_KetQuaXN].[LaoTaitri] AS [LaoTaitri], 
+    [BC_KetQuaXN].[DuongHaiT] AS [DuongHaiT], 
+    [BC_KetQuaXN].[AmHaiT] AS [AmHaiT], 
+    [BC_KetQuaXN].[KhongHaiT] AS [KhongHaiT], 
+    [BC_KetQuaXN].[DuongBaT] AS [DuongBaT], 
+    [BC_KetQuaXN].[AmBaT] AS [AmBaT], 
+    [BC_KetQuaXN].[KhongBaT] AS [KhongBaT], 
+    [BC_KetQuaXN].[HuyenXN] AS [HuyenXN], 
+    [BC_KetQuaXN].[TinhXN] AS [TinhXN], 
+    [BC_KetQuaXN].[PTNhap] AS [PTNhap], 
+    [BC_KetQuaXN].[MA_TINH] AS [MA_TINH], 
+    [BC_KetQuaXN].[MA_HUYEN] AS [MA_HUYEN], 
+    [BC_KetQuaXN].[NGAY_NM] AS [NGAY_NM], 
+    [BC_KetQuaXN].[NGUOI_NM] AS [NGUOI_NM], 
+    [BC_KetQuaXN].[Huy] AS [Huy], 
+    [BC_KetQuaXN].[Ngayhuy] AS [Ngayhuy]
+    FROM [dbo].[BC_KetQuaXN] AS [BC_KetQuaXN]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BC_ThuNhan" EntityType="Self.BC_ThuNhan" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BC_ThuNhan].[id_PL] AS [id_PL], 
+    [BC_ThuNhan].[TenPL] AS [TenPL], 
+    [BC_ThuNhan].[id_benhvien] AS [id_benhvien], 
+    [BC_ThuNhan].[NAM0] AS [NAM0], 
+    [BC_ThuNhan].[NU0] AS [NU0], 
+    [BC_ThuNhan].[NAM5] AS [NAM5], 
+    [BC_ThuNhan].[NU5] AS [NU5], 
+    [BC_ThuNhan].[NAM15] AS [NAM15], 
+    [BC_ThuNhan].[NU15] AS [NU15], 
+    [BC_ThuNhan].[NAM25] AS [NAM25], 
+    [BC_ThuNhan].[NU25] AS [NU25], 
+    [BC_ThuNhan].[NAM35] AS [NAM35], 
+    [BC_ThuNhan].[NU35] AS [NU35], 
+    [BC_ThuNhan].[NAM45] AS [NAM45], 
+    [BC_ThuNhan].[NU45] AS [NU45], 
+    [BC_ThuNhan].[NAM55] AS [NAM55], 
+    [BC_ThuNhan].[NU55] AS [NU55], 
+    [BC_ThuNhan].[NAM65] AS [NAM65], 
+    [BC_ThuNhan].[NU65] AS [NU65]
+    FROM [dbo].[BC_ThuNhan] AS [BC_ThuNhan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BC_ThuNhan_LaoHIV" EntityType="Self.BC_ThuNhan_LaoHIV" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BC_ThuNhan_LaoHIV].[id_PL] AS [id_PL], 
+    [BC_ThuNhan_LaoHIV].[TenPL] AS [TenPL], 
+    [BC_ThuNhan_LaoHIV].[id_benhvien] AS [id_benhvien], 
+    [BC_ThuNhan_LaoHIV].[NAM0] AS [NAM0], 
+    [BC_ThuNhan_LaoHIV].[NU0] AS [NU0], 
+    [BC_ThuNhan_LaoHIV].[NAM5] AS [NAM5], 
+    [BC_ThuNhan_LaoHIV].[NU5] AS [NU5], 
+    [BC_ThuNhan_LaoHIV].[NAM15] AS [NAM15], 
+    [BC_ThuNhan_LaoHIV].[NU15] AS [NU15], 
+    [BC_ThuNhan_LaoHIV].[NAM25] AS [NAM25], 
+    [BC_ThuNhan_LaoHIV].[NU25] AS [NU25], 
+    [BC_ThuNhan_LaoHIV].[NAM35] AS [NAM35], 
+    [BC_ThuNhan_LaoHIV].[NU35] AS [NU35], 
+    [BC_ThuNhan_LaoHIV].[NAM45] AS [NAM45], 
+    [BC_ThuNhan_LaoHIV].[NU45] AS [NU45], 
+    [BC_ThuNhan_LaoHIV].[NAM55] AS [NAM55], 
+    [BC_ThuNhan_LaoHIV].[NU55] AS [NU55], 
+    [BC_ThuNhan_LaoHIV].[NAM65] AS [NAM65], 
+    [BC_ThuNhan_LaoHIV].[NU65] AS [NU65]
+    FROM [dbo].[BC_ThuNhan_LaoHIV] AS [BC_ThuNhan_LaoHIV]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DM_PhanLoaiYTe" EntityType="Self.DM_PhanLoaiYTe" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DM_PhanLoaiYTe].[ID_PhanloaiYte] AS [ID_PhanloaiYte], 
@@ -496,7 +817,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
     [InPhieuXetNghiem].[MaBNQL] AS [MaBNQL], 
     [InPhieuXetNghiem].[SoCMND] AS [SoCMND], 
     [InPhieuXetNghiem].[Tuoi] AS [Tuoi], 
-    [InPhieuXetNghiem].[Gioitinh] AS [Gioitinh], 
+    [InPhieuXetNghiem].[GioiTinh] AS [GioiTinh], 
     [InPhieuXetNghiem].[Diachi] AS [Diachi], 
     [InPhieuXetNghiem].[NgheNghiep] AS [NgheNghiep], 
     [InPhieuXetNghiem].[NoiGioiThieu] AS [NoiGioiThieu], 
@@ -505,7 +826,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
     [InPhieuXetNghiem].[TEN_TINH] AS [TEN_TINH], 
     [InPhieuXetNghiem].[DonViXetNghiem] AS [DonViXetNghiem], 
     [InPhieuXetNghiem].[ID_PhieuXetNghiem] AS [ID_PhieuXetNghiem], 
-    [InPhieuXetNghiem].[ID_Benhnhan] AS [ID_Benhnhan]
+    [InPhieuXetNghiem].[ID_BenhNhan] AS [ID_BenhNhan]
     FROM [dbo].[InPhieuXetNghiem] AS [InPhieuXetNghiem]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="Self.FK_SO_BenhNhan_DM_Huyen">
@@ -523,6 +844,9 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <EntitySet Name="AD_Roles" EntityType="NTP_DBModel.AD_Roles" />
           <EntitySet Name="AD_User_Kho" EntityType="NTP_DBModel.AD_User_Kho" />
           <EntitySet Name="AD_Users" EntityType="NTP_DBModel.AD_Users" />
+          <EntitySet Name="BC_ThuNhanBNLao" EntityType="NTP_DBModel.BC_ThuNhanBNLao" />
+          <EntitySet Name="BC_ThuNhanBNLao1" EntityType="NTP_DBModel.BC_ThuNhanBNLao1" />
+          <EntitySet Name="BC_ThuNhanBNLao2" EntityType="NTP_DBModel.BC_ThuNhanBNLao2" />
           <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
           <EntitySet Name="DM_Cap" EntityType="NTP_DBModel.DM_Cap" />
           <EntitySet Name="DM_DoiTuong" EntityType="NTP_DBModel.DM_DoiTuong" />
@@ -539,6 +863,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <EntitySet Name="DM_PhanLoaiBenhNhan_BC" EntityType="NTP_DBModel.DM_PhanLoaiBenhNhan_BC" />
           <EntitySet Name="DM_Tinh" EntityType="NTP_DBModel.DM_Tinh" />
           <EntitySet Name="DM_Vung" EntityType="NTP_DBModel.DM_Vung" />
+          <EntitySet Name="DM_Xa" EntityType="NTP_DBModel.DM_Xa" />
           <EntitySet Name="SO_BenhNhan" EntityType="NTP_DBModel.SO_BenhNhan" />
           <EntitySet Name="SO_PhieuXetNghiem" EntityType="NTP_DBModel.SO_PhieuXetNghiem" />
           <EntitySet Name="SO_PhieuXetNghiem_KQ" EntityType="NTP_DBModel.SO_PhieuXetNghiem_KQ" />
@@ -546,6 +871,11 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <EntitySet Name="SO_SoKhamBenh" EntityType="NTP_DBModel.SO_SoKhamBenh" />
           <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" />
           <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
+          <EntitySet Name="BC_KetQuaDT" EntityType="NTP_DBModel.BC_KetQuaDT" />
+          <EntitySet Name="BC_KetQuaDTLaoIN" EntityType="NTP_DBModel.BC_KetQuaDTLaoIN" />
+          <EntitySet Name="BC_KetQuaXN" EntityType="NTP_DBModel.BC_KetQuaXN" />
+          <EntitySet Name="BC_ThuNhan" EntityType="NTP_DBModel.BC_ThuNhan" />
+          <EntitySet Name="BC_ThuNhan_LaoHIV" EntityType="NTP_DBModel.BC_ThuNhan_LaoHIV" />
           <EntitySet Name="DM_PhanLoaiYTe" EntityType="NTP_DBModel.DM_PhanLoaiYTe" />
           <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
           <EntitySet Name="InPhieuXetNghiems" EntityType="NTP_DBModel.InPhieuXetNghiem" />
@@ -605,6 +935,74 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="RoleID" Type="Int32" />
           <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhanBNLao">
+          <Key>
+            <PropertyRef Name="ID_BCThunhanBNLao" />
+          </Key>
+          <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quy" Type="Byte" Nullable="false" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBC" Type="DateTime" Precision="3" />
+          <Property Name="HuyenXN" Type="Boolean" />
+          <Property Name="TinhXN" Type="Boolean" />
+          <Property Name="PTNhap" Type="Boolean" />
+          <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+          <Property Name="NGUOI_NM" Type="Int32" />
+          <Property Name="Huy" Type="Boolean" />
+          <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhanBNLao1">
+          <Key>
+            <PropertyRef Name="ID_BCThunhanBNLao" />
+            <PropertyRef Name="Phanloai" />
+          </Key>
+          <Property Name="ID_BCThunhanBNLaoP1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" />
+          <Property Name="Phanloai" Type="Int32" Nullable="false" />
+          <Property Name="Moi" Type="Int32" />
+          <Property Name="Taiphat" Type="Int32" />
+          <Property Name="Thatbai" Type="Int32" />
+          <Property Name="Taitri" Type="Int32" />
+          <Property Name="AFBKhac" Type="Int32" />
+          <Property Name="AmNho" Type="Int32" />
+          <Property Name="AmTrung" Type="Int32" />
+          <Property Name="AmLon" Type="Int32" />
+          <Property Name="NgoaiPhoiNho" Type="Int32" />
+          <Property Name="NgoaiPhoiTrung" Type="Int32" />
+          <Property Name="NgoaiPhoiLon" Type="Int32" />
+          <Property Name="NgoaiphoiKhac" Type="Int32" />
+          <Property Name="Huy" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhanBNLao2">
+          <Key>
+            <PropertyRef Name="ID_BCThunhanBNLao" />
+            <PropertyRef Name="Phanloai" />
+          </Key>
+          <Property Name="ID_BCThunhanBNLaoP2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" />
+          <Property Name="Phanloai" Type="Int32" Nullable="false" />
+          <Property Name="Nam0" Type="Int32" />
+          <Property Name="Nu0" Type="Int32" />
+          <Property Name="Nam5" Type="Int32" />
+          <Property Name="Nu5" Type="Int32" />
+          <Property Name="Nam15" Type="Int32" />
+          <Property Name="Nu15" Type="Int32" />
+          <Property Name="Nam25" Type="Int32" />
+          <Property Name="Nu25" Type="Int32" />
+          <Property Name="Nam35" Type="Int32" />
+          <Property Name="Nu35" Type="Int32" />
+          <Property Name="Nam45" Type="Int32" />
+          <Property Name="Nu45" Type="Int32" />
+          <Property Name="Nam55" Type="Int32" />
+          <Property Name="Nu55" Type="Int32" />
+          <Property Name="Nam65" Type="Int32" />
+          <Property Name="Nu65" Type="Int32" />
+          <Property Name="HUY" Type="Boolean" />
         </EntityType>
         <EntityType Name="DM_BenhVien">
           <Key>
@@ -740,6 +1138,14 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="TEN_VUNG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_MIEN" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="DM_Xa">
+          <Key>
+            <PropertyRef Name="MA_XA" />
+          </Key>
+          <Property Name="MA_XA" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEN_XA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="SO_BenhNhan">
           <Key>
             <PropertyRef Name="ID_BenhNhan" />
@@ -753,6 +1159,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="Gioitinh" Type="Boolean" />
           <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MA_XA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Sodienthoai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
@@ -906,6 +1313,127 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="BC_KetQuaDT">
+          <Key>
+            <PropertyRef Name="ID_BC_KetquaDT" />
+            <PropertyRef Name="Quy" />
+            <PropertyRef Name="Nam" />
+            <PropertyRef Name="DVBaocao" />
+          </Key>
+          <Property Name="ID_BC_KetquaDT" Type="Int32" Nullable="false" />
+          <Property Name="Quy" Type="Byte" Nullable="false" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBC" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+          <Property Name="NGUOI_NM" Type="Int32" />
+          <Property Name="HuyenXN" Type="Boolean" />
+          <Property Name="TinhXN" Type="Boolean" />
+          <Property Name="PTNhap" Type="Boolean" />
+          <Property Name="Huy" Type="Boolean" />
+          <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BC_KetQuaDTLaoIN">
+          <Key>
+            <PropertyRef Name="ID_PHANLOAI" />
+            <PropertyRef Name="TEN_TINH" />
+          </Key>
+          <Property Name="ID_PHANLOAI" Type="Byte" Nullable="false" />
+          <Property Name="TEN_VUNG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_MIEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_TINH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_PHANLOAI" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="KHOI" Type="Int32" />
+          <Property Name="HOANTHANH" Type="Int32" />
+          <Property Name="CHET" Type="Int32" />
+          <Property Name="THATBAI" Type="Int32" />
+          <Property Name="BOTRI" Type="Int32" />
+          <Property Name="CHUYEN" Type="Int32" />
+          <Property Name="KHONGDANHGIA" Type="Int32" />
+          <Property Name="TONGSOBNDK" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BC_KetQuaXN">
+          <Key>
+            <PropertyRef Name="ID_BC_KetquaXN" />
+            <PropertyRef Name="Quy" />
+            <PropertyRef Name="Nam" />
+            <PropertyRef Name="DVBaocao" />
+          </Key>
+          <Property Name="ID_BC_KetquaXN" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quy" Type="Byte" Nullable="false" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBC" Type="DateTime" Precision="3" />
+          <Property Name="LaoDTMoi" Type="Int32" />
+          <Property Name="LaoTaitri" Type="Int32" />
+          <Property Name="DuongHaiT" Type="Int32" />
+          <Property Name="AmHaiT" Type="Int32" />
+          <Property Name="KhongHaiT" Type="Int32" />
+          <Property Name="DuongBaT" Type="Int32" />
+          <Property Name="AmBaT" Type="Int32" />
+          <Property Name="KhongBaT" Type="Int32" />
+          <Property Name="HuyenXN" Type="Boolean" />
+          <Property Name="TinhXN" Type="Boolean" />
+          <Property Name="PTNhap" Type="Boolean" />
+          <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+          <Property Name="NGUOI_NM" Type="Int32" />
+          <Property Name="Huy" Type="Boolean" />
+          <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhan">
+          <Key>
+            <PropertyRef Name="id_benhvien" />
+          </Key>
+          <Property Name="id_PL" Type="Int32" />
+          <Property Name="TenPL" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="id_benhvien" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NAM0" Type="Int32" />
+          <Property Name="NU0" Type="Int32" />
+          <Property Name="NAM5" Type="Int32" />
+          <Property Name="NU5" Type="Int32" />
+          <Property Name="NAM15" Type="Int32" />
+          <Property Name="NU15" Type="Int32" />
+          <Property Name="NAM25" Type="Int32" />
+          <Property Name="NU25" Type="Int32" />
+          <Property Name="NAM35" Type="Int32" />
+          <Property Name="NU35" Type="Int32" />
+          <Property Name="NAM45" Type="Int32" />
+          <Property Name="NU45" Type="Int32" />
+          <Property Name="NAM55" Type="Int32" />
+          <Property Name="NU55" Type="Int32" />
+          <Property Name="NAM65" Type="Int32" />
+          <Property Name="NU65" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BC_ThuNhan_LaoHIV">
+          <Key>
+            <PropertyRef Name="id_benhvien" />
+          </Key>
+          <Property Name="id_PL" Type="Int32" />
+          <Property Name="TenPL" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="id_benhvien" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NAM0" Type="Int32" />
+          <Property Name="NU0" Type="Int32" />
+          <Property Name="NAM5" Type="Int32" />
+          <Property Name="NU5" Type="Int32" />
+          <Property Name="NAM15" Type="Int32" />
+          <Property Name="NU15" Type="Int32" />
+          <Property Name="NAM25" Type="Int32" />
+          <Property Name="NU25" Type="Int32" />
+          <Property Name="NAM35" Type="Int32" />
+          <Property Name="NU35" Type="Int32" />
+          <Property Name="NAM45" Type="Int32" />
+          <Property Name="NU45" Type="Int32" />
+          <Property Name="NAM55" Type="Int32" />
+          <Property Name="NU55" Type="Int32" />
+          <Property Name="NAM65" Type="Int32" />
+          <Property Name="NU65" Type="Int32" />
+        </EntityType>
         <EntityType Name="DM_PhanLoaiYTe">
           <Key>
             <PropertyRef Name="ID_PhanloaiYte" />
@@ -951,7 +1479,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="MaBNQL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="SoCMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Tuoi" Type="Int32" />
-          <Property Name="Gioitinh" Type="Boolean" />
+          <Property Name="GioiTinh" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -960,7 +1488,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <Property Name="TEN_TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DonViXetNghiem" Type="String" MaxLength="153" FixedLength="false" Unicode="true" />
           <Property Name="ID_PhieuXetNghiem" Type="Int64" />
-          <Property Name="ID_Benhnhan" Type="Int64" />
+          <Property Name="ID_BenhNhan" Type="Int64" />
         </EntityType>
         <Association Name="FK_SO_BenhNhan_DM_Huyen">
           <End Type="NTP_DBModel.DM_Huyen" Role="DM_Huyen" Multiplicity="0..1">
@@ -1031,6 +1559,75 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BC_ThuNhanBNLao">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_ThuNhanBNLao">
+              <MappingFragment StoreEntitySet="BC_ThuNhanBNLao">
+                <ScalarProperty Name="Ngayhuy" ColumnName="Ngayhuy" />
+                <ScalarProperty Name="Huy" ColumnName="Huy" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
+                <ScalarProperty Name="PTNhap" ColumnName="PTNhap" />
+                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+                <ScalarProperty Name="NgayBC" ColumnName="NgayBC" />
+                <ScalarProperty Name="NguoiBC" ColumnName="NguoiBC" />
+                <ScalarProperty Name="DVBaocao" ColumnName="DVBaocao" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="ID_BCThunhanBNLao" ColumnName="ID_BCThunhanBNLao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BC_ThuNhanBNLao1">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_ThuNhanBNLao1">
+              <MappingFragment StoreEntitySet="BC_ThuNhanBNLao1">
+                <ScalarProperty Name="Huy" ColumnName="Huy" />
+                <ScalarProperty Name="NgoaiphoiKhac" ColumnName="NgoaiphoiKhac" />
+                <ScalarProperty Name="NgoaiPhoiLon" ColumnName="NgoaiPhoiLon" />
+                <ScalarProperty Name="NgoaiPhoiTrung" ColumnName="NgoaiPhoiTrung" />
+                <ScalarProperty Name="NgoaiPhoiNho" ColumnName="NgoaiPhoiNho" />
+                <ScalarProperty Name="AmLon" ColumnName="AmLon" />
+                <ScalarProperty Name="AmTrung" ColumnName="AmTrung" />
+                <ScalarProperty Name="AmNho" ColumnName="AmNho" />
+                <ScalarProperty Name="AFBKhac" ColumnName="AFBKhac" />
+                <ScalarProperty Name="Taitri" ColumnName="Taitri" />
+                <ScalarProperty Name="Thatbai" ColumnName="Thatbai" />
+                <ScalarProperty Name="Taiphat" ColumnName="Taiphat" />
+                <ScalarProperty Name="Moi" ColumnName="Moi" />
+                <ScalarProperty Name="Phanloai" ColumnName="Phanloai" />
+                <ScalarProperty Name="ID_BCThunhanBNLao" ColumnName="ID_BCThunhanBNLao" />
+                <ScalarProperty Name="ID_BCThunhanBNLaoP1" ColumnName="ID_BCThunhanBNLaoP1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BC_ThuNhanBNLao2">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_ThuNhanBNLao2">
+              <MappingFragment StoreEntitySet="BC_ThuNhanBNLao2">
+                <ScalarProperty Name="HUY" ColumnName="HUY" />
+                <ScalarProperty Name="Nu65" ColumnName="Nu65" />
+                <ScalarProperty Name="Nam65" ColumnName="Nam65" />
+                <ScalarProperty Name="Nu55" ColumnName="Nu55" />
+                <ScalarProperty Name="Nam55" ColumnName="Nam55" />
+                <ScalarProperty Name="Nu45" ColumnName="Nu45" />
+                <ScalarProperty Name="Nam45" ColumnName="Nam45" />
+                <ScalarProperty Name="Nu35" ColumnName="Nu35" />
+                <ScalarProperty Name="Nam35" ColumnName="Nam35" />
+                <ScalarProperty Name="Nu25" ColumnName="Nu25" />
+                <ScalarProperty Name="Nam25" ColumnName="Nam25" />
+                <ScalarProperty Name="Nu15" ColumnName="Nu15" />
+                <ScalarProperty Name="Nam15" ColumnName="Nam15" />
+                <ScalarProperty Name="Nu5" ColumnName="Nu5" />
+                <ScalarProperty Name="Nam5" ColumnName="Nam5" />
+                <ScalarProperty Name="Nu0" ColumnName="Nu0" />
+                <ScalarProperty Name="Nam0" ColumnName="Nam0" />
+                <ScalarProperty Name="Phanloai" ColumnName="Phanloai" />
+                <ScalarProperty Name="ID_BCThunhanBNLao" ColumnName="ID_BCThunhanBNLao" />
+                <ScalarProperty Name="ID_BCThunhanBNLaoP2" ColumnName="ID_BCThunhanBNLaoP2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1183,6 +1780,15 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DM_Xa">
+            <EntityTypeMapping TypeName="NTP_DBModel.DM_Xa">
+              <MappingFragment StoreEntitySet="DM_Xa">
+                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+                <ScalarProperty Name="TEN_XA" ColumnName="TEN_XA" />
+                <ScalarProperty Name="MA_XA" ColumnName="MA_XA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SO_BenhNhan">
             <EntityTypeMapping TypeName="NTP_DBModel.SO_BenhNhan">
               <MappingFragment StoreEntitySet="SO_BenhNhan">
@@ -1202,6 +1808,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
                 <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
                 <ScalarProperty Name="Sodienthoai" ColumnName="Sodienthoai" />
                 <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="MA_XA" ColumnName="MA_XA" />
                 <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
                 <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
                 <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
@@ -1353,6 +1960,125 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BC_KetQuaDT">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_KetQuaDT">
+              <MappingFragment StoreEntitySet="BC_KetQuaDT">
+                <ScalarProperty Name="Ngayhuy" ColumnName="Ngayhuy" />
+                <ScalarProperty Name="Huy" ColumnName="Huy" />
+                <ScalarProperty Name="PTNhap" ColumnName="PTNhap" />
+                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="NgayBC" ColumnName="NgayBC" />
+                <ScalarProperty Name="NguoiBC" ColumnName="NguoiBC" />
+                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
+                <ScalarProperty Name="DVBaocao" ColumnName="DVBaocao" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="ID_BC_KetquaDT" ColumnName="ID_BC_KetquaDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BC_KetQuaDTLaoIN">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_KetQuaDTLaoIN">
+              <MappingFragment StoreEntitySet="BC_KetQuaDTLaoIN">
+                <ScalarProperty Name="TONGSOBNDK" ColumnName="TONGSOBNDK" />
+                <ScalarProperty Name="KHONGDANHGIA" ColumnName="KHONGDANHGIA" />
+                <ScalarProperty Name="CHUYEN" ColumnName="CHUYEN" />
+                <ScalarProperty Name="BOTRI" ColumnName="BOTRI" />
+                <ScalarProperty Name="THATBAI" ColumnName="THATBAI" />
+                <ScalarProperty Name="CHET" ColumnName="CHET" />
+                <ScalarProperty Name="HOANTHANH" ColumnName="HOANTHANH" />
+                <ScalarProperty Name="KHOI" ColumnName="KHOI" />
+                <ScalarProperty Name="TEN_PHANLOAI" ColumnName="TEN_PHANLOAI" />
+                <ScalarProperty Name="TEN_TINH" ColumnName="TEN_TINH" />
+                <ScalarProperty Name="TEN_MIEN" ColumnName="TEN_MIEN" />
+                <ScalarProperty Name="TEN_VUNG" ColumnName="TEN_VUNG" />
+                <ScalarProperty Name="ID_PHANLOAI" ColumnName="ID_PHANLOAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BC_KetQuaXN">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_KetQuaXN">
+              <MappingFragment StoreEntitySet="BC_KetQuaXN">
+                <ScalarProperty Name="Ngayhuy" ColumnName="Ngayhuy" />
+                <ScalarProperty Name="Huy" ColumnName="Huy" />
+                <ScalarProperty Name="NGUOI_NM" ColumnName="NGUOI_NM" />
+                <ScalarProperty Name="NGAY_NM" ColumnName="NGAY_NM" />
+                <ScalarProperty Name="MA_HUYEN" ColumnName="MA_HUYEN" />
+                <ScalarProperty Name="MA_TINH" ColumnName="MA_TINH" />
+                <ScalarProperty Name="PTNhap" ColumnName="PTNhap" />
+                <ScalarProperty Name="TinhXN" ColumnName="TinhXN" />
+                <ScalarProperty Name="HuyenXN" ColumnName="HuyenXN" />
+                <ScalarProperty Name="KhongBaT" ColumnName="KhongBaT" />
+                <ScalarProperty Name="AmBaT" ColumnName="AmBaT" />
+                <ScalarProperty Name="DuongBaT" ColumnName="DuongBaT" />
+                <ScalarProperty Name="KhongHaiT" ColumnName="KhongHaiT" />
+                <ScalarProperty Name="AmHaiT" ColumnName="AmHaiT" />
+                <ScalarProperty Name="DuongHaiT" ColumnName="DuongHaiT" />
+                <ScalarProperty Name="LaoTaitri" ColumnName="LaoTaitri" />
+                <ScalarProperty Name="LaoDTMoi" ColumnName="LaoDTMoi" />
+                <ScalarProperty Name="NgayBC" ColumnName="NgayBC" />
+                <ScalarProperty Name="NguoiBC" ColumnName="NguoiBC" />
+                <ScalarProperty Name="DVBaocao" ColumnName="DVBaocao" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Quy" ColumnName="Quy" />
+                <ScalarProperty Name="ID_BC_KetquaXN" ColumnName="ID_BC_KetquaXN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BC_ThuNhan">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_ThuNhan">
+              <MappingFragment StoreEntitySet="BC_ThuNhan">
+                <ScalarProperty Name="NU65" ColumnName="NU65" />
+                <ScalarProperty Name="NAM65" ColumnName="NAM65" />
+                <ScalarProperty Name="NU55" ColumnName="NU55" />
+                <ScalarProperty Name="NAM55" ColumnName="NAM55" />
+                <ScalarProperty Name="NU45" ColumnName="NU45" />
+                <ScalarProperty Name="NAM45" ColumnName="NAM45" />
+                <ScalarProperty Name="NU35" ColumnName="NU35" />
+                <ScalarProperty Name="NAM35" ColumnName="NAM35" />
+                <ScalarProperty Name="NU25" ColumnName="NU25" />
+                <ScalarProperty Name="NAM25" ColumnName="NAM25" />
+                <ScalarProperty Name="NU15" ColumnName="NU15" />
+                <ScalarProperty Name="NAM15" ColumnName="NAM15" />
+                <ScalarProperty Name="NU5" ColumnName="NU5" />
+                <ScalarProperty Name="NAM5" ColumnName="NAM5" />
+                <ScalarProperty Name="NU0" ColumnName="NU0" />
+                <ScalarProperty Name="NAM0" ColumnName="NAM0" />
+                <ScalarProperty Name="id_benhvien" ColumnName="id_benhvien" />
+                <ScalarProperty Name="TenPL" ColumnName="TenPL" />
+                <ScalarProperty Name="id_PL" ColumnName="id_PL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BC_ThuNhan_LaoHIV">
+            <EntityTypeMapping TypeName="NTP_DBModel.BC_ThuNhan_LaoHIV">
+              <MappingFragment StoreEntitySet="BC_ThuNhan_LaoHIV">
+                <ScalarProperty Name="NU65" ColumnName="NU65" />
+                <ScalarProperty Name="NAM65" ColumnName="NAM65" />
+                <ScalarProperty Name="NU55" ColumnName="NU55" />
+                <ScalarProperty Name="NAM55" ColumnName="NAM55" />
+                <ScalarProperty Name="NU45" ColumnName="NU45" />
+                <ScalarProperty Name="NAM45" ColumnName="NAM45" />
+                <ScalarProperty Name="NU35" ColumnName="NU35" />
+                <ScalarProperty Name="NAM35" ColumnName="NAM35" />
+                <ScalarProperty Name="NU25" ColumnName="NU25" />
+                <ScalarProperty Name="NAM25" ColumnName="NAM25" />
+                <ScalarProperty Name="NU15" ColumnName="NU15" />
+                <ScalarProperty Name="NAM15" ColumnName="NAM15" />
+                <ScalarProperty Name="NU5" ColumnName="NU5" />
+                <ScalarProperty Name="NAM5" ColumnName="NAM5" />
+                <ScalarProperty Name="NU0" ColumnName="NU0" />
+                <ScalarProperty Name="NAM0" ColumnName="NAM0" />
+                <ScalarProperty Name="id_benhvien" ColumnName="id_benhvien" />
+                <ScalarProperty Name="TenPL" ColumnName="TenPL" />
+                <ScalarProperty Name="id_PL" ColumnName="id_PL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DM_PhanLoaiYTe">
             <EntityTypeMapping TypeName="NTP_DBModel.DM_PhanLoaiYTe">
               <MappingFragment StoreEntitySet="DM_PhanLoaiYTe">
@@ -1382,7 +2108,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
           <EntitySetMapping Name="InPhieuXetNghiems">
             <EntityTypeMapping TypeName="NTP_DBModel.InPhieuXetNghiem">
               <MappingFragment StoreEntitySet="InPhieuXetNghiem">
-                <ScalarProperty Name="ID_Benhnhan" ColumnName="ID_Benhnhan" />
+                <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
                 <ScalarProperty Name="ID_PhieuXetNghiem" ColumnName="ID_PhieuXetNghiem" />
                 <ScalarProperty Name="DonViXetNghiem" ColumnName="DonViXetNghiem" />
                 <ScalarProperty Name="TEN_TINH" ColumnName="TEN_TINH" />
@@ -1391,7 +2117,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a prima
                 <ScalarProperty Name="NoiGioiThieu" ColumnName="NoiGioiThieu" />
                 <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
                 <ScalarProperty Name="Diachi" ColumnName="Diachi" />
-                <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
                 <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
                 <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
                 <ScalarProperty Name="MaBNQL" ColumnName="MaBNQL" />

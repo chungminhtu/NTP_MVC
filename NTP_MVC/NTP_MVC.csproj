@@ -354,7 +354,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.0.0.debug.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <EntityDeploy Include="Models\NTP_DBDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NTP_DBDataModel.Designer.cs</LastGenOutput>
@@ -373,17 +375,6 @@
       <LastGenOutput>NTP_DBDataModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\NTP_MVC2015.pubxml" />
-    <Content Include="Reports\NTPDataSet.xsc">
-      <DependentUpon>NTPDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="Reports\NTPDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NTPDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Reports\NTPDataSet.xss">
-      <DependentUpon>NTPDataSet.xsd</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\BenhNhan\_SearchBenhNhanPartial.cshtml">
@@ -427,7 +418,9 @@
     <Content Include="Views\DMHuyen\Index.cshtml" />
     <Content Include="Views\DMNguonKinhPhi\Index.cshtml" />
     <Content Include="Views\DMLoaiBenhVien\Index.cshtml" />
-    <Content Include="Views\SoKhamBenh\Index.cshtml" />
+    <Content Include="Views\BenhNhan\_GridSoKhamBenh.cshtml" />
+    <Content Include="Views\BenhNhan\_FormSoKhamBenh.cshtml" />
+    <Content Include="Views\BenhNhan\Edit.cshtml" />
     <Content Include="Views\BenhVien\_BenhVienGridViewPartial.cshtml" />
     <Content Include="Views\DMCap\_DMCapGridView1Partial.cshtml" />
     <Content Include="Views\DMDoiTuong\_DMDoiTuongGridViewPartial.cshtml" />
@@ -435,7 +428,6 @@
     <Content Include="Views\DMHuyen\_DMHuyenGridViewPartial.cshtml" />
     <Content Include="Views\DMNguonKinhPhi\_DMNguonKinhPhiGridViewPartial.cshtml" />
     <Content Include="Views\DMLoaiBenhVien\_DMLoaiBenhVienGridViewPartial.cshtml" />
-    <Content Include="Views\SoKhamBenh\_GridSoKhamBenh.cshtml" />
     <Content Include="Views\DMTinh\Index.cshtml" />
     <Content Include="Views\DMTinh\_DMTinhGridViewPartial.cshtml" />
     <Content Include="Views\NX\Index.cshtml" />
@@ -450,21 +442,68 @@
     <Content Include="Views\PhanQuyen\_MenuTreeListPartial.cshtml" />
     <Content Include="Views\NguoiDung\Index.cshtml" />
     <Content Include="Views\NguoiDung\_NguoiDungGridViewPartial.cshtml" />
-    <Content Include="Views\SoKhamBenh\_FormSoKhamBenh.cshtml" />
     <Content Include="Views\BenhNhan\_FormBenhNhan.cshtml" />
     <Content Include="Views\BenhNhan\_ComboSearchBenhNhan.cshtml" />
     <Content Include="Views\Shared\_loginLayout.cshtml" />
     <Content Include="Views\Shared\_rootLayoutLogin.cshtml" />
     <Content Include="Views\Shared\HeaderPartialViewLogin.cshtml" />
     <Content Include="Views\BenhNhan\EditBenhNhan.cshtml" />
-    <Content Include="Views\PhieuXetNghiem\_GridPhieuXetNghiem.cshtml" />
-    <Content Include="Views\PhieuXetNghiem\_FormPhieuXetNghiem.cshtml" />
-    <Content Include="Views\PhieuXetNghiem\_GridKetQuaXetNghiem.cshtml" />
+    <Content Include="Views\BaoCao\Index.cshtml" />
+    <None Include="Views\PhieuXetNghiem\_GridPhieuXetNghiem.cshtml" />
+    <None Include="Views\PhieuXetNghiem\_FormPhieuXetNghiem.cshtml" />
+    <None Include="Views\PhieuXetNghiem\_GridKetQuaXetNghiem.cshtml" />
+    <Content Include="Views\BenhNhan\_GridBenhNhanChuyenDen.cshtml" />
+    <None Include="Views\PhieuXetNghiem\_PrintPXN.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\_ComboBoxHuyen.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\_ComboBoxTinh.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\Index.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\GridBCThuNhanBNLao.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\GridBCThuNhanBNLao2.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\GridBCThuNhanBNLao1.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\EditBCThuNhanBNLao.cshtml" />
+    <Content Include="Views\BCKetQuaDT\_ComboBoxHuyen.cshtml" />
+    <Content Include="Views\BCKetQuaDT\_ComboBoxTinh.cshtml" />
+    <Content Include="Views\BCKetQuaDT\EditBCKetQuaDT.cshtml" />
+    <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT.cshtml" />
+    <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT1.cshtml" />
+    <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT2.cshtml" />
+    <Content Include="Views\BCKetQuaDT\Index.cshtml" />
+    <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT3.cshtml" />
+    <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT4.cshtml" />
+    <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT5.cshtml" />
+    <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT6.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\BenhNhan\_ComboBoxXa.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\GridBCThuNhanBNLao3.cshtml" />
+    <Content Include="Views\SoKhamBenh\_ComboBoxHuyen.cshtml" />
+    <Content Include="Views\SoKhamBenh\_ComboBoxTinh.cshtml" />
+    <Content Include="Views\SoKhamBenh\_ComboBoxXa.cshtml" />
+    <Content Include="Views\SoKhamBenh\_ComboSearchBenhNhan.cshtml" />
+    <Content Include="Views\SoKhamBenh\Edit.cshtml" />
+    <Content Include="Views\SoKhamBenh\_FormBenhNhan.cshtml" />
+    <Content Include="Views\SoKhamBenh\_FormSoKhamBenh.cshtml" />
+    <Content Include="Views\SoKhamBenh\_GridBenhNhan.cshtml" />
+    <Content Include="Views\SoKhamBenh\_GridBenhNhanChuyenDen.cshtml" />
+    <Content Include="Views\SoKhamBenh\_GridSoKhamBenh.cshtml" />
+    <Content Include="Views\SoKhamBenh\_MaBNQLPartial.cshtml" />
+    <Content Include="Views\SoKhamBenh\_SearchBenhNhanPartial.cshtml" />
+    <Content Include="Views\SoKhamBenh\EditBenhNhan.cshtml" />
+    <Content Include="Views\SoKhamBenh\Index.cshtml" />
+    <Content Include="Views\SoDieuTri\_ComboBoxHuyen.cshtml" />
+    <Content Include="Views\SoDieuTri\_ComboBoxTinh.cshtml" />
+    <Content Include="Views\SoDieuTri\_ComboBoxXa.cshtml" />
+    <Content Include="Views\SoDieuTri\_ComboSearchBenhNhan.cshtml" />
+    <Content Include="Views\SoDieuTri\_FormBenhNhan.cshtml" />
+    <Content Include="Views\SoDieuTri\_GridBenhNhan.cshtml" />
+    <Content Include="Views\SoDieuTri\_GridBenhNhanChuyenDen.cshtml" />
+    <Content Include="Views\SoDieuTri\_GridSoKhamBenh.cshtml" />
+    <Content Include="Views\SoDieuTri\_MaBNQLPartial.cshtml" />
+    <Content Include="Views\SoDieuTri\Edit.cshtml" />
+    <Content Include="Views\SoDieuTri\Index.cshtml" />
     <Content Include="Views\SoDieuTri\_FormSoDieuTri.cshtml" />
     <Content Include="Views\SoDieuTri\_GridSoDieuTri.cshtml" />
-    <Content Include="Views\SoDieuTri\Index.cshtml" />
-    <Content Include="Views\BenhNhan\_GridBenhNhanChuyenDen.cshtml" />
-    <Content Include="Views\PhieuXetNghiem\_PrintPXN.cshtml" />
+    <Content Include="Views\SoKhamBenh\_DocumentViewerPartial.cshtml" />
+    <Content Include="Views\SoKhamBenh\viewDoc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -478,7 +517,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaoCaoController.cs" />
+    <Compile Include="Controllers\BCKetQuaDTController.cs" />
     <Compile Include="Controllers\BenhNhanController.cs" />
+    <Compile Include="Controllers\BCThuNhanBNLaoController.cs" />
     <Compile Include="Controllers\BenhVienController.cs" />
     <Compile Include="Controllers\DMCapController.cs" />
     <Compile Include="Controllers\DMDoiTuongController.cs" />
@@ -487,6 +529,7 @@
     <Compile Include="Controllers\DMLoaiBenhVienController.cs" />
     <Compile Include="Controllers\DMNguonKinhPhiController.cs" />
     <Compile Include="Controllers\DMTinhController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
@@ -513,6 +556,30 @@
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AD_User_Kho.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_KetQuaDT.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_KetQuaDTLaoIN.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_KetQuaXN.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_ThuNhan.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_ThuNhanBNLao.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_ThuNhanBNLao1.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_ThuNhanBNLao2.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BC_ThuNhan_LaoHIV.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DM_BenhVien.cs">
@@ -566,6 +633,9 @@
     <Compile Include="Models\DM_Vung.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DM_Xa.cs">
+      <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\InPhieuXetNghiem.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
@@ -587,6 +657,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NTP_DBDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SoDieuTriModel.cs" />
+    <Compile Include="Models\SoKhamBenhModel.cs" />
     <Compile Include="Models\SO_BenhNhan.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
@@ -618,31 +690,30 @@
     <Compile Include="Reports\InPhieuXetNghiem.Designer.cs">
       <DependentUpon>InPhieuXetNghiem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\NTPDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NTPDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\PhieuXetNghiem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\PhieuXetNghiem.Designer.cs">
-      <DependentUpon>PhieuXetNghiem.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\InPhieuXetNghiem.resx">
       <DependentUpon>InPhieuXetNghiem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\PhieuXetNghiem.resx">
-      <DependentUpon>PhieuXetNghiem.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

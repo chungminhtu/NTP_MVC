@@ -1,18 +1,12 @@
 ﻿@model NTP_MVC.Models.SO_SoKhamBenh
-
-@*@Html.DevExpress().GetStyleSheets(
-        new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "MetropolisBlue" },
-        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "MetropolisBlue" },
-        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "MetropolisBlue" }
-    )*@
-<div style="overflow-y:scroll; width:auto; height:550px;">
-
-    @Html.DevExpress().FormLayout(settings =>
+ 
+@Html.DevExpress().FormLayout(settings =>
     {
         settings.Name = "FormSoKhamBenh";
-        //settings.Theme = "MetropolisBlue"; ///Thay đổi giao diện
+        
         settings.ColCount = 4;
-        settings.Width = 900;
+        settings.Width = Unit.Percentage(100);
+
         /////////////////////////////////////////////////////////THÔNG TIN CƠ BẢN
         settings.Items.AddGroupItem(group =>
         {
@@ -63,7 +57,7 @@
             group.Items.Add(m =>
             {
                 m.FieldName = "NgayChupXQ";
-                 m.ColSpan = 2;
+                m.ColSpan = 2;
                 m.NestedExtensionSettings.Width = Unit.Pixel(100);
             }).SetNestedContent(() => Html.DevExpress().DateEditFor(i => i.NgayChupXQ, mySettings =>
             {
@@ -104,7 +98,7 @@
             group.Caption = "Thông tin Phiếu Xét Nghiệm của Bệnh nhân";
             group.ShowCaption = DefaultBoolean.True;
             group.GroupBoxDecoration = GroupBoxDecoration.Box;
-             group.Width = Unit.Percentage(100);
+            group.Width = Unit.Percentage(100);
             group.ColSpan = 4;
             group.ColCount = 4;
 
@@ -245,7 +239,7 @@
                                         myButton.Text = "Xóa";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                         myButton.Images.Image.Url = "~/Content/Images/delete.png";
-                                        myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) "+
+                                        myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) " +
                                                                             "GridKetQuaXetNghiem.DeleteRow(GridKetQuaXetNghiem.GetFocusedRowIndex()); }";
                                         myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");
                                         myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
@@ -289,13 +283,13 @@
             group.ColCount = 4;
             group.Width = Unit.Percentage(100);
 
-            group.Items.Add(m =>
-            {
-                m.FieldName = "NoiGioiThieu";
-                m.ColSpan = 2;
-                m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
-                m.NestedExtensionSettings.Width =  Unit.Percentage(100);
-            });
+            //group.Items.Add(m =>
+            //{
+            //    m.FieldName = "NoiGioiThieu";
+            //    m.ColSpan = 2;
+            //    m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+            //    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+            //});
             group.Items.Add(m =>
             {
                 m.FieldName = "ToChongLao";
@@ -308,15 +302,16 @@
             {
                 m.FieldName = "XuTri";
                 m.ColSpan = 2;
+                m.Width = Unit.Percentage(50);
                 m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
-                m.NestedExtensionSettings.Width =  Unit.Percentage(100);
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
             });
             group.Items.Add(m =>
             {
                 m.FieldName = "BSKhamBenh";
                 m.ColSpan = 2;
                 m.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
-                m.NestedExtensionSettings.Width =  Unit.Percentage(100);
+                m.NestedExtensionSettings.Width = Unit.Percentage(100);
             });
             group.Items.Add(m =>
             {
@@ -327,64 +322,38 @@
             });
         });//Ý KIẾN CHẨN ĐOÁN CỦA BÁC SỸ
 
-        ///////////////////////////////////////////FOOTER
-        settings.Items.Add(itemSettings =>
-        {
-            itemSettings.ShowCaption = DefaultBoolean.False;
-            itemSettings.ColSpan = 4;
-        }).SetNestedContent(() =>
-            {
-                ViewContext.Writer.Write("<div style='float:right'>");
-                Html.DevExpress().Button(
-                    btnSettings =>
-                    {
-                        btnSettings.Name = "btnUpdate1";
-                        btnSettings.Text = "Lưu toàn bộ";
-                        btnSettings.Height =30;
-                        btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
-                        btnSettings.Images.Image.Url = "~/Content/Images/save.png";
-                        btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoKhamBenh.UpdateEdit(); }";
-                    }).Render();
-                Html.DevExpress().Button(
-                    btnSettings =>
-                    {
-                        btnSettings.Name = "btnCancel1";
-                        btnSettings.Text = "Đóng màn hình";
-                        btnSettings.Height = 30;
-                        btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                        btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
-                        btnSettings.Images.Image.Url = "~/Content/Images/cancel.png";
-                        btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoKhamBenh.CancelEdit(); }";
-                    }).Render();
-                ViewContext.Writer.Write("</div>");
-            });
+        /////////////////////////////////////////////FOOTER
+        //settings.Items.Add(itemSettings =>
+        //{
+        //    itemSettings.ShowCaption = DefaultBoolean.False;
+        //    itemSettings.ColSpan = 4;
+        //}).SetNestedContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("<div style='float:right'>");
+        //        Html.DevExpress().Button(
+        //            btnSettings =>
+        //            {
+        //                btnSettings.Name = "btnUpdate1";
+        //                btnSettings.Text = "Lưu toàn bộ";
+        //                btnSettings.Height = 30;
+        //                btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+        //                btnSettings.Images.Image.Url = "~/Content/Images/save.png";
+        //                btnSettings.ClientSideEvents.Click = "function(s, e){ SaveAll(); }";
+        //            }).Render();
+        //        Html.DevExpress().Button(
+        //            btnSettings =>
+        //            {
+        //                btnSettings.Name = "btnCancel1";
+        //                btnSettings.Text = "Đóng màn hình";
+        //                btnSettings.Height = 30;
+        //                btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+        //                btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+        //                btnSettings.Images.Image.Url = "~/Content/Images/cancel.png";
+        //                btnSettings.ClientSideEvents.Click = "function(s, e){ document.location ='/SoKhamBenh' }";
+        //            }).Render();
+        //        ViewContext.Writer.Write("</div>");
+        //    });
 
         Html.HiddenFor(m => m.ID_BENHNHAN);
-        //var groupItem = settings.Items.AddGroupItem(groupSettings =>
-        //{
-        //    groupSettings.Caption = "Thông tin chi tiết";
-        //    groupSettings.ShowCaption = DefaultBoolean.True;
-        //    groupSettings.GroupBoxDecoration = GroupBoxDecoration.Box;
-
-        //    groupSettings.ColSpan = 4;
-        //    groupSettings.ColCount = 4;
-        //});
-
-        //groupItem.SettingsItems.ShowCaption = DefaultBoolean.True;
-        //groupItem.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
-
-        //groupItem.Items.Add(m => m.ID_SoKhamBenh);
-        // groupItem.Items.Add(m => m.ID_BENHNHAN);
-        //groupItem.Items.Add(m => m.KetQuaXetNghiemDom);
-        //groupItem.Items.Add(m => m.TrangThaiDomDaiThe);
-        //groupItem.Items.Add(m => m.SoMauDom);
-        //groupItem.Items.Add(m => m.NgayXetNghiemDom);
-
-        //groupItem.Items.Add(m => m.HuyenKB);
-        //groupItem.Items.Add(m => m.TinhKB);
-        //groupItem.Items.Add(m => m.HUY);
-        //groupItem.Items.Add(m => m.NGAYHUY);
 
     }).GetHtml()
- 
-</div>

@@ -93,6 +93,9 @@ namespace NTP_MVC.Models
             [Display(Name = "Huyện")]
             public string MA_HUYEN { get; set; }
 
+            [Display(Name = "Xã")]
+            public string MA_XA { get; set; }
+
             [Display(Name = "Địa chỉ")]
             public string Diachi { get; set; }
 
