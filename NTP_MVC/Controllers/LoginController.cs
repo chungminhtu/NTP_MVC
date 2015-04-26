@@ -27,8 +27,15 @@ namespace NTP_MVC.Controllers
                                           select bv).SingleOrDefault();
             if (User != null)
             {
-                HttpContext.Session["MATINH"] = s.ID_MATINH + "";
-                HttpContext.Session["MAHUYEN"] = s.ID_HUYEN + "";
+                if (s.CAPQUANLY==2)
+                {
+                    HttpContext.Session["MATINH"] = s.ID_MATINH + ""; 
+                }
+                else
+                {
+                    HttpContext.Session["MATINH"] = s.ID_MATINH + "";
+                    HttpContext.Session["MAHUYEN"] = s.ID_HUYEN + ""; 
+                }
                 HttpContext.Session["TenBV"] = s.TEN_BENHVIEN + "";
 
                 return RedirectToAction("Index", "SoKhamBenh");

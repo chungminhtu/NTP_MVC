@@ -12,12 +12,9 @@ namespace NTP_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class DM_KQXetNghiem
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public byte ID_KETQUAXN { get; set; }
+        public string TEN_KETQUAXN { get; set; }
     }
 }

@@ -7,7 +7,7 @@
         @Html.ActionLink("CHƯƠNG TRÌNH PHÒNG CHỐNG LAO VIỆT NAM - HỆ THỐNG GIÁM SÁT VÀ QUẢN LÝ THÔNG TIN", "Index", "Home")
     </div>
     <div class="loginControl">
-        <span>Đơn vị:</span> <span>@Session["TenBV"]</span> <span><a href="@Href("~/")">Thoát</a></span>
+        <span>Đơn vị:</span> <span>@Session["TenBV"]</span> <span><a href="@Href(@Url.Action("Index","Login"))">Thoát</a></span>
     </div>
 </div>
 <script>
@@ -35,34 +35,105 @@
     settings.EnableHotTrack = true;
     settings.EnableAnimation = true;
 
+    settings.Items.Add(Bigitem =>
+   {
+       Bigitem.Text = "Quản lý bệnh nhân";
+       Bigitem.Name = "QuanLyBenhNhan";
+       Bigitem.Items.Add(item =>
+       {
+           item.Text = "Thông tin quản lý";
+           item.Name = "QuanLyBenhNhan";
+           //item.Items.Add(subItem =>
+           //{
+           //    subItem.Text = "Danh sách bệnh nhân";
+           //    subItem.Name = "DanhSachBenhNhan";
+           //    subItem.Image.Url = "~/Content/Images/books.png";
+           //});
+      
+           item.Items.Add(subItem =>
+           {
+               subItem.Text = "Sổ khám bệnh";
+               subItem.Name = "SoKhamBenh";
+               subItem.NavigateUrl = @Url.Action("Index", "SoKhamBenh");
+           });
+           //item.Items.Add(subItem =>
+           //{
+           //    subItem.Text = "Nhập phiếu xét nghiệm đờm";
+           //    subItem.Name = "PhieuXetNghiem";
+           //    subItem.NavigateUrl = @Url.Action("Index", "PhieuXetNghiem");
+           //});
+           item.Items.Add(subItem =>
+           {
+               subItem.Text = "Phiếu đăng ký điều trị";
+               subItem.Name = "SoDieuTri";
+               subItem.NavigateUrl = @Url.Action("Index", "SoDieuTri");
+           });
+           item.Items.Add(subItem =>
+           {
+               subItem.Text = "Phiếu xét nghiệm";
+               subItem.Name = "BenhNhan";
+               subItem.NavigateUrl = @Url.Action("Index", "BenhNhan");
+           });
+       });
+       Bigitem.Items.Add(item =>
+      {
+          item.Text = "Nhập báo cáo";
+          item.Name = "QuanLyBenhNhan";
+          item.Items.Add(subItem =>
+          {
+              subItem.Text = "Nhập báo cáo thu nhận bệnh nhân lao";
+              subItem.NavigateUrl = @Url.Action("Index", "BCThuNhanBNLao");
+              subItem.Name = "BCThuNhanBNLao";
+          });
+          item.Items.Add(subItem =>
+          {
+              subItem.Text = "Nhập báo cáo kết quả điều trị";
+              subItem.NavigateUrl = @Url.Action("Index", "BCKetQuaDT");
+              subItem.Name = "BCKetQuaDT";
+          });
+          item.Items.Add(subItem =>
+          {
+              subItem.Text = "Nhập báo cáo kết quả âm hóa đờm";
+              subItem.NavigateUrl = @Url.Action("Index", "BCKetQuaDT");
+              subItem.Name = "BCKetQuaDT";
+          });
+
+      });
+   });
+
     settings.Items.Add(item =>
     {
-        item.Text = "Quản lý bệnh nhân";
-        item.Name = "QuanLyBenhNhan";
-        item.Image.Url = "~/Content/Images/user3.png";
+        item.Text = "Quản lý thuốc";
+        item.Name = "BaoCao";
         item.Items.Add(subItem =>
         {
-            subItem.Text = "Danh sách bệnh nhân";
-            subItem.Name = "DanhSachBenhNhan";
-            subItem.Image.Url = "~/Content/Images/books.png";
+            subItem.Text = "Nhập BC sử dụng thuốc";
+            subItem.NavigateUrl = @Url.Action("Index", "BCThuNhanBNLao");
+            subItem.Name = "BCThuNhanBNLao";
         });
+    });
+
+    settings.Items.Add(item =>
+    {
+        item.Text = "Quản lý vật tư hóa chất";
+        item.Name = "BaoCao";
         item.Items.Add(subItem =>
         {
-            subItem.Text = "Sổ khám bệnh";
-            subItem.Name = "SoKhamBenh";
-            subItem.Image.Url = "~/Content/Images/books1.png";
+            subItem.Text = "Nhập BC sử dụng VT-HC";
+            subItem.NavigateUrl = @Url.Action("Index", "BCThuNhanBNLao");
+            subItem.Name = "BCThuNhanBNLao";
         });
+    });
+
+    settings.Items.Add(item =>
+    {
+        item.Text = "Quản lý trang thiết bị";
+        item.Name = "BaoCao";
         item.Items.Add(subItem =>
         {
-            subItem.Text = "Phiếu xét nghiệm soi đờm trực tiếp";
-            subItem.Name = "PhieuXetNghiem";
-            subItem.Image.Url = "~/Content/Images/books4.png";
-        });
-        item.Items.Add(subItem =>
-        {
-            subItem.Text = "Sổ điều trị";
-            subItem.Name = "SoDieuTri";
-            subItem.Image.Url = "~/Content/Images/books3.png";
+            subItem.Text = "Nhập BC sử dụng trang thiết bị";
+            subItem.NavigateUrl = @Url.Action("Index", "BCThuNhanBNLao");
+            subItem.Name = "BCThuNhanBNLao";
         });
     });
 
@@ -70,19 +141,17 @@
     {
         item.Text = "Trợ giúp";
         item.Name = "TroGiup";
-        item.Image.Url = "~/Content/Images/help_book.png";
+        item.NavigateUrl = "";
         item.Items.Add(subItem =>
         {
             subItem.Text = "Hướng dẫn sử dụng";
             subItem.Name = "HuongDanSuDung";
-            subItem.Image.Url = "~/Content/Images/help.png";
         });
         item.Items.Add(subItem =>
         {
             subItem.Text = "Giới thiệu";
             subItem.Name = "GioiThieu";
-            subItem.Image.Url = "~/Content/Images/about.png";
-        }); 
+        });
     });
 
     settings.ItemDataBound = (source, e) =>
@@ -100,4 +169,4 @@
     settings.ClientSideEvents.ItemClick = "GetMenuItemClick";
     //}).BindToXML(HttpContext.Current.Server.MapPath("~/App_Data/TopMenu.xml"), "/items/*").GetHtml()
 }).GetHtml()
-    </div>
+</div>

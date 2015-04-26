@@ -1,0 +1,15 @@
+﻿@Html.DevExpress().DocumentViewer(settings =>
+{
+    settings.Name = "DocumentViewer";
+    settings.CallbackRouteValues = new
+    {
+        Controller = "SoKhamBenh",
+        Action = "DocumentViewerPartial"
+    };
+    settings.ExportRouteValues = new
+    {
+        Controller = "SoKhamBenh",
+        Action = "DocumentViewerExport"
+    };
+    settings.Report = (XtraReport)Model;
+}).GetHtml()

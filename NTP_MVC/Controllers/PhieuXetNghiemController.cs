@@ -20,7 +20,7 @@ namespace NTP_MVC.Controllers
         ////////////////////////Phieu Xet Nghiem
         [ValidateInput(false)]
         public ActionResult GridPhieuXetNghiem()
-        { 
+        {
             GetPhieuXetNghiem_BenhNhan();
             return PartialView("_GridPhieuXetNghiem");
         }
@@ -38,12 +38,12 @@ namespace NTP_MVC.Controllers
 
         public void GetPhieuXetNghiem_BenhNhan()
         {
-            if (HttpContext.Session["ID_BenhNhan"] != "")
+            if (Session["ID_BenhNhan"] != null)
             {
-                var id = HttpContext.Session["ID_BenhNhan"] + "";
+                var id = Session["ID_BenhNhan"] + "";
                 var data = db.SO_PhieuXetNghiem.Where(p => p.ID_Benhnhan.ToString().Equals(id)).ToList();
                 ViewData["ListPXNBenhNhan"] = data;
-                HttpContext.Session["Max1SoXN"] = Convert.ToInt32(data.Max(m => m.SoXN)) + 1;
+                Session["Max1SoXN"] = Convert.ToInt32(data.Max(m => m.SoXN)) + 1;
             }
         }
 
@@ -61,22 +61,22 @@ namespace NTP_MVC.Controllers
             if (Request.Params["ID_PhieuXetNghiem"] != "")
             {
                 var id_PhieuXetNghiem = Convert.ToInt64(Request.Params["ID_PhieuXetNghiem"]);
-                HttpContext.Session["ID_PhieuXetNghiem"] = id_PhieuXetNghiem;
+                Session["ID_PhieuXetNghiem"] = id_PhieuXetNghiem;
                 var data = db.SO_PhieuXetNghiem.Where(p => p.ID_PhieuXetNghiem.Equals(id_PhieuXetNghiem)).SingleOrDefault();
                 if (data != null)
                 {
-                    HttpContext.Session["SoXN"] = ((SO_PhieuXetNghiem)data).SoXN;
-                    HttpContext.Session["NgayNhanMau"] = ((SO_PhieuXetNghiem)data).NgayXN;
+                    Session["SoXN"] = ((SO_PhieuXetNghiem)data).SoXN;
+                    Session["NgayNhanMau"] = ((SO_PhieuXetNghiem)data).NgayXN;
                 }
                 var dataKQ = db.SO_PhieuXetNghiem_KQ.Where(m => m.ID_PhieuXetNghiem.Equals(id_PhieuXetNghiem)).ToList();
                 ViewData["ListKQXN"] = dataKQ;
                 if (dataKQ.Count != 0)
                 {
-                    HttpContext.Session["MaxMauDom"] = Convert.ToInt32(dataKQ.Max(m => m.MauDom)) + 1;
+                    Session["MaxMauDom"] = Convert.ToInt32(dataKQ.Max(m => m.MauDom)) + 1;
                 }
                 else
                 {
-                    HttpContext.Session["MaxMauDom"] = 1;
+                    Session["MaxMauDom"] = 1;
                 }
             }
         }
@@ -173,9 +173,10 @@ namespace NTP_MVC.Controllers
                         var MaxKQXN = Convert.ToInt32(dataKQ.Max(m => m.KetQua));
                         var modelItemPXN = modelPXN.FirstOrDefault(it => it.ID_PhieuXetNghiem == id_PhieuXetNghiem);
                         modelItemPXN.KetQuaPXN = MaxKQXN;
+                        modelItemPXN.Soluong = (byte)dataKQ.Count;
                         UpdateModel(modelItemPXN);
-                        db.SaveChanges(); 
-                    } 
+                        db.SaveChanges();
+                    }
                 }
                 catch (Exception e)
                 {
@@ -211,8 +212,9 @@ namespace NTP_MVC.Controllers
                         var MaxKQXN = Convert.ToInt32(dataKQ.Max(m => m.KetQua));
                         var modelItemPXN = modelPXN.FirstOrDefault(it => it.ID_PhieuXetNghiem == id_PhieuXetNghiem);
                         modelItemPXN.KetQuaPXN = MaxKQXN;
+                        modelItemPXN.Soluong = (byte)dataKQ.Count;
                         UpdateModel(modelItemPXN);
-                        db.SaveChanges(); 
+                        db.SaveChanges();
                     }
                 }
                 catch (Exception e)
@@ -246,6 +248,36 @@ namespace NTP_MVC.Controllers
             GetKetQuaXetNghiem_PXN();
             return PartialView("_GridKetQuaXetNghiem");
         }
+
+        public ActionResult DocumentViewerPartial()
+        {
+            Reports.InPhieuXetNghiem report = new Reports.InPhieuXetNghiem();
+            NTP_DBEntities db = new NTP_DBEntities();
+            if (Session["ID_BenhNhan"] != null)
+            {
+                var ID_BenhNhan = Session["ID_BenhNhan"] + "";
+                report.DataSource = (from a in db.InPhieuXetNghiems
+                                     where a.ID_BenhNhan.ToString() == ID_BenhNhan
+                                     select a).ToList();
+            }
+            return PartialView("_DocumentViewerPartial", report);
+        }
+
+        public ActionResult DocumentViewerExport()
+        {
+            Reports.InPhieuXetNghiem report = new Reports.InPhieuXetNghiem();
+            NTP_DBEntities db = new NTP_DBEntities();
+            if (Session["ID_BenhNhan"] != null)
+            {
+                var ID_BenhNhan = Session["ID_BenhNhan"] + "";
+                report.DataSource = (from a in db.InPhieuXetNghiems
+                                     where a.ID_BenhNhan.ToString() == ID_BenhNhan
+                                     select a).ToList();
+            }
+            return DocumentViewerExtension.ExportTo(report);
+        }
+
+
         #endregion
     }
 }

@@ -1,0 +1,311 @@
+﻿@using NTP_MVC.Models
+@using DevExpress.Web.Rendering
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        /*Initial*/
+        settings.Name = "GridBCThuNhanBNLao2";
+        settings.Width = Unit.Percentage(100);
+        settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2Delete" };
+
+        /* Behavior */
+        //settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        //settings.SettingsEditing.NewItemRowPosition = GridViewNewItemRowPosition.Bottom;
+
+
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";
+
+        /*Buttons*/
+        //var EditColumnCommand = new MVCxGridViewCommandColumn();
+        //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //EditColumnCommand.ShowEditButton = true;
+        //EditColumnCommand.Width = 50;
+        //EditColumnCommand.ShowNewButtonInHeader = true;
+        //EditColumnCommand.VisibleIndex = 0;
+        //settings.Columns.Add(EditColumnCommand);
+        //var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        //DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //DeleteColumnCommand.ShowDeleteButton = true;
+        //DeleteColumnCommand.Width = 50;
+        //DeleteColumnCommand.VisibleIndex = 14;
+        //settings.Columns.Add(DeleteColumnCommand);
+
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "Tất cả";
+        settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
+        settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
+        settings.SettingsPager.Visible = true;
+         
+        settings.KeyFieldName = "ID_BCThunhanBNLaoP1";
+ 
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "Phanloai";
+            i.Caption = "Phân loại";
+            i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+        //Lao phổi AFB dương tính
+        settings.Columns.AddBand(Band1 =>
+        {
+            Band1.Caption = "Nhóm tuổi";
+            Band1.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            Band1.HeaderStyle.HorizontalAlign = HorizontalAlign.Center; 
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "0 - 4";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam0";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu0";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                }); 
+            });
+
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "5 - 14";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam5";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu5";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "15 - 24";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam15";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu15";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "25 - 34";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam25";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu25";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "35 - 44";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam35";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu35";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "45 - 54";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam45";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu45";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "55 - 64";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam55";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu55";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = ">=65";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nam65";
+                    i.Caption = "Nam";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Nu65";
+                    i.Caption = "Nữ";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+        });
+        //Tổng số
+        settings.Columns.AddBand(Band1 =>
+        {
+            Band1.Caption = "Tổng số";
+            Band1.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            Band1.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            Band1.Columns.Add(i =>
+            {
+                //i.FieldName = "Nam";
+                i.Caption = "Nam";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            Band1.Columns.Add(i =>
+            {
+               // i.FieldName = "Nữ";
+                i.Caption = "Nữ";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            Band1.Columns.Add(i =>
+            {
+              //  i.FieldName = "Chung";
+                i.Caption = "Chung";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            }); 
+        });
+        
+         
+        /*Edit Form*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Cell;
+       // settings.SettingsPopup.EditForm.Modal = true;
+        //settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        //settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.SettingsText.PopupEditFormCaption = "Cập nhật thông tin sổ khám bệnh của bệnh nhân: " + Session["HoTen"] + ", " + Session["Gioitinh"] + ", " + Session["Tuoi"] + " tuổi, ở địa chỉ: " + Session["Diachi"];
+        //settings.SetEditFormTemplateContent(c =>
+        //{
+        //    SO_SoKhamBenh editItem;
+        //    if (c.Grid.IsNewRowEditing)
+        //        editItem = new SO_SoKhamBenh();
+        //    else
+        //    {
+        //        editItem = ViewData["Item"] != null ? (SO_SoKhamBenh)ViewData["Item"] : (SO_SoKhamBenh)c.Grid.GetRow(c.VisibleIndex);
+        //    }
+        //    editItem.ID_BENHNHAN = Convert.ToInt64(Session["ID_BenhNhan"]);
+        //    Html.RenderPartial("_FormSoKhamBenh", editItem);
+        //});
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(ViewData["ListBCThuNhanBNLao2"]).GetHtml();
+}

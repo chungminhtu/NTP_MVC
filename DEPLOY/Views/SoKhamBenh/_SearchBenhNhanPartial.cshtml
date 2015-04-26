@@ -1,14 +1,11 @@
 ﻿@Html.DevExpress().ComboBox(settings =>
 {
     settings.Name = "SearchCombobox";
-    settings.Properties.Caption = "Nhập thông tin tìm kiếm bệnh nhân";
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
     settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-    settings.Properties.DropDownHeight = 350; 
-    settings.Width = Unit.Pixel(800);
-    
-    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "SearchBenhNhanPartial" };
-    settings.Properties.CallbackPageSize = 20;
+    settings.Properties.DropDownHeight = 350;
+    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboSearchBenhNhan" };
+    settings.Properties.CallbackPageSize = 50;
     settings.Properties.ValueField = "ID_BenhNhan";
     settings.Properties.TextField = "HoTen";
     settings.Properties.FilterMinLength = 4;
@@ -21,5 +18,5 @@
     settings.Properties.Columns.Add("MaBNQL", "Mã Bệnh Nhân", 120);
     settings.Properties.Columns.Add("TenTinh", "Tỉnh", 100);
     settings.Properties.Columns.Add("TenHuyen", "Huyện", 250);
-    settings.Properties.ClientSideEvents.SelectedIndexChanged = "getBenhNhanAndSoKhamBenh";
+    settings.Properties.ClientSideEvents.ValueChanged = "UpdateLayoutForm";
 }).BindList(ViewData["BenhNhan"]).GetHtml()

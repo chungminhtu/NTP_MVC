@@ -1,8 +1,0 @@
-﻿
-@Html.DevExpress().DocumentViewer(settings =>
-{ 
-    settings.Name = "documentViewer1";
-    settings.Report = (NTP_MVC.Reports.InPhieuXetNghiem)ViewData["ReportPhieuXetNghiem"];
-    settings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "PrintPXN" };
-    settings.ExportRouteValues = new { Controller = "PhieuXetNghiem", Action = "ExportPXN" };
-}).GetHtml()

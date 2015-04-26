@@ -122,7 +122,7 @@
                    MyButton.Text = "Tìm kiếm";
                    MyButton.Height = 30;
                    MyButton.Images.Image.Url = "~/Content/Images/search.png";
-                   MyButton.ClientSideEvents.Click = "function() { searchBN(); }";
+                   MyButton.ClientSideEvents.Click = "function() { GridBenhNhan.PerformCallback(); }";
                    MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                }).Render();
                 ViewContext.Writer.Write("</td></tr></table>");
@@ -194,7 +194,7 @@
                             MyButton.Name = "btnInBN";
                             MyButton.Text = "In danh sách bệnh nhân";
                             MyButton.Images.Image.Url = "~/Content/Images/print.png";
-                            //   MyButton.ClientSideEvents.Click = "function() {OpenInNewTab('" + Url.Action("viewDoc", "SoKhamBenh") + "'); }";
+                            //MyButton.ClientSideEvents.Click = "function() {OpenInNewTab('" + Url.Action("viewDoc", "SoKhamBenh") + "'); }";
                             MyButton.ClientSideEvents.Click = "function() {BaoCaoPopupControl.Show(); BaoCaoPopupControl.PerformCallback(); }";
                             MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
@@ -282,17 +282,17 @@
             settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
             settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "DocumentViewerPartial" };
            // settings.ClientSideEvents.CallbackError = "function(s, e ) { alert(e.message); }";
-                
-                
+
+
+            settings.HeaderText = "XEM BÁO CÁO";
             settings.AllowDragging = true;
-            settings.AllowResize = true;
-            settings.ShowFooter = true;
+            settings.AllowResize = true; 
             settings.CloseAction = CloseAction.CloseButton;
 
             settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
             settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
 
             settings.Height = 700;
-            settings.Width = 700;
+            settings.Width = 1000;
         }).GetHtml()
 

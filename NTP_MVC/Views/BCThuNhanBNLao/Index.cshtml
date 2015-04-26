@@ -1,0 +1,166 @@
+﻿<script>
+    $(function () {
+        GridBCThuNhanBNLao.PerformCallback();
+    });
+    var ID_BCThunhanBNLao = "";
+    var ID_BCThunhanBNLaoCD = "";
+    function OnGridBNFocusedRowChanged(s, e) {
+        ID_BCThunhanBNLao = s.GetRowKey(s.GetFocusedRowIndex());
+    }
+    function OnGridBNCDFocusedRowChanged(s, e) {
+        ID_BCThunhanBNLaoCD = s.GetRowKey(s.GetFocusedRowIndex());
+    }
+    function OnGridBNRowDblClick(s, e) {
+        window.location.href = '@Url.Content("~")' + "BCThuNhanBNLao?ID_BCThunhanBNLao=" + GridBCThuNhanBNLao.GetRowKey(GridBCThuNhanBNLao.GetFocusedRowIndex());
+    }
+    var currentColumnName;
+    function OnBatchEditStartEditing(s, e) {
+        currentColumnName = e.focusedColumn.fieldName;
+    }
+    function OnBatchEditEndEditing(s, e) {
+        window.setTimeout(function () { 
+            var a1 = s.batchEditApi.GetCellValue(e.visibleIndex, "Moi");
+            var a2 = s.batchEditApi.GetCellValue(e.visibleIndex, "Taiphat");
+            var a3 = s.batchEditApi.GetCellValue(e.visibleIndex, "Thatbai");
+            var a4 = s.batchEditApi.GetCellValue(e.visibleIndex, "Taitri");
+            var a5 = s.batchEditApi.GetCellValue(e.visibleIndex, "AFBKhac");
+            var a6 = s.batchEditApi.GetCellValue(e.visibleIndex, "AmNho");
+            var a7 = s.batchEditApi.GetCellValue(e.visibleIndex, "AmTrung");
+            var a8 = s.batchEditApi.GetCellValue(e.visibleIndex, "AmLon");
+            var a9 = s.batchEditApi.GetCellValue(e.visibleIndex, "NgoaiPhoiNho");
+            var a10 = s.batchEditApi.GetCellValue(e.visibleIndex, "NgoaiPhoiTrung");
+            var a11 = s.batchEditApi.GetCellValue(e.visibleIndex, "NgoaiPhoiLon");
+            var a12 = s.batchEditApi.GetCellValue(e.visibleIndex, "NgoaiphoiKhac");
+            s.batchEditApi.SetCellValue(e.visibleIndex, "TongCong", a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12);
+        }, 10);
+    }
+  
+</script>
+@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "ListBCThuNhanBNLao";
+    settings.RequiredMarkDisplayMode = RequiredMarkMode.None;
+    settings.Width = Unit.Percentage(100);
+    settings.ColCount = 1;
+    settings.Items.AddGroupItem(group =>
+    {
+        group.Caption = "Danh sách báo cáo tình hình thu nhận bệnh nhân lao";
+        group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+        group.Width = Unit.Percentage(100);
+        group.Items.Add(item =>
+        {
+            item.Caption = "Thuộc đơn vị";
+            item.ShowCaption = DefaultBoolean.False;
+            item.SetNestedContent(() =>
+            {
+                ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+                Html.RenderPartial("_ComboBoxTinh");
+                ViewContext.Writer.Write("</td><td style='padding-left:30px;padding-right:5px;'>");
+                Html.DevExpress().ComboBox(mySettings =>
+                {
+                    mySettings.Name = "cboQuy";
+                    mySettings.Properties.Caption = "Năm BC";
+                    mySettings.Width = Unit.Pixel(100);
+                    mySettings.Properties.Items.Add("Quý I", 1);
+                    mySettings.Properties.Items.Add("Quý II", 2);
+                    mySettings.Properties.Items.Add("Quý III", 3);
+                    mySettings.Properties.Items.Add("Quý IV", 4);
+                    mySettings.Properties.DropDownRows = 5;
+                    mySettings.SelectedIndex = 0;
+                }).Render();
+
+                ViewContext.Writer.Write("</td><td style='padding-right:5px;'>");
+                Html.DevExpress().TextBox(mySettings =>
+                {
+                    mySettings.Name = "txtNam";
+                    mySettings.Properties.Caption = "";
+                    mySettings.Properties.CaptionSettings.ShowColon = false;
+                    mySettings.Width = Unit.Pixel(60);
+                }).Bind(DateTime.Now.Year + "" ?? "").Render();
+                ViewContext.Writer.Write("</td><td style='padding-left:20px;padding-right:5px;'>");
+                Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnSearch";
+                                MyButton.Width = 90;
+                                MyButton.Text = "Xem";
+                                MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao.PerformCallback(); }";
+                                MyButton.Images.Image.Url = "~/Content/Images/blue_search.png";
+                                MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                            }).Render();
+                ViewContext.Writer.Write("</td></tr></table>");
+            });
+        });
+    });
+
+
+
+    settings.Items.AddGroupItem (tabGroup =>
+    {
+        tabGroup.Height = Unit.Percentage(100);
+        //tabGroup.Styles.ContentStyle.Paddings.Padding = Unit.Pixel(5);
+        tabGroup.Width = Unit.Percentage(100);
+        tabGroup.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Danh sách bệnh nhân";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.None;
+            group.Width = Unit.Percentage(100);
+
+            group.Items.Add(m =>
+            {
+                m.ShowCaption = DefaultBoolean.False;
+                m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+            }).SetNestedContent(() =>
+            {
+                Html.DevExpress().Panel(settings5 =>
+                {
+                    settings5.Name = "Panel";
+                    settings5.FixedPosition = PanelFixedPosition.None;
+                    settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+                    settings5.SetContent(() =>
+                    {
+                        Html.DevExpress().Button(
+                           MyButton =>
+                           {
+                               MyButton.Name = "btnThemMoi";
+                               MyButton.Width = 90;
+                               MyButton.Text = "Thêm mới";
+                               MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "BCThuNhanBNLao", Action = "Edit" }) + "'}";
+                               MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                           }).Render();
+                        Html.DevExpress().Button(
+                                MyButton =>
+                                {
+                                    MyButton.Name = "btnSua";
+                                    MyButton.Width = 90;
+                                    MyButton.Text = "Sửa";
+                                    MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                    MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "BCThuNhanBNLao", Action = "Edit" }) +
+                                                                        "?id='+GridBCThuNhanBNLao.GetRowKey(GridBCThuNhanBNLao.GetFocusedRowIndex());+'&Quy='+cboQuy.GetValue();+'&Nam='+txtNam.GetValue();}";
+                                }).Render();
+                        Html.DevExpress().Button(
+                                MyButton =>
+                                {
+                                    MyButton.Name = "btnXoa";
+                                    MyButton.Width = 90;
+                                    MyButton.Text = "Xóa";
+                                    MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                }).Render();
+                    });
+                }).Render();
+
+                Html.RenderPartial("GridBCThuNhanBNLao");
+            });
+        });
+    });
+}).GetHtml()
+
+
+
+

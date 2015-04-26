@@ -19,17 +19,29 @@ namespace NTP_MVC.Controllers
         public ActionResult Index()
         {
 
-            Session["MATINH"] = "07";
-            Session["MAHUYEN"] = "0703";
+            // Session["MATINH"] = "07";
+            // Session["MAHUYEN"] = "0703";
             var MaTinh = Session["MATINH"] + "";
             if (MaTinh != "")
             {
                 var MaHuyen = Session["MAHUYEN"] + "";
-                ViewData["Tinhs"] = db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
-                ViewData["Huyens"] = db.DM_Huyen.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
 
+                ViewData["Tinhs"] = db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
                 SoKhamBenhModel model = new SoKhamBenhModel();
-                model.ListBN = db.SO_BenhNhan.Where(b => b.MA_HUYEN == MaHuyen).ToList();
+                if (MaHuyen == "")
+                {
+                    List<DM_Huyen> ListHuyen = new List<DM_Huyen>();
+                    DM_Huyen h = new DM_Huyen() { TEN_HUYEN = "-- Tất cả--", MA_HUYEN = "0", MA_TINH = MaTinh };
+                    ListHuyen.Add(h);
+                    ListHuyen.AddRange(db.DM_Huyen.Where(m => m.MA_TINH.Equals(MaTinh)).ToList());
+                    ViewData["Huyens"] = ListHuyen;
+                    model.ListBN = db.SO_BenhNhan.Where(b => b.MA_TINH.Equals(MaTinh)).Take(1000).ToList();
+                }
+                else
+                {
+                    ViewData["Huyens"] = db.DM_Huyen.Where(b => b.MA_HUYEN.Equals(MaHuyen)).ToList();
+                    model.ListBN = db.SO_BenhNhan.Where(b => b.MA_HUYEN.Equals(MaHuyen) && b.MA_TINH.Equals(MaTinh)).Take(1000).ToList();
+                }
                 Session["ListIDBN"] = model.ListBN.Select(a => a.ID_BenhNhan).ToList();
                 model.ListSKB = new List<SO_SoKhamBenh>();
 
@@ -40,7 +52,31 @@ namespace NTP_MVC.Controllers
                 return RedirectToAction("Index", "Login");
             }
         }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SearchBenhNhan(string matinh, string mahuyen, string hoten, string mabnql, string socmnd, DateTime? nkbfrom, DateTime? nkbto)
+        {
+            List<SO_BenhNhan> ListBN = (from d in db.SO_BenhNhan
+                                        where (((mahuyen == "" || mahuyen == "0") ? true : d.MA_HUYEN.Equals(mahuyen))
+                                        && d.MA_TINH.Equals(matinh)
+                                        && ((hoten != "") ? d.HoTen.Contains(hoten) : true)
+                                        && ((mabnql != "") ? d.MaBNQL.Contains(mabnql) : true)
+                                        && ((socmnd != "") ? d.SoCMND.Contains(socmnd) : true))
+                                        select d).Take(1000).ToList();
+            if (nkbfrom != null || nkbto != null)
+            {
 
+                List<long> ListID_BN = ListBN.Select(a => a.ID_BenhNhan).ToList();
+                List<long> ListID_SKB = (from d in db.SO_SoKhamBenh
+                                         where
+                                        ListID_BN.Contains(d.ID_BENHNHAN)
+                                      && (nkbfrom != null ? d.NgayKhamBenh >= nkbfrom : true)
+                                      && (nkbto != null ? d.NgayKhamBenh <= nkbto : true)
+                                         select d.ID_BENHNHAN).ToList();
+                ListBN = ListBN.Where(a => ListID_SKB.Contains(a.ID_BenhNhan)).ToList();
+            }
+            return PartialView("_GridBenhNhan", ListBN);
+        }
         public ActionResult GridPhieuXetNghiem()
         {
             GetPhieuXetNghiem_BenhNhan();
@@ -49,12 +85,12 @@ namespace NTP_MVC.Controllers
 
         public void GetPhieuXetNghiem_BenhNhan()
         {
-            if (HttpContext.Session["ID_BenhNhan"] != "")
+            if (Session["ID_BenhNhan"] + "" != "")
             {
-                var id = HttpContext.Session["ID_BenhNhan"] + "";
+                var id = Session["ID_BenhNhan"] + "";
                 var data = db.SO_PhieuXetNghiem.Where(p => p.ID_Benhnhan.ToString().Equals(id)).ToList();
                 ViewData["ListPXNBenhNhan"] = data;
-                HttpContext.Session["Max1SoXN"] = Convert.ToInt32(data.Max(m => m.SoXN)) + 1;
+                Session["Max1SoXN"] = Convert.ToInt32(data.Max(m => m.SoXN)) + 1;
             }
         }
 
@@ -92,12 +128,12 @@ namespace NTP_MVC.Controllers
         {
             long ID_BenhNhan = 0;
             long ID_SoKhamBenh = 0;
-            if (Request.Params["ID_BenhNhan"] != "")
+            if (Request.Params["ID_BenhNhan"] != "null" && Request.Params["ID_BenhNhan"] != "")
             {
                 ID_BenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"]);
             }
 
-            if (Request.Params["ID_SoKhamBenh"] != "")
+            if (Request.Params["ID_SoKhamBenh"] != "null" && Request.Params["ID_SoKhamBenh"] != "")
             {
                 ID_SoKhamBenh = Convert.ToInt64(Request.Params["ID_SoKhamBenh"]);
             }
@@ -168,32 +204,7 @@ namespace NTP_MVC.Controllers
             else
                 return "Có lỗi khi nhập dữ liệu, hãy kiểm tra và thử lại";
         }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SearchBenhNhan(string matinh, string mahuyen, string hoten, string mabnql, string socmnd, DateTime? nkbfrom, DateTime? nkbto)
-        {
-            List<SO_BenhNhan> ListBN = (from d in db.SO_BenhNhan
-                                        where (mahuyen != "" ? d.MA_HUYEN.Equals(mahuyen) : true
-                                     && d.MA_TINH.Equals(matinh))
-                                     && ((hoten != "" ? d.HoTen.Contains(hoten) : true)
-                                     && (mabnql != "" ? d.MaBNQL.Contains(mabnql) : true)
-                                     && (socmnd != "" ? d.SoCMND.Contains(socmnd) : true))
-                                        select d).ToList();
 
-            if (nkbfrom != null || nkbto != null)
-            {
-
-                List<long> ListID_BN = ListBN.Select(a => a.ID_BenhNhan).ToList();
-                List<long> ListID_SKB = (from d in db.SO_SoKhamBenh
-                                         where
-                                        ListID_BN.Contains(d.ID_BENHNHAN)
-                                      && (nkbfrom != null ? d.NgayKhamBenh >= nkbfrom : true)
-                                      && (nkbto != null ? d.NgayKhamBenh <= nkbto : true)
-                                         select d.ID_BENHNHAN).ToList();
-                ListBN = ListBN.Where(a => ListID_SKB.Contains(a.ID_BenhNhan)).ToList();
-            }
-            return PartialView("_GridBenhNhan", ListBN);
-        }
 
         public ActionResult GridKetQuaXetNghiem()
         {
@@ -206,22 +217,22 @@ namespace NTP_MVC.Controllers
             if (Request.Params["ID_PhieuXetNghiem"] != "")
             {
                 var id_PhieuXetNghiem = Convert.ToInt64(Request.Params["ID_PhieuXetNghiem"]);
-                HttpContext.Session["ID_PhieuXetNghiem"] = id_PhieuXetNghiem;
+                Session["ID_PhieuXetNghiem"] = id_PhieuXetNghiem;
                 var data = db.SO_PhieuXetNghiem.Where(p => p.ID_PhieuXetNghiem.Equals(id_PhieuXetNghiem)).SingleOrDefault();
                 if (data != null)
                 {
-                    HttpContext.Session["SoXN"] = ((SO_PhieuXetNghiem)data).SoXN;
-                    HttpContext.Session["NgayNhanMau"] = ((SO_PhieuXetNghiem)data).NgayXN;
+                    Session["SoXN"] = ((SO_PhieuXetNghiem)data).SoXN;
+                    Session["NgayNhanMau"] = ((SO_PhieuXetNghiem)data).NgayXN;
                 }
                 var dataKQ = db.SO_PhieuXetNghiem_KQ.Where(m => m.ID_PhieuXetNghiem.Equals(id_PhieuXetNghiem)).ToList();
                 ViewData["ListKQXN"] = dataKQ;
                 if (dataKQ.Count != 0)
                 {
-                    HttpContext.Session["MaxMauDom"] = Convert.ToInt32(dataKQ.Max(m => m.MauDom)) + 1;
+                    Session["MaxMauDom"] = Convert.ToInt32(dataKQ.Max(m => m.MauDom)) + 1;
                 }
                 else
                 {
-                    HttpContext.Session["MaxMauDom"] = 1;
+                    Session["MaxMauDom"] = 1;
                 }
             }
         }
@@ -239,28 +250,31 @@ namespace NTP_MVC.Controllers
             return View();
         }
 
-      
         public ActionResult DocumentViewerPartial()
-        {
-            XtraReport report = new XtraReport();
+        { 
             NTP_DBEntities db = new NTP_DBEntities();
-            List<long> listidbn = Session["ListIDBN"] as List<long>;
+            var MaTinh = Session["MATINH"] + ""; 
+            var MaHuyen = Session["MAHUYEN"] + "";
 
-            report.DataSource = (from a in db.InPhieuXetNghiems
-                                 where listidbn.Contains(a.ID_BenhNhan.Value)
-                                 select a).ToList();
+            Reports.DanhSachBenhNhanPrint report = new Reports.DanhSachBenhNhanPrint();
+            report.DataSource = (from a in db.InDanhSachBenhNhans
+                                 where a.MA_TINH.Equals(MaTinh)
+                                      && (MaHuyen != "" ? a.MA_HUYEN.Equals(MaHuyen) : true)
+                                 select a).Take(100).Distinct().ToList();
             return PartialView("_DocumentViewerPartial", report);
         }
 
         public ActionResult DocumentViewerExport()
         {
-            XtraReport report = new XtraReport();
             NTP_DBEntities db = new NTP_DBEntities();
-            List<long> listidbn = Session["ListIDBN"] as List<long>;
+            var MaTinh = Session["MATINH"] + "";
+            var MaHuyen = Session["MAHUYEN"] + "";
 
-            report.DataSource = (from a in db.InPhieuXetNghiems
-                                 where listidbn.Contains(a.ID_BenhNhan.Value)
-                                 select a).ToList();
+            Reports.DanhSachBenhNhanPrint report = new Reports.DanhSachBenhNhanPrint();
+            report.DataSource = (from a in db.InDanhSachBenhNhans
+                                 where a.MA_TINH.Equals(MaTinh)
+                                      && (MaHuyen != "" ? a.MA_HUYEN.Equals(MaHuyen) : true)
+                                 select a).Take(100).ToList();
             return DocumentViewerExtension.ExportTo(report);
         }
 
@@ -307,7 +321,7 @@ namespace NTP_MVC.Controllers
                     if (modelItem != null)
                     {
                         //Update Ket qua xet nghiem cho So kham benh
-                        var id = HttpContext.Session["ID_BenhNhan"] + "";
+                        var id = Session["ID_BenhNhan"] + "";
                         var data = db.SO_PhieuXetNghiem.Where(p => p.ID_Benhnhan.ToString().Equals(id)).ToList();
                         if (data.Count != 0)
                         {

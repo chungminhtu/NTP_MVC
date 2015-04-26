@@ -59,8 +59,6 @@
                 }).Render();
             });
     });
-    //groupItem.Items.Add(m => m.MA_TINH);
-    //groupItem.Items.Add(m => m.MA_HUYEN);
     groupItem.Items.Add(m =>
     {
         m.FieldName = "Diachi";
@@ -73,6 +71,31 @@
             }).Render();
         });
     });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "MA_TINH";
+        m.SetNestedContent(() =>
+        {
+            Html.RenderPartial("_ComboBoxTinh");
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "MA_HUYEN";
+        m.SetNestedContent(() =>
+        {
+            Html.RenderPartial("_ComboBoxHuyen");
+        });
+    });
+    groupItem.Items.Add(m =>
+    {
+        m.FieldName = "MA_XA";
+        m.SetNestedContent(() =>
+        {
+            Html.RenderAction("ComboBoxXaList","BenhNhan");
+        });
+    });
+    
     groupItem.Items.Add(m =>
     {
         m.FieldName = "Sodienthoai";
@@ -98,18 +121,18 @@
             }).Render();
         });
     });
-    groupItem.Items.Add(m =>
-    {
-        m.FieldName = "MaBNQL";
-        //m.CaptionStyle.Font.Bold = true;
-        m.SetNestedContent(() =>
-        {
-            Html.DevExpress().TextBoxFor(i => i.MaBNQL, mySettings =>
-            {
-                mySettings.Width = Unit.Percentage(100);
-            }).Render();
-        });
-    });
+    //groupItem.Items.Add(m =>
+    //{
+    //    m.FieldName = "MaBNQL";
+    //    //m.CaptionStyle.Font.Bold = true;
+    //    m.SetNestedContent(() =>
+    //    {
+    //        Html.DevExpress().TextBoxFor(i => i.MaBNQL, mySettings =>
+    //        {
+    //            mySettings.Width = Unit.Percentage(100);
+    //        }).Render();
+    //    });
+    //});
     groupItem.Items.Add(m =>
     {
         m.FieldName = "NGUOI_NM";
@@ -238,6 +261,9 @@
         });
     });
 
+    Html.HiddenFor(m => m.ID_BenhNhan);
+
+        
     Session["ID_BenhNhan"] = Model != null ? Model.ID_BenhNhan + "" : "";
     Session["HoTen"] = Model != null ? Model.HoTen + "" : "";
     Session["Gioitinh"] = Model != null ? Model.Gioitinh == true ? "Nam" : "Nữ" : "";

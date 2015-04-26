@@ -1,4 +1,5 @@
-﻿<script>
+﻿@model NTP_MVC.Models.SoKhamBenhModel
+<script>
     var ID_BenhNhan = "";
     var ID_BenhNhanCD = "";
     function OnGridBNFocusedRowChanged(s, e) {
@@ -9,7 +10,14 @@
     }
     function OnGridBNRowDblClick(s, e) {
         window.location.href = '@Url.Content("~")' + "SoKhamBenh?ID_BenhNhan=" + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex());
-     }
+    }
+
+    function OnGridBNFocusedRowChanged(s, e) {
+        if (s.GetFocusedRowIndex() != -1) {
+            ID_BenhNhan = s.GetRowKey(s.GetFocusedRowIndex());
+            GridSoKhamBenh.PerformCallback();
+        }
+    }
 </script>
 @Html.DevExpress().FormLayout(settings =>
 {
@@ -206,132 +214,147 @@
         });
     });
 
-    settings.Items.AddTabbedGroupItem(tabGroup =>
+    settings.Items.AddGroupItem(group =>
     {
-        tabGroup.Height = Unit.Percentage(100);
-        tabGroup.Styles.ContentStyle.Paddings.Padding = Unit.Pixel(5);
-        tabGroup.Width = Unit.Percentage(100);
-        tabGroup.Items.AddGroupItem(group =>
+        group.Caption = "Danh sách bệnh nhân";
+        group.ShowCaption = DefaultBoolean.True;
+        group.GroupBoxDecoration = GroupBoxDecoration.None;
+        group.Width = Unit.Percentage(100);
+        group.ColSpan = 5;
+        group.Items.Add(m =>
         {
-            group.Caption = "Danh sách bệnh nhân";
-            group.ShowCaption = DefaultBoolean.True;
-            group.GroupBoxDecoration = GroupBoxDecoration.None;
-            group.Width = Unit.Percentage(100);
-
-            group.Items.Add(m =>
+            m.ShowCaption = DefaultBoolean.False;
+            m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+        }).SetNestedContent(() =>
+        {
+            Html.DevExpress().Panel(settings5 =>
             {
-                m.ShowCaption = DefaultBoolean.False;
-                m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
-            }).SetNestedContent(() =>
-            {
-                Html.DevExpress().Panel(settings5 =>
+                settings5.Name = "Panel";
+                settings5.FixedPosition = PanelFixedPosition.None;
+                settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+                settings5.SetContent(() =>
                 {
-                    settings5.Name = "Panel";
-                    settings5.FixedPosition = PanelFixedPosition.None;
-                    settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
-                    settings5.SetContent(() =>
-                    {
-                        Html.DevExpress().Button(
-                           MyButton =>
-                           {
-                               MyButton.Name = "btnThemMoi";
-                               MyButton.Width = 90;
-                               MyButton.Text = "Thêm mới";
-                               MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
-                                                                        new { Controller = "SoKhamBenh", Action = "Index" }) + "' }";
-                               MyButton.Images.Image.Url = "~/Content/Images/add.png";
-                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                           }).Render();
-                        Html.DevExpress().Button(
-                                MyButton =>
-                                {
-                                    MyButton.Name = "btnSua";
-                                    MyButton.Width = 90;
-                                    MyButton.Text = "Sửa";
-                                    MyButton.Images.Image.Url = "~/Content/Images/edit.png";
-                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                                    MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
-                                                                        new { Controller = "SoKhamBenh", Action = "Index" }) +
-                                                                        "?ID_BenhNhan=' + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex()); }";
-                                }).Render();
-                        Html.DevExpress().Button(
-                                MyButton =>
-                                {
-                                    MyButton.Name = "btnXoa";
-                                    MyButton.Width = 90;
-                                    MyButton.Text = "Xóa";
-                                    MyButton.Images.Image.Url = "~/Content/Images/delete.png";
-                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                                }).Render();
-                        Html.DevExpress().Button(
+                    Html.DevExpress().Button(
+                       MyButton =>
+                       {
+                           MyButton.Name = "btnThemMoi";
+                           MyButton.Width = 90;
+                           MyButton.Text = "Thêm mới";
+                           MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                    new { Controller = "SoKhamBenh", Action = "Index" }) + "' }";
+                           MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                           MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                       }).Render();
+                    Html.DevExpress().Button(
                             MyButton =>
                             {
-                                MyButton.Name = "btnInBN";
-                                MyButton.Text = "In danh sách bệnh nhân";
-                                MyButton.Images.Image.Url = "~/Content/Images/print.png";
-                                //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoKhamBenh.DeleteRow(); } }";
-                                MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                MyButton.Name = "btnSua";
+                                MyButton.Width = 90;
+                                MyButton.Text = "Sửa";
+                                MyButton.Images.Image.Url = "~/Content/Images/edit.png";
                                 MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                                MyButton.Enabled = Session["ID_BenhNhan"] != "";
+                                MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                    new { Controller = "SoKhamBenh", Action = "Index" }) +
+                                                                    "?ID_BenhNhan=' + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex()); }";
                             }).Render();
-                    });
-                }).Render();
+                    Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnXoa";
+                                MyButton.Width = 90;
+                                MyButton.Text = "Xóa";
+                                MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                            }).Render();
+                    Html.DevExpress().Button(
+                        MyButton =>
+                        {
+                            MyButton.Name = "btnInBN";
+                            MyButton.Text = "In danh sách bệnh nhân";
+                            MyButton.Images.Image.Url = "~/Content/Images/print.png";
+                            //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoKhamBenh.DeleteRow(); } }";
+                            MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                            MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                            MyButton.Enabled = Session["ID_BenhNhan"] != "";
+                        }).Render();
+                });
+            }).Render();
 
-                Html.RenderPartial("_GridBenhNhan");
-            });
+            Html.RenderPartial("_GridBenhNhan", Model.ListBN);
         });
-        //tabGroup.Items.AddGroupItem(group =>
-        //{
-        //    group.Caption = "Danh sách bệnh nhân chuyển đến";
-        //    group.ShowCaption = DefaultBoolean.True;
-        //    group.GroupBoxDecoration = GroupBoxDecoration.None;
-        //    group.Width = Unit.Percentage(100);
 
-        //    group.Items.Add(m =>
-        //    {
-        //        m.ShowCaption = DefaultBoolean.False;
-        //        m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
-        //    }).SetNestedContent(() =>
-        //    {  
-        //        Html.RenderPartial("_GridBenhNhanChuyenDen");
-        //    });
-        //});
+
     });
+    settings.Items.AddGroupItem(group =>
+   {
+       group.Caption = "Danh sách bệnh nhân";
+       group.ShowCaption = DefaultBoolean.True;
+       group.GroupBoxDecoration = GroupBoxDecoration.None;
+       group.Width = Unit.Percentage(100);
+       group.ColSpan = 5;
+       group.Items.Add(m =>
+       {
+           m.ShowCaption = DefaultBoolean.False;
+           m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+       }).SetNestedContent(() =>
+       {
+           Html.DevExpress().Panel(settings5 =>
+           {
+               settings5.Name = "Panel1";
+               settings5.FixedPosition = PanelFixedPosition.None;
+               settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+               settings5.SetContent(() =>
+               {
+                   Html.DevExpress().Button(
+                      MyButton =>
+                      {
+                          MyButton.Name = "btnThemMoi1";
+                          MyButton.Width = 90;
+                          MyButton.Text = "Thêm mới";
+                          MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                      new { Controller = "SoKhamBenh", Action = "Edit" }) +
+                                                                   "?ID_BenhNhan=' + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex())+'" +
+                                                                    "&ID_SoKhamBenh='+GridSoKhamBenh.GetRowKey(GridSoKhamBenh.GetFocusedRowIndex());}";
+                          MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                          MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                      }).Render();
+                   Html.DevExpress().Button(
+                           MyButton =>
+                           {
+                               MyButton.Name = "btnSua1";
+                               MyButton.Width = 90;
+                               MyButton.Text = "Sửa";
+                               MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                               MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                   new { Controller = "SoKhamBenh", Action = "Index" }) +
+                                                                   "?ID_BenhNhan=' + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex()); }";
+                           }).Render();
+                   Html.DevExpress().Button(
+                           MyButton =>
+                           {
+                               MyButton.Name = "btnXoa1";
+                               MyButton.Width = 90;
+                               MyButton.Text = "Xóa";
+                               MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                           }).Render();
+                   Html.DevExpress().Button(
+                       MyButton =>
+                       {
+                           MyButton.Name = "btnInBN1";
+                           MyButton.Text = "In danh sách bệnh nhân";
+                           MyButton.Images.Image.Url = "~/Content/Images/print.png";
+                           //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoKhamBenh.DeleteRow(); } }";
+                           MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                           MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                           MyButton.Enabled = Session["ID_BenhNhan"] != "";
+                       }).Render();
+               });
+           }).Render();
+
+           Html.RenderPartial("_GridSoKhamBenh", Model.ListSKB);
+       });
+   });
 }).GetHtml()
-
-@Html.DevExpress().PopupControl(settings =>
-{
-    settings.Name = "PopupHelp";
-    settings.AllowResize = true;
-    settings.ShowHeader = true;
-    settings.ShowFooter = false;
-    settings.ShowOnPageLoad = false;
-    settings.AllowDragging = true;
-    settings.CloseAction = CloseAction.CloseButton;
-    settings.CloseOnEscape = true;
-    settings.Modal = true;
-    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
-    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
-    settings.Width = 700;
-    settings.Height = 500;
-
-    settings.SetContent(() =>
-    {
-        @Html.DevExpress().ImageSlider(
-                 myPopup =>
-                 {
-                     myPopup.Name = "ImageSlider";
-                     myPopup.ShowNavigationBar = true;
-                     myPopup.Width = Unit.Percentage(100);
-                     myPopup.Height = Unit.Percentage(100);
-
-                     myPopup.SettingsImageArea.ItemTextVisibility = ElementVisibilityMode.OnMouseOver;
-                     myPopup.SettingsImageArea.NavigationButtonVisibility = ElementVisibilityMode.OnMouseOver;
-                     myPopup.SettingsImageArea.ImageSizeMode = ImageSizeMode.FillAndCrop;
-                     myPopup.ShowNavigationBar = false;
-                 }
-              ).BindToFolder(@"~\Content\Slides").GetHtml();
-    });
-}).GetHtml()
-
 

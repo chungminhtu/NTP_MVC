@@ -1,4 +1,4 @@
-﻿@using NTP_MVC.Models
+﻿@model List<NTP_MVC.Models.SO_SoDieuTri>
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
@@ -6,6 +6,7 @@
         settings.Name = "GridSoDieuTri";
         settings.Width = Unit.Percentage(100);
         settings.CallbackRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriList" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e) { e.customArgs['ID_BenhNhan'] = ID_BenhNhan;}";
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriDelete" };
@@ -22,9 +23,7 @@
         settings.SettingsBehavior.AllowDragDrop = false;
 
         /*Events*/
-        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
-        settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";  
-
+       
         /*Buttons*/
         //var EditColumnCommand = new MVCxGridViewCommandColumn();
         //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
@@ -196,12 +195,12 @@
         settings.SettingsText.PopupEditFormCaption = "Cập nhật thông tin sổ điều trị của bệnh nhân: " + Session["HoTen"] + ", " + Session["Gioitinh"] + ", " + Session["Tuoi"] + " tuổi, ở địa chỉ: " + Session["Diachi"];
         settings.SetEditFormTemplateContent(c =>
         {
-            SO_SoDieuTri editItem;
+            NTP_MVC.Models.SO_SoDieuTri editItem;
             if (c.Grid.IsNewRowEditing)
-                editItem = new SO_SoDieuTri();
+                editItem = new NTP_MVC.Models.SO_SoDieuTri();
             else
             {
-                editItem = ViewData["Item"] != null ? (SO_SoDieuTri)ViewData["Item"] : (SO_SoDieuTri)c.Grid.GetRow(c.VisibleIndex);
+                editItem = ViewData["Item"] != null ? (NTP_MVC.Models.SO_SoDieuTri)ViewData["Item"] : (NTP_MVC.Models.SO_SoDieuTri)c.Grid.GetRow(c.VisibleIndex);
             }
             editItem.ID_BENHNHAN = Convert.ToInt64(Session["ID_BenhNhan"]);
             editItem.DVDieutri = Session["MAHUYEN"] + "";
@@ -213,6 +212,6 @@
     {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
-    grid.Bind(ViewData["ListSoDieuTri"]).GetHtml();
+    grid.Bind(Model).GetHtml();
 }
 

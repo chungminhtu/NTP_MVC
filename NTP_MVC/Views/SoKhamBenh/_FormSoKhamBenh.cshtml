@@ -176,7 +176,7 @@
                                         myButton.Name = "btnInPXN";
                                         myButton.Text = "In";
                                         myButton.Images.Image.Url = "~/Content/Images/print.png";
-                                        myButton.ClientSideEvents.Click = "function( ) { PopupReport.Show(); }";
+                                        myButton.ClientSideEvents.Click = "function( ) { BaoCaoPXNPopupControl.Show(); BaoCaoPXNPopupControl.PerformCallback();  }";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                         myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                         myButton.Enabled = !ReferenceEquals(Session["ID_BenhNhan"], "");

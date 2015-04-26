@@ -46,12 +46,12 @@ namespace NTP_MVC.Controllers
         {
             long ID_BenhNhan = 0;
             long ID_SoDieuTri = 0;
-            if (Request.Params["ID_BenhNhan"] != "")
+            if (Request.Params["ID_BenhNhan"] != "" && Request.Params["ID_BenhNhan"] != "null")
             {
                 ID_BenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"]);
             }
 
-            if (Request.Params["ID_SoDieuTri"] != "")
+            if (Request.Params["ID_SoDieuTri"] != "" && Request.Params["ID_SoDieuTri"] != "null")
             {
                 ID_SoDieuTri = Convert.ToInt64(Request.Params["ID_SoDieuTri"]);
             }
@@ -127,7 +127,7 @@ namespace NTP_MVC.Controllers
 
         public void GetSoDieuTriCuaBenhNhan()
         {
-            var s = Session["ID_BenhNhan"] + "";
+            var s = Request.Params["ID_BenhNhan"] + "";
             if (s != "")
             {
                 ViewData["ListSoDieuTri"] = db.SO_SoDieuTri.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
@@ -209,6 +209,61 @@ namespace NTP_MVC.Controllers
             }
             GetSoDieuTriCuaBenhNhan();
             return PartialView("_GridSoDieuTri", ViewData["ListSoDieuTri"]);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SearchBenhNhan(string matinh, string mahuyen, string hoten, string mabnql, string socmnd, DateTime? nkbfrom, DateTime? nkbto)
+        {
+            List<SO_BenhNhan> ListBN = (from d in db.SO_BenhNhan
+                                        where (mahuyen != "" ? d.MA_HUYEN.Equals(mahuyen) : true
+                                     && d.MA_TINH.Equals(matinh))
+                                     && ((hoten != "" ? d.HoTen.Contains(hoten) : true)
+                                     && (mabnql != "" ? d.MaBNQL.Contains(mabnql) : true)
+                                     && (socmnd != "" ? d.SoCMND.Contains(socmnd) : true))
+                                        select d).ToList();
+
+            if (nkbfrom != null || nkbto != null)
+            {
+
+                List<long> ListID_BN = ListBN.Select(a => a.ID_BenhNhan).ToList();
+                List<long> ListID_SKB = (from d in db.SO_SoKhamBenh
+                                         where
+                                        ListID_BN.Contains(d.ID_BENHNHAN)
+                                      && (nkbfrom != null ? d.NgayKhamBenh >= nkbfrom : true)
+                                      && (nkbto != null ? d.NgayKhamBenh <= nkbto : true)
+                                         select d.ID_BENHNHAN).ToList();
+                ListBN = ListBN.Where(a => ListID_SKB.Contains(a.ID_BenhNhan)).ToList();
+            }
+            return PartialView("_GridBenhNhan", ListBN);
+        }
+
+        public ActionResult DocumentViewerPartial()
+        {
+            Reports.DanhSachBenhNhanPrint report = new Reports.DanhSachBenhNhanPrint();
+            NTP_DBEntities db = new NTP_DBEntities();
+            var MaTinh = Session["MATINH"] + "";
+
+            var MaHuyen = Session["MAHUYEN"] + "";
+            report.DataSource = (from a in db.InDanhSachBenhNhans
+                                 where a.MA_TINH.Equals(MaTinh)
+                                      && (MaHuyen != "" ? a.MA_HUYEN.Equals(MaHuyen) : true)
+                                 select a).Take(100).ToList();
+            return PartialView("_DocumentViewerPartial", report);
+        }
+
+        public ActionResult DocumentViewerExport()
+        {
+            Reports.DanhSachBenhNhanPrint report = new Reports.DanhSachBenhNhanPrint();
+            NTP_DBEntities db = new NTP_DBEntities();
+            var MaTinh = Session["MATINH"] + "";
+
+            var MaHuyen = Session["MAHUYEN"] + "";
+            report.DataSource = (from a in db.InDanhSachBenhNhans
+                                 where a.MA_TINH.Equals(MaTinh)
+                                 && (MaHuyen != "" ? a.MA_HUYEN.Equals(MaHuyen) : true)
+                                 select a).Take(100).ToList();
+            return DocumentViewerExtension.ExportTo(report);
         }
     }
 }

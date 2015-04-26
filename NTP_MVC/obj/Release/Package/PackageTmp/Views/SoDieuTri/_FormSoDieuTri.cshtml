@@ -1,12 +1,6 @@
 ﻿@model NTP_MVC.Models.SO_SoDieuTri
 @{bool GridSoDieuTriDisabled = Session[Model.ID_SoDieuTri + ""] != null ? !(bool)Session[Model.ID_SoDieuTri + ""] : true;}
-@*@Html.DevExpress().GetStyleSheets(
-        new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "MetropolisBlue" },
-        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "MetropolisBlue" },
-        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "MetropolisBlue" }
-    )*@
-<div style="overflow-y:scroll; width:auto; height:550px;">
-
+ 
     @Html.DevExpress().FormLayout(settings =>
     {
         settings.Name = "FormSoDieuTri";
@@ -292,7 +286,7 @@
                                         MyButton =>
                                         {
                                             MyButton.Name = "btnInPXN";
-                                            MyButton.Text = "In sổ khám bệnh";
+                                            MyButton.Text = "In phiếu xét nghiệm";
                                             MyButton.Images.Image.Url = "~/Content/Images/print.png";
                                             //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoDieuTri.DeleteRow(); } }";
                                             MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
@@ -569,34 +563,6 @@
             });
         });//End Tab group Items
 
-        ///////////////////////////////////////////FOOTER
-        settings.Items.Add(itemSettings =>
-        {
-            itemSettings.ShowCaption = DefaultBoolean.False;
-            itemSettings.ColSpan = 2;
-        }).SetNestedContent(() =>
-        {
-            ViewContext.Writer.Write("<div style='float:right'>");
-            Html.DevExpress().Button(
-            btnSettings =>
-            {
-                btnSettings.ClientVisible = GridSoDieuTriDisabled;
-                btnSettings.Name = "btnUpdate1";
-                btnSettings.Text = "Lưu toàn bộ";
-                btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoDieuTri.UpdateEdit(); }";
-            }).Render();
-            Html.DevExpress().Button(
-            btnSettings =>
-            {
-                btnSettings.Name = "btnCancel";
-                btnSettings.Text = "Đóng màn hình";
-                btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoDieuTri.CancelEdit(); }";
-            }).Render();
-            ViewContext.Writer.Write("</div>");
-
-        });
-
+       
     }).GetHtml()
-
-</div>
+ 

@@ -6,6 +6,7 @@
         settings.Name = "GridSoDieuTri";
         settings.Width = Unit.Percentage(100);
         settings.CallbackRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriList" };
+        settings.ClientSideEvents.BeginCallback = "function(s,e) { e.customArgs['ID_BenhNhan'] = ID_BenhNhan;}";
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriDelete" };
