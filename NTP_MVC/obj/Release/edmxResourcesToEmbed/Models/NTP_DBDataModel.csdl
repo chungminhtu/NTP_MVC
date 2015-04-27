@@ -11,7 +11,6 @@
     <EntitySet Name="BC_KetQuaXN" EntityType="NTP_DBModel.BC_KetQuaXN" />
     <EntitySet Name="BC_ThuNhan" EntityType="NTP_DBModel.BC_ThuNhan" />
     <EntitySet Name="BC_ThuNhan_LaoHIV" EntityType="NTP_DBModel.BC_ThuNhan_LaoHIV" />
-    <EntitySet Name="BC_ThuNhanBNLao" EntityType="NTP_DBModel.BC_ThuNhanBNLao" />
     <EntitySet Name="BC_ThuNhanBNLao1" EntityType="NTP_DBModel.BC_ThuNhanBNLao1" />
     <EntitySet Name="BC_ThuNhanBNLao2" EntityType="NTP_DBModel.BC_ThuNhanBNLao2" />
     <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
@@ -47,6 +46,7 @@
       <End Role="DM_Huyen" EntitySet="DM_Huyen" />
       <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
     </AssociationSet>
+    <EntitySet Name="BC_ThuNhanBNLao" EntityType="NTP_DBModel.BC_ThuNhanBNLao" />
   </EntityContainer>
   <EntityType Name="AD_Menu">
     <Key>
@@ -215,26 +215,6 @@
     <Property Name="NU55" Type="Int32" />
     <Property Name="NAM65" Type="Int32" />
     <Property Name="NU65" Type="Int32" />
-  </EntityType>
-  <EntityType Name="BC_ThuNhanBNLao">
-    <Key>
-      <PropertyRef Name="ID_BCThunhanBNLao" />
-    </Key>
-    <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Quy" Type="Byte" Nullable="false" />
-    <Property Name="Nam" Type="Int32" Nullable="false" />
-    <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="NgayBC" Type="DateTime" Precision="3" />
-    <Property Name="HuyenXN" Type="Boolean" />
-    <Property Name="TinhXN" Type="Boolean" />
-    <Property Name="PTNhap" Type="Boolean" />
-    <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
-    <Property Name="NGUOI_NM" Type="Int32" />
-    <Property Name="Huy" Type="Boolean" />
-    <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="BC_ThuNhanBNLao1">
     <Key>
@@ -694,4 +674,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="BC_ThuNhanBNLao">
+    <Key>
+      <PropertyRef Name="ID_BCThunhanBNLao" />
+    </Key>
+    <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quy" Type="Byte" Nullable="false" />
+    <Property Name="Nam" Type="Int32" Nullable="false" />
+    <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBC" Type="DateTime" Precision="3" />
+    <Property Name="HuyenXN" Type="Boolean" />
+    <Property Name="TinhXN" Type="Boolean" />
+    <Property Name="PTNhap" Type="Boolean" />
+    <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+    <Property Name="NGUOI_NM" Type="Int32" />
+    <Property Name="Huy" Type="Boolean" />
+    <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>

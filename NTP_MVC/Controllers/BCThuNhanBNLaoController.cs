@@ -88,9 +88,6 @@ namespace NTP_MVC.Controllers
                 {
                     ViewData["Huyens"] = db.DM_Huyen.Where(b => b.MA_HUYEN.Equals(MaHuyen)).ToList();
                 }
-
-
-
                 return View("EditBCThuNhanBNLao", BCThuNhan);
             }
             else
@@ -99,6 +96,12 @@ namespace NTP_MVC.Controllers
             }
         }
 
+        [HttpPost, ValidateInput(false)]
+
+        public ActionResult Edit([ModelBinder(typeof(DevExpressEditorsBinder))] BC_ThuNhanBNLao bctn)
+        {
+            return null;
+        }
 
 
         public ActionResult GridBCThuNhanBNLao1()

@@ -18,7 +18,7 @@
         currentColumnName = e.focusedColumn.fieldName;
     }
     function OnBatchEditEndEditing(s, e) {
-        window.setTimeout(function () { 
+        window.setTimeout(function () {
             var a1 = s.batchEditApi.GetCellValue(e.visibleIndex, "Moi");
             var a2 = s.batchEditApi.GetCellValue(e.visibleIndex, "Taiphat");
             var a3 = s.batchEditApi.GetCellValue(e.visibleIndex, "Thatbai");
@@ -34,7 +34,7 @@
             s.batchEditApi.SetCellValue(e.visibleIndex, "TongCong", a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12);
         }, 10);
     }
-  
+
 </script>
 @Html.DevExpress().FormLayout(settings =>
 {
@@ -92,75 +92,90 @@
             });
         });
     });
+}).GetHtml();
 
+@using (Html.BeginForm())
+{
 
-
-    settings.Items.AddGroupItem (tabGroup =>
+    Html.DevExpress().Panel(settings5 =>
     {
-        tabGroup.Height = Unit.Percentage(100);
-        //tabGroup.Styles.ContentStyle.Paddings.Padding = Unit.Pixel(5);
-        tabGroup.Width = Unit.Percentage(100);
-        tabGroup.Items.AddGroupItem(group =>
+        settings5.Name = "Panel";
+        settings5.FixedPosition = PanelFixedPosition.None;
+        settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+        settings5.SetContent(() =>
         {
-            group.Caption = "Danh sách bệnh nhân";
-            group.ShowCaption = DefaultBoolean.True;
-            group.GroupBoxDecoration = GroupBoxDecoration.None;
-            group.Width = Unit.Percentage(100);
-
-            group.Items.Add(m =>
-            {
-                m.ShowCaption = DefaultBoolean.False;
-                m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
-            }).SetNestedContent(() =>
-            {
-                Html.DevExpress().Panel(settings5 =>
-                {
-                    settings5.Name = "Panel";
-                    settings5.FixedPosition = PanelFixedPosition.None;
-                    settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
-                    settings5.SetContent(() =>
+            Html.DevExpress().Button(
+               MyButton =>
+               {
+                   MyButton.Name = "btnThemMoi";
+                   MyButton.Width = 90;
+                   MyButton.Text = "Thêm mới";
+                   MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                            new { Controller = "BCThuNhanBNLao", Action = "Edit" }) + "'}";
+                   MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                   MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+               }).Render();
+            Html.DevExpress().Button(
+                    MyButton =>
                     {
-                        Html.DevExpress().Button(
-                           MyButton =>
-                           {
-                               MyButton.Name = "btnThemMoi";
-                               MyButton.Width = 90;
-                               MyButton.Text = "Thêm mới";
-                               MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
-                                                                        new { Controller = "BCThuNhanBNLao", Action = "Edit" }) + "'}";
-                               MyButton.Images.Image.Url = "~/Content/Images/add.png";
-                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                           }).Render();
-                        Html.DevExpress().Button(
-                                MyButton =>
-                                {
-                                    MyButton.Name = "btnSua";
-                                    MyButton.Width = 90;
-                                    MyButton.Text = "Sửa";
-                                    MyButton.Images.Image.Url = "~/Content/Images/edit.png";
-                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                                    MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
-                                                                        new { Controller = "BCThuNhanBNLao", Action = "Edit" }) +
-                                                                        "?id='+GridBCThuNhanBNLao.GetRowKey(GridBCThuNhanBNLao.GetFocusedRowIndex());+'&Quy='+cboQuy.GetValue();+'&Nam='+txtNam.GetValue();}";
-                                }).Render();
-                        Html.DevExpress().Button(
-                                MyButton =>
-                                {
-                                    MyButton.Name = "btnXoa";
-                                    MyButton.Width = 90;
-                                    MyButton.Text = "Xóa";
-                                    MyButton.Images.Image.Url = "~/Content/Images/delete.png";
-                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                                }).Render();
-                    });
-                }).Render();
-
-                Html.RenderPartial("GridBCThuNhanBNLao");
-            });
+                        MyButton.Name = "btnSua";
+                        MyButton.Width = 90;
+                        MyButton.Text = "Sửa";
+                        MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                        MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                        MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                            new { Controller = "BCThuNhanBNLao", Action = "Edit" }) +
+                                                            "?id='+GridBCThuNhanBNLao.GetRowKey(GridBCThuNhanBNLao.GetFocusedRowIndex());+'&Quy='+cboQuy.GetValue();+'&Nam='+txtNam.GetValue();}";
+                    }).Render();
+            Html.DevExpress().Button(
+                    MyButton =>
+                    {
+                        MyButton.Name = "btnXoa";
+                        MyButton.Width = 90;
+                        MyButton.Text = "Xóa";
+                        MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                        MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                    }).Render();
         });
-    });
-}).GetHtml()
+    }).GetHtml();
 
+
+    Html.DevExpress().Splitter(
+        settings =>
+        {
+            settings.Name = "splResizing";
+            settings.Height = 800;
+            settings.Width = Unit.Percentage(100);
+            settings.Styles.Pane.Paddings.Padding = 0;
+
+            settings.Panes.Add(listBoxPane =>
+            {
+                listBoxPane.Name = "listBoxContainer";
+                listBoxPane.Size = Unit.Percentage(20);
+                listBoxPane.ShowCollapseBackwardButton = DefaultBoolean.True;
+                listBoxPane.SetContent(() =>
+                {
+                    Html.RenderPartial("GridBCThuNhanBNLao");
+                });
+            });
+            settings.Panes.Add(contentPane =>
+            {
+                contentPane.MinSize = 350;
+                contentPane.Panes.Add(gridPane =>
+                {
+                    gridPane.Name = "gridContainer";
+                    gridPane.Size = Unit.Percentage(60);
+                    gridPane.MinSize = 100;
+                    gridPane.SetContent(() =>
+                    {
+                        Html.RenderPartial("EditBCThuNhanBNLao1");
+                    });
+                });
+            });
+
+           // settings.ClientSideEvents.PaneResized = "OnSplitterPaneResized";
+        }).GetHtml();
+}
 
 
 

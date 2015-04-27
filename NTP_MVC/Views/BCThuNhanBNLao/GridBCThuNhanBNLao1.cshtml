@@ -5,14 +5,14 @@
     {
         /*Initial*/
         settings.Name = "GridBCThuNhanBNLao1";
-        settings.Width = Unit.Percentage(60);
+        settings.Width = Unit.Percentage(100);
         settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1" };
         settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1BatchEditingUpdateModel" };
         //settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1AddNew" };
         //settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1Update" };
         //settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1Delete" };
-        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] =cboQuy.GetValue(); e.customArgs['Nam'] =txtNam.GetValue();" +
-                                                                   "e.customArgs['MaHuyen'] =ComboBoxHuyen.GetValue(); " +
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] =Quy.GetValue(); e.customArgs['Nam'] =Nam.GetValue();" +
+                                                                   "e.customArgs['MaHuyen'] =MA_HUYEN.GetValue(); " +
                                                                    "e.customArgs['NgayBaoCao'] =NgayBC.GetText(); e.customArgs['NguoiBaoCao'] =NguoiBC.GetValue();}";
 
         /* Behavior */

@@ -575,7 +575,7 @@
     <Property Name="GeneXpert" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'NTP_DB.dbo.InDanhSachBenhNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'NTP_MVC.dbo.InDanhSachBenhNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="InDanhSachBenhNhan">
     <Key>
       <PropertyRef Name="ID_BenhNhan" />
@@ -606,7 +606,7 @@ warning 6002: The table/view 'NTP_DB.dbo.InDanhSachBenhNhan' does not have a pri
     <Property Name="MA_TINH" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'NTP_DB.dbo.InPhieuXetNghiem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="InPhieuXetNghiem">
     <Key>
       <PropertyRef Name="MauDom" />

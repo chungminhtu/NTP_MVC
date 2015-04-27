@@ -450,6 +450,7 @@
     <Content Include="Views\BenhNhan\EditBenhNhan.cshtml" />
     <Content Include="Views\BaoCao\Index.cshtml" />
     <Content Include="Views\PhieuXetNghiem\_DocumentViewerPartial.cshtml" />
+    <Content Include="Views\BCThuNhanBNLao\EditBCThuNhanBNLao1.cshtml" />
     <None Include="Views\PhieuXetNghiem\_GridPhieuXetNghiem.cshtml" />
     <None Include="Views\PhieuXetNghiem\_FormPhieuXetNghiem.cshtml" />
     <None Include="Views\PhieuXetNghiem\_GridKetQuaXetNghiem.cshtml" />

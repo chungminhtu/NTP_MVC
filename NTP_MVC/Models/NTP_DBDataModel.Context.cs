@@ -35,7 +35,6 @@ namespace NTP_MVC.Models
         public virtual DbSet<BC_KetQuaXN> BC_KetQuaXN { get; set; }
         public virtual DbSet<BC_ThuNhan> BC_ThuNhan { get; set; }
         public virtual DbSet<BC_ThuNhan_LaoHIV> BC_ThuNhan_LaoHIV { get; set; }
-        public virtual DbSet<BC_ThuNhanBNLao> BC_ThuNhanBNLao { get; set; }
         public virtual DbSet<BC_ThuNhanBNLao1> BC_ThuNhanBNLao1 { get; set; }
         public virtual DbSet<BC_ThuNhanBNLao2> BC_ThuNhanBNLao2 { get; set; }
         public virtual DbSet<DM_BenhVien> DM_BenhVien { get; set; }
@@ -67,5 +66,6 @@ namespace NTP_MVC.Models
         public virtual DbSet<SO_XetNghiemKhamBenh> SO_XetNghiemKhamBenh { get; set; }
         public virtual DbSet<InDanhSachBenhNhan> InDanhSachBenhNhans { get; set; }
         public virtual DbSet<InPhieuXetNghiem> InPhieuXetNghiems { get; set; }
+        public virtual DbSet<BC_ThuNhanBNLao> BC_ThuNhanBNLao { get; set; }
     }
 }
