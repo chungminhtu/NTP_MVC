@@ -1,4 +1,4 @@
-﻿@using NTP_MVC.Models
+﻿@model NTP_MVC.Models.BCThuNhanModel
 @using DevExpress.Web.Rendering
 @{
     var grid = Html.DevExpress().GridView(settings =>
@@ -6,42 +6,25 @@
         /*Initial*/
         settings.Name = "GridBCKetQuaDT";
         settings.Width = Unit.Percentage(100);
-        settings.CallbackRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDT" };
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDTAddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDTUpdate" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDTDelete" };
+        settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCKetQuaDT" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "BC_TNBNLAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "BC_TNBNLUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "BC_TNBNLDelete" };
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] =cboQuy.GetValue(); e.customArgs['Nam'] =txtNam.GetText(); }";
 
         /* Behavior */
-        //settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
         settings.SettingsBehavior.AllowFocusedRow = true;
-        //settings.Settings.ShowTitlePanel = true;
-        //settings.Settings.ShowGroupPanel = true;
-        //settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.ConfirmDelete = true;
-        //settings.SettingsSearchPanel.Visible = true;
         settings.SettingsBehavior.AllowDragDrop = false;
-        //settings.SettingsEditing.NewItemRowPosition = GridViewNewItemRowPosition.Bottom;
 
 
         /*Events*/
-        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
-        settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
 
-        /*Buttons*/
-        //var EditColumnCommand = new MVCxGridViewCommandColumn();
-        //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
-        //EditColumnCommand.ShowEditButton = true;
-        //EditColumnCommand.Width = 50;
-        //EditColumnCommand.ShowNewButtonInHeader = true;
-        //EditColumnCommand.VisibleIndex = 0;
-        //settings.Columns.Add(EditColumnCommand);
-        //var DeleteColumnCommand = new MVCxGridViewCommandColumn();
-        //DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
-        //DeleteColumnCommand.ShowDeleteButton = true;
-        //DeleteColumnCommand.Width = 50;
-        //DeleteColumnCommand.VisibleIndex = 14;
-        //settings.Columns.Add(DeleteColumnCommand);
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridBCThuNhanBNLaoFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridBCThuNhanBNLaoRowDblClick";
 
         /* Pager */
         settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
@@ -50,76 +33,53 @@
         settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
         settings.SettingsPager.Visible = true;
 
-        settings.KeyFieldName = "ID_BC_KetquaDT";
- 
-        settings.Columns.Add(i =>
-        {
-            i.FieldName = "Quy";
-            i.Caption = "Quý";
-            i.Width = Unit.Pixel(350);
-            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-        });
-        settings.Columns.Add(i =>
-        {
-            i.FieldName = "Nam";
-            i.Caption = "Năm";
-            i.Width = Unit.Pixel(350);
-            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-        });
+        settings.KeyFieldName = "ID_BCThunhanBNLao";
+
+        //settings.Columns.Add(i =>
+        //{
+        //    i.FieldName = "Quy";
+        //    i.Caption = "Quý";
+        //    i.Width = Unit.Pixel(250);
+        //    i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        //});
+        //settings.Columns.Add(i =>
+        //{
+        //    i.FieldName = "Nam";
+        //    i.Caption = "Năm";
+        //    i.Width = Unit.Pixel(300);
+        //    i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        //});
         settings.Columns.Add(i =>
         {
             i.FieldName = "NgayBC";
             i.Caption = "Ngày báo cáo";
-            i.Width = Unit.Pixel(350);
+            i.Width = Unit.Percentage(30);
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.DateEdit;
         });
         settings.Columns.Add(i =>
         {
             i.FieldName = "NguoiBC";
             i.Caption = "Người báo cáo";
-            i.Width = Unit.Pixel(350);
+            i.Width = Unit.Percentage(30);
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
         settings.Columns.Add(i =>
         {
-            i.FieldName = "MA_HUYEN";
+            i.FieldName = "DVBaocao";
             i.Caption = "Cơ sở y tế";
-            i.Width = Unit.Pixel(350);
+            i.Width = Unit.Percentage(60);
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.TextField = "TEN_HUYEN";
+            comboBoxProperties.ValueField = "MA_HUYEN";
+            comboBoxProperties.DataSource = Model == null ? null : Model.ListHuyen;
+            comboBoxProperties.ValueType = typeof(string);
+            comboBoxProperties.EnableSynchronization = DefaultBoolean.False;
+            comboBoxProperties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
         });
-        settings.Columns.Add(i =>
-        {
-            i.FieldName = "MA_TINH";
-            i.Caption = "Tỉnh";
-            i.Width = Unit.Pixel(350);
-            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-        });
-       
-         
-        /*Edit Form*/
-        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
-        settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Cell;
-       // settings.SettingsPopup.EditForm.Modal = true;
-        //settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
-        //settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
-        //settings.SettingsText.PopupEditFormCaption = "Cập nhật thông tin sổ khám bệnh của bệnh nhân: " + Session["HoTen"] + ", " + Session["Gioitinh"] + ", " + Session["Tuoi"] + " tuổi, ở địa chỉ: " + Session["Diachi"];
-        //settings.SetEditFormTemplateContent(c =>
-        //{
-        //    SO_SoKhamBenh editItem;
-        //    if (c.Grid.IsNewRowEditing)
-        //        editItem = new SO_SoKhamBenh();
-        //    else
-        //    {
-        //        editItem = ViewData["Item"] != null ? (SO_SoKhamBenh)ViewData["Item"] : (SO_SoKhamBenh)c.Grid.GetRow(c.VisibleIndex);
-        //    }
-        //    editItem.ID_BENHNHAN = Convert.ToInt64(Session["ID_BenhNhan"]);
-        //    Html.RenderPartial("_FormSoKhamBenh", editItem);
-        //});
 
-    });
-    if (ViewData["EditError"] != null)
-    {
-        grid.SetEditErrorText((string)ViewData["EditError"]);
-    }
-    grid.Bind(ViewData["ListBCKetQuaDT"]).GetHtml();
+
+    }).Bind(Model.BC_ThuNhanBNLao).GetHtml();
 }

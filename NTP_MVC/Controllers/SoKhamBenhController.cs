@@ -141,13 +141,15 @@ namespace NTP_MVC.Controllers
             SoKhamBenhModel model = new SoKhamBenhModel();
 
             model.BN = db.SO_BenhNhan.Where(b => b.ID_BenhNhan == ID_BenhNhan).SingleOrDefault();
-            model.BN.ID_BenhNhan = ID_BenhNhan;
-            model.SKB = db.SO_SoKhamBenh.Where(b => b.ID_SoKhamBenh == ID_SoKhamBenh).SingleOrDefault();
+
 
             if (model.BN == null)
             {
                 model.BN = new SO_BenhNhan();
             }
+            model.BN.ID_BenhNhan = ID_BenhNhan;
+
+            model.SKB = db.SO_SoKhamBenh.Where(b => b.ID_SoKhamBenh == ID_SoKhamBenh).SingleOrDefault();
             if (model.SKB == null)
             {
                 model.SKB = new SO_SoKhamBenh();
@@ -251,9 +253,9 @@ namespace NTP_MVC.Controllers
         }
 
         public ActionResult DocumentViewerPartial()
-        { 
+        {
             NTP_DBEntities db = new NTP_DBEntities();
-            var MaTinh = Session["MATINH"] + ""; 
+            var MaTinh = Session["MATINH"] + "";
             var MaHuyen = Session["MAHUYEN"] + "";
 
             Reports.DanhSachBenhNhanPrint report = new Reports.DanhSachBenhNhanPrint();

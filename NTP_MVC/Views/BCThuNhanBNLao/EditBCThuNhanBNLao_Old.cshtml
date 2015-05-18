@@ -2,9 +2,9 @@
 
 <script>
     $(function () {
-        GridBCThuNhanBNLao1.PerformCallback();
-        // GridBCThuNhanBNLao2.PerformCallback();
-        // GridBCThuNhanBNLao3.PerformCallback();
+        GridBCTN1.PerformCallback();
+        // GridBCTN2.PerformCallback();
+        // GridBCTN2.PerformCallback();
     });
     var currentColumnName;
     function OnBatchEditStartEditing(s, e) {
@@ -107,7 +107,7 @@
                                         MyButton.Name = "btnSearch";
                                         MyButton.Width = 90;
                                         MyButton.Text = "Xem";
-                                        MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao1.PerformCallback(); }";
+                                        MyButton.ClientSideEvents.Click = "function() { GridBCTN1.PerformCallback(); }";
                                         MyButton.Images.Image.Url = "~/Content/Images/search.png";
                                         MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                     }).Render();
@@ -133,7 +133,7 @@
                                         MyButton.Name = "btnluu";
                                         MyButton.Width = 90;
                                         MyButton.Text = "Lưu báo cáo";
-                                        MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao1.UpdateEdit(); }";
+                                        MyButton.ClientSideEvents.Click = "function() { GridBCTN1.UpdateEdit(); }";
                                         MyButton.Images.Image.Url = "~/Content/Images/save.png";
                                         MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                         MyButton.UseSubmitBehavior = true;
@@ -146,7 +146,7 @@
                                         MyButton.Name = "btnXoa1";
                                         MyButton.Width = 90;
                                         MyButton.Text = "(Hủy) nhập lại";
-                                        MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao1.CancelEdit(); }";
+                                        MyButton.ClientSideEvents.Click = "function() { GridBCTN1.CancelEdit(); }";
                                         MyButton.Images.Image.Url = "~/Content/Images/cancel.png";
                                         MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                     }).Render();
@@ -169,7 +169,7 @@
                 }).SetNestedContent(() =>
                 {
 
-                    Html.RenderPartial("GridBCThuNhanBNLao1");
+                    Html.RenderPartial("GridBCTN1");
                 });
             });
 
@@ -185,7 +185,7 @@
                     m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
                 }).SetNestedContent(() =>
                 {
-                    Html.RenderPartial("GridBCThuNhanBNLao2");
+                    Html.RenderPartial("GridBCTN2");
 
                 });
             });
@@ -202,7 +202,7 @@
                     m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
                 }).SetNestedContent(() =>
                 {
-                    Html.RenderPartial("GridBCThuNhanBNLao3");
+                    Html.RenderPartial("GridBCTN2");
 
                 });
             });

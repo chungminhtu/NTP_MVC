@@ -12,8 +12,8 @@ namespace NTP_MVC.Controllers
         // GET: BenhNhan
         public ActionResult Index()
         {
-            Session["MATINH"] = "07";
-            Session["MAHUYEN"] = "0703";
+            //Session["MATINH"] = "07";
+            //Session["MAHUYEN"] = "0703";
             var MaTinh = Session["MATINH"] + "";
             if (MaTinh != "")
             {
@@ -302,6 +302,6 @@ namespace NTP_MVC.Controllers
                          where d.MA_TINH.Equals(s)
                          select d).ToList();
             return total;
-        } 
+        }
     }
 }

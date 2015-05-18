@@ -26,7 +26,7 @@ namespace NTP_MVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult BC_ThuNhanBNLaoGridViewPartialAddNew(BC_ThuNhanBNLao item)
+        public ActionResult BC_TNBNLAddNew(BC_ThuNhanBNLao item)
         {
             var model = db.BC_ThuNhanBNLao;
             if (ModelState.IsValid)
@@ -43,10 +43,10 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_BC_ThuNhanBNLaoGridViewPartial", model.ToList());
+            return PartialView("_BC_TNBNL", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult BC_ThuNhanBNLaoGridViewPartialUpdate(BC_ThuNhanBNLao item)
+        public ActionResult BC_TNBNLUpdate(BC_ThuNhanBNLao item)
         {
             var model = db.BC_ThuNhanBNLao;
             if (ModelState.IsValid)
@@ -67,10 +67,10 @@ namespace NTP_MVC.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_BC_ThuNhanBNLaoGridViewPartial", model.ToList());
+            return PartialView("_BC_TNBNL", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult BC_ThuNhanBNLaoGridViewPartialDelete(int ID_BCThunhanBNLao)
+        public ActionResult BC_TNBNLDelete(int ID_BCThunhanBNLao)
         {
             var model = db.BC_ThuNhanBNLao;
             if (ID_BCThunhanBNLao != 0)
@@ -87,7 +87,7 @@ namespace NTP_MVC.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_BC_ThuNhanBNLaoGridViewPartial", model.ToList());
+            return PartialView("_BC_TNBNL", model.ToList());
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿
+@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "ComboBoxHuyen";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboBoxHuyenList" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "MA_HUYEN";
+    settings.Properties.TextField = "TEN_HUYEN";
+    settings.Properties.ValueType = typeof(string);
+    settings.Properties.Caption = "Huyện";
+    settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaTinh'] = '" + Session["MATINH"] + "' }";
+    settings.Properties.ClientSideEvents.SelectedIndexChanged = "function(s, e) { GridBenhNhan.PerformCallback(); }";
+    settings.SelectedIndex = 0; 
+    settings.Enabled = Session["MAHUYEN"] == ""; 
+}).BindList(ViewData["Huyens"]).GetHtml()

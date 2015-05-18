@@ -1,18 +1,43 @@
 ﻿<script>
+    var ID_BCThuNhanBNLao = "";
+    var ID_BCThuNhanBNLaoCD = "";
+
+    function OnGridBCThuNhanBNLaoFocusedRowChanged(s, e) {
+        if (s.GetFocusedRowIndex() != -1) {
+            ID_BCThuNhanBNLao = s.GetRowKey(s.GetFocusedRowIndex());
+            update3Grid();
+            GridBCTN1.PerformCallback();
+            GridBCTN2.PerformCallback();
+            GridBCTN3.PerformCallback();
+        }
+    }
+
+    function update3Grid() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Update3Grid", "BCThuNhanBNLao")',
+            data: { ID_BCThuNhanBNLao: ID_BCThuNhanBNLao }
+        });
+    }
+
+    function GridBCThuNhanBNLao_OnBeginCallback(s, e) {
+        e.customArgs["ID_BCThuNhanBNLao"] = ID_BCThuNhanBNLao;
+    }
+
+    function OnGridBCThuNhanBNLaoRowDblClick(s, e) {
+        GridBCThuNhanBNLao.StartEditRow(GridBCThuNhanBNLao.GetFocusedRowIndex());
+    }
     $(function () {
         GridBCThuNhanBNLao.PerformCallback();
     });
-    var ID_BCThunhanBNLao = "";
-    var ID_BCThunhanBNLaoCD = "";
+
     function OnGridBNFocusedRowChanged(s, e) {
-        ID_BCThunhanBNLao = s.GetRowKey(s.GetFocusedRowIndex());
+        ID_BCThuNhanBNLao = s.GetRowKey(s.GetFocusedRowIndex());
     }
     function OnGridBNCDFocusedRowChanged(s, e) {
-        ID_BCThunhanBNLaoCD = s.GetRowKey(s.GetFocusedRowIndex());
+        ID_BCThuNhanBNLaoCD = s.GetRowKey(s.GetFocusedRowIndex());
     }
-    function OnGridBNRowDblClick(s, e) {
-        window.location.href = '@Url.Content("~")' + "BCThuNhanBNLao?ID_BCThunhanBNLao=" + GridBCThuNhanBNLao.GetRowKey(GridBCThuNhanBNLao.GetFocusedRowIndex());
-    }
+
     var currentColumnName;
     function OnBatchEditStartEditing(s, e) {
         currentColumnName = e.focusedColumn.fieldName;
@@ -92,7 +117,7 @@
             });
         });
     });
-}).GetHtml();
+}).GetHtml()
 
 @using (Html.BeginForm())
 {
@@ -107,26 +132,44 @@
             Html.DevExpress().Button(
                MyButton =>
                {
-                   MyButton.Name = "btnThemMoi";
+                   MyButton.Name = "btnThemMoiBC";
                    MyButton.Width = 90;
                    MyButton.Text = "Thêm mới";
-                   MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
-                                                            new { Controller = "BCThuNhanBNLao", Action = "Edit" }) + "'}";
+                   MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao.AddNewRow();}";
                    MyButton.Images.Image.Url = "~/Content/Images/add.png";
                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                }).Render();
             Html.DevExpress().Button(
                     MyButton =>
                     {
-                        MyButton.Name = "btnSua";
+                        MyButton.Name = "btnSuaBC";
                         MyButton.Width = 90;
                         MyButton.Text = "Sửa";
                         MyButton.Images.Image.Url = "~/Content/Images/edit.png";
                         MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                        MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
-                                                            new { Controller = "BCThuNhanBNLao", Action = "Edit" }) +
-                                                            "?id='+GridBCThuNhanBNLao.GetRowKey(GridBCThuNhanBNLao.GetFocusedRowIndex());+'&Quy='+cboQuy.GetValue();+'&Nam='+txtNam.GetValue();}";
+                        MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao.StartEditRow(GridBCThuNhanBNLao.GetFocusedRowIndex());}";
+
                     }).Render();
+            Html.DevExpress().Button(
+                               myButton =>
+                               {
+                                   myButton.Name = "btnLuuBC";
+                                   myButton.Text = "Lưu";
+                                   myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                   myButton.Images.Image.Url = "~/Content/Images/save.png";
+                                   myButton.ClientSideEvents.Click = "function( ) { GridBCThuNhanBNLao.UpdateEdit();   GridBCTN1.PerformCallback();}";
+                                   myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                               }).GetHtml();
+            Html.DevExpress().Button(
+                  myButton =>
+                  {
+                      myButton.Name = "btnHuyBC";
+                      myButton.Text = "Hủy";
+                      myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                      myButton.Images.Image.Url = "~/Content/Images/cancel.png";
+                      myButton.ClientSideEvents.Click = "function( ) { GridBCThuNhanBNLao.CancelEdit();  }";
+                      myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                  }).GetHtml();
             Html.DevExpress().Button(
                     MyButton =>
                     {
@@ -135,6 +178,7 @@
                         MyButton.Text = "Xóa";
                         MyButton.Images.Image.Url = "~/Content/Images/delete.png";
                         MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                        MyButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có muốn xóa toàn bộ Báo cáo đã nhập?'))  { GridBCThuNhanBNLao.DeleteRow(); } }";
                     }).Render();
         });
     }).GetHtml();
@@ -152,6 +196,7 @@
             {
                 listBoxPane.Name = "listBoxContainer";
                 listBoxPane.Size = Unit.Percentage(20);
+                listBoxPane.MinSize = 250;
                 listBoxPane.ShowCollapseBackwardButton = DefaultBoolean.True;
                 listBoxPane.SetContent(() =>
                 {
@@ -160,7 +205,7 @@
             });
             settings.Panes.Add(contentPane =>
             {
-                contentPane.MinSize = 350;
+                contentPane.MinSize = 250;
                 contentPane.Panes.Add(gridPane =>
                 {
                     gridPane.Name = "gridContainer";
@@ -168,12 +213,12 @@
                     gridPane.MinSize = 100;
                     gridPane.SetContent(() =>
                     {
-                        Html.RenderPartial("EditBCThuNhanBNLao1");
+                        Html.RenderPartial("EditBCTN");
                     });
                 });
             });
 
-           // settings.ClientSideEvents.PaneResized = "OnSplitterPaneResized";
+            // settings.ClientSideEvents.PaneResized = "OnSplitterPaneResized";
         }).GetHtml();
 }
 

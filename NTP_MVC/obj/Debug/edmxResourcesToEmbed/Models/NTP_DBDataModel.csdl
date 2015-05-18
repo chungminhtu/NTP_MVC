@@ -11,7 +11,6 @@
     <EntitySet Name="BC_KetQuaXN" EntityType="NTP_DBModel.BC_KetQuaXN" />
     <EntitySet Name="BC_ThuNhan" EntityType="NTP_DBModel.BC_ThuNhan" />
     <EntitySet Name="BC_ThuNhan_LaoHIV" EntityType="NTP_DBModel.BC_ThuNhan_LaoHIV" />
-    <EntitySet Name="BC_ThuNhanBNLao" EntityType="NTP_DBModel.BC_ThuNhanBNLao" />
     <EntitySet Name="BC_ThuNhanBNLao1" EntityType="NTP_DBModel.BC_ThuNhanBNLao1" />
     <EntitySet Name="BC_ThuNhanBNLao2" EntityType="NTP_DBModel.BC_ThuNhanBNLao2" />
     <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
@@ -41,13 +40,21 @@
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
     <EntitySet Name="SO_SoKhamBenh" EntityType="NTP_DBModel.SO_SoKhamBenh" />
     <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" />
-    <EntitySet Name="sysdiagrams" EntityType="NTP_DBModel.sysdiagram" />
     <EntitySet Name="InDanhSachBenhNhans" EntityType="NTP_DBModel.InDanhSachBenhNhan" />
     <EntitySet Name="InPhieuXetNghiems" EntityType="NTP_DBModel.InPhieuXetNghiem" />
     <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen">
       <End Role="DM_Huyen" EntitySet="DM_Huyen" />
       <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
     </AssociationSet>
+    <EntitySet Name="BC_ThuNhanBNLao" EntityType="NTP_DBModel.BC_ThuNhanBNLao" />
+    <EntitySet Name="HTDT_BaoCaoGiamSat" EntityType="NTP_DBModel.HTDT_BaoCaoGiamSat" />
+    <EntitySet Name="HTDT_BenhNhanDoiDiaChi" EntityType="NTP_DBModel.HTDT_BenhNhanDoiDiaChi" />
+    <EntitySet Name="HTDT_BenhNhanNhanTinNhan" EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" />
+    <EntitySet Name="HTDT_BenhNhanPhanHoiTacDungPhu" EntityType="NTP_DBModel.HTDT_BenhNhanPhanHoiTacDungPhu" />
+    <EntitySet Name="HTDT_BenhNhanTuChoiNhanTin" EntityType="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin" />
+    <EntitySet Name="HTDT_LichHenXN" EntityType="NTP_DBModel.HTDT_LichHenXN" />
+    <EntitySet Name="HTDT_ThongDiepTruyenThong" EntityType="NTP_DBModel.HTDT_ThongDiepTruyenThong" />
+    <EntitySet Name="HTDT_ThongKeTinNhan" EntityType="NTP_DBModel.HTDT_ThongKeTinNhan" />
   </EntityContainer>
   <EntityType Name="AD_Menu">
     <Key>
@@ -217,26 +224,6 @@
     <Property Name="NAM65" Type="Int32" />
     <Property Name="NU65" Type="Int32" />
   </EntityType>
-  <EntityType Name="BC_ThuNhanBNLao">
-    <Key>
-      <PropertyRef Name="ID_BCThunhanBNLao" />
-    </Key>
-    <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Quy" Type="Byte" Nullable="false" />
-    <Property Name="Nam" Type="Int32" Nullable="false" />
-    <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="NgayBC" Type="DateTime" Precision="3" />
-    <Property Name="HuyenXN" Type="Boolean" />
-    <Property Name="TinhXN" Type="Boolean" />
-    <Property Name="PTNhap" Type="Boolean" />
-    <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
-    <Property Name="NGUOI_NM" Type="Int32" />
-    <Property Name="Huy" Type="Boolean" />
-    <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="BC_ThuNhanBNLao1">
     <Key>
       <PropertyRef Name="ID_BCThunhanBNLao" />
@@ -389,8 +376,8 @@
       <PropertyRef Name="ID_PhacdoDT" />
     </Key>
     <Property Name="ID_PhacdoDT" Type="Int32" Nullable="false" />
-    <Property Name="Ten_PhacdoDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Phanloai" Type="Byte" />
+    <Property Name="Ten_PhacdoDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phanloai" Type="Byte" Nullable="false" />
   </EntityType>
   <EntityType Name="DM_PhanLoaiBenh">
     <Key>
@@ -625,19 +612,12 @@
     <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
     <Property Name="GeneXpert" Type="Int32" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="InDanhSachBenhNhan">
     <Key>
-      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="TenTinhHuyen" />
+      <PropertyRef Name="MA_HUYEN" />
+      <PropertyRef Name="MA_TINH" />
     </Key>
     <Property Name="SoDKDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -652,14 +632,14 @@
     <Property Name="Sau5thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Sau78thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Ten_KetQuaDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ID_BenhNhan" Type="Int64" />
-    <Property Name="ID_SoDieuTri" Type="Int64" Nullable="false" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="Int64" />
     <Property Name="XNHIV1" Type="Byte" />
     <Property Name="XNHIV2" Type="Byte" />
     <Property Name="ART" Type="Byte" />
-    <Property Name="TenTinhHuyen" Type="String" MaxLength="151" FixedLength="false" Unicode="true" />
-    <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TenTinhHuyen" Type="String" Nullable="false" MaxLength="153" FixedLength="false" Unicode="true" />
+    <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_TINH" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="InPhieuXetNghiem">
     <Key>
@@ -702,4 +682,189 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="BC_ThuNhanBNLao">
+    <Key>
+      <PropertyRef Name="ID_BCThunhanBNLao" />
+    </Key>
+    <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quy" Type="Byte" Nullable="false" />
+    <Property Name="Nam" Type="Int32" Nullable="false" />
+    <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBC" Type="DateTime" Precision="3" />
+    <Property Name="HuyenXN" Type="Boolean" />
+    <Property Name="TinhXN" Type="Boolean" />
+    <Property Name="PTNhap" Type="Boolean" />
+    <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+    <Property Name="NGUOI_NM" Type="Int32" />
+    <Property Name="Huy" Type="Boolean" />
+    <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="HTDT_BaoCaoGiamSat">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="Tuoi" />
+      <PropertyRef Name="LieuLuong_E" />
+      <PropertyRef Name="LieuLuong_H" />
+      <PropertyRef Name="LieuLuong_RH" />
+      <PropertyRef Name="LuongCap_E" />
+      <PropertyRef Name="LuongCap_H" />
+      <PropertyRef Name="LuongCap_RH" />
+      <PropertyRef Name="ConLai_E" />
+      <PropertyRef Name="ConLai_H" />
+      <PropertyRef Name="ConLai_RH" />
+      <PropertyRef Name="NgayGiamSat" />
+      <PropertyRef Name="NgayCapThuocGanNhat" />
+      <PropertyRef Name="NhanXetCuaGiamSatVien" />
+      <PropertyRef Name="DienBienDieuTri" />
+      <PropertyRef Name="DanDoBenhNhan" />
+      <PropertyRef Name="NhapTuMobile" />
+      <PropertyRef Name="NgayNhapBaoCao" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="Int64" Nullable="false" />
+    <Property Name="Diachi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Tuoi" Type="Int32" Nullable="false" />
+    <Property Name="LieuLuong_E" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="LieuLuong_H" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="LieuLuong_RH" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="LuongCap_E" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="LuongCap_H" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="LuongCap_RH" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="ConLai_E" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="ConLai_H" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="ConLai_RH" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+    <Property Name="Sodienthoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NgayGiamSat" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayCapThuocGanNhat" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NhanXetCuaGiamSatVien" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="DienBienDieuTri" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="DanDoBenhNhan" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="NhapTuMobile" Type="Boolean" Nullable="false" />
+    <Property Name="NgayNhapBaoCao" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="HTDT_BenhNhanDoiDiaChi">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="DiaChiCu" />
+      <PropertyRef Name="NgayTao" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="DiaChiCu" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="CapNhap" Type="Int16" />
+    <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayCapNhap" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="HTDT_BenhNhanNhanTinNhan">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="Sodienthoai" />
+      <PropertyRef Name="MA_HUYEN" />
+      <PropertyRef Name="NgayGui" />
+      <PropertyRef Name="GuiThanhCong" />
+      <PropertyRef Name="LoaiTinNhan" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="Int64" Nullable="false" />
+    <Property Name="Sodienthoai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NgayGui" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuiThanhCong" Type="Boolean" Nullable="false" />
+    <Property Name="PhanHoi" Type="Boolean" />
+    <Property Name="NgayPhanHoiGanNhat" Type="DateTime" Precision="3" />
+    <Property Name="LoaiTinNhan" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HTDT_BenhNhanPhanHoiTacDungPhu">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="Sodienthoai" />
+      <PropertyRef Name="TacDungPhu" />
+      <PropertyRef Name="NgayNhan" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="Int64" Nullable="false" />
+    <Property Name="Sodienthoai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TacDungPhu" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="NgayNhan" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="HTDT_BenhNhanTuChoiNhanTin">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="LyDoTuChoi" />
+      <PropertyRef Name="NgayTao" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="LyDoTuChoi" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="HTDT_LichHenXN">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="NgayXN" />
+      <PropertyRef Name="LanXN" />
+      <PropertyRef Name="DaXN" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="Int64" Nullable="false" />
+    <Property Name="NgayXN" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LanXN" Type="Int16" Nullable="false" />
+    <Property Name="DaXN" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HTDT_ThongDiepTruyenThong">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NoiDung" />
+      <PropertyRef Name="Loai" />
+      <PropertyRef Name="NgayNhap" />
+      <PropertyRef Name="TamDungSuDung" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Loai" Type="Int16" Nullable="false" />
+    <Property Name="GiaiDoan" Type="Int16" />
+    <Property Name="TuTuan" Type="Int16" />
+    <Property Name="DenTuan" Type="Int16" />
+    <Property Name="TanSuat" Type="Int16" />
+    <Property Name="LoaiTanSuat" Type="Int16" />
+    <Property Name="NgayNhap" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TamDungSuDung" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HTDT_ThongKeTinNhan">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Ngay" />
+      <PropertyRef Name="SoTinNhanUongThuoc" />
+      <PropertyRef Name="SoTinNhanTaiKham" />
+      <PropertyRef Name="SoTinNhanGuiKhac" />
+      <PropertyRef Name="SoTinNhanPhanHoiUT" />
+      <PropertyRef Name="SoTinNhanTacDungPhu" />
+      <PropertyRef Name="MA_HUYEN" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SoTinNhanUongThuoc" Type="Int32" Nullable="false" />
+    <Property Name="SoTinNhanTaiKham" Type="Int32" Nullable="false" />
+    <Property Name="SoTinNhanGuiKhac" Type="Int32" Nullable="false" />
+    <Property Name="SoTinNhanPhanHoiUT" Type="Int32" Nullable="false" />
+    <Property Name="SoTinNhanTacDungPhu" Type="Int32" Nullable="false" />
+    <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

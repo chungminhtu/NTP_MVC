@@ -339,8 +339,8 @@
       <PropertyRef Name="ID_PhacdoDT" />
     </Key>
     <Property Name="ID_PhacdoDT" Type="int" Nullable="false" />
-    <Property Name="Ten_PhacdoDT" Type="nvarchar" MaxLength="50" />
-    <Property Name="Phanloai" Type="tinyint" />
+    <Property Name="Ten_PhacdoDT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phanloai" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="DM_PhanLoaiBenh">
     <Key>
@@ -397,6 +397,187 @@
     </Key>
     <Property Name="MA_XA" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TEN_XA" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_BaoCaoGiamSat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_BaoCaoGiamSat">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="Tuoi" />
+      <PropertyRef Name="LieuLuong_E" />
+      <PropertyRef Name="LieuLuong_H" />
+      <PropertyRef Name="LieuLuong_RH" />
+      <PropertyRef Name="LuongCap_E" />
+      <PropertyRef Name="LuongCap_H" />
+      <PropertyRef Name="LuongCap_RH" />
+      <PropertyRef Name="ConLai_E" />
+      <PropertyRef Name="ConLai_H" />
+      <PropertyRef Name="ConLai_RH" />
+      <PropertyRef Name="NgayGiamSat" />
+      <PropertyRef Name="NgayCapThuocGanNhat" />
+      <PropertyRef Name="NhanXetCuaGiamSatVien" />
+      <PropertyRef Name="DienBienDieuTri" />
+      <PropertyRef Name="DanDoBenhNhan" />
+      <PropertyRef Name="NhapTuMobile" />
+      <PropertyRef Name="NgayNhapBaoCao" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BenhNhan" Type="bigint" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="bigint" Nullable="false" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="300" />
+    <Property Name="Tuoi" Type="int" Nullable="false" />
+    <Property Name="LieuLuong_E" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="LieuLuong_H" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="LieuLuong_RH" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="LuongCap_E" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="LuongCap_H" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="LuongCap_RH" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="ConLai_E" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="ConLai_H" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="ConLai_RH" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+    <Property Name="Sodienthoai" Type="varchar" MaxLength="20" />
+    <Property Name="NgayGiamSat" Type="datetime" Nullable="false" />
+    <Property Name="NgayCapThuocGanNhat" Type="datetime" Nullable="false" />
+    <Property Name="NhanXetCuaGiamSatVien" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="DienBienDieuTri" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="DanDoBenhNhan" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="NhapTuMobile" Type="bit" Nullable="false" />
+    <Property Name="NgayNhapBaoCao" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_BenhNhanDoiDiaChi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_BenhNhanDoiDiaChi">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="DiaChiCu" />
+      <PropertyRef Name="NgayTao" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BenhNhan" Type="bigint" Nullable="false" />
+    <Property Name="DiaChiCu" Type="nvarchar" MaxLength="450" Nullable="false" />
+    <Property Name="CapNhap" Type="smallint" />
+    <Property Name="NgayTao" Type="datetime" Nullable="false" />
+    <Property Name="NgayCapNhap" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_BenhNhanNhanTinNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_BenhNhanNhanTinNhan">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="Sodienthoai" />
+      <PropertyRef Name="MA_HUYEN" />
+      <PropertyRef Name="NgayGui" />
+      <PropertyRef Name="GuiThanhCong" />
+      <PropertyRef Name="LoaiTinNhan" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BenhNhan" Type="bigint" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="bigint" Nullable="false" />
+    <Property Name="Sodienthoai" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="NgayGui" Type="datetime" Nullable="false" />
+    <Property Name="GuiThanhCong" Type="bit" Nullable="false" />
+    <Property Name="PhanHoi" Type="bit" />
+    <Property Name="NgayPhanHoiGanNhat" Type="datetime" />
+    <Property Name="LoaiTinNhan" Type="smallint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_BenhNhanPhanHoiTacDungPhu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_BenhNhanPhanHoiTacDungPhu">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="Sodienthoai" />
+      <PropertyRef Name="TacDungPhu" />
+      <PropertyRef Name="NgayNhan" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BenhNhan" Type="bigint" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="bigint" Nullable="false" />
+    <Property Name="Sodienthoai" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TacDungPhu" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="NgayNhan" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_BenhNhanTuChoiNhanTin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_BenhNhanTuChoiNhanTin">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="LyDoTuChoi" />
+      <PropertyRef Name="NgayTao" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BenhNhan" Type="bigint" Nullable="false" />
+    <Property Name="LyDoTuChoi" Type="nvarchar" MaxLength="450" Nullable="false" />
+    <Property Name="NgayTao" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_LichHenXN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_LichHenXN">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="ID_SoDieuTri" />
+      <PropertyRef Name="NgayXN" />
+      <PropertyRef Name="LanXN" />
+      <PropertyRef Name="DaXN" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BenhNhan" Type="bigint" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="bigint" Nullable="false" />
+    <Property Name="NgayXN" Type="datetime" Nullable="false" />
+    <Property Name="LanXN" Type="smallint" Nullable="false" />
+    <Property Name="DaXN" Type="smallint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_ThongDiepTruyenThong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_ThongDiepTruyenThong">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NoiDung" />
+      <PropertyRef Name="Loai" />
+      <PropertyRef Name="NgayNhap" />
+      <PropertyRef Name="TamDungSuDung" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="450" Nullable="false" />
+    <Property Name="Loai" Type="smallint" Nullable="false" />
+    <Property Name="GiaiDoan" Type="smallint" />
+    <Property Name="TuTuan" Type="smallint" />
+    <Property Name="DenTuan" Type="smallint" />
+    <Property Name="TanSuat" Type="smallint" />
+    <Property Name="LoaiTanSuat" Type="smallint" />
+    <Property Name="NgayNhap" Type="datetime" Nullable="false" />
+    <Property Name="TamDungSuDung" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NTP_MVC.dbo.HTDT_ThongKeTinNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HTDT_ThongKeTinNhan">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Ngay" />
+      <PropertyRef Name="SoTinNhanUongThuoc" />
+      <PropertyRef Name="SoTinNhanTaiKham" />
+      <PropertyRef Name="SoTinNhanGuiKhac" />
+      <PropertyRef Name="SoTinNhanPhanHoiUT" />
+      <PropertyRef Name="SoTinNhanTacDungPhu" />
+      <PropertyRef Name="MA_HUYEN" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ngay" Type="datetime" Nullable="false" />
+    <Property Name="SoTinNhanUongThuoc" Type="int" Nullable="false" />
+    <Property Name="SoTinNhanTaiKham" Type="int" Nullable="false" />
+    <Property Name="SoTinNhanGuiKhac" Type="int" Nullable="false" />
+    <Property Name="SoTinNhanPhanHoiUT" Type="int" Nullable="false" />
+    <Property Name="SoTinNhanTacDungPhu" Type="int" Nullable="false" />
     <Property Name="MA_HUYEN" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="SO_BenhNhan">
@@ -689,6 +870,110 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="Self.SO_SoDieuTri_KQ" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_SoKhamBenh" EntityType="Self.SO_SoKhamBenh" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="Self.SO_XetNghiemKhamBenh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HTDT_BaoCaoGiamSat" EntityType="Self.HTDT_BaoCaoGiamSat" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_BaoCaoGiamSat].[ID] AS [ID], 
+    [HTDT_BaoCaoGiamSat].[ID_BenhNhan] AS [ID_BenhNhan], 
+    [HTDT_BaoCaoGiamSat].[ID_SoDieuTri] AS [ID_SoDieuTri], 
+    [HTDT_BaoCaoGiamSat].[Diachi] AS [Diachi], 
+    [HTDT_BaoCaoGiamSat].[Tuoi] AS [Tuoi], 
+    [HTDT_BaoCaoGiamSat].[LieuLuong_E] AS [LieuLuong_E], 
+    [HTDT_BaoCaoGiamSat].[LieuLuong_H] AS [LieuLuong_H], 
+    [HTDT_BaoCaoGiamSat].[LieuLuong_RH] AS [LieuLuong_RH], 
+    [HTDT_BaoCaoGiamSat].[LuongCap_E] AS [LuongCap_E], 
+    [HTDT_BaoCaoGiamSat].[LuongCap_H] AS [LuongCap_H], 
+    [HTDT_BaoCaoGiamSat].[LuongCap_RH] AS [LuongCap_RH], 
+    [HTDT_BaoCaoGiamSat].[ConLai_E] AS [ConLai_E], 
+    [HTDT_BaoCaoGiamSat].[ConLai_H] AS [ConLai_H], 
+    [HTDT_BaoCaoGiamSat].[ConLai_RH] AS [ConLai_RH], 
+    [HTDT_BaoCaoGiamSat].[Sodienthoai] AS [Sodienthoai], 
+    [HTDT_BaoCaoGiamSat].[NgayGiamSat] AS [NgayGiamSat], 
+    [HTDT_BaoCaoGiamSat].[NgayCapThuocGanNhat] AS [NgayCapThuocGanNhat], 
+    [HTDT_BaoCaoGiamSat].[NhanXetCuaGiamSatVien] AS [NhanXetCuaGiamSatVien], 
+    [HTDT_BaoCaoGiamSat].[DienBienDieuTri] AS [DienBienDieuTri], 
+    [HTDT_BaoCaoGiamSat].[DanDoBenhNhan] AS [DanDoBenhNhan], 
+    [HTDT_BaoCaoGiamSat].[NhapTuMobile] AS [NhapTuMobile], 
+    [HTDT_BaoCaoGiamSat].[NgayNhapBaoCao] AS [NgayNhapBaoCao]
+    FROM [dbo].[HTDT_BaoCaoGiamSat] AS [HTDT_BaoCaoGiamSat]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HTDT_BenhNhanDoiDiaChi" EntityType="Self.HTDT_BenhNhanDoiDiaChi" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_BenhNhanDoiDiaChi].[ID] AS [ID], 
+    [HTDT_BenhNhanDoiDiaChi].[ID_BenhNhan] AS [ID_BenhNhan], 
+    [HTDT_BenhNhanDoiDiaChi].[DiaChiCu] AS [DiaChiCu], 
+    [HTDT_BenhNhanDoiDiaChi].[CapNhap] AS [CapNhap], 
+    [HTDT_BenhNhanDoiDiaChi].[NgayTao] AS [NgayTao], 
+    [HTDT_BenhNhanDoiDiaChi].[NgayCapNhap] AS [NgayCapNhap]
+    FROM [dbo].[HTDT_BenhNhanDoiDiaChi] AS [HTDT_BenhNhanDoiDiaChi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HTDT_BenhNhanNhanTinNhan" EntityType="Self.HTDT_BenhNhanNhanTinNhan" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_BenhNhanNhanTinNhan].[ID] AS [ID], 
+    [HTDT_BenhNhanNhanTinNhan].[ID_BenhNhan] AS [ID_BenhNhan], 
+    [HTDT_BenhNhanNhanTinNhan].[ID_SoDieuTri] AS [ID_SoDieuTri], 
+    [HTDT_BenhNhanNhanTinNhan].[Sodienthoai] AS [Sodienthoai], 
+    [HTDT_BenhNhanNhanTinNhan].[MA_HUYEN] AS [MA_HUYEN], 
+    [HTDT_BenhNhanNhanTinNhan].[NgayGui] AS [NgayGui], 
+    [HTDT_BenhNhanNhanTinNhan].[GuiThanhCong] AS [GuiThanhCong], 
+    [HTDT_BenhNhanNhanTinNhan].[PhanHoi] AS [PhanHoi], 
+    [HTDT_BenhNhanNhanTinNhan].[NgayPhanHoiGanNhat] AS [NgayPhanHoiGanNhat], 
+    [HTDT_BenhNhanNhanTinNhan].[LoaiTinNhan] AS [LoaiTinNhan]
+    FROM [dbo].[HTDT_BenhNhanNhanTinNhan] AS [HTDT_BenhNhanNhanTinNhan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HTDT_BenhNhanPhanHoiTacDungPhu" EntityType="Self.HTDT_BenhNhanPhanHoiTacDungPhu" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_BenhNhanPhanHoiTacDungPhu].[ID] AS [ID], 
+    [HTDT_BenhNhanPhanHoiTacDungPhu].[ID_BenhNhan] AS [ID_BenhNhan], 
+    [HTDT_BenhNhanPhanHoiTacDungPhu].[ID_SoDieuTri] AS [ID_SoDieuTri], 
+    [HTDT_BenhNhanPhanHoiTacDungPhu].[Sodienthoai] AS [Sodienthoai], 
+    [HTDT_BenhNhanPhanHoiTacDungPhu].[TacDungPhu] AS [TacDungPhu], 
+    [HTDT_BenhNhanPhanHoiTacDungPhu].[NgayNhan] AS [NgayNhan]
+    FROM [dbo].[HTDT_BenhNhanPhanHoiTacDungPhu] AS [HTDT_BenhNhanPhanHoiTacDungPhu]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HTDT_BenhNhanTuChoiNhanTin" EntityType="Self.HTDT_BenhNhanTuChoiNhanTin" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_BenhNhanTuChoiNhanTin].[ID] AS [ID], 
+    [HTDT_BenhNhanTuChoiNhanTin].[ID_BenhNhan] AS [ID_BenhNhan], 
+    [HTDT_BenhNhanTuChoiNhanTin].[LyDoTuChoi] AS [LyDoTuChoi], 
+    [HTDT_BenhNhanTuChoiNhanTin].[NgayTao] AS [NgayTao]
+    FROM [dbo].[HTDT_BenhNhanTuChoiNhanTin] AS [HTDT_BenhNhanTuChoiNhanTin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HTDT_LichHenXN" EntityType="Self.HTDT_LichHenXN" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_LichHenXN].[ID] AS [ID], 
+    [HTDT_LichHenXN].[ID_BenhNhan] AS [ID_BenhNhan], 
+    [HTDT_LichHenXN].[ID_SoDieuTri] AS [ID_SoDieuTri], 
+    [HTDT_LichHenXN].[NgayXN] AS [NgayXN], 
+    [HTDT_LichHenXN].[LanXN] AS [LanXN], 
+    [HTDT_LichHenXN].[DaXN] AS [DaXN]
+    FROM [dbo].[HTDT_LichHenXN] AS [HTDT_LichHenXN]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HTDT_ThongDiepTruyenThong" EntityType="Self.HTDT_ThongDiepTruyenThong" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_ThongDiepTruyenThong].[ID] AS [ID], 
+    [HTDT_ThongDiepTruyenThong].[NoiDung] AS [NoiDung], 
+    [HTDT_ThongDiepTruyenThong].[Loai] AS [Loai], 
+    [HTDT_ThongDiepTruyenThong].[GiaiDoan] AS [GiaiDoan], 
+    [HTDT_ThongDiepTruyenThong].[TuTuan] AS [TuTuan], 
+    [HTDT_ThongDiepTruyenThong].[DenTuan] AS [DenTuan], 
+    [HTDT_ThongDiepTruyenThong].[TanSuat] AS [TanSuat], 
+    [HTDT_ThongDiepTruyenThong].[LoaiTanSuat] AS [LoaiTanSuat], 
+    [HTDT_ThongDiepTruyenThong].[NgayNhap] AS [NgayNhap], 
+    [HTDT_ThongDiepTruyenThong].[TamDungSuDung] AS [TamDungSuDung]
+    FROM [dbo].[HTDT_ThongDiepTruyenThong] AS [HTDT_ThongDiepTruyenThong]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HTDT_ThongKeTinNhan" EntityType="Self.HTDT_ThongKeTinNhan" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HTDT_ThongKeTinNhan].[ID] AS [ID], 
+    [HTDT_ThongKeTinNhan].[Ngay] AS [Ngay], 
+    [HTDT_ThongKeTinNhan].[SoTinNhanUongThuoc] AS [SoTinNhanUongThuoc], 
+    [HTDT_ThongKeTinNhan].[SoTinNhanTaiKham] AS [SoTinNhanTaiKham], 
+    [HTDT_ThongKeTinNhan].[SoTinNhanGuiKhac] AS [SoTinNhanGuiKhac], 
+    [HTDT_ThongKeTinNhan].[SoTinNhanPhanHoiUT] AS [SoTinNhanPhanHoiUT], 
+    [HTDT_ThongKeTinNhan].[SoTinNhanTacDungPhu] AS [SoTinNhanTacDungPhu], 
+    [HTDT_ThongKeTinNhan].[MA_HUYEN] AS [MA_HUYEN]
+    FROM [dbo].[HTDT_ThongKeTinNhan] AS [HTDT_ThongKeTinNhan]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="InDanhSachBenhNhan" EntityType="Self.InDanhSachBenhNhan" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [InDanhSachBenhNhan].[SoDKDT] AS [SoDKDT], 

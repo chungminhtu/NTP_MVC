@@ -1,0 +1,144 @@
+﻿<script>
+    var ID_BC_KetquaDT = "";
+    var ID_BC_KetquaDTCD = "";
+    function OnGridBNFocusedRowChanged(s, e) {
+        ID_BC_KetquaDT = s.GetRowKey(s.GetFocusedRowIndex());
+    }
+    function OnGridBNCDFocusedRowChanged(s, e) {
+        ID_BC_KetquaDTCD = s.GetRowKey(s.GetFocusedRowIndex());
+    }
+    function OnGridBNRowDblClick(s, e) {
+        window.location.href = '@Url.Content("~")' + "BCKetQuaDT?ID_BC_KetquaDT=" + GridBCKetQuaDT.GetRowKey(GridBCKetQuaDT.GetFocusedRowIndex());
+    }
+</script>
+@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "ListBCKetQuaDT";
+    settings.RequiredMarkDisplayMode = RequiredMarkMode.None;
+    settings.Width = Unit.Percentage(100);
+    settings.ColCount = 1;
+    settings.Items.AddGroupItem(group =>
+    {
+        group.Caption = "Danh sách báo cáo tình hình thu nhận bệnh nhân lao";
+        group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+        group.ColSpan = 1;
+        group.ColCount = 1;
+        group.Width = Unit.Percentage(100);
+        group.Items.Add(item =>
+        {
+            item.Caption = "Thuộc đơn vị";
+            item.ColSpan = 1;
+            item.ShowCaption = DefaultBoolean.False;
+            item.SetNestedContent(() =>
+            {
+                ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+                Html.RenderPartial("_ComboBoxTinh");
+                ViewContext.Writer.Write("</td><td>");
+                Html.RenderPartial("_ComboBoxHuyen");
+                ViewContext.Writer.Write("</td></tr></table>");
+            });
+        });
+
+        group.Items.Add(m =>
+        {
+            m.Caption = "Năm BC";
+            m.ShowCaption = DefaultBoolean.False;
+            m.ColSpan = 1;
+        }).SetNestedContent(() =>
+        {
+            ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
+            Html.DevExpress().ComboBox(mySettings =>
+            {
+                mySettings.Name = "cboQuy";
+                mySettings.Properties.Caption = "";
+                mySettings.Properties.CaptionSettings.ShowColon = false;
+                mySettings.Width = Unit.Pixel(100);
+                mySettings.Properties.Items.Add("Quý I", 1);
+                mySettings.Properties.Items.Add("Quý II", 2);
+                mySettings.Properties.Items.Add("Quý III", 3);
+                mySettings.Properties.Items.Add("Quý IV", 4);
+                mySettings.Properties.DropDownRows = 5;
+            }).Render();
+            ViewContext.Writer.Write("</td><td style=\"padding-right:1px;\">");
+            Html.DevExpress().TextBox(mySettings =>
+            {
+                mySettings.Name = "txtNam";
+                mySettings.Properties.Caption = "";
+                mySettings.Properties.CaptionSettings.ShowColon = false;
+                mySettings.Width = Unit.Pixel(100);
+            }).Render();
+            ViewContext.Writer.Write("</td></tr></table>");
+        });
+    });
+
+
+
+    settings.Items.AddTabbedGroupItem(tabGroup =>
+    {
+        tabGroup.Height = Unit.Percentage(100);
+        tabGroup.Styles.ContentStyle.Paddings.Padding = Unit.Pixel(5);
+        tabGroup.Width = Unit.Percentage(100);
+        tabGroup.Items.AddGroupItem(group =>
+        {
+            group.Caption = "Danh sách bệnh nhân";
+            group.ShowCaption = DefaultBoolean.True;
+            group.GroupBoxDecoration = GroupBoxDecoration.None;
+            group.Width = Unit.Percentage(100);
+
+            group.Items.Add(m =>
+            {
+                m.ShowCaption = DefaultBoolean.False;
+                m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+            }).SetNestedContent(() =>
+            {
+                Html.DevExpress().Panel(settings5 =>
+                {
+                    settings5.Name = "Panel";
+                    settings5.FixedPosition = PanelFixedPosition.None;
+                    settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+                    settings5.SetContent(() =>
+                    {
+                        Html.DevExpress().Button(
+                           MyButton =>
+                           {
+                               MyButton.Name = "btnThemMoi";
+                               MyButton.Width = 90;
+                               MyButton.Text = "Thêm mới";
+                               MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "BCKetQuaDT", Action = "Index" }) + "' }";
+                               MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                           }).Render();
+                        Html.DevExpress().Button(
+                                MyButton =>
+                                {
+                                    MyButton.Name = "btnSua";
+                                    MyButton.Width = 90;
+                                    MyButton.Text = "Sửa";
+                                    MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                    MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "BCKetQuaDT", Action = "Index" }) +
+                                                                        "?ID_BC_KetquaDT=' + GridBCKetQuaDT.GetRowKey(GridBCKetQuaDT.GetFocusedRowIndex()); }";
+                                }).Render();
+                        Html.DevExpress().Button(
+                                MyButton =>
+                                {
+                                    MyButton.Name = "btnXoa";
+                                    MyButton.Width = 90;
+                                    MyButton.Text = "Xóa";
+                                    MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                }).Render(); 
+                    });
+                }).Render();
+
+                Html.RenderPartial("GridBCKetQuaDT");
+            });
+        }); 
+    });
+}).GetHtml()
+
+ 
+
+

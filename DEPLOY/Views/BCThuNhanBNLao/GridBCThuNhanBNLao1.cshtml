@@ -7,13 +7,12 @@
         settings.Name = "GridBCThuNhanBNLao1";
         settings.Width = Unit.Percentage(100);
         settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1" };
-        settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1BatchEditingUpdateModel" };
-        //settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1AddNew" };
-        //settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1Update" };
-        //settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1Delete" };
-        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] =Quy.GetValue(); e.customArgs['Nam'] =Nam.GetValue();" +
-                                                                   "e.customArgs['MaHuyen'] =MA_HUYEN.GetValue(); " +
-                                                                   "e.customArgs['NgayBaoCao'] =NgayBC.GetText(); e.customArgs['NguoiBaoCao'] =NguoiBC.GetValue();}";
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao1Delete" };
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] =cboQuy.GetValue(); e.customArgs['Nam'] =txtNam.GetValue();" +
+                                                                   "e.customArgs['MaHuyen'] =ComboBoxHuyen.GetValue(); " +
+                                                                   "e.customArgs['NgayBaoCao'] =NgayBC.GetValue(); e.customArgs['NguoiBaoCao'] =NguoiBC.GetValue();}";
 
         /* Behavior */
         //settings.SettingsBehavior.AllowSelectByRowClick = true;
@@ -25,7 +24,7 @@
         //settings.SettingsSearchPanel.Visible = true;
         settings.SettingsBehavior.AllowDragDrop = false;
         //settings.SettingsEditing.NewItemRowPosition = GridViewNewItemRowPosition.Bottom;
-        settings.Settings.ShowStatusBar = GridViewStatusBarMode.Hidden;
+
 
         /*Events*/
         settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
@@ -58,8 +57,8 @@
         //DeleteColumnCommand.VisibleIndex = 14;
         //settings.Columns.Add(DeleteColumnCommand);
 
-        //settings.ClientSideEvents.BatchEditStartEditing = "OnBatchEditStartEditing";
-        //settings.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
+        settings.ClientSideEvents.BatchEditStartEditing = "OnBatchEditStartEditing";
+        settings.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
 
         /* Pager */
         settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
@@ -68,17 +67,17 @@
         settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
         settings.SettingsPager.Visible = true;
 
-        settings.KeyFieldName = "ID_BCThunhanBNLaoP1;ID_BCThunhanBNLao;Phanloai";
+        settings.KeyFieldName = "ID_BCThunhanBNLaoP1";
 
         settings.Columns.Add(i =>
-        { 
+        {
             i.FieldName = "Phanloai";
             i.Caption = "Phân loại";
-            i.ReadOnly = true; 
+            i.ReadOnly = true;
             i.Width = Unit.Pixel(350);
             i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
-            i.ColumnType = MVCxGridViewColumnType.ComboBox; 
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
             var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
             comboBoxProperties.Items.Add("BN Lao thu nhận", 0);
             comboBoxProperties.Items.Add("Có XN HIV", 1);
@@ -206,7 +205,7 @@
             i.FieldName = "NgoaiphoiKhac";
             i.Caption = "AFB (-) lao ngoài phổi khác";
             i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
-            i.Width = Unit.Pixel(100);
+            i.Width = Unit.Pixel(150);
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
         });
         //settings.Columns.Add(i =>

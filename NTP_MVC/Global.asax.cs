@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DevExpress.Web;
 using DevExpress.Web.Mvc;
+using NTP_MVC.Job;
 
 namespace NTP_MVC
 {
@@ -23,10 +24,11 @@ namespace NTP_MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AuthConfig.RegisterAuth();
-            
+
             ModelBinders.Binders.DefaultBinder = new DevExpressEditorsBinder();
 
             ASPxWebControl.CallbackError += Application_Error;
+            JobScheduler.Start();
         }
 
         protected void Application_Error(object sender, EventArgs e)

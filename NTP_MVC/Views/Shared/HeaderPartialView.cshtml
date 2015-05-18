@@ -101,6 +101,55 @@
       });
    });
 
+
+    settings.Items.Add(item =>
+    {
+        item.Text = "Module Hỗ trợ điều trị";
+        item.Name = "ModuleHoTroDieuTri";
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Danh sách bệnh nhân nhận tin nhắn";
+            subItem.NavigateUrl = @Url.Action("DSBenhNhanNhanTinNhan", "HoTroDieuTri");
+            subItem.Name = "DSBenhNhanNhanTinNhan";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Danh sách bệnh nhân từ chối nhận tin nhắn";
+            subItem.NavigateUrl = @Url.Action("DSBenhNhanTuChoiNhanTinNhan", "HoTroDieuTri");
+            subItem.Name = "DSBenhNhanTuChoiNhanTinNhan";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Danh sách bệnh nhân xét nghiệm";
+            subItem.NavigateUrl = @Url.Action("DSBenhNhanXN", "HoTroDieuTri");
+            subItem.Name = "DSBenhNhanXN";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Danh sách bệnh nhân đổi địa chỉ";
+            subItem.NavigateUrl = @Url.Action("DSBenhNhanDoiDiaChi", "HoTroDieuTri");
+            subItem.Name = "DSBenhNhanDoiDiaChi";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Danh sách bệnh nhân phản hồi tác dụng phụ";
+            subItem.NavigateUrl = @Url.Action("DSBenhNhanPhanHoiTacDungPhu", "HoTroDieuTri");
+            subItem.Name = "DSBenhNhanPhanHoiTacDungPhu";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Danh mục thông điệp";
+            subItem.NavigateUrl = @Url.Action("DMThongDiep", "HoTroDieuTri");
+            subItem.Name = "DMThongDiep";
+        });
+        item.Items.Add(subItem =>
+        {
+            subItem.Text = "Thống kê SMS";
+            subItem.NavigateUrl = @Url.Action("ThongKeSMS", "HoTroDieuTri");
+            subItem.Name = "ThongKeSMS";
+        });
+    });
+    
     settings.Items.Add(item =>
     {
         item.Text = "Quản lý thuốc";
