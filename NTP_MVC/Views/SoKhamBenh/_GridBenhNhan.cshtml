@@ -1,0 +1,110 @@
+﻿@model List<NTP_MVC.Models.SO_BenhNhan>
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {    
+        /*Initial*/
+        settings.Name = "GridBenhNhan";
+        settings.Width = Unit.Percentage(100); 
+        settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "SearchBenhNhan" };
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { " +
+                                                                  "e.customArgs['matinh'] = ComboBoxTinh.GetValue();" +
+                                                                  "e.customArgs['mahuyen'] = ComboBoxHuyen.GetValue();" +
+                                                                  "e.customArgs['hoten'] = txtHoTen.GetText() ;" +
+                                                                  "e.customArgs['mabnql'] = txtMaBNQL.GetText() ;" +
+                                                                  "e.customArgs['socmnd'] = txtSoCMND.GetText() ;" +
+                                                                  "e.customArgs['nkbfrom'] = NKBFrom.GetText()   ;" +
+                                                                  "e.customArgs['nkbto'] =  NKBTo.GetText() ;" +
+                                                                  "}";
+        settings.ClientSideEvents.EndCallback = "function(s, e) { ID_BenhNhan = GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex()); GridSoKhamBenh.PerformCallback(); }";
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BenhNhan", Action = "GridBenhNhanDelete" };
+        settings.KeyFieldName = "ID_BenhNhan";
+
+        /* Behavior */
+       // settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridBNFocusedRowChanged";
+     //   settings.ClientSideEvents.RowDblClick = "OnGridBNRowDblClick";
+     
+        /*Buttons*/
+        //var EditColumnCommand = new MVCxGridViewCommandColumn();
+        //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //EditColumnCommand.ShowEditButton = true;
+        //EditColumnCommand.Width = 50;
+        //EditColumnCommand.ShowNewButtonInHeader = true;
+        //EditColumnCommand.VisibleIndex = 0;
+        //settings.Columns.Add(EditColumnCommand);        
+        //var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        //DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //DeleteColumnCommand.ShowDeleteButton = true;
+        //DeleteColumnCommand.Width = 50;
+        //DeleteColumnCommand.VisibleIndex = 14;
+        //settings.Columns.Add(DeleteColumnCommand);
+         
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "Tất cả";
+        settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
+        settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+        
+        /* Column Definitions */
+        settings.Columns.Add("HoTen");
+        settings.Columns.Add("SoCMND");
+        settings.Columns.Add("Tuoi");
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "Gioitinh";
+            i.Caption = "Giới tính";
+            i.Width = Unit.Pixel(100);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            i.ReadOnly = true;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DropDownHeight = 0;
+            comboBoxProperties.Items.Add("Nam", false);
+            comboBoxProperties.Items.Add("Nữ", true); 
+        });
+         
+        settings.Columns.Add("Diachi");
+        settings.Columns.Add("Sodienthoai");
+        settings.Columns.Add("BHYT");
+        settings.Columns.Add("NgheNghiep");
+        settings.Columns.Add("NoiGioiThieu"); 
+
+        ///*Edit Form*/
+        //settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        //settings.SettingsPopup.EditForm.Modal = true;
+        //settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        //settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.SetEditFormTemplateContent(c =>
+        //{
+        //    NTP_MVC.Models.SO_BenhNhan editItem;
+        //    if (c.Grid.IsNewRowEditing)
+        //        editItem = new NTP_MVC.Models.SO_BenhNhan();
+        //    else
+        //    {
+        //        editItem = ViewData["Item"] != null ? (NTP_MVC.Models.SO_BenhNhan)ViewData["Item"] : (NTP_MVC.Models.SO_BenhNhan)c.Grid.GetRow(c.VisibleIndex);
+        //    }
+        //    Html.RenderPartial("EditBenhNhan", editItem);
+        //});        
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+ grid.Bind(Model).GetHtml();
+} 

@@ -1,0 +1,236 @@
+﻿@model NTP_MVC.Models.HTDTGS
+
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Content/styles/lib/bootstrap.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/kendo.default.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/style.css")" rel="stylesheet">
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.js")"></script>
+<link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
+
+<script>
+    $(document).ready(function () {
+        kendo.culture("vi-VN");
+        var jsonReq = {};
+
+        dataSourceProvince = new kendo.data.DataSource({
+            schema: {
+                model: {
+                    id: "MA_TINH",
+                    fields: {
+                        MA_TINH: { editable: false, nullable: true },
+                        TEN_TINH: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterProvince = $("#filterProvince").kendoDropDownList({
+            optionLabel: '---',
+            dataTextField: "TEN_TINH",
+            dataValueField: "MA_TINH",
+            filter: "contains",
+            dataSource: dataSourceProvince,
+            change: onChangeFilterProvince
+        }).data("kendoDropDownList");
+
+        function getProvinces() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProvinces", "HoTroDieuTri")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceProvince.data(data);
+                    var provinceId = @Session["MATINH"];
+                    if (provinceId != null && provinceId > 0) {
+                        filterProvince.value(provinceId);
+                        filterProvince.enable(false);
+                        onChangeFilterProvince();
+                    } else {
+                        filterProvince.value('');
+                    }
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+
+        dataSourceDistrict = new kendo.data.DataSource({
+            serverFiltering: true,
+            batch: true,
+            serverPaging: true,
+            schema: {
+                model: {
+                    id: "MA_HUYEN",
+                    fields: {
+                        MA_HUYEN: { editable: false, nullable: true },
+                        TEN_HUYEN: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterDistrict = $("#filterDistrict").kendoDropDownList({
+            autoBind: false,
+            optionLabel: '---',
+            dataTextField: "TEN_HUYEN",
+            dataValueField: "MA_HUYEN",
+            filter: "contains",
+            dataSource: dataSourceDistrict
+        }).data("kendoDropDownList");
+
+        function onChangeFilterProvince() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetDistricts", "HoTroDieuTri")",
+                data: {provinceId:filterProvince.value()},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceDistrict.data(data);
+                    var districtId = @Session["MAHUYEN"];
+                    if (districtId != null && districtId > 0) {
+                        filterDistrict.value(districtId);
+                        filterDistrict.enable(false);
+                        onChangeFilterDistrict();
+                    } else {
+                        filterDistrict.value('');
+                    }
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        };
+
+        function firstDayInPreviousMonth(yourDate) {
+            return new Date(yourDate.getFullYear(), yourDate.getMonth(), 1);
+        }
+        var fromDate = $("#fromDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: firstDayInPreviousMonth(new Date())
+        }).data("kendoDatePicker");
+        var toDate = $("#toDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: new Date()
+        }).data("kendoDatePicker");
+
+        var dataSourceSMS = new kendo.data.DataSource({            
+            pageSize: 10,
+            schema: {
+                model: {
+                    id: "ID",
+                    fields: {
+                        ID: { editable: false, nullable: true },
+                        Ngay: { editable: false, validation: { required: true } }
+                    }
+                }
+            },
+            serverPaging: true
+        });
+        var tongSoTinUT = 0;var tongSoTinXN = 0;var tongSoTinGD = 0;var tongSoTinNhanPhanHoiUT = 0;var tongSoTinNhanTacDungPhu = 0;
+        var gridSMS = $("#gridSMS").kendoGrid({
+            autoBind: false,
+            dataSource: dataSourceSMS,
+            navigatable: true,
+            pageable: true,
+            pageable: {
+                messages: {
+                    display: '{0} - {1} / {2}',
+                    empty: ""
+                }
+            },
+            resizable: true,
+            sortable: true,
+            columns: [
+                { field: "Ngay", width: "100px", title: 'Ngày', template: '#= kendo.toString(kendo.parseDate(Ngay,"yyyy-MM-dd"), "dd/MM/yyyy") #'},
+                { field: "SoTinNhanUongThuoc", title: 'Số tin nhắn nhắc uống thuốc'},
+                { field: "SoTinNhanTaiKham", title: 'Số tin nhắn nhắc xét nghiệm' },
+                { field: "SoTinNhanGuiKhac", title: 'Số tin nhắn truyền thông' },
+                { field: "SoTinNhanPhanHoiUT", width: "200px", title: 'Số tin phản hồi uống thuốc'},
+                { field: "SoTinNhanTrieuChung", title: 'Số tin phản hồi tác dụng phụ'}                
+            ],
+            editable: false,
+            dataBound: function (e) {
+                if (dataSourceSMS.total() > 0)
+                    $("#log").html('Số tin nhắn uống thuốc: <strong>' + tongSoTinUT + '</strong>. Số tin nhắn xét nghiệm: <strong>' + tongSoTinXN + '</strong>. Số tin nhắn truyền thông: <strong>' + tongSoTinGD + '</strong>. Số tin phản hồi uống thuốc: <strong>' + tongSoTinNhanPhanHoiUT + '</strong>. Số tin phản hồi tác dụng phụ: <strong>' + tongSoTinNhanTacDungPhu + '</strong>.');
+                else
+                    $("#log").html('Không tìm thấy dữ liệu');
+            },
+            selectable: true
+        }).data("kendoGrid");       
+
+        $("#buttonSearch").click(function () {
+            searchSMS();
+        });
+
+        function searchSMS() {
+            var provinceId = $("#filterProvince").val();
+            var districtId = $("#filterDistrict").val();
+            
+            var textdatefilterFrom = kendo.toString(fromDate.value(),"yyyy-MM-dd HH:mm:ss");
+            var textdatefilterTo = kendo.toString(toDate.value(),"yyyy-MM-dd HH:mm:ss");
+            var today = new Date();texttoday = kendo.toString(today,"yyyy-MM-dd HH:mm:ss");
+            if (textdatefilterFrom == null || textdatefilterTo == null) {
+                alert("Bạn chưa chọn thời gian");
+                return;
+            }
+
+            if (textdatefilterFrom > textdatefilterTo) {
+                alert("Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                return;
+            }
+            if (textdatefilterFrom > texttoday || textdatefilterTo > texttoday ) {
+                alert("Ngày lựa chọn không được lớn hơn ngày hiện tại");
+                return;
+            }
+            if (provinceId == '') provinceId = 0;	
+            if (districtId == '') districtId = 0;	
+            	
+            paramDue = {provinceId: provinceId, districtId: districtId, fromDate: textdatefilterFrom, toDate: textdatefilterTo};
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetThongKeSMS", "HoTroDieuTri")",
+                data: JSON.stringify(paramDue),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+                    if (data == null) {
+                        dataSourceSMS.data({});
+                    } else {
+                        tongSoTinUT = data.totalSoTinNhanUT;
+                        tongSoTinXN = data.totalSoTinNhanXN;
+                        tongSoTinGD = data.totalSoTinNhanTruyenThong;
+                        tongSoTinNhanPhanHoiUT = data.totalSoTinNhanPhanHoiUT;
+                        tongSoTinNhanTacDungPhu = data.totalSoTinNhanTacDungPhu;
+                        dataSourceSMS.data(data.smss);    
+                    }
+                    
+                },
+                failure: function(errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+
+        getProvinces();
+
+
+    });
+
+</script>
+<h2>Thống kê số lượng tin nhắn</h2>
+Tỉnh:&nbsp;<input id="filterProvince" style="width:130px" />&nbsp;&nbsp;&nbsp;
+Huyện:&nbsp;<input id="filterDistrict" style="width:200px" />&nbsp;&nbsp;&nbsp;
+Thời gian:&nbsp;&nbsp;&nbsp;<input id="fromDate" name="fromDate" value="" style="width:100px;" />&nbsp;-
+&nbsp;<input id="toDate" name="toDate" value="" style="width:100px;" />
+<input class="btn btn-primary" style="width:50px;cursor:pointer;" id="buttonSearch" name="buttonSearch" value="Tìm" readonly /><br />
+<p style="height:3px"></p>
+<font color="#EE7318"><div id="log">&nbsp;</div></font>
+<div id="gridSMS"></div>

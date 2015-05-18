@@ -1,0 +1,352 @@
+﻿@model NTP_MVC.Models.HTDTGS
+
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Content/styles/lib/bootstrap.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/kendo.default.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/style.css")" rel="stylesheet">
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.js")"></script>
+<link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
+<script>
+    $(document).ready(function () {
+        kendo.culture("vi-VN");
+        var jsonReq = {};
+
+        dataSourceProvince = new kendo.data.DataSource({
+            schema: {
+                model: {
+                    id: "MA_TINH",
+                    fields: {
+                        MA_TINH: { editable: false, nullable: true },
+                        TEN_TINH: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterProvince = $("#filterProvince").kendoDropDownList({
+            optionLabel: '---',
+            dataTextField: "TEN_TINH",
+            dataValueField: "MA_TINH",
+            filter: "contains",
+            dataSource: dataSourceProvince,
+            change: onChangeFilterProvince
+        }).data("kendoDropDownList");
+
+        function getProvinces() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProvinces", "HoTroDieuTri")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceProvince.data(data);
+                    var provinceId = @Session["MATINH"];
+                    if (provinceId != null && provinceId > 0) {
+                        filterProvince.value(provinceId);
+                        filterProvince.enable(false);
+                        onChangeFilterProvince();
+                    } else {
+                        filterProvince.value('');
+                    }
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+
+        dataSourceDistrict = new kendo.data.DataSource({
+            serverFiltering: true,
+            batch: true,
+            serverPaging: true,
+            schema: {
+                model: {
+                    id: "MA_HUYEN",
+                    fields: {
+                        MA_HUYEN: { editable: false, nullable: true },
+                        TEN_HUYEN: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterDistrict = $("#filterDistrict").kendoDropDownList({
+            autoBind: false,
+            optionLabel: '---',
+            dataTextField: "TEN_HUYEN",
+            dataValueField: "MA_HUYEN",
+            filter: "contains",
+            dataSource: dataSourceDistrict,
+            change: onChangeFilterDistrict
+        }).data("kendoDropDownList");
+
+        function onChangeFilterProvince() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetDistricts", "HoTroDieuTri")",
+                data: { provinceId : filterProvince.value() },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceDistrict.data(data);
+                    var districtId = @Session["MAHUYEN"];
+                    if (districtId != null && districtId > 0) {
+                        filterDistrict.value(districtId);
+                        filterDistrict.enable(false);
+                        onChangeFilterDistrict();
+                    } else {
+                        filterDistrict.value('');
+                    }
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        };
+
+        dataSourceCommune = new kendo.data.DataSource({
+            serverFiltering: true,
+            batch: true,
+            serverPaging: true,
+            schema: {
+                model: {
+                    id: "MA_XA",
+                    fields: {
+                        MA_XA: { editable: false, nullable: true },
+                        TEN_XA: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterCommune = $("#filterCommune").kendoDropDownList({
+            autoBind: false,
+            optionLabel: '---',
+            dataTextField: "TEN_XA",
+            dataValueField: "MA_XA",
+            filter: "contains",
+            dataSource: dataSourceCommune
+        }).data("kendoDropDownList");
+
+        function onChangeFilterDistrict() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCommunes", "HoTroDieuTri")",
+                data: { provinceId : filterDistrict.value() },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceCommune.data(data);
+                    filterCommune.value('');
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        };
+        function firstDayInPreviousMonth(yourDate) {
+            return new Date(yourDate.getFullYear(), yourDate.getMonth(), 1);
+        }
+        var fromDate = $("#fromDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: firstDayInPreviousMonth(new Date())
+        }).data("kendoDatePicker");
+        var toDate = $("#toDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: new Date()
+        }).data("kendoDatePicker");
+
+        dataSourceTherapy = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "@Url.Action("GetTherapies", "HoTroDieuTri")",
+                    dataType: "json"
+                },
+                parameterMap: function (options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return { models: kendo.stringify(options.models) };
+                    }
+                }
+            },
+            batch: true,
+            pageSize: 30,
+            schema: {
+                model: {
+                    id: "ID_PhacdoDT",
+                    fields: {
+                        ID_PhacdoDT: { editable: false, nullable: true },
+                        Ten_PhacdoDT: { validation: { required: true } },
+                        Phanloai: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+        dataSourceTherapy.fetch();
+
+        dataSourceLoaiBenh = new kendo.data.DataSource({
+            transport: {
+                read: {
+
+                    url: "@Url.Action("GetLoaiBenhs", "HoTroDieuTri")", 
+                    dataType: "json"
+                },
+                parameterMap: function (options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return { models: kendo.stringify(options.models) };
+                    }
+                }
+            },
+            batch: true,
+            pageSize: 30,
+            schema: {
+                model: {
+                    id: "ID_PhanLoaiBenh",
+                    fields: {
+                        ID_PhanLoaiBenh: { editable: false, nullable: true },
+                        Ten_PhanLoaiBenh: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+        dataSourceLoaiBenh.fetch();
+
+        var dataSourceBenhNhanGuiTacDungPhu = new kendo.data.DataSource({
+            pageSize: 10,
+            schema: {
+                model: {
+                    id: "ID_BenhNhan",
+                    fields: {
+                        ID_BenhNhan: { editable: false, nullable: true },
+                        HoTen: { editable: false, validation: { required: true } },
+                        Tuoi: { editable: false, validation: { required: true } },
+                        Gioitinh: { editable: false, validation: { required: true } },
+                        Diachi: { editable: false, validation: { required: true } },
+                        TacDungPhu: { validation: { required: true } },
+                        Sodienthoai: { validation: { required: true } }
+                    }
+                }
+            },
+            serverPaging: false
+        });
+
+        var gridBenhNhanGuiTacDungPhu = $("#gridBenhNhanGuiTacDungPhu").kendoGrid({
+            autoBind: true,
+            dataSource: dataSourceBenhNhanGuiTacDungPhu,
+            navigatable: true,
+            pageable: true,
+            pageable: {
+                messages: {
+                    display: '{0} - {1} / {2} tin nhắn',
+                    empty: ""
+                }
+            },
+            resizable: true,
+            sortable: true,
+            columns: [
+                { field: "HoTen", title: 'Họ tên'},
+                { field: "Tuoi", width: "40px", title: 'Tuổi'},
+                { field: "Gioitinh", width: "70px", title: 'Giới tính', template: "#= Gioitinh ? 'Nam' : 'Nữ' #" },
+                { field: "Sodienthoai", title: 'Di động'},
+                { field: "TEN_XA", title: 'Phường/Xã'},
+                { field: "NgayDT", width: "90px", title: 'Ngày điều trị', template: '#= NgayDT ? kendo.toString(kendo.parseDate(NgayDT,"yyyy-MM-dd"), "dd/MM/yyyy") : "" #' },
+                { field: "ID_PhacDoDT", title: 'Phác đồ', template: "#= ID_PhacDoDT > 0 ? dataSourceTherapy.at(ID_PhacDoDT - 1).Ten_PhacdoDT : '' #" },
+                { field: "ID_PhanLoaiBenh", title: 'Loại bệnh', template: "#= ID_PhanLoaiBenh ? dataSourceLoaiBenh.at(ID_PhanLoaiBenh-1).Ten_PhanLoaiBenh : '' #" },
+                { field: "NgayNhanTinTacDungPhu", width: "120px", title: 'Ngày nhận', template: '#= NgayNhanTinTacDungPhu ? kendo.toString(kendo.parseDate(NgayNhanTinTacDungPhu,"yyyy-MM-dd"), "dd/MM/yyyy") : "" #'},
+                { field: "TacDungPhu", width: "90px", title: 'Tác dụng phụ'}
+            ],
+            editable: false,
+            dataBound: function (e) {
+                if (dataSourceBenhNhanGuiTacDungPhu.total() > 0)
+                    $("#log").html(dataSourceBenhNhanGuiTacDungPhu.total() + ' kết quả');
+                else
+                    $("#log").html('Không tìm thấy dữ liệu');
+            },
+            selectable: true
+        }).data("kendoGrid");
+
+        $("#buttonSearch").click(function () {
+            searchBenhNhan();
+
+        });
+
+        function searchBenhNhan() {
+            var provinceId = $("#filterProvince").val();
+            var districtId = $("#filterDistrict").val();
+            var communeId = $("#filterCommune").val();
+            var textdatefilterFrom = kendo.toString(fromDate.value(),"yyyy-MM-dd HH:mm:ss");
+            var textdatefilterTo = kendo.toString(toDate.value(),"yyyy-MM-dd HH:mm:ss");
+            var today = new Date();texttoday = kendo.toString(today,"yyyy-MM-dd HH:mm:ss");
+            if (textdatefilterFrom == null || textdatefilterTo == null) {
+                alert("Bạn chưa chọn thời gian");
+                return;
+            }
+
+            if (textdatefilterFrom > textdatefilterTo) {
+                alert("Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                return;
+            }
+            if (textdatefilterFrom > texttoday || textdatefilterTo > texttoday ) {
+                alert("Ngày lựa chọn không được lớn hơn ngày hiện tại");
+                return;
+            }
+            if (provinceId == '') provinceId = 0;
+            if (districtId == '') districtId = 0;
+            if (communeId == '') communeId = 0;
+
+            paramDue = {provinceId: provinceId, districtId: districtId, communeId: communeId, fromDate: textdatefilterFrom, toDate: textdatefilterTo};
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetDsTacDungPhu", "HoTroDieuTri")",
+                data: JSON.stringify(paramDue),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+                    dataSourceBenhNhanGuiTacDungPhu.data(data);
+                },
+                failure: function(errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+
+        $("#buttonExcel").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("XuatExcelBenhNhanGuiTacDungPhu", "HoTroDieuTri")", 
+                data: JSON.stringify(paramDue),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    window.open("/" + data, '_blank');
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+
+        });
+
+        getProvinces();
+
+
+    });
+
+</script>
+<h2>Danh sách bệnh nhân phản hồi tác dụng phụ</h2>
+Tỉnh:&nbsp;<input id="filterProvince" style="width:130px" />&nbsp;&nbsp;&nbsp;
+Huyện:&nbsp;<input id="filterDistrict" style="width:200px" />&nbsp;&nbsp;&nbsp;
+Phường / Xã:&nbsp;<input id="filterCommune" style="width:200px" /><br />
+<p style="height:3px"></p>
+Từ:&nbsp;&nbsp;&nbsp;<input id="fromDate" name="fromDate" value="" style="width:100px;" />&nbsp;&nbsp;&nbsp;
+Đến:&nbsp;&nbsp;&nbsp;<input id="toDate" name="toDate" value="" style="width:100px;" />
+<input class="btn btn-primary" style="width:50px;cursor:pointer;" id="buttonSearch" name="buttonSearch" value="Tìm" readonly /><br />
+<p style="height:3px"></p>
+<font color="#EE7318"><div id="log">&nbsp;</div></font>
+<div id="gridBenhNhanGuiTacDungPhu"></div>
+<p style="height:3px"></p>
+<input class="btn btn-primary" id="buttonExcel" name="buttonExcel" style="width:80px;cursor:pointer;" readonly value="Xuất Excel" />

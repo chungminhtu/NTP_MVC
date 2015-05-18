@@ -1,0 +1,58 @@
+﻿@Html.DevExpress().FormLayout(settings =>
+        {
+            settings.Name = "EditBCThuNhanBNLao";
+            settings.RequiredMarkDisplayMode = RequiredMarkMode.None;
+            settings.Width = Unit.Percentage(100);
+
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 1. Toàn bộ bệnh nhân lao đăng ký điều trị trong quý (trừ bệnh nhân chuyển  đến ) và tình trạng HIV, lao trẻ em";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+
+                    Html.RenderPartial("GridBCTN1");
+                });
+            });
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 2. Bệnh nhân lao phổi AFB dương tính mới theo tuổi, giới";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+                    Html.RenderPartial("GridBCTN2");
+
+                });
+            });
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 3. Toàn bộ bệnh nhân lao đăng ký điều trị trong quý (trừ bệnh nhân chuyển đến) với sự tham gia đóng góp của Y tế công, tư trong giám sát hỗ trợ điều trị bệnh nhân lao";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+                    Html.RenderPartial("GridBCTN3");
+
+                });
+            });
+        }).GetHtml()

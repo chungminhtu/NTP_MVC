@@ -1,0 +1,401 @@
+﻿@model NTP_MVC.Models.HTDTGS
+
+<script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
+<link href="@Url.Content("~/Content/styles/lib/bootstrap.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/kendo.common.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/kendo.default.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Content/styles/style.css")" rel="stylesheet">
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/kendo.web.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.js")"></script>
+<link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
+
+<script>
+    $(document).ready(function () {
+        kendo.culture("vi-VN");
+        var jsonReq = {};
+
+        dataSourceProvince = new kendo.data.DataSource({
+            schema: {
+                model: {
+                    id: "MA_TINH",
+                    fields: {
+                        MA_TINH: { editable: false, nullable: true },
+                        TEN_TINH: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterProvince = $("#filterProvince").kendoDropDownList({
+            optionLabel: '---',
+            dataTextField: "TEN_TINH",
+            dataValueField: "MA_TINH",
+            filter: "contains",
+            dataSource: dataSourceProvince,
+            change: onChangeFilterProvince
+        }).data("kendoDropDownList");
+
+        function getProvinces() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProvinces", "HoTroDieuTri")",
+                //url: "@Url.Action("GetProvinces", "HoTroDieuTri")", //Sai URL, phai dung URL Relative
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceProvince.data(data);
+                    var provinceId = @Session["MATINH"];
+                    if (provinceId != null && provinceId > 0) {
+                        filterProvince.value(provinceId);
+                        filterProvince.enable(false);
+                        onChangeFilterProvince();
+                    } else {
+                        filterProvince.value('');
+                    }
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+
+        dataSourceDistrict = new kendo.data.DataSource({
+            serverFiltering: true,
+            batch: true,
+            serverPaging: true,
+            schema: {
+                model: {
+                    id: "MA_HUYEN",
+                    fields: {
+                        MA_HUYEN: { editable: false, nullable: true },
+                        TEN_HUYEN: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterDistrict = $("#filterDistrict").kendoDropDownList({
+            autoBind: false,
+            optionLabel: '---',
+            dataTextField: "TEN_HUYEN",
+            dataValueField: "MA_HUYEN",
+            filter: "contains",
+            dataSource: dataSourceDistrict,
+            change: onChangeFilterDistrict
+        }).data("kendoDropDownList");
+
+        function onChangeFilterProvince() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetDistricts", "HoTroDieuTri")",
+                data: { provinceId : filterProvince.value() },
+                //url: "@Url.Action("GetDistricts", "HoTroDieuTri")",provinceId=" + filterProvince.value(),//Sai URL, phai dung URL Relative
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceDistrict.data(data);
+                    var districtId = @Session["MAHUYEN"];
+                    if (districtId != null && districtId > 0) {
+                        filterDistrict.value(districtId);
+                        filterDistrict.enable(false);
+                        onChangeFilterDistrict();
+                    } else {
+                        filterDistrict.value('');
+                    }
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        };
+
+        dataSourceCommune = new kendo.data.DataSource({
+            serverFiltering: true,
+            batch: true,
+            serverPaging: true,
+            schema: {
+                model: {
+                    id: "MA_XA",
+                    fields: {
+                        MA_XA: { editable: false, nullable: true },
+                        TEN_XA: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+
+        var filterCommune = $("#filterCommune").kendoDropDownList({
+            autoBind: false,
+            optionLabel: '---',
+            dataTextField: "TEN_XA",
+            dataValueField: "MA_XA",
+            filter: "contains",
+            dataSource: dataSourceCommune
+        }).data("kendoDropDownList");
+        //var curUsername = "${pageContext.request.remoteUser}";
+
+        function onChangeFilterDistrict() {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCommunes", "HoTroDieuTri")",
+                data: { provinceId : filterDistrict.value() },
+                //url: "@Url.Action("GetCommunes", "HoTroDieuTri")",districtId=" + filterDistrict.value(),//Sai URL, phai dung URL Relative
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    dataSourceCommune.data(data);
+                    filterCommune.value('');
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        };
+
+        function firstDayInPreviousMonth(yourDate) {
+            return new Date(yourDate.getFullYear(), yourDate.getMonth(), 1);
+        }
+        var fromDate = $("#fromDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: firstDayInPreviousMonth(new Date())
+        }).data("kendoDatePicker");
+        var toDate = $("#toDate").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: new Date()
+        }).data("kendoDatePicker");
+        var reminderStatus = [
+            {id: 0, text: 'Đang điều trị'},
+            {id: 1, text: 'Đã kết thúc điều trị'}
+        ];
+        var dropdownReminderStatus = new kendo.data.DataSource({
+            data: reminderStatus
+        });
+        var dropdownReminderStatus = $("#dropdownReminderStatus").kendoDropDownList({
+            autoBind: true,
+            dataTextField: "text",
+            dataValueField: "id",
+            filter: "contains",
+            dataSource: dropdownReminderStatus
+        }).data("kendoDropDownList");
+
+        dataSourceTherapy = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "@Url.Action("GetTherapies", "HoTroDieuTri")",
+                    //url: "@Url.Action("GetTherapies", "HoTroDieuTri")",
+                    dataType: "json"
+                },
+                parameterMap: function (options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return { models: kendo.stringify(options.models) };
+                    }
+                }
+            },
+            batch: true,
+            pageSize: 30,
+            schema: {
+                model: {
+                    id: "ID_PhacdoDT",
+                    fields: {
+                        ID_PhacdoDT: { editable: false, nullable: true },
+                        Ten_PhacdoDT: { validation: { required: true } },
+                        Phanloai: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+        dataSourceTherapy.fetch();
+
+        dataSourceLoaiBenh = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "@Url.Action("GetLoaiBenhs", "HoTroDieuTri")",
+                    //url: "@Url.Action("GetLoaiBenhs", "HoTroDieuTri")",
+                    dataType: "json"
+                },
+                parameterMap: function (options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return { models: kendo.stringify(options.models) };
+                    }
+                }
+            },
+            batch: true,
+            pageSize: 30,
+            schema: {
+                model: {
+                    id: "ID_PhanLoaiBenh",
+                    fields: {
+                        ID_PhanLoaiBenh: { editable: false, nullable: true },
+                        Ten_PhanLoaiBenh: { validation: { required: true } }
+                    }
+                }
+            }
+        });
+        dataSourceLoaiBenh.fetch();
+        var tongSoTinUT = 0;var tongSoTinXN = 0;var tongSoTinGD = 0;
+        var dataSourcePatientUT = new kendo.data.DataSource({
+            transport: {
+                read: function (options) {
+                    jsonReq = options.data;
+                    var provinceId = $("#filterProvince").val();
+                    var districtId = $("#filterDistrict").val();
+                    var communeId = $("#filterCommune").val();
+                    var statusId = $("#dropdownReminderStatus").val();
+                    var textdatefilterFrom = kendo.toString(fromDate.value(),"yyyy-MM-dd HH:mm:ss");
+                    var textdatefilterTo = kendo.toString(toDate.value(),"yyyy-MM-dd HH:mm:ss");
+                    var today = new Date();texttoday = kendo.toString(today,"yyyy-MM-dd HH:mm:ss");
+                    if (textdatefilterFrom == null || textdatefilterTo == null) {
+                        alert("Bạn chưa chọn thời gian");
+                        return;
+                    }
+
+                    if (textdatefilterFrom > textdatefilterTo) {
+                        alert("Ngày bắt đầu không được lớn hơn ngày kết thúc");
+                        return;
+                    }
+                    if (textdatefilterFrom > texttoday || textdatefilterTo > texttoday ) {
+                        alert("Ngày lựa chọn không được lớn hơn ngày hiện tại");
+                        return;
+                    }
+
+                    if (provinceId == '') provinceId = 0;
+                    if (districtId == '') districtId = 0;
+                    if (communeId == '') communeId = 0;
+
+                    jsonReq.provinceId = provinceId;
+                    jsonReq.districtId = districtId;
+                    jsonReq.communeId = communeId;
+                    jsonReq.fromDate = textdatefilterFrom;
+                    jsonReq.toDate = textdatefilterTo;
+                    jsonReq.statusId = statusId;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("GetBenhNhanNhanTinNhan", "HoTroDieuTri")",
+                       // url: "@Url.Action("GetBenhNhanNhanTinNhan", "HoTroDieuTri")",
+                        data: JSON.stringify(jsonReq),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            tongSoTinUT = data.totalSoTinNhanUT;
+                            tongSoTinXN = data.totalSoTinNhanXN;
+                            tongSoTinGD = data.totalSoTinNhanTruyenThong;
+                            options.success(data);
+                        },
+                        failure: function (errMsg) {
+                            alert(errMsg);
+                        }
+                    });
+
+                }
+            },
+            pageSize: 10,
+            schema: {
+                total: "total",
+                data: "patients",
+                type: "json",
+                model: {
+                    id: "ID_BenhNhan",
+                    fields: {
+                        ID_BenhNhan: { editable: false, nullable: true },
+                        HoTen: { editable: false, validation: { required: true } },
+                        Tuoi: { editable: false, validation: { required: true } },
+                        Gioitinh: { editable: false, validation: { required: true } },
+                        Diachi: { editable: false, validation: { required: true } },
+                        SoTinNhanUT: { validation: { required: true } },
+                        SoTinNhanGD: { validation: { required: true } }
+                    }
+                }
+            },
+            serverPaging: true
+        });
+
+        var gridPatientUT = $("#gridPatientUT").kendoGrid({
+            autoBind: false,
+            dataSource: dataSourcePatientUT,
+            navigatable: true,
+            pageable: true,
+            pageable: {
+                messages: {
+                    display: '{0} - {1} / {2} bệnh nhân',
+                    empty: ""
+                }
+            },
+            resizable: true,
+            sortable: true,
+            columns: [
+                { field: "HoTen", title: 'Họ tên'},
+                { field: "Tuoi", width: "40px", title: 'Tuổi'},
+                { field: "Gioitinh", width: "70px", title: 'Giới tính', template: "#= Gioitinh ? 'Nam' : 'Nữ' #" },
+                { field: "Sodienthoai", title: 'Di động'},
+                { field: "TEN_XA", title: 'Phường/Xã'},
+                { field: "NgayDT", width: "90px", title: 'Ngày điều trị', template: '#= NgayDT ? kendo.toString(kendo.parseDate(NgayDT,"yyyy-MM-dd"), "dd/MM/yyyy") : "" #' },
+                { field: "ID_PhacDoDT", title: 'Phác đồ', template: "#= ID_PhacDoDT > 0 ? dataSourceTherapy.at(ID_PhacDoDT - 1).Ten_PhacdoDT : '' #" },
+                { field: "ID_PhanLoaiBenh", title: 'Loại bệnh', template: "#= ID_PhanLoaiBenh ? dataSourceLoaiBenh.at(ID_PhanLoaiBenh-1).Ten_PhanLoaiBenh : '' #" },
+                { field: "SoTinNhanUT", title: 'Tin nhắn nhắc uống thuốc'},
+                { field: "SoTinNhanXN", title: 'Tin nhắn nhắc xét nghiệm'},
+                { field: "SoTinNhanGD", title: 'Tin nhắn truyền thông'}
+            ],
+            editable: false,
+            dataBound: function (e) {
+                if (dataSourcePatientUT.total() > 0)
+                    $("#log").html('<strong>' + dataSourcePatientUT.total() + '</strong> bệnh nhân. Số tin nhắn uống thuốc: <strong>' + tongSoTinUT + '</strong>. Số tin nhắn xét nghiệm: <strong>' + tongSoTinXN + '</strong>. Số tin nhắn truyền thông: <strong>' + tongSoTinGD + '</strong>.');
+                else
+                    $("#log").html('Không tìm thấy dữ liệu');
+            },
+            selectable: true
+        }).data("kendoGrid");
+
+        $("#buttonSearch").click(function () {
+            searchPatient();
+
+        });
+
+        function searchPatient() {
+            dataSourcePatientUT.fetch();
+        }
+
+        $("#buttonExcel").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("XuatExcelBenhNhanNhanTinNhan","HoTroDieuTri")",
+                // url: "@Url.Action("XuatExcelBenhNhanNhanTinNhan", "HoTroDieuTri")",
+                data: JSON.stringify(jsonReq),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    window.open("/" + data, '_blank');
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+
+        });
+
+        getProvinces();
+
+
+    });
+
+</script>
+<h2>Danh sách bệnh nhân nhận tin nhắn</h2>
+Tỉnh:&nbsp;<input id="filterProvince" style="width:130px" />&nbsp;&nbsp;&nbsp;
+Huyện:&nbsp;<input id="filterDistrict" style="width:200px" />&nbsp;&nbsp;&nbsp;
+Phường / Xã:&nbsp;<input id="filterCommune" style="width:200px" /><br />
+<p style="height:3px"></p>
+Ngày:&nbsp;&nbsp;&nbsp;<input id="fromDate" name="fromDate" value="" style="width:100px;" />&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp;&nbsp;<input id="toDate" name="toDate" value="" style="width:100px;" />
+Lọc theo:&nbsp;<input id="dropdownReminderStatus" style="width:140px" />&nbsp;
+<input class="btn btn-primary" style="width:50px;cursor:pointer;" id="buttonSearch" name="buttonSearch" value="Tìm" readonly /><br />
+<p style="height:3px"></p>
+<font color="#EE7318"><div id="log">&nbsp;</div></font>
+<div id="gridPatientUT"></div>
+<p style="height:3px"></p>
+<input class="btn btn-primary" id="buttonExcel" name="buttonExcel" style="width:80px;cursor:pointer;" readonly value="Xuất Excel" />
+
+
+

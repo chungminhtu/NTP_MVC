@@ -1,0 +1,224 @@
+﻿@using NTP_MVC.Models
+@using DevExpress.Web.Rendering
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        /*Initial*/
+        settings.Name = "GridBCTN1";
+        settings.Width = Unit.Percentage(100);
+        settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCTN1" };
+        settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCTN1BatchEditingUpdateModel" };
+
+        settings.ClientSideEvents.BeginCallback = "GridBCThuNhanBNLao_OnBeginCallback";
+
+        /* Behavior */
+        settings.SettingsBehavior.AllowFocusedRow = false;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.Settings.ShowStatusBar = GridViewStatusBarMode.Visible;
+
+        /*Events*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+        settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Cell;
+
+        settings.CommandColumn.Visible = false;
+        settings.CellEditorInitialize = (s, e) =>
+        {
+            ASPxEdit editor = (ASPxEdit)e.Editor;
+            editor.ValidationSettings.Display = Display.Dynamic;
+        };
+       
+     
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "Tất cả";
+        settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
+        settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
+        settings.SettingsPager.Visible = true;
+
+        settings.KeyFieldName = "ID_BCThunhanBNLaoP1;ID_BCThunhanBNLao;Phanloai";
+
+        settings.Columns.Add(i =>
+        { 
+            i.FieldName = "Phanloai";
+            i.Caption = "Phân loại";
+            i.ReadOnly = true; 
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox; 
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("T.Số BN lao thu nhận: (a)", 0);
+            comboBoxProperties.Items.Add("Có XN HIV (b)(trước hoặc trong quý ĐT lao)", 1);
+            comboBoxProperties.Items.Add("XN HIV(+) (c)", 2);
+            comboBoxProperties.Items.Add("Lao TE (<15) (d)", 3);
+            comboBoxProperties.DropDownHeight = 0;
+        });
+        //Lao phổi AFB dương tính
+        settings.Columns.AddBand(Band1 =>
+        {
+            Band1.Caption = "Lao phổi AFB dương tính";
+            Band1.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            Band1.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            Band1.Columns.Add(i =>
+            {
+                i.FieldName = "Moi";
+                i.Caption = "Mới";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            Band1.Columns.AddBand(Band2 =>
+            {
+                Band2.Caption = "Điều trị lại";
+                Band2.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                Band2.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Taiphat";
+                    i.Caption = "Tái phát";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Thatbai";
+                    i.Caption = "Thất bại";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "Taitri";
+                    i.Caption = "Điều trị lại sau bỏ trị";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+                Band2.Columns.Add(i =>
+                {
+                    i.FieldName = "AFBKhac";
+                    i.Caption = "AFB (+) khác";
+                    i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    i.Width = Unit.Pixel(150);
+                    i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                });
+            });
+        });
+        //Lao phổi AFB âm tính mới
+        settings.Columns.AddBand(Band1 =>
+        {
+            Band1.Caption = "Lao phổi AFB âm tính mới";
+            Band1.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            Band1.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            Band1.Columns.Add(i =>
+            {
+                i.FieldName = "AmNho";
+                i.Caption = "0-4 Tuổi";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            Band1.Columns.Add(i =>
+            {
+                i.FieldName = "AmTrung";
+                i.Caption = "5-14 Tuổi";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            Band1.Columns.Add(i =>
+            {
+                i.FieldName = "AmLon";
+                i.Caption = ">=15 Tuổi";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+        });
+        //Lao ngoài phổi mới
+        settings.Columns.AddBand(Band1 =>
+        {
+            Band1.Caption = "Lao ngoài phổi mới";
+            Band1.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            Band1.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            Band1.Columns.Add(i =>
+            {
+                i.FieldName = "NgoaiPhoiNho";
+                i.Caption = "0-4 Tuổi";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            Band1.Columns.Add(i =>
+            {
+                i.FieldName = "NgoaiPhoiTrung";
+                i.Caption = "5-14 Tuổi";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            Band1.Columns.Add(i =>
+            {
+                i.FieldName = "NgoaiPhoiLon";
+                i.Caption = ">=15 Tuổi";
+                i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NgoaiphoiKhac";
+            i.Caption = "AFB (-) lao ngoài phổi khác";
+            i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            i.Width = Unit.Pixel(100);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "TongCong";
+            i.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            i.Caption = "Tổng cộng";
+            i.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            i.Width = Unit.Pixel(150);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            i.ReadOnly = true;
+        });
+
+        //settings.CustomUnboundColumnData = (sender, e) =>
+        //{
+        //    if (e.Column.FieldName == "TongCong")
+        //    {
+        //        int a1 = Convert.ToInt32(e.GetListSourceFieldValue("Moi"));
+        //        int a2 = Convert.ToInt32(e.GetListSourceFieldValue("Taiphat"));
+        //        int a3 = Convert.ToInt32(e.GetListSourceFieldValue("Thatbai"));
+        //        int a4 = Convert.ToInt32(e.GetListSourceFieldValue("Taitri"));
+        //        int a5 = Convert.ToInt32(e.GetListSourceFieldValue("AFBKhac"));
+        //        int a6 = Convert.ToInt32(e.GetListSourceFieldValue("AmNho"));
+        //        int a7 = Convert.ToInt32(e.GetListSourceFieldValue("AmTrung"));
+        //        int a8 = Convert.ToInt32(e.GetListSourceFieldValue("AmLon"));
+        //        int a9 = Convert.ToInt32(e.GetListSourceFieldValue("NgoaiPhoiNho"));
+        //        int a10 = Convert.ToInt32(e.GetListSourceFieldValue("NgoaiPhoiTrung"));
+        //        int a11 = Convert.ToInt32(e.GetListSourceFieldValue("NgoaiPhoiLon"));
+        //        int a12 = Convert.ToInt32(e.GetListSourceFieldValue("NgoaiphoiKhac"));
+        //        e.Value = a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12;
+        //    }
+        //};
+        //settings.HtmlDataCellPrepared = (sender, e) =>
+        //{
+        //    if (e.DataColumn.FieldName == "TongCong")
+        //        e.Cell.Attributes.Add("onclick", "event.cancelBubble = true");
+        //};
+
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(ViewData["ListBCThuNhanBNLao1"]).GetHtml();
+}

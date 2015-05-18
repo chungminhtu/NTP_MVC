@@ -1,0 +1,398 @@
+html,body {
+	height: 100%;
+}
+
+body {
+	padding-top: 0px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body>.navbar .brand {
+	color: #000000;
+	font-weight: bold;
+	margin-left: 20px;
+	padding-left: 0;
+	padding-right: 0;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px
+		rgba(255, 255, 255, 0.125);
+}
+
+.navbar .brand {
+	height: 60px;
+	float: left;
+	padding: 5px 20px 12px;
+	margin-left: -22px;
+	font-size: 18px;
+	/*font-weight: 100;
+line-height: 1;*/
+	color: #424242;
+}
+
+.brand {
+	min-width: 417px;
+}
+
+.navbar-inner {
+	background-color: #F3F3F3;
+	background-image: none;
+	border-bottom-color: #EE7318;
+	border-bottom-style: solid;
+	border-bottom-width: 3px;
+	color: #333334;
+	filter: none;
+	box-shadow: none;
+	height:78px;
+}
+
+.navbar .brand:hover {
+	color: #333334; /* #0099ff; */
+}
+
+.container-fluid {
+padding-right: 5px;
+padding-left: 15px;
+height:100%;
+right:0;
+left:0;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -33px;
+}
+
+.wrapper>.container {
+	padding-top: 100px;
+}
+
+.row-fluid .span5 {
+	width: 40.170940171000005%;
+	outline: #f0f0f0 solid 1px;
+}
+
+.center-table {
+	margin: 0 auto !important;
+	float: none !important;
+	/*outline:#f0f0f0 solid 1px;*/
+	padding-top: 30px;
+}
+
+#switchLocale {
+	position: absolute;
+	right: 10px;
+}
+
+.form-horizontal .control-label {
+	width: 100px;
+}
+
+.form-horizontal .controls {
+	margin-left: 120px;
+}
+
+.form-horizontal .form-actions {
+	padding-left: 122px;
+	background-color: white;
+	border-top: none;
+	padding-top: 0px;
+}
+
+.navbar .nav {
+position: relative;
+right: 0;
+display: block;
+float: right;
+margin: 29px 20px 0 0;
+}
+
+.navbar .nav .active > a, .navbar .nav .active a:hover {
+color: #08C;
+text-decoration: none;
+background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+color:  #08C;
+text-decoration: none;
+}
+
+.dropdown > a:hover {
+color:  #08C;
+text-decoration: none;
+}
+
+.navbar .nav > li > a {
+float: none;
+padding: 9px 10px 11px;
+color: #424242;
+text-decoration: none;
+text-shadow: none;
+line-height: 6px;
+}
+
+.navbar .navtop {
+position: relative;
+right: 0;
+display: block;
+float: right;
+margin: 0px 0px 0 0;
+font-size:10px;
+}
+
+.navtop {
+	list-style:none;
+}
+.navbar .navtop > li {
+display: block;
+float: left;
+}
+
+.navbar .navtop > li > a {
+float: none;
+padding: 9px 10px 11px;
+color: #424242;
+text-decoration: none;
+text-shadow: none;
+}
+
+.navbar .navtop > li > a:hover {
+color:  #08C;
+text-decoration: none;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+background-color: transparent;
+font-weight:bold;
+}
+
+.nav .nav-header {
+color: #08C;
+text-decoration: none;
+}
+
+.row-fluid .span7 {
+width: 57.264957265%;
+background-color: whiteSmoke;
+}
+
+.span10 {
+		
+}
+
+#divcontent {
+	width:100%;
+	padding-right:5px;
+}
+
+h1,h2 {
+	margin-bottom: 10px;
+}
+
+h2 {
+	font-size:18px;
+	color:#08C;
+}
+
+legend {
+	margin-bottom: 0;
+}
+
+/* FORMS */
+.controls.readonly {
+	padding-top: 5px;
+}
+
+.well.form-horizontal .form-actions {
+	margin-bottom: 0;
+}
+
+.btn-group .btn {
+	margin-left: 5px;
+}
+
+#search {
+	float: right;
+	margin-top: -40px;
+}
+
+#search input[type="text"] {
+	display: inline-block;
+}
+
+/* TABLES */
+th.sorted a,th.sortable a {
+	display: block;
+}
+
+.table th.order1 a {
+	background-image: url(../images/arrow_down.png);
+}
+
+.table th.order2 a {
+	background-image: url(../images/arrow_up.png);
+}
+
+.table th.sorted a,.table th.sortable a {
+	background-position: right;
+	background-repeat: no-repeat;
+	display: block;
+}
+
+div.exportlinks a {
+	text-decoration: none;
+}
+
+div.exportlinks span {
+	background-repeat: no-repeat;
+	background-position: 1px 2px;
+}
+
+span.csv {
+	background-image: url(../images/ico_file_csv.png);
+}
+
+span.excel {
+	background-image: url(../images/ico_file_excel.png);
+}
+
+span.pdf {
+	background-image: url(../images/ico_file_pdf.png);
+}
+
+span.xml {
+	background-image: url(../images/ico_file_xml.png);
+}
+
+span.export {
+	cursor: pointer;
+	display: inline-block;
+	padding: 0 4px 1px 20px;
+}
+
+span.pagebanner {
+	display: block;
+	margin: 0 0 0 10px;
+	padding: 2px 4px 2px 0;
+}
+
+span.pagelinks {
+	display: block;
+	font-size: .95em;
+	margin-bottom: 5px;
+	margin-top: -18px;
+	padding: 2px 0 2px 0;
+	text-align: right;
+	width: 80%;
+}
+
+/* FOOTER */
+#footer {
+	clear: both;
+	margin: 0 auto;
+	padding: 0px 0 0px 0;
+	border-top: 3px solid #242424;
+	text-align: center;
+	background-color: #242424;
+	color: #808080;
+	font-size: 0.8em;
+	height: 24px;
+}
+
+#footer a {
+	color: #808080;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	text-decoration: underline;
+}
+
+#footer p {
+	margin: 0;
+}
+
+#footer span.left,#footer span.right {
+	text-align: center;
+	margin: 0px;
+}
+
+/* END FOOTER */
+.hide {
+	display: none;
+}
+
+.left {
+	margin: 10px 10px 0px 5px;
+	padding-left:5px;
+	float: left;
+}
+
+.right {
+	margin: 10px 0 0px 10px;
+	float: right;
+	padding-right:5px;
+}
+
+.colororange {
+	color:#EE7318;
+}
+.k-window-title {
+	color:#08C;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+#popupClose2{  
+ 
+}
+#bgPopup2{
+	display:none; 
+	position:fixed;  
+	_position:absolute; /* hack for internet explorer 6*/  
+	height:100%;  
+	width:100%;  
+	top:0;  
+	left:0;  
+	background:#000000;   
+	z-index:10001;  
+}  
+#Popup2{  
+	display:none;  
+	position:fixed;  
+	_position:absolute; /* hack for internet explorer 6 */  
+	background:#FFFFFF;  
+	border:2px solid #cecece;  
+	z-index:10002;  
+	padding:0px;  
+	font-size:13px;  
+	min-height:300px;
+} 
+#buttonViewEditPatient{
+
+}
+
+
+.k-grid td {
+    white-space: nowrap;
+    overflow: hidden;
+}
+ 
+.k-grid table {
+    table-layout: fixed;
+}
+
+
+.k-grid  .k-grid-header  .k-header  .k-link {
+    height: auto;
+}
+  
+.k-grid  .k-grid-header  .k-header {
+    white-space: normal;
+}
+
+.chkbxDue {
+
+}

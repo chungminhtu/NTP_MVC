@@ -1,0 +1,12 @@
+﻿
+@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "ComboBoxXa";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboBoxXaList" };
+    settings.Properties.CallbackPageSize = 500;
+    settings.Properties.ValueField = "MA_XA";
+    settings.Properties.TextField = "TEN_XA";
+    settings.Properties.ValueType = typeof(string);
+}).BindList(ViewData["Xas"]).GetHtml()

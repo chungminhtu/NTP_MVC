@@ -1,0 +1,95 @@
+﻿@model NTP_MVC.Models.SoKhamBenhModel
+
+<script>
+
+    function OnGridPXNFocusedRowChanged(s, e) {
+        if (s.GetFocusedRowIndex() != -1) {
+            ID_PhieuXetNghiem = s.GetRowKey(s.GetFocusedRowIndex());
+            GridKetQuaXetNghiem.PerformCallback();
+        }
+    }
+
+    function GridKQPXN_OnBeginCallback(s, e) {
+        e.customArgs["ID_PhieuXetNghiem"] = ID_PhieuXetNghiem;
+    }
+    function OnGridPXNRowDblClick(s, e) {
+        s.StartEditRow(s.GetFocusedRowIndex());
+    }
+    function OnGridKQXNRowDblClick(s, e) {
+        s.StartEditRow(s.GetFocusedRowIndex());
+    }
+
+    function OnGridPXNInit(s, e) {
+        s.SetFocusedRowIndex(-1);
+    }
+</script>
+
+@Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Report }
+) 
+@using (Ajax.BeginForm("Edit", "SoKhamBenh",
+                                    new { ID_BenhNhan = Model.BN.ID_BenhNhan, ID_SoKhamBenh = Model.SKB.ID_SoKhamBenh },
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        UpdateTargetId = "MsgError",
+                                        InsertionMode = InsertionMode.Replace
+                                    }))
+{
+    <h2 style="text-align: center; width:100%;">
+        Cập nhật thông tin bệnh nhân
+    </h2> Html.RenderPartial("_FormBenhNhan", Model.BN);
+    <h2 style="text-align: center; width:100%;">
+        Thông tin Sổ Khám Bệnh của bệnh nhân
+    </h2>
+    Html.RenderPartial("_FormSoKhamBenh", Model.SKB);
+
+    <div style='float:right'>
+        @Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnUpdate1";
+            btnSettings.Text = "Lưu toàn bộ";
+            btnSettings.Height = 30;
+            btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            btnSettings.Images.Image.Url = "~/Content/Images/save.png";
+            btnSettings.UseSubmitBehavior = true;
+        }).GetHtml()
+        @Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnCancel1";
+            btnSettings.Text = "Đóng màn hình";
+            btnSettings.Height = 30;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            btnSettings.Images.Image.Url = "~/Content/Images/cancel.png";
+            btnSettings.ClientSideEvents.Click = "function(s, e){ document.location ='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "SoKhamBenh", Action = "Index" }) + "' }";
+        }).GetHtml()
+    </div>
+    <div id="MsgError" style='margin-right:50px; float:right; font-size:14px; font-weight:bold; color:blue'>
+    </div>
+}
+
+@Html.DevExpress().PopupControl(
+        settings =>
+        {
+            settings.Name = "BaoCaoPXNPopupControl";
+            settings.PopupElementID = "popupArea";
+            settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
+            settings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "DocumentViewerPartial" };
+            // settings.ClientSideEvents.CallbackError = "function(s, e ) { alert(e.message); }";
+
+
+            settings.HeaderText = "XEM BÁO CÁO";
+            settings.AllowDragging = true;
+            settings.AllowResize = true;
+            settings.CloseAction = CloseAction.CloseButton;
+
+            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+
+            settings.Height = 700;
+            settings.Width = 700;
+        }).GetHtml()

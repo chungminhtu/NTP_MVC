@@ -1,0 +1,113 @@
+﻿@Html.DevExpress().FormLayout(settings =>
+        {
+            settings.Name = "EditBCThuNhanBNLao";
+            settings.RequiredMarkDisplayMode = RequiredMarkMode.None;
+            settings.Width = Unit.Percentage(100);
+
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 1: Kết quả điều trị (toàn bộ bệnh nhân, trừ bệnh nhân chuyển đến)";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+
+                    Html.RenderPartial("GridBCKQDT1");
+                });
+            });
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 2: Kết quả điều trị bệnh lao trẻ em (<15 tuổi)";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+                    Html.RenderPartial("GridBCKQDT2");
+
+                });
+            });
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 3 : Kết quả điều trị BN Lao/HIV";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+                    Html.RenderPartial("GridBCKQDT3");
+
+                });
+            });
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 4: Báo cáo hoạt động phối hợp lao/HIV (cùng quý với số liệu phân tích ở Phần 1)";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+                    Html.RenderPartial("GridBCKQDT4");
+
+                });
+            });
+
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 5: Kết quả điều trị  (lô bệnh nhân do y tế công tham gia CTCL giám sát, hỗ trợ điều trị)";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+                    Html.RenderPartial("GridBCKQDT5");
+
+                });
+            });
+
+
+            settings.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Phần 6: Kết quả điều trị  (lô bệnh nhân do y tế tư giám sát, hỗ trợ điều trị)";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                group.Width = Unit.Percentage(100);
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                }).SetNestedContent(() =>
+                {
+                    Html.RenderPartial("GridBCKQDT6");
+
+                });
+            });
+
+             
+        }).GetHtml()
