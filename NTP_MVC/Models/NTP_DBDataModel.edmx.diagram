@@ -15,6 +15,7 @@
         <EntityTypeShape EntityType="NTP_DBModel.BC_KetQuaXN" Width="1.5" PointX="2.75" PointY="8.75" />
         <EntityTypeShape EntityType="NTP_DBModel.BC_ThuNhan" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="NTP_DBModel.BC_ThuNhan_LaoHIV" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.BC_ThuNhanBNLao" Width="1.5" PointX="9.75" PointY="6.75" />
         <EntityTypeShape EntityType="NTP_DBModel.BC_ThuNhanBNLao1" Width="1.5" PointX="11.75" PointY="0.75" />
         <EntityTypeShape EntityType="NTP_DBModel.BC_ThuNhanBNLao2" Width="1.5" PointX="11.75" PointY="5.75" />
         <EntityTypeShape EntityType="NTP_DBModel.DM_BenhVien" Width="1.5" PointX="9.75" PointY="11.75" />
@@ -44,18 +45,17 @@
         <EntityTypeShape EntityType="NTP_DBModel.SO_SoDieuTri_KQ" Width="1.5" PointX="17.75" PointY="9.75" />
         <EntityTypeShape EntityType="NTP_DBModel.SO_SoKhamBenh" Width="1.5" PointX="17.75" PointY="14.75" />
         <EntityTypeShape EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" Width="1.5" PointX="0.75" PointY="18.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.InDanhSachBenhNhan" Width="1.5" PointX="2.75" PointY="18.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.InPhieuXetNghiem" Width="1.5" PointX="4.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BaoCaoGiamSat" Width="1.5" PointX="2.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanDoiDiaChi" Width="1.5" PointX="4.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" Width="1.5" PointX="10.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanPhanHoiTacDungPhu" Width="1.5" PointX="12.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_LichHenXN" Width="1.5" PointX="19.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_ThongDiepTruyenThong" Width="1.5" PointX="19.75" PointY="6.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_ThongKeTinNhan" Width="1.5" PointX="6.75" PointY="19.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.InDanhSachBenhNhan" Width="1.5" PointX="19.75" PointY="10.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.InPhieuXetNghiem" Width="1.5" PointX="19.75" PointY="16.75" />
         <AssociationConnector Association="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen" />
-        <EntityTypeShape EntityType="NTP_DBModel.BC_ThuNhanBNLao" Width="1.5" PointX="11.375" PointY="18.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BaoCaoGiamSat" Width="1.5" PointX="7.375" PointY="19.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanDoiDiaChi" Width="1.5" PointX="20.375" PointY="0.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" Width="1.5" PointX="20.375" PointY="3.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanPhanHoiTacDungPhu" Width="1.5" PointX="20.375" PointY="7.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin" Width="1.5" PointX="20.375" PointY="10.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_LichHenXN" Width="1.5" PointX="20.375" PointY="13.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_ThongDiepTruyenThong" Width="1.5" PointX="20.375" PointY="16.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_ThongKeTinNhan" Width="1.5" PointX="18.375" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

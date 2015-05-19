@@ -24,10 +24,11 @@ namespace NTP_MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AuthConfig.RegisterAuth();
-
+            
             ModelBinders.Binders.DefaultBinder = new DevExpressEditorsBinder();
 
             ASPxWebControl.CallbackError += Application_Error;
+
             JobScheduler.Start();
         }
 

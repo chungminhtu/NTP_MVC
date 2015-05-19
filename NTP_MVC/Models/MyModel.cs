@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -147,38 +146,6 @@ namespace NTP_MVC.Models
         }
     }
 
-    [MetadataType(typeof(InDanhSachBenhNhanMD))]
-    public partial class InDanhSachBenhNhan
-    {
-        public partial class InDanhSachBenhNhanMD
-        {
-            public string SoDKDT { get; set; }
-            public string HoTen { get; set; }
-            public string Diachi { get; set; }
-            public Nullable<int> TuoiNam { get; set; }
-            public Nullable<int> TuoiNu { get; set; }
-            public string CheDoDieuTri { get; set; }
-            public string Ten_PhanLoaiBenh { get; set; }
-            public string Ten_PhanLoaiBN { get; set; }
-            public string TruocDT { get; set; }
-            public string Sau23thang { get; set; }
-            public string Sau5thang { get; set; }
-            public string Sau78thang { get; set; }
-            public string Ten_KetQuaDT { get; set; }
-
-            [Key, Column(Order = 1)]
-            public Nullable<long> ID_BenhNhan { get; set; }
-            [Key, Column(Order = 0)]
-            public long ID_SoDieuTri { get; set; }
-            public Nullable<byte> XNHIV1 { get; set; }
-            public Nullable<byte> XNHIV2 { get; set; }
-            public Nullable<byte> ART { get; set; }
-            public string TenTinhHuyen { get; set; }
-            public string MA_TINH { get; set; }
-            public string MA_HUYEN { get; set; }
-        }
-    }
-
     [MetadataType(typeof(SO_SoDieuTriMD))]
     public partial class SO_SoDieuTri
     {
@@ -200,7 +167,7 @@ namespace NTP_MVC.Models
             public Nullable<int> ID_PHANLOAIYTE { get; set; }
             [Display(Name = "Đơn vị giới thiệu")]
             public string DVGioiThieu { get; set; }
-            [Display(Name = "Phân loại bệnh")]
+            [Display(Name = "Phân loại bệnh")] 
             public Nullable<int> ID_PhanLoaiBenh { get; set; }
             [Display(Name = "Phân loại bệnh nhân")]
             public Nullable<int> ID_PhanLoaiBN { get; set; }

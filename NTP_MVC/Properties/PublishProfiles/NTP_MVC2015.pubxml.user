@@ -7,7 +7,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>D:\PROJECT\PROJECT 2015\NTP_MVC2015\DEPLOY</_PublishTargetUrl>
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9fDEmJ0zJ0q2HwDXrbRhVwAAAAACAAAAAAAQZgAAAAEAACAAAACfLNPPNYQDVD+1oNqJzPNyT9nL3TNa8kG/UyftJipsxAAAAAAOgAAAAAIAACAAAAAgH6uVeiruRnL7c9MXb/6k/fDYKblNiIRDbaGQMlpuayAAAAAOPAuYSTOYhysHA1vi4QEm4G+2Bd69kSx3jgngqBjsekAAAAAS61OnNIB1Na5hCINlXGMqHkF0UWX+ohNgw291ZAb5kVwdRDgO2ayAnboIVIo3RLKwJ7No5274RzYgqARm9MFl</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Data/SideMenu.xml">
@@ -15,6 +14,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="App_Data/TopMenu.xml">
       <publishTime>02/06/2015 10:10:53</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.Core.dll">
+      <publishTime>04/22/2015 00:35:14</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.Core.pdb">
+      <publishTime>04/22/2015 00:35:14</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.dll">
+      <publishTime>04/22/2015 00:35:16</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.pdb">
+      <publishTime>04/22/2015 00:35:16</publishTime>
     </File>
     <File Include="bin/de/DevExpress.Dashboard.v14.2.Core.resources.dll">
       <publishTime>01/12/2015 01:08:20</publishTime>
@@ -191,28 +202,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2015 01:21:46</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
-      <publishTime>12/28/2014 09:53:46</publishTime>
+      <publishTime>03/22/2015 22:17:00</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.Core.dll">
-      <publishTime>12/28/2014 09:53:46</publishTime>
+      <publishTime>03/22/2015 22:16:56</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.Consumer.dll">
-      <publishTime>12/28/2014 09:53:46</publishTime>
+      <publishTime>03/22/2015 22:17:00</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.dll">
-      <publishTime>12/28/2014 09:53:46</publishTime>
+      <publishTime>03/22/2015 22:16:59</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.dll">
-      <publishTime>12/28/2014 09:53:46</publishTime>
+      <publishTime>03/22/2015 22:16:58</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
-      <publishTime>12/28/2014 09:53:46</publishTime>
+      <publishTime>03/22/2015 22:16:58</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>12/28/2014 09:53:38</publishTime>
+      <publishTime>03/22/2015 09:47:08</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>12/28/2014 09:53:38</publishTime>
+      <publishTime>03/22/2015 09:47:08</publishTime>
     </File>
     <File Include="bin/es/DevExpress.Dashboard.v14.2.Core.resources.dll">
       <publishTime>01/12/2015 01:08:20</publishTime>
@@ -288,6 +299,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/es/DevExpress.XtraScheduler.v14.2.Core.resources.dll">
       <publishTime>01/12/2015 01:21:46</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>01/30/2015 13:33:12</publishTime>
     </File>
     <File Include="bin/ja/DevExpress.Dashboard.v14.2.Core.resources.dll">
       <publishTime>01/12/2015 01:08:20</publishTime>
@@ -365,19 +379,49 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2015 01:21:46</publishTime>
     </File>
     <File Include="bin/Microsoft.CSharp.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>12/28/2014 09:53:06</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.WebPages.OAuth.dll">
-      <publishTime>12/28/2014 09:53:46</publishTime>
+      <publishTime>03/22/2015 13:51:24</publishTime>
+    </File>
+    <File Include="bin/Mono.Math.dll">
+      <publishTime>03/22/2015 22:16:58</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>12/28/2014 09:53:55</publishTime>
+      <publishTime>03/22/2015 22:17:03</publishTime>
+    </File>
+    <File Include="bin/NPOI.dll">
+      <publishTime>02/22/2015 18:49:18</publishTime>
+    </File>
+    <File Include="bin/NPOI.OOXML.dll">
+      <publishTime>02/22/2015 18:49:24</publishTime>
+    </File>
+    <File Include="bin/NPOI.OpenXml4Net.dll">
+      <publishTime>02/22/2015 18:49:20</publishTime>
+    </File>
+    <File Include="bin/NPOI.OpenXmlFormats.dll">
+      <publishTime>02/22/2015 18:49:22</publishTime>
     </File>
     <File Include="bin/NTP_MVC.dll">
-      <publishTime>03/10/2015 20:55:57</publishTime>
+      <publishTime>05/19/2015 09:45:32</publishTime>
+    </File>
+    <File Include="bin/NTP_MVC.pdb">
+      <publishTime>05/19/2015 09:45:32</publishTime>
+    </File>
+    <File Include="bin/Org.Mentalis.Security.Cryptography.dll">
+      <publishTime>03/22/2015 22:16:58</publishTime>
+    </File>
+    <File Include="bin/Quartz.dll">
+      <publishTime>04/22/2015 00:35:22</publishTime>
+    </File>
+    <File Include="bin/Quartz.pdb">
+      <publishTime>04/22/2015 00:35:22</publishTime>
+    </File>
+    <File Include="bin/RazorEngine.dll">
+      <publishTime>03/22/2015 18:47:44</publishTime>
     </File>
     <File Include="bin/ru/DevExpress.Dashboard.v14.2.Core.resources.dll">
       <publishTime>01/12/2015 01:08:20</publishTime>
@@ -455,100 +499,106 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2015 01:21:46</publishTime>
     </File>
     <File Include="bin/System.ComponentModel.DataAnnotations.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Configuration.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Data.DataSetExtensions.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Data.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Data.Linq.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Drawing.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.EnterpriseServices.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Extensions.dll">
+      <publishTime>03/22/2015 13:51:22</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>12/28/2014 09:53:55</publishTime>
+      <publishTime>03/22/2015 12:10:07</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Primitives.dll">
+      <publishTime>03/22/2015 13:51:22</publishTime>
     </File>
     <File Include="bin/System.Runtime.Serialization.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Security.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.Abstractions.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.ApplicationServices.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.DynamicData.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.Entity.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.Extensions.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>12/28/2014 09:53:06</publishTime>
+      <publishTime>03/22/2015 19:35:29</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>12/28/2014 09:53:55</publishTime>
+      <publishTime>03/22/2015 12:10:07</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>12/28/2014 09:53:55</publishTime>
+      <publishTime>03/22/2015 12:10:59</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>12/28/2014 09:53:06</publishTime>
+      <publishTime>03/22/2015 22:17:01</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>12/28/2014 09:53:06</publishTime>
+      <publishTime>10/01/2013 20:54:24</publishTime>
     </File>
     <File Include="bin/System.Web.Routing.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.Services.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>12/28/2014 09:53:06</publishTime>
+      <publishTime>03/22/2015 19:35:29</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>12/28/2014 09:53:06</publishTime>
+      <publishTime>03/22/2015 19:35:29</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>12/28/2014 09:53:06</publishTime>
+      <publishTime>03/22/2015 19:35:30</publishTime>
     </File>
     <File Include="bin/System.Xml.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/System.Xml.Linq.dll">
-      <publishTime>08/13/2013 15:19:06</publishTime>
+      <publishTime>08/13/2013 00:19:06</publishTime>
     </File>
     <File Include="bin/WebMatrix.Data.dll">
-      <publishTime>12/28/2014 09:53:43</publishTime>
+      <publishTime>03/22/2015 22:17:02</publishTime>
     </File>
     <File Include="bin/WebMatrix.WebData.dll">
-      <publishTime>12/28/2014 09:53:43</publishTime>
+      <publishTime>10/01/2013 20:54:26</publishTime>
     </File>
     <File Include="Content/Images/about.png">
       <publishTime>02/06/2015 11:41:36</publishTime>
@@ -682,11 +732,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>12/28/2014 09:52:52</publishTime>
     </File>
+    <File Include="HTDT.asmx">
+      <publishTime>04/27/2015 15:20:18</publishTime>
+    </File>
     <File Include="Models/NTP_DBDataModel.edmx.diagram">
-      <publishTime>03/05/2015 22:26:13</publishTime>
+      <publishTime>05/19/2015 09:41:37</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/15/2015 21:47:41</publishTime>
+      <publishTime>04/22/2015 00:35:29</publishTime>
     </File>
     <File Include="Reports/NTPDataSet.xsc">
       <publishTime>02/09/2015 14:54:30</publishTime>
@@ -746,22 +799,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2014 09:53:11</publishTime>
     </File>
     <File Include="Views/Account/ChangePassword.cshtml">
-      <publishTime>01/26/2015 11:46:36</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/Account/ChangePasswordSuccess.cshtml">
-      <publishTime>12/28/2014 09:52:59</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>01/26/2015 11:46:36</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>01/26/2015 11:46:36</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/BaoCao/Index.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCKetQuaDT/EditBCKetQuaDT.cshtml">
       <publishTime>02/17/2015 21:48:18</publishTime>
     </File>
+    <File Include="Views/BCKetQuaDT/EditBCKQDT.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
     <File Include="Views/BCKetQuaDT/GridBCKetQuaDT.cshtml">
-      <publishTime>02/17/2015 21:41:54</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCKetQuaDT/GridBCKetQuaDT1.cshtml">
       <publishTime>02/17/2015 21:46:07</publishTime>
@@ -781,20 +840,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/BCKetQuaDT/GridBCKetQuaDT6.cshtml">
       <publishTime>02/17/2015 21:37:41</publishTime>
     </File>
+    <File Include="Views/BCKetQuaDT/GridBCKQDT1.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/BCKetQuaDT/GridBCKQDT2.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/BCKetQuaDT/GridBCKQDT3.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
     <File Include="Views/BCKetQuaDT/Index.cshtml">
-      <publishTime>02/17/2015 21:39:37</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCKetQuaDT/_ComboBoxHuyen.cshtml">
-      <publishTime>02/17/2015 21:36:03</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCKetQuaDT/_ComboBoxTinh.cshtml">
-      <publishTime>02/17/2015 21:36:03</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCThuNhanBNLao/EditBCThuNhanBNLao.cshtml">
       <publishTime>03/05/2015 23:42:36</publishTime>
     </File>
+    <File Include="Views/BCThuNhanBNLao/EditBCThuNhanBNLao_Old.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/BCThuNhanBNLao/EditBCTN.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
     <File Include="Views/BCThuNhanBNLao/GridBCThuNhanBNLao.cshtml">
-      <publishTime>02/23/2015 06:32:35</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCThuNhanBNLao/GridBCThuNhanBNLao1.cshtml">
       <publishTime>03/05/2015 23:44:43</publishTime>
@@ -805,149 +879,185 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/BCThuNhanBNLao/GridBCThuNhanBNLao3.cshtml">
       <publishTime>03/05/2015 23:37:48</publishTime>
     </File>
+    <File Include="Views/BCThuNhanBNLao/GridBCTN1.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/BCThuNhanBNLao/GridBCTN2.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/BCThuNhanBNLao/GridBCTN3.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
     <File Include="Views/BCThuNhanBNLao/Index.cshtml">
-      <publishTime>03/04/2015 08:38:50</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCThuNhanBNLao/_ComboBoxHuyen.cshtml">
-      <publishTime>02/22/2015 19:32:00</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BCThuNhanBNLao/_ComboBoxTinh.cshtml">
-      <publishTime>02/15/2015 22:31:38</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/Edit.cshtml">
-      <publishTime>03/09/2015 21:08:19</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/EditBenhNhan.cshtml">
-      <publishTime>01/26/2015 11:46:36</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/Index.cshtml">
-      <publishTime>03/09/2015 21:47:11</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_BenhNhanGridViewPartial.cshtml">
       <publishTime>01/04/2015 19:08:45</publishTime>
     </File>
     <File Include="Views/BenhNhan/_ComboBoxHuyen.cshtml">
-      <publishTime>02/04/2015 16:50:05</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_ComboBoxHuyenPartial.cshtml">
       <publishTime>01/18/2015 15:22:13</publishTime>
     </File>
     <File Include="Views/BenhNhan/_ComboBoxTinh.cshtml">
-      <publishTime>01/20/2015 11:33:06</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_ComboBoxTinhPartial.cshtml">
       <publishTime>01/02/2015 11:13:27</publishTime>
     </File>
     <File Include="Views/BenhNhan/_ComboBoxXa.cshtml">
-      <publishTime>03/05/2015 23:22:47</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_ComboSearchBenhNhan.cshtml">
-      <publishTime>02/03/2015 18:24:36</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_FormBenhNhan.cshtml">
-      <publishTime>03/10/2015 16:55:43</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_FormSoKhamBenh.cshtml">
-      <publishTime>03/09/2015 22:00:33</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_GridBenhNhan.cshtml">
-      <publishTime>03/10/2015 15:05:54</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_GridBenhNhanChuyenDen.cshtml">
-      <publishTime>02/05/2015 10:39:31</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_GridSoKhamBenh.cshtml">
-      <publishTime>03/09/2015 21:21:35</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_MaBNQLPartial.cshtml">
-      <publishTime>01/05/2015 16:16:12</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhNhan/_SearchBenhNhanPartial.cshtml">
-      <publishTime>01/19/2015 19:54:11</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhVien/Index.cshtml">
-      <publishTime>12/28/2014 13:32:25</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/BenhVien/_BenhVienGridViewPartial.cshtml">
-      <publishTime>01/30/2015 01:57:49</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMCap/Index.cshtml">
-      <publishTime>12/28/2014 13:32:25</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMCap/_DMCapGridView1Partial.cshtml">
-      <publishTime>12/28/2014 13:32:25</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMDoiTuong/Index.cshtml">
-      <publishTime>12/28/2014 13:33:37</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMDoiTuong/_DMDoiTuongGridViewPartial.cshtml">
-      <publishTime>12/28/2014 13:33:39</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMDonViTinh/Index.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMDonViTinh/_DMDonViTinhGridViewPartial.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMHuyen/Index.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMHuyen/_DMHuyenGridViewPartial.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMLoaiBenhVien/Index.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMLoaiBenhVien/_DMLoaiBenhVienGridViewPartial.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMNguonKinhPhi/Index.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMNguonKinhPhi/_DMNguonKinhPhiGridViewPartial.cshtml">
-      <publishTime>12/28/2014 13:40:20</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMTinh/Index.cshtml">
-      <publishTime>12/28/2014 14:54:32</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/DMTinh/_DMTinhGridViewPartial.cshtml">
-      <publishTime>01/20/2015 14:24:01</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>03/03/2015 09:03:30</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/DMThongDiep.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/DSBenhNhanDoiDiaChi.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/DSBenhNhanGS.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/DSBenhNhanNhanTinNhan.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/DSBenhNhanPhanHoiTacDungPhu.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/DSBenhNhanTuChoiNhanTinNhan.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/DSBenhNhanXN.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
+    </File>
+    <File Include="Views/HoTroDieuTri/ThongKeSMS.cshtml">
+      <publishTime>05/19/2015 09:57:35</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>03/03/2015 09:30:47</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/Menu/Index.cshtml">
-      <publishTime>01/05/2015 21:39:17</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/Menu/_MenuTreeListPartial.cshtml">
-      <publishTime>01/16/2015 07:32:00</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/NguoiDung/Index.cshtml">
-      <publishTime>01/05/2015 23:01:41</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/NguoiDung/_NguoiDungGridViewPartial.cshtml">
-      <publishTime>01/05/2015 23:01:41</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/NX/Index.cshtml">
-      <publishTime>12/29/2014 08:46:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/NX/_NXGridViewPartial.cshtml">
-      <publishTime>12/29/2014 08:45:22</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/PhanQuyen/Index.cshtml">
-      <publishTime>01/26/2015 11:46:36</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/PhanQuyen/_MenuTreeListPartial.cshtml">
-      <publishTime>01/05/2015 22:45:56</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/PhanQuyen/_RoleGridViewPartial.cshtml">
-      <publishTime>01/05/2015 22:46:44</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/PhieuXetNghiem/Index.cshtml">
       <publishTime>12/28/2014 13:51:16</publishTime>
+    </File>
+    <File Include="Views/PhieuXetNghiem/_DocumentViewerPartial.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/PhieuXetNghiem/_FormPhieuXetNghiem.cshtml">
       <publishTime>02/04/2015 15:00:26</publishTime>
@@ -995,7 +1105,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/18/2015 19:40:42</publishTime>
     </File>
     <File Include="Views/Shared/HeaderPartialView.cshtml">
-      <publishTime>03/05/2015 22:03:52</publishTime>
+      <publishTime>05/19/2015 09:51:02</publishTime>
     </File>
     <File Include="Views/Shared/HeaderPartialViewLogin.cshtml">
       <publishTime>01/18/2015 20:09:17</publishTime>
@@ -1013,73 +1123,121 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/26/2015 11:46:36</publishTime>
     </File>
     <File Include="Views/Shared/_rootLayout.cshtml">
-      <publishTime>01/28/2015 23:22:51</publishTime>
+      <publishTime>04/09/2015 17:30:46</publishTime>
     </File>
     <File Include="Views/Shared/_rootLayoutLogin.cshtml">
       <publishTime>01/26/2015 11:46:36</publishTime>
     </File>
+    <File Include="Views/SoDieuTri/Edit.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
     <File Include="Views/SoDieuTri/Index.cshtml">
-      <publishTime>02/02/2015 19:17:32</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_ComboBoxHuyen.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_ComboBoxTinh.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_ComboBoxXa.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_ComboSearchBenhNhan.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_DocumentViewerPartial.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_FormBenhNhan.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoDieuTri/_FormSoDieuTri.cshtml">
-      <publishTime>02/04/2015 15:00:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_GridBenhNhan.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_GridBenhNhanChuyenDen.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoDieuTri/_GridSoDieuTri.cshtml">
-      <publishTime>02/03/2015 15:40:28</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_GridSoKhamBenh.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri/_MaBNQLPartial.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoDieuTri/_SoDieuTriDataViewPartial.cshtml">
       <publishTime>12/28/2014 14:23:42</publishTime>
     </File>
+    <File Include="Views/SoDieuTri1/Index.cshtml">
+      <publishTime>02/02/2015 19:17:32</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri1/_FormSoDieuTri.cshtml">
+      <publishTime>04/15/2015 18:56:12</publishTime>
+    </File>
+    <File Include="Views/SoDieuTri1/_GridSoDieuTri.cshtml">
+      <publishTime>02/03/2015 15:40:28</publishTime>
+    </File>
     <File Include="Views/SoKhamBenh/Edit.cshtml">
-      <publishTime>03/10/2015 18:31:31</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/EditBenhNhan.cshtml">
-      <publishTime>03/09/2015 21:50:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/Index.cshtml">
-      <publishTime>03/10/2015 15:22:23</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/ThongTinBenhNhan.cshtml">
       <publishTime>01/18/2015 23:56:34</publishTime>
     </File>
+    <File Include="Views/SoKhamBenh/viewDoc.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
     <File Include="Views/SoKhamBenh/_ComboBoxHuyen.cshtml">
-      <publishTime>03/10/2015 15:44:42</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_ComboBoxTinh.cshtml">
-      <publishTime>03/10/2015 15:45:09</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_ComboBoxXa.cshtml">
-      <publishTime>03/05/2015 23:10:55</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_ComboSearchBenhNhan.cshtml">
-      <publishTime>03/09/2015 21:50:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
+    </File>
+    <File Include="Views/SoKhamBenh/_DocumentViewerPartial.cshtml">
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_FormBenhNhan.cshtml">
-      <publishTime>03/10/2015 18:10:00</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_FormDetailSoKBPartial.cshtml">
       <publishTime>01/19/2015 01:08:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_FormSoKhamBenh.cshtml">
-      <publishTime>03/10/2015 15:30:56</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_GridBenhNhan.cshtml">
-      <publishTime>03/10/2015 15:09:11</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_GridBenhNhanChuyenDen.cshtml">
-      <publishTime>03/09/2015 21:50:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_GridSoKhamBenh.cshtml">
-      <publishTime>03/09/2015 21:50:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_MaBNQLPartial.cshtml">
-      <publishTime>03/09/2015 21:50:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_PhieuXetNghiemGridPartial.cshtml">
       <publishTime>01/18/2015 10:55:51</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_SearchBenhNhanPartial.cshtml">
-      <publishTime>03/09/2015 21:50:26</publishTime>
+      <publishTime>05/19/2015 09:30:22</publishTime>
     </File>
     <File Include="Views/SoKhamBenh/_SoKhamBenhGridViewPartial.cshtml">
       <publishTime>01/19/2015 00:22:11</publishTime>
@@ -1091,7 +1249,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/03/2015 09:03:37</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/10/2015 20:55:58</publishTime>
+      <publishTime>05/19/2015 09:51:54</publishTime>
     </File>
   </ItemGroup>
 </Project>
