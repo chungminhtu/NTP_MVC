@@ -35,8 +35,6 @@
                 },
                 success: function (d) {
                     $("#DivGridBenhNhan").html(d);
-                    ID_BenhNhan = GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex());
-                    GridSoKhamBenh.PerformCallback();
                 }
 
             });
@@ -45,18 +43,7 @@
             alert("Chưa chọn địa phương cần tìm");
         }
     }
-
-    function OpenInNewTab(url) {
-        var win = window.open(url, '_blank');
-        win.focus();
-    } 
 </script>
-
-@Html.DevExpress().GetStyleSheets(
-    new StyleSheet { ExtensionSuite = ExtensionSuite.Report }
-)
-@Html.DevExpress().GetScripts(
-    new Script { ExtensionSuite = ExtensionSuite.Report })
 @Html.DevExpress().FormLayout(settings =>
 {
     settings.Name = "ListBenhNhan";
@@ -91,8 +78,8 @@
                     mySettings.Properties.Caption = "Số CMND";
                     mySettings.Width = Unit.Pixel(100);
                 }).Render();
-
-
+                
+                
                 ViewContext.Writer.Write("</td></tr><tr><td colspan='2' style=\"padding-right:5px;\">");
                 Html.DevExpress().TextBox(mySettings =>
                 {
@@ -122,12 +109,12 @@
                    MyButton.Text = "Tìm kiếm";
                    MyButton.Height = 30;
                    MyButton.Images.Image.Url = "~/Content/Images/search.png";
-                   MyButton.ClientSideEvents.Click = "function() { GridBenhNhan.PerformCallback(); }";
+                   MyButton.ClientSideEvents.Click = "function() { searchBN(); }";
                    MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                }).Render();
                 ViewContext.Writer.Write("</td></tr></table>");
             });
-        });
+        }); 
 
     });
 
@@ -194,8 +181,7 @@
                             MyButton.Name = "btnInBN";
                             MyButton.Text = "In danh sách bệnh nhân";
                             MyButton.Images.Image.Url = "~/Content/Images/print.png";
-                            //MyButton.ClientSideEvents.Click = "function() {OpenInNewTab('" + Url.Action("viewDoc", "SoKhamBenh") + "'); }";
-                            MyButton.ClientSideEvents.Click = "function() {BaoCaoPopupControl.Show(); BaoCaoPopupControl.PerformCallback(); }";
+                            //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoKhamBenh.DeleteRow(); } }";
                             MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                             MyButton.Enabled = Session["ID_BenhNhan"] != "";
@@ -273,26 +259,4 @@
        });
    });
 }).GetHtml()
-
-@Html.DevExpress().PopupControl(
-        settings =>
-        {
-            settings.Name = "BaoCaoPopupControl";
-            settings.PopupElementID = "popupArea";
-            settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
-            settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "DocumentViewerPartial" };
-           // settings.ClientSideEvents.CallbackError = "function(s, e ) { alert(e.message); }";
-
-
-            settings.HeaderText = "XEM BÁO CÁO";
-            settings.AllowDragging = true;
-            settings.AllowResize = true; 
-            settings.CloseAction = CloseAction.CloseButton;
-
-            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
-            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
-
-            settings.Height = 700;
-            settings.Width = 1000;
-        }).GetHtml()
 

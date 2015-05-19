@@ -213,9 +213,6 @@
       <summary>Gets or sets the name of the application.</summary>
       <returns>The name of the application.</returns>
     </member>
-    <member name="P:WebMatrix.WebData.SimpleMembershipProvider.CasingBehavior">
-      <summary>Gets or sets the <see cref="T:WebMatrix.WebData.SimpleMembershipProviderCasingBehavior" /> for this provider.</summary>
-    </member>
     <member name="M:WebMatrix.WebData.SimpleMembershipProvider.ChangePassword(System.String,System.String,System.String)">
       <summary>Changes the password for the specified membership account.</summary>
       <returns>true if the password is successfully changed; otherwise, false.</returns>
@@ -553,15 +550,6 @@
       <exception cref="T:System.ArgumentException">
         <paramref name="username" /> or <paramref name="password" /> are null or empty.</exception>
     </member>
-    <member name="T:WebMatrix.WebData.SimpleMembershipProviderCasingBehavior">
-      <summary>Configures the behavior of SimpleMembershipProvider for the casing of user name queries.</summary>
-    </member>
-    <member name="F:WebMatrix.WebData.SimpleMembershipProviderCasingBehavior.NormalizeCasing">
-      <summary>Uses the SQL Upper function to normalize the casing of user names for a case-insensitive comparison. This is the default value.</summary>
-    </member>
-    <member name="F:WebMatrix.WebData.SimpleMembershipProviderCasingBehavior.RelyOnDatabaseCollation">
-      <summary>Relies on the database's configured collation to normalize casing for the comparison of user names. User names are provided to the database exactly as entered by the user.</summary>
-    </member>
     <member name="T:WebMatrix.WebData.SimpleRoleProvider">
       <summary>Provides basic role-management functionality.</summary>
     </member>
@@ -581,9 +569,6 @@
     <member name="P:WebMatrix.WebData.SimpleRoleProvider.ApplicationName">
       <summary>Gets or sets the name of the application to store and retrieve role information for.</summary>
       <returns>The name of the application to store and retrieve role information for.</returns>
-    </member>
-    <member name="P:WebMatrix.WebData.SimpleRoleProvider.CasingBehavior">
-      <summary>Gets or sets the <see cref="T:WebMatrix.WebData.SimpleMembershipProviderCasingBehavior" /> for this provider.</summary>
     </member>
     <member name="M:WebMatrix.WebData.SimpleRoleProvider.CreateRole(System.String)">
       <summary>Adds a new role.</summary>
@@ -762,7 +747,6 @@
       <param name="userNameColumn">The name of the database column that contains user names. This column is used to match user profile data to membership account data.</param>
       <param name="autoCreateTables">true to indicate that user profile and membership tables should be created if they do not exist; false to indicate that tables should not be created automatically. Although the membership tables can be created automatically, the database itself must already exist.</param>
     </member>
-    <member name="M:WebMatrix.WebData.WebSecurity.InitializeDatabaseConnection(System.String,System.String,System.String,System.String,System.Boolean,WebMatrix.WebData.SimpleMembershipProviderCasingBehavior)"></member>
     <member name="M:WebMatrix.WebData.WebSecurity.InitializeDatabaseConnection(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
       <summary>Initializes the membership system by connecting to a database that contains user information by using the specified membership or role provider, and optionally creates membership tables if they do not already exist.</summary>
       <param name="connectionString">The name of the connection string for the database that contains user information. If you are using SQL Server Compact, this can be the name of the database file (.sdf file) without the .sdf file name extension.</param>
@@ -772,7 +756,6 @@
       <param name="userNameColumn">The name of the database column that contains user names. This column is used to match user profile data to membership account data.</param>
       <param name="autoCreateTables">true to indicate that user profile and membership tables should be created automatically; false to indicate that tables should not be created automatically. Although the membership tables can be created automatically, the database itself must already exist.</param>
     </member>
-    <member name="M:WebMatrix.WebData.WebSecurity.InitializeDatabaseConnection(System.String,System.String,System.String,System.String,System.String,System.Boolean,WebMatrix.WebData.SimpleMembershipProviderCasingBehavior)"></member>
     <member name="M:WebMatrix.WebData.WebSecurity.IsAccountLockedOut(System.String,System.Int32,System.Int32)">
       <summary>Returns a value that indicates whether the specified membership account is temporarily locked because of too many failed password attempts in the specified number of seconds.</summary>
       <returns>true if the membership account is locked; otherwise, false.</returns>

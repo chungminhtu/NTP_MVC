@@ -88,7 +88,8 @@
         function onChangeFilterProvince() {
             $.ajax({
                 type: "GET",
-                url: "@Url.Action("GetDistricts", "HoTroDieuTri")",provinceId=" + filterProvince.value(),
+                url: "@Url.Action("GetDistricts", "HoTroDieuTri")",
+                data: {provinceId: filterProvince.value()},
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {

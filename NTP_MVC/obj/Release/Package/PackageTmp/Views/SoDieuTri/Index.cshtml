@@ -35,8 +35,6 @@
                 },
                 success: function (d) {
                     $("#DivGridBenhNhan").html(d);
-                    ID_BenhNhan = GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex());
-                    GridSoDieuTri.PerformCallback();
                 }
 
             });
@@ -183,7 +181,7 @@
                             MyButton.Name = "btnInBN";
                             MyButton.Text = "In danh sách bệnh nhân";
                             MyButton.Images.Image.Url = "~/Content/Images/print.png";
-                            MyButton.ClientSideEvents.Click = "function() {BaoCaoPopupControl.Show(); BaoCaoPopupControl.PerformCallback(); }";
+                            //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoDieuTri.DeleteRow(); } }";
                             MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                             MyButton.Enabled = Session["ID_BenhNhan"] != "";
@@ -261,27 +259,4 @@
        });
    });
 }).GetHtml()
-
-@Html.DevExpress().PopupControl(
-        settings =>
-        {
-            settings.Name = "BaoCaoPopupControl";
-            settings.PopupElementID = "popupArea";
-            settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
-            settings.CallbackRouteValues = new { Controller = "SoDieuTri", Action = "DocumentViewerPartial" };
-            // settings.ClientSideEvents.CallbackError = "function(s, e ) { alert(e.message); }";
-
-
-            settings.HeaderText = "XEM BÁO CÁO";
-            settings.AllowDragging = true;
-            settings.AllowResize = true;
-            settings.CloseAction = CloseAction.CloseButton;
-
-            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
-            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
-
-            settings.Height = 700;
-            settings.Width = 700;
-        }).GetHtml()
-
 

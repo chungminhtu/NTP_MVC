@@ -11,6 +11,7 @@
     <EntitySet Name="BC_KetQuaXN" EntityType="NTP_DBModel.BC_KetQuaXN" />
     <EntitySet Name="BC_ThuNhan" EntityType="NTP_DBModel.BC_ThuNhan" />
     <EntitySet Name="BC_ThuNhan_LaoHIV" EntityType="NTP_DBModel.BC_ThuNhan_LaoHIV" />
+    <EntitySet Name="BC_ThuNhanBNLao" EntityType="NTP_DBModel.BC_ThuNhanBNLao" />
     <EntitySet Name="BC_ThuNhanBNLao1" EntityType="NTP_DBModel.BC_ThuNhanBNLao1" />
     <EntitySet Name="BC_ThuNhanBNLao2" EntityType="NTP_DBModel.BC_ThuNhanBNLao2" />
     <EntitySet Name="DM_BenhVien" EntityType="NTP_DBModel.DM_BenhVien" />
@@ -40,13 +41,6 @@
     <EntitySet Name="SO_SoDieuTri_KQ" EntityType="NTP_DBModel.SO_SoDieuTri_KQ" />
     <EntitySet Name="SO_SoKhamBenh" EntityType="NTP_DBModel.SO_SoKhamBenh" />
     <EntitySet Name="SO_XetNghiemKhamBenh" EntityType="NTP_DBModel.SO_XetNghiemKhamBenh" />
-    <EntitySet Name="InDanhSachBenhNhans" EntityType="NTP_DBModel.InDanhSachBenhNhan" />
-    <EntitySet Name="InPhieuXetNghiems" EntityType="NTP_DBModel.InPhieuXetNghiem" />
-    <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen">
-      <End Role="DM_Huyen" EntitySet="DM_Huyen" />
-      <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
-    </AssociationSet>
-    <EntitySet Name="BC_ThuNhanBNLao" EntityType="NTP_DBModel.BC_ThuNhanBNLao" />
     <EntitySet Name="HTDT_BaoCaoGiamSat" EntityType="NTP_DBModel.HTDT_BaoCaoGiamSat" />
     <EntitySet Name="HTDT_BenhNhanDoiDiaChi" EntityType="NTP_DBModel.HTDT_BenhNhanDoiDiaChi" />
     <EntitySet Name="HTDT_BenhNhanNhanTinNhan" EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" />
@@ -55,6 +49,12 @@
     <EntitySet Name="HTDT_LichHenXN" EntityType="NTP_DBModel.HTDT_LichHenXN" />
     <EntitySet Name="HTDT_ThongDiepTruyenThong" EntityType="NTP_DBModel.HTDT_ThongDiepTruyenThong" />
     <EntitySet Name="HTDT_ThongKeTinNhan" EntityType="NTP_DBModel.HTDT_ThongKeTinNhan" />
+    <EntitySet Name="InDanhSachBenhNhans" EntityType="NTP_DBModel.InDanhSachBenhNhan" />
+    <EntitySet Name="InPhieuXetNghiems" EntityType="NTP_DBModel.InPhieuXetNghiem" />
+    <AssociationSet Name="FK_SO_BenhNhan_DM_Huyen" Association="NTP_DBModel.FK_SO_BenhNhan_DM_Huyen">
+      <End Role="DM_Huyen" EntitySet="DM_Huyen" />
+      <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AD_Menu">
     <Key>
@@ -224,6 +224,26 @@
     <Property Name="NAM65" Type="Int32" />
     <Property Name="NU65" Type="Int32" />
   </EntityType>
+  <EntityType Name="BC_ThuNhanBNLao">
+    <Key>
+      <PropertyRef Name="ID_BCThunhanBNLao" />
+    </Key>
+    <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quy" Type="Byte" Nullable="false" />
+    <Property Name="Nam" Type="Int32" Nullable="false" />
+    <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBC" Type="DateTime" Precision="3" />
+    <Property Name="HuyenXN" Type="Boolean" />
+    <Property Name="TinhXN" Type="Boolean" />
+    <Property Name="PTNhap" Type="Boolean" />
+    <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+    <Property Name="NGUOI_NM" Type="Int32" />
+    <Property Name="Huy" Type="Boolean" />
+    <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="BC_ThuNhanBNLao1">
     <Key>
       <PropertyRef Name="ID_BCThunhanBNLao" />
@@ -376,7 +396,7 @@
       <PropertyRef Name="ID_PhacdoDT" />
     </Key>
     <Property Name="ID_PhacdoDT" Type="Int32" Nullable="false" />
-    <Property Name="Ten_PhacdoDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ten_PhacdoDT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Phanloai" Type="Byte" Nullable="false" />
   </EntityType>
   <EntityType Name="DM_PhanLoaiBenh">
@@ -612,96 +632,6 @@
     <Property Name="NGUOI_NM" Type="Int32" Nullable="false" />
     <Property Name="GeneXpert" Type="Int32" />
   </EntityType>
-  <EntityType Name="InDanhSachBenhNhan">
-    <Key>
-      <PropertyRef Name="ID_BenhNhan" />
-      <PropertyRef Name="TenTinhHuyen" />
-      <PropertyRef Name="MA_HUYEN" />
-      <PropertyRef Name="MA_TINH" />
-    </Key>
-    <Property Name="SoDKDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="TuoiNam" Type="Int32" />
-    <Property Name="TuoiNu" Type="Int32" />
-    <Property Name="CheDoDieuTri" Type="String" MaxLength="61" FixedLength="false" Unicode="true" />
-    <Property Name="Ten_PhanLoaiBenh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Ten_PhanLoaiBN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TruocDT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Sau23thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Sau5thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Sau78thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Ten_KetQuaDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
-    <Property Name="ID_SoDieuTri" Type="Int64" />
-    <Property Name="XNHIV1" Type="Byte" />
-    <Property Name="XNHIV2" Type="Byte" />
-    <Property Name="ART" Type="Byte" />
-    <Property Name="TenTinhHuyen" Type="String" Nullable="false" MaxLength="153" FixedLength="false" Unicode="true" />
-    <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_TINH" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="InPhieuXetNghiem">
-    <Key>
-      <PropertyRef Name="MauDom" />
-    </Key>
-    <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="LydoXN" Type="Int32" />
-    <Property Name="SoThangDT" Type="Byte" />
-    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
-    <Property Name="MauDom" Type="Byte" Nullable="false" />
-    <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
-    <Property Name="TrangThaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="KetQua" Type="Byte" />
-    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MaBNQL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="SoCMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Tuoi" Type="Int32" />
-    <Property Name="GioiTinh" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
-    <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="BHYT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TEN_HUYEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="TEN_TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DonViXetNghiem" Type="String" MaxLength="153" FixedLength="false" Unicode="true" />
-    <Property Name="ID_PhieuXetNghiem" Type="Int64" />
-    <Property Name="ID_BenhNhan" Type="Int64" />
-  </EntityType>
-  <Association Name="FK_SO_BenhNhan_DM_Huyen">
-    <End Type="NTP_DBModel.DM_Huyen" Role="DM_Huyen" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="NTP_DBModel.SO_BenhNhan" Role="SO_BenhNhan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DM_Huyen">
-        <PropertyRef Name="MA_HUYEN" />
-      </Principal>
-      <Dependent Role="SO_BenhNhan">
-        <PropertyRef Name="MA_HUYEN" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="BC_ThuNhanBNLao">
-    <Key>
-      <PropertyRef Name="ID_BCThunhanBNLao" />
-    </Key>
-    <Property Name="ID_BCThunhanBNLao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Quy" Type="Byte" Nullable="false" />
-    <Property Name="Nam" Type="Int32" Nullable="false" />
-    <Property Name="DVBaocao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="NguoiBC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="NgayBC" Type="DateTime" Precision="3" />
-    <Property Name="HuyenXN" Type="Boolean" />
-    <Property Name="TinhXN" Type="Boolean" />
-    <Property Name="PTNhap" Type="Boolean" />
-    <Property Name="MA_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_HUYEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
-    <Property Name="NGUOI_NM" Type="Int32" />
-    <Property Name="Huy" Type="Boolean" />
-    <Property Name="Ngayhuy" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="HTDT_BaoCaoGiamSat">
     <Key>
       <PropertyRef Name="ID" />
@@ -867,4 +797,74 @@
     <Property Name="SoTinNhanTacDungPhu" Type="Int32" Nullable="false" />
     <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="InDanhSachBenhNhan">
+    <Key>
+      <PropertyRef Name="ID_BenhNhan" />
+      <PropertyRef Name="TenTinhHuyen" />
+      <PropertyRef Name="MA_HUYEN" />
+      <PropertyRef Name="MA_TINH" />
+    </Key>
+    <Property Name="SoDKDT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TuoiNam" Type="Int32" />
+    <Property Name="TuoiNu" Type="Int32" />
+    <Property Name="CheDoDieuTri" Type="String" MaxLength="61" FixedLength="false" Unicode="true" />
+    <Property Name="Ten_PhanLoaiBenh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ten_PhanLoaiBN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TruocDT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Sau23thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Sau5thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Sau78thang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Ten_KetQuaDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+    <Property Name="ID_SoDieuTri" Type="Int64" />
+    <Property Name="XNHIV1" Type="Byte" />
+    <Property Name="XNHIV2" Type="Byte" />
+    <Property Name="ART" Type="Byte" />
+    <Property Name="TenTinhHuyen" Type="String" Nullable="false" MaxLength="153" FixedLength="false" Unicode="true" />
+    <Property Name="MA_HUYEN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_TINH" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="InPhieuXetNghiem">
+    <Key>
+      <PropertyRef Name="MauDom" />
+    </Key>
+    <Property Name="SoXN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="LydoXN" Type="Int32" />
+    <Property Name="SoThangDT" Type="Byte" />
+    <Property Name="NGAY_NM" Type="DateTime" Precision="3" />
+    <Property Name="MauDom" Type="Byte" Nullable="false" />
+    <Property Name="NgayNhanMau" Type="DateTime" Precision="3" />
+    <Property Name="TrangThaiDom" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="KetQua" Type="Byte" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaBNQL" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="SoCMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Tuoi" Type="Int32" />
+    <Property Name="GioiTinh" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Diachi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NgheNghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NoiGioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BHYT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TEN_HUYEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TEN_TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonViXetNghiem" Type="String" MaxLength="153" FixedLength="false" Unicode="true" />
+    <Property Name="ID_PhieuXetNghiem" Type="Int64" />
+    <Property Name="ID_BenhNhan" Type="Int64" />
+  </EntityType>
+  <Association Name="FK_SO_BenhNhan_DM_Huyen">
+    <End Type="NTP_DBModel.DM_Huyen" Role="DM_Huyen" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="NTP_DBModel.SO_BenhNhan" Role="SO_BenhNhan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DM_Huyen">
+        <PropertyRef Name="MA_HUYEN" />
+      </Principal>
+      <Dependent Role="SO_BenhNhan">
+        <PropertyRef Name="MA_HUYEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

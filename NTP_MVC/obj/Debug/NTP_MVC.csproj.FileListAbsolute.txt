@@ -1,255 +1,208 @@
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NTP_MVC.dll.config
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NTP_MVC.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NTP_MVC.pdb
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Charts.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Dashboard.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Dashboard.v14.2.Web.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Dashboard.v14.2.Web.Mvc5.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Data.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.DataAccess.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Office.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.PivotGrid.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Printing.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.RichEdit.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Sparkline.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.SpellChecker.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Spreadsheet.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Utils.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxGauges.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxHtmlEditor.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxPivotGrid.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxScheduler.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxSpellChecker.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxSpreadsheet.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxThemes.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxTreeList.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.Mvc5.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Xpo.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraCharts.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraCharts.v14.2.Web.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraGauges.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraGauges.v14.2.Presets.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraPivotGrid.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraReports.v14.2.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraReports.v14.2.Web.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraScheduler.v14.2.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.AspNet.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OAuth.Consumer.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OAuth.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OpenId.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\EntityFramework.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\EntityFramework.SqlServer.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Microsoft.CSharp.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Microsoft.Web.Infrastructure.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Microsoft.Web.WebPages.OAuth.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Newtonsoft.Json.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.ComponentModel.DataAnnotations.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Configuration.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Data.DataSetExtensions.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Data.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Data.Linq.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Drawing.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.EnterpriseServices.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Net.Http.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Net.Http.Formatting.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Runtime.Serialization.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Security.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Abstractions.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.ApplicationServices.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.DynamicData.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Entity.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Extensions.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Helpers.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Http.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Http.WebHost.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Mvc.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Razor.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Routing.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Services.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.WebPages.Deployment.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.WebPages.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.WebPages.Razor.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Xml.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Xml.Linq.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\WebMatrix.Data.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\WebMatrix.WebData.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Dashboard.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Dashboard.v14.2.Web.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Data.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.DataAccess.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Office.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.PivotGrid.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Printing.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.RichEdit.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Sparkline.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.SpellChecker.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Spreadsheet.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Utils.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxGauges.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxHtmlEditor.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxPivotGrid.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxScheduler.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxSpellChecker.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxSpreadsheet.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.ASPxTreeList.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Web.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.Xpo.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraCharts.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraCharts.v14.2.Web.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraGauges.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraGauges.v14.2.Presets.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraPivotGrid.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraReports.v14.2.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraReports.v14.2.Web.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DevExpress.XtraScheduler.v14.2.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.AspNet.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OAuth.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OAuth.Consumer.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OpenId.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\EntityFramework.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\EntityFramework.SqlServer.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Microsoft.Web.WebPages.OAuth.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Newtonsoft.Json.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Net.Http.Formatting.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Helpers.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Http.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Http.WebHost.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Mvc.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.Razor.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.WebPages.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.WebPages.Deployment.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\System.Web.WebPages.Razor.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\WebMatrix.Data.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\WebMatrix.WebData.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Dashboard.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Dashboard.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Dashboard.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Dashboard.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Dashboard.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Dashboard.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Dashboard.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Dashboard.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Data.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Data.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Data.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Data.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.DataAccess.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.DataAccess.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.DataAccess.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.DataAccess.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Office.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Office.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Office.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Office.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.PivotGrid.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.PivotGrid.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.PivotGrid.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.PivotGrid.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Printing.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Printing.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Printing.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Printing.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.RichEdit.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.RichEdit.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.RichEdit.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.RichEdit.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Sparkline.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Sparkline.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Sparkline.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Sparkline.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Spreadsheet.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Spreadsheet.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Spreadsheet.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Spreadsheet.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Utils.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Utils.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Utils.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Utils.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Web.ASPxHtmlEditor.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Web.ASPxHtmlEditor.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Web.ASPxHtmlEditor.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Web.ASPxHtmlEditor.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Web.ASPxScheduler.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Web.ASPxScheduler.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Web.ASPxScheduler.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Web.ASPxScheduler.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Web.ASPxSpellChecker.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Web.ASPxSpellChecker.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Web.ASPxSpellChecker.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Web.ASPxSpellChecker.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Web.ASPxSpreadsheet.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Web.ASPxSpreadsheet.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Web.ASPxSpreadsheet.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Web.ASPxSpreadsheet.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Web.ASPxTreeList.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Web.ASPxTreeList.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Web.ASPxTreeList.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Web.ASPxTreeList.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Web.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Web.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Web.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Web.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.Xpo.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.Xpo.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.Xpo.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.Xpo.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraCharts.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraCharts.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraCharts.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraCharts.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraGauges.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraGauges.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraGauges.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraGauges.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraGauges.v14.2.Presets.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraGauges.v14.2.Presets.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraGauges.v14.2.Presets.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraGauges.v14.2.Presets.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraPivotGrid.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraPivotGrid.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraPivotGrid.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraPivotGrid.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraReports.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraReports.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraReports.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraReports.v14.2.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraReports.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraReports.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraReports.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraReports.v14.2.Web.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\de\DevExpress.XtraScheduler.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\es\DevExpress.XtraScheduler.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ja\DevExpress.XtraScheduler.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ru\DevExpress.XtraScheduler.v14.2.Core.resources.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.csproj.ResolveComReference.cache
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.Reports.InPhieuXetNghiem.resources
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.csproj.GenerateResource.Cache
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.dll.licenses
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.pdb
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.csprojResolveAssemblyReference.cache
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\obj\Debug\NTP_MVC.Reports.DanhSachBenhNhanPrint.resources
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Common.Logging.Core.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Common.Logging.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\ICSharpCode.SharpZipLib.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NPOI.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NPOI.OOXML.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NPOI.OpenXml4Net.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NPOI.OpenXmlFormats.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Quartz.dll
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Common.Logging.pdb
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Common.Logging.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Common.Logging.Core.pdb
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Common.Logging.Core.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NPOI.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NPOI.OOXML.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\NPOI.OpenXml4Net.xml
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Quartz.pdb
-E:\PROJECT\PROJECT 2015\NTP_MVC2015\NTP_MVC\bin\Quartz.xml
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.csproj.App.config
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.Reports.InPhieuXetNghiem.resources
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.Reports.PhieuXetNghiem.resources
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.csproj.GenerateResource.Cache
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.dll.licenses
+D:\HProjects\path.tb\program\trunk\server.net\bin\NTP_MVC.dll.config
+D:\HProjects\path.tb\program\trunk\server.net\bin\NTP_MVC.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\NTP_MVC.pdb
+D:\HProjects\path.tb\program\trunk\server.net\bin\Common.Logging.Core.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Common.Logging.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.AspNet.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.Core.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OAuth.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OpenId.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\EntityFramework.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\EntityFramework.SqlServer.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\ICSharpCode.SharpZipLib.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Microsoft.CSharp.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Microsoft.Web.Infrastructure.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Newtonsoft.Json.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\NPOI.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\NPOI.OOXML.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\NPOI.OpenXml4Net.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\NPOI.OpenXmlFormats.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Quartz.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\RazorEngine.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.ComponentModel.DataAnnotations.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Configuration.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Data.DataSetExtensions.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Data.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Data.Linq.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Drawing.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.EnterpriseServices.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Net.Http.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Net.Http.Extensions.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Net.Http.Formatting.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Net.Http.Primitives.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Runtime.Serialization.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Security.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Abstractions.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.ApplicationServices.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.DynamicData.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Entity.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Extensions.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Helpers.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Http.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Http.WebHost.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Mvc.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Razor.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Routing.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Services.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.WebPages.Deployment.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.WebPages.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.WebPages.Razor.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Xml.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Xml.Linq.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\WebMatrix.Data.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\WebMatrix.WebData.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Org.Mentalis.Security.Cryptography.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Mono.Math.dll
+D:\HProjects\path.tb\program\trunk\server.net\bin\Common.Logging.pdb
+D:\HProjects\path.tb\program\trunk\server.net\bin\Common.Logging.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\Common.Logging.Core.pdb
+D:\HProjects\path.tb\program\trunk\server.net\bin\Common.Logging.Core.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.AspNet.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.Core.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OAuth.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OpenId.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\EntityFramework.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\EntityFramework.SqlServer.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\Microsoft.Web.Infrastructure.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\Newtonsoft.Json.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\NPOI.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\NPOI.OOXML.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\NPOI.OpenXml4Net.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\Quartz.pdb
+D:\HProjects\path.tb\program\trunk\server.net\bin\Quartz.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\RazorEngine.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Net.Http.Extensions.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Net.Http.Formatting.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Net.Http.Primitives.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Helpers.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Http.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Http.WebHost.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Mvc.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.Razor.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.WebPages.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.WebPages.Deployment.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\System.Web.WebPages.Razor.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\WebMatrix.Data.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\WebMatrix.WebData.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\Org.Mentalis.Security.Cryptography.xml
+D:\HProjects\path.tb\program\trunk\server.net\bin\Mono.Math.xml
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.dll
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.pdb
+D:\HProjects\path.tb\program\trunk\server.net\obj\Debug\NTP_MVC.csprojResolveAssemblyReference.cache
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.csproj.App.config
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.csprojResolveAssemblyReference.cache
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.Reports.DanhSachBenhNhanPrint.resources
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.Reports.InPhieuXetNghiem.resources
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.Reports.PhieuXetNghiem.resources
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.csproj.GenerateResource.Cache
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.dll.licenses
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\obj\Debug\NTP_MVC.pdb
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NTP_MVC.dll.config
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NTP_MVC.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NTP_MVC.pdb
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Common.Logging.Core.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Common.Logging.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.AspNet.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.Core.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OAuth.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OpenId.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\EntityFramework.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\EntityFramework.SqlServer.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\ICSharpCode.SharpZipLib.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Microsoft.CSharp.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Microsoft.Web.Infrastructure.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Newtonsoft.Json.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NPOI.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NPOI.OOXML.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NPOI.OpenXml4Net.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NPOI.OpenXmlFormats.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Quartz.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\RazorEngine.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.ComponentModel.DataAnnotations.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Configuration.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Data.DataSetExtensions.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Data.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Data.Linq.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Drawing.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.EnterpriseServices.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Net.Http.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Net.Http.Extensions.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Net.Http.Formatting.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Net.Http.Primitives.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Runtime.Serialization.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Security.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Abstractions.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.ApplicationServices.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.DynamicData.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Entity.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Extensions.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Helpers.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Http.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Http.WebHost.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Mvc.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Razor.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Routing.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Services.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.WebPages.Deployment.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.WebPages.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.WebPages.Razor.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Xml.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Xml.Linq.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\WebMatrix.Data.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\WebMatrix.WebData.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Org.Mentalis.Security.Cryptography.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Mono.Math.dll
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Common.Logging.pdb
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Common.Logging.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Common.Logging.Core.pdb
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Common.Logging.Core.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.AspNet.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.Core.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OAuth.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OpenId.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\EntityFramework.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\EntityFramework.SqlServer.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Newtonsoft.Json.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NPOI.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NPOI.OOXML.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\NPOI.OpenXml4Net.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Quartz.pdb
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Quartz.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\RazorEngine.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Net.Http.Extensions.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Net.Http.Formatting.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Net.Http.Primitives.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Helpers.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Http.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Http.WebHost.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Mvc.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.Razor.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.WebPages.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.WebPages.Deployment.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\System.Web.WebPages.Razor.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\WebMatrix.Data.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\WebMatrix.WebData.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Org.Mentalis.Security.Cryptography.xml
+E:\PROJECT\PROJECT 2015\NTP_MVC2015\SourceCode Tich Hop\bin\Mono.Math.xml
