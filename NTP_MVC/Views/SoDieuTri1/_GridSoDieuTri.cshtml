@@ -1,0 +1,218 @@
+﻿@using NTP_MVC.Models
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        /*Initial*/
+        settings.Name = "GridSoDieuTri";
+        settings.Width = Unit.Percentage(100);
+        settings.CallbackRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriList" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoDieuTri", Action = "GridSoDieuTriDelete" };
+
+        /* Behavior */
+        //settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";  
+
+        /*Buttons*/
+        //var EditColumnCommand = new MVCxGridViewCommandColumn();
+        //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //EditColumnCommand.ShowEditButton = true;
+        //EditColumnCommand.Width = 50;
+        //EditColumnCommand.ShowNewButtonInHeader = true;
+        //EditColumnCommand.VisibleIndex = 0;
+        //settings.Columns.Add(EditColumnCommand);
+        //var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        //DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //DeleteColumnCommand.ShowDeleteButton = true;
+        //DeleteColumnCommand.Width = 50;
+        //DeleteColumnCommand.VisibleIndex = 14;
+        //settings.Columns.Add(DeleteColumnCommand);
+
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "Tất cả";
+        settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
+        settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
+        settings.SettingsPager.Visible = true;
+
+
+        settings.KeyFieldName = "ID_SoDieuTri";
+
+         
+        //settings.HtmlDataCellPrepared = (sender, e) =>
+        //{
+        //    if (e.DataColumn.FieldName == "DVDieutri")
+        //    {
+        //        int Huyen = e.GetValue("DVDieutri") != null ? (int)e.GetValue("DVDieutri") : 0;
+        //        if (Session["MAHUYEN"] != "" && Huyen != Convert.ToInt32(Session["MAHUYEN"]))
+        //        {
+        //            e.Cell.Font.Bold = true;
+        //        }
+        //    }
+        //};
+
+        settings.HtmlRowPrepared = (s, e) =>
+        {
+            if (e.RowType != GridViewRowType.Data) return;
+            var sender = (MVCxGridView)s;
+            string Huyen = e.GetValue("DVDieutri") + "";
+            string idSoDieuTri = e.GetValue("ID_SoDieuTri") + "";
+            if (Huyen != Session["MAHUYEN"] + "")
+            {
+                e.Row.ForeColor = System.Drawing.Color.Gray;
+                Session[idSoDieuTri] = true;
+            }
+            else
+            {
+                Session[idSoDieuTri] = false;
+            }
+        };
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "MaBNQL";
+            i.Caption = "Mã Bệnh Nhân";
+            i.Width = Unit.Pixel(80);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "ID_PhanLoaiBenh";
+            i.Caption = "Phân loại bệnh";
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("Lao phổi AFB(+)", 1);
+            comboBoxProperties.Items.Add("Lao phổi AFB(-)", 2);
+            comboBoxProperties.Items.Add("Lao sơ nhiễm", 3);
+            comboBoxProperties.Items.Add("Lao ngoài phổi", 4);
+            comboBoxProperties.DropDownRows = 5;
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "ID_PhanLoaiBN";
+            i.Caption = "Phân loại bệnh nhân";
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("Mới", 1);
+            comboBoxProperties.Items.Add("Tái phát", 2);
+            comboBoxProperties.Items.Add("Thất bại", 3);
+            comboBoxProperties.Items.Add("Điều trị lại sau bỏ trị", 4);
+            comboBoxProperties.Items.Add("Chuyển đến", 5);
+            comboBoxProperties.Items.Add("AFB(-), lao ngoài phổi khác", 6);
+            comboBoxProperties.Items.Add("AFB(+) khác", 7);
+            comboBoxProperties.DropDownRows = 5;
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "ID_PhacdoDT";
+            i.Caption = "Phác đồ điều trị";
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("2SHRZ/6HE", 1);
+            comboBoxProperties.Items.Add("2EHRZ/6HE", 2);
+            comboBoxProperties.Items.Add("2SHRZ/4RH", 3);
+            comboBoxProperties.Items.Add("2SHRZE/1HRZE/5R3H3E3", 4);
+            comboBoxProperties.Items.Add("2RHZ/4RH", 5);
+            comboBoxProperties.Items.Add("2HRZE/4RH", 6);
+            comboBoxProperties.Items.Add("2RHZE/4RHE", 7);
+            comboBoxProperties.Items.Add("2SRHZE/1RHZE/5RHE", 8);
+            comboBoxProperties.Items.Add("2SH/4RHE", 9);
+            comboBoxProperties.DropDownRows = 10;
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NgayDT";
+            i.Caption = "Ngày bắt đầu điều trị";
+            i.Width = Unit.Pixel(100);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NgayRV";
+            i.Caption = "Ngày kết thúc điều trị";
+            i.Width = Unit.Pixel(100);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "ID_KetquaDT";
+            i.Caption = "Kết quả điều trị";
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("Khỏi", 1);
+            comboBoxProperties.Items.Add("Hoàn thành điều trị", 2);
+            comboBoxProperties.Items.Add("Chết", 3);
+            comboBoxProperties.Items.Add("Thất bại", 4);
+            comboBoxProperties.Items.Add("Bỏ", 5);
+            comboBoxProperties.Items.Add("Chuyển", 6);
+            comboBoxProperties.Items.Add("Không đánh giá", 7);
+            comboBoxProperties.DropDownRows = 5;
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "DVDieutri";
+            i.Caption = "Đơn vị điều trị";
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = ViewData["ListHuyen"];
+            comboBoxProperties.TextField = "TEN_HUYEN";
+            comboBoxProperties.ValueField = "MA_HUYEN";
+        });
+
+
+        /*Edit Form*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.SettingsText.PopupEditFormCaption = "Cập nhật thông tin sổ điều trị của bệnh nhân: " + Session["HoTen"] + ", " + Session["Gioitinh"] + ", " + Session["Tuoi"] + " tuổi, ở địa chỉ: " + Session["Diachi"];
+        settings.SetEditFormTemplateContent(c =>
+        {
+            SO_SoDieuTri editItem;
+            if (c.Grid.IsNewRowEditing)
+                editItem = new SO_SoDieuTri();
+            else
+            {
+                editItem = ViewData["Item"] != null ? (SO_SoDieuTri)ViewData["Item"] : (SO_SoDieuTri)c.Grid.GetRow(c.VisibleIndex);
+            }
+            editItem.ID_BENHNHAN = Convert.ToInt64(Session["ID_BenhNhan"]);
+            editItem.DVDieutri = Session["MAHUYEN"] + "";
+            Html.RenderPartial("_FormSoDieuTri", editItem);
+        });
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(ViewData["ListSoDieuTri"]).GetHtml();
+}
+

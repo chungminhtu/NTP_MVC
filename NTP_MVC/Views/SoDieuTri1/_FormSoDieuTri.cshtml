@@ -1,0 +1,602 @@
+﻿@model NTP_MVC.Models.SO_SoDieuTri
+@{bool GridSoDieuTriDisabled = Session[Model.ID_SoDieuTri + ""] != null ? !(bool)Session[Model.ID_SoDieuTri + ""] : true;}
+@*@Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "MetropolisBlue" },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "MetropolisBlue" },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "MetropolisBlue" }
+    )*@
+<div style="overflow-y:scroll; width:auto; height:550px;">
+
+    @Html.DevExpress().FormLayout(settings =>
+    {
+        settings.Name = "FormSoDieuTri";
+        //settings.Theme = "MetropolisBlue"; ///Thay đổi giao diện
+        settings.ColCount = 2;
+        settings.Width = 900;
+        //Tab group Items
+        settings.Items.AddTabbedGroupItem(tabGroup =>
+        {
+            tabGroup.Height = 480;
+            tabGroup.Styles.ContentStyle.Paddings.Padding = Unit.Pixel(5);
+            tabGroup.Width = Unit.Percentage(100);
+            tabGroup.ClientVisible = false;
+            /////////////////////////////////////////////////////////HIDDEN
+            tabGroup.Items.AddGroupItem(group =>
+            {
+                group.Caption = "HIDDEN";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.None;
+                group.ColSpan = 2;
+                group.ColCount = 2;
+                group.Width = Unit.Percentage(100);
+
+                //ID_BENHNHAN
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "ID_BENHNHAN";
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                    m.ClientVisible = false;
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().TextBoxFor(i => i.ID_BENHNHAN).Render();
+                });
+                //DVDieutri
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "DVDieutri";
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+                    m.ClientVisible = false;
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().TextBoxFor(i => i.DVDieutri).Render();
+                });
+            });
+        });
+        //Tab group Items
+        settings.Items.AddTabbedGroupItem(tabGroup =>
+        {
+            tabGroup.Height = 480;
+            tabGroup.Styles.ContentStyle.Paddings.Padding = Unit.Pixel(5);
+            tabGroup.Width = Unit.Percentage(100);
+            /////////////////////////////////////////////////////////THÔNG TIN ĐIỀU TRỊ
+            tabGroup.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Thông tin điều trị";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.None;
+                group.ColSpan = 2;
+                group.ColCount = 2;
+                group.Width = Unit.Percentage(100);
+
+                //NgayDT
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "NgayDT";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Pixel(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().DateEditFor(i => i.NgayDT, mySettings =>
+                    {
+                        mySettings.Width = Unit.Pixel(100);
+                        
+                        mySettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+
+                //SO DKKDT
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "SoDKDT";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().TextBoxFor(i => i.SoDKDT, mySettings =>
+                    {
+                        mySettings.Width = Unit.Pixel(200);
+                        mySettings.Properties.Width = Unit.Pixel(200);
+                        mySettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //ID_PhacdoDT
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "ID_PhacdoDT";
+                    m.ColSpan = 2;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.ID_PhacdoDT, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("2SHRZ/6HE", 1);
+                        cbSettings.Properties.Items.Add("2EHRZ/6HE", 2);
+                        cbSettings.Properties.Items.Add("2SHRZ/4RH", 3);
+                        cbSettings.Properties.Items.Add("2SHRZE/1HRZE/5R3H3E3", 4);
+                        cbSettings.Properties.Items.Add("2RHZ/4RH", 5);
+                        cbSettings.Properties.Items.Add("2HRZE/4RH", 6);
+                        cbSettings.Properties.Items.Add("2RHZE/4RHE", 7);
+                        cbSettings.Properties.Items.Add("2SRHZE/1RHZE/5RHE", 8);
+                        cbSettings.Properties.Items.Add("2SH/4RHE", 9);
+                        cbSettings.Width = Unit.Pixel(400);
+                        cbSettings.Properties.Width = Unit.Pixel(400);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //ID_PhacdoDT
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "ID_PhacdoDT";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.ID_PhacdoDT, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("2SHRZ/6HE", 1);
+                        cbSettings.Properties.Items.Add("2EHRZ/6HE", 2);
+                        cbSettings.Properties.Items.Add("2SHRZ/4RH", 3);
+                        cbSettings.Properties.Items.Add("2SHRZE/1HRZE/5R3H3E3", 4);
+                        cbSettings.Properties.Items.Add("2RHZ/4RH", 5);
+                        cbSettings.Properties.Items.Add("2HRZE/4RH", 6);
+                        cbSettings.Properties.Items.Add("2RHZE/4RHE", 7);
+                        cbSettings.Properties.Items.Add("2SRHZE/1RHZE/5RHE", 8);
+                        cbSettings.Properties.Items.Add("2SH/4RHE", 9);
+                        cbSettings.Width = Unit.Percentage(100);
+                        cbSettings.Properties.Width = Unit.Percentage(100);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //PhacdoKhac
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "PhacdoKhac";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().TextBoxFor(i => i.PhacdoKhac, mySettings =>
+                    {
+                        mySettings.Width = Unit.Percentage(100);
+                        mySettings.Properties.Width = Unit.Percentage(100);
+                        mySettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //GiamSatDT
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "GiamSatDT";
+                    m.ColSpan = 2;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().MemoFor(i => i.GiamSatDT, mySettings =>
+                    {
+                        mySettings.Width = Unit.Percentage(100);
+                        mySettings.Properties.Width = Unit.Percentage(100);
+                        mySettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+
+                //ID_PhanLoaiBenh
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "ID_PhanLoaiBenh";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.ID_PhanLoaiBenh, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("Lao phổi AFB(+)", 1);
+                        cbSettings.Properties.Items.Add("Lao phổi AFB(-)", 2);
+                        cbSettings.Properties.Items.Add("Lao sơ nhiễm", 3);
+                        cbSettings.Properties.Items.Add("Lao ngoài phổi", 4);
+                        cbSettings.Width = Unit.Percentage(100);
+                        cbSettings.Properties.Width = Unit.Percentage(100);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+
+                //ID_PhanLoaiBN
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "ID_PhanLoaiBN";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.ID_PhanLoaiBN, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("Mới", 1);
+                        cbSettings.Properties.Items.Add("Tái phát", 2);
+                        cbSettings.Properties.Items.Add("Thất bại", 3);
+                        cbSettings.Properties.Items.Add("Điều trị lại sau bỏ trị", 4);
+                        cbSettings.Properties.Items.Add("Chuyển đến", 5);
+                        cbSettings.Properties.Items.Add("AFB(-), lao ngoài phổi khác", 6);
+                        cbSettings.Properties.Items.Add("AFB(+) khác", 7);
+                        cbSettings.Width = Unit.Percentage(100);
+                        cbSettings.Properties.Width = Unit.Percentage(100);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+            });
+
+            //////////////////////////////////////GRID THÔNG TIN PHIẾU KHÁM BỆNH CỦA BỆNH NHÂN
+            tabGroup.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Thông tin Phiếu khám bệnh của Bệnh nhân";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.None;
+                group.ColSpan = 2;
+                group.ColCount = 2;
+
+                group.Items.Add(m =>
+                {
+                    m.ShowCaption = DefaultBoolean.False;
+                    m.ColSpan = 2;
+                    m.SetNestedContent(() =>
+                    {
+                        @Html.DevExpress().Panel(PanelButton =>
+                        {
+                            PanelButton.Name = "Panel";
+                            PanelButton.FixedPosition = PanelFixedPosition.None;
+                            PanelButton.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+                            PanelButton.ControlStyle.Border.BorderWidth = Unit.Pixel(1);
+                            PanelButton.SetContent(() =>
+                            {
+                                @Html.DevExpress().Button(
+                                    MyButton =>
+                                    {
+                                        MyButton.Name = "btnThemMoiPXN";
+                                        MyButton.Text = "Thêm phiếu xét nghiệm";
+                                        MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                        MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                                        MyButton.ClientSideEvents.Click = "function() { GridPhieuXetNghiem.AddNewRow(); }";
+                                        MyButton.Enabled = GridSoDieuTriDisabled;
+                                        MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                    }).GetHtml();
+                                @Html.DevExpress().Button(
+                                        MyButton =>
+                                        {
+                                            MyButton.Name = "btnSuaPXN";
+                                            MyButton.Text = "Sửa thông tin";
+                                            MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                            MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                                            MyButton.ClientSideEvents.Click = "function( ) { GridPhieuXetNghiem.StartEditRow(GridPhieuXetNghiem.GetFocusedRowIndex()); }";
+                                            MyButton.Enabled = GridSoDieuTriDisabled;
+                                            MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                        }).GetHtml();
+                                @Html.DevExpress().Button(
+                                        MyButton =>
+                                        {
+                                            MyButton.Name = "btnXoaPXN";
+                                            MyButton.Text = "Xóa";
+                                            MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                            MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                            MyButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) GridPhieuXetNghiem.DeleteRow(GridSoDieuTri.GetFocusedRowIndex()); }";
+                                            MyButton.Enabled = GridSoDieuTriDisabled;
+                                            MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                        }).GetHtml();
+                                @Html.DevExpress().Button(
+                                        MyButton =>
+                                        {
+                                            MyButton.Name = "btnInPXN";
+                                            MyButton.Text = "In sổ khám bệnh";
+                                            MyButton.Images.Image.Url = "~/Content/Images/print.png";
+                                            //MyButton.ClientSideEvents.Click = "function() { if(confirm('Want to delete?')) { GridSoDieuTri.DeleteRow(); } }";
+                                            MyButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                            MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                            MyButton.Enabled = GridSoDieuTriDisabled;
+                                        }).GetHtml();
+                            });
+                        }).GetHtml();
+                        Html.RenderAction("GridPhieuXetNghiem", "PhieuXetNghiem");
+                    });
+                });
+                //Chi tiết kết quả xét nghiệm soi đờm trực tiếp
+                group.Items.Add(m =>
+                     {
+                         m.ShowCaption = DefaultBoolean.False;
+                         m.ColSpan = 2;
+                         m.SetNestedContent(() =>
+                         {
+                             @Html.DevExpress().Panel(panelButton =>
+                             {
+                                 panelButton.Name = "Panel4";
+                                 panelButton.FixedPosition = PanelFixedPosition.None;
+                                 panelButton.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+
+                                 panelButton.SetContent(() =>
+                                 {
+                                     @Html.DevExpress().Button(
+                                         myButton =>
+                                         {
+                                             myButton.Name = "btnThemMoiKQPXN";
+                                             myButton.Text = "Thêm";
+                                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                             myButton.Images.Image.Url = "~/Content/Images/add.png";
+                                             myButton.ClientSideEvents.Click = "function() { GridKetQuaXetNghiem.AddNewRow(); }";
+                                             myButton.Enabled = GridSoDieuTriDisabled;
+                                             myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                         }).GetHtml();
+                                     @Html.DevExpress().Button(
+                                             myButton =>
+                                             {
+                                                 myButton.Name = "btnSuaKQPXN";
+                                                 myButton.Text = "Sửa";
+                                                 myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                                 myButton.Images.Image.Url = "~/Content/Images/edit.png";
+                                                 myButton.ClientSideEvents.Click = "function( ) { GridKetQuaXetNghiem.StartEditRow(GridKetQuaXetNghiem.GetFocusedRowIndex()); }";
+                                                 myButton.Enabled = GridSoDieuTriDisabled;
+                                                 myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                             }).GetHtml();
+                                     @Html.DevExpress().Button(
+                                             myButton =>
+                                             {
+                                                 myButton.Name = "btnXoaKQPXN";
+                                                 myButton.Text = "Xóa";
+                                                 myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                                 myButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                                 myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) " +
+                                                                                     "GridKetQuaXetNghiem.DeleteRow(GridKetQuaXetNghiem.GetFocusedRowIndex()); }";
+                                                 myButton.Enabled = GridSoDieuTriDisabled;
+                                                 myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                             }).GetHtml();
+                                     @Html.DevExpress().Button(
+                                       myButton =>
+                                       {
+                                           myButton.Name = "btnHuyKQXN";
+                                           myButton.Text = "Hủy";
+                                           myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                           myButton.Images.Image.Url = "~/Content/Images/cancel.png";
+                                           myButton.ClientSideEvents.Click = "function( ) { GridKetQuaXetNghiem.CancelEdit();  }";
+                                           myButton.Enabled = GridSoDieuTriDisabled;
+                                           myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                       }).GetHtml();
+                                     @Html.DevExpress().Button(
+                                          myButton =>
+                                          {
+                                              myButton.Name = "btnLuuKQXN";
+                                              myButton.Text = "Lưu và Cập nhật kết quả Phiếu xét nghiệm bên trên";
+                                              myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                                              myButton.Images.Image.Url = "~/Content/Images/save.png";
+                                              myButton.ClientSideEvents.Click = "function( ) { GridKetQuaXetNghiem.UpdateEdit(); GridPhieuXetNghiem.PerformCallback(); }";
+                                              myButton.Enabled = GridSoDieuTriDisabled;
+                                              myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                          }).GetHtml();
+
+                                 });
+                             }).GetHtml();
+                             Html.RenderAction("GridKetQuaXetNghiem", "PhieuXetNghiem");
+                         });
+                     });
+            });
+            ///////////////////////////////////////KẾT QUẢ ĐIỀU TRỊ
+            tabGroup.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Kết quả điều trị";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.None;
+                group.ColSpan = 2;
+                group.ColCount = 2;
+                group.Width = Unit.Percentage(100);
+                //NgayRV
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "NgayRV";
+                    group.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Pixel(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().DateEditFor(i => i.NgayRV, mySettings =>
+                    {
+                        mySettings.Width = Unit.Pixel(100);
+                        
+                        mySettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //ID_KetquaDT
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "ID_KetquaDT";
+                    group.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.ID_KetquaDT, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("Khỏi", 1);
+                        cbSettings.Properties.Items.Add("Hoàn thành điều trị", 2);
+                        cbSettings.Properties.Items.Add("Chết", 3);
+                        cbSettings.Properties.Items.Add("Thất bại", 4);
+                        cbSettings.Properties.Items.Add("Bỏ", 5);
+                        cbSettings.Properties.Items.Add("Chuyển", 6);
+                        cbSettings.Properties.Items.Add("Không đánh giá", 7);
+                        cbSettings.Width = Unit.Pixel(400);
+                        cbSettings.Properties.Width = Unit.Pixel(400);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //Ghichu
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "Ghichu";
+                    m.ColSpan = 2;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().MemoFor(i => i.Ghichu, MySettings =>
+                    {
+                        MySettings.ClientEnabled = GridSoDieuTriDisabled;
+                        MySettings.Width = Unit.Percentage(100);
+                        MySettings.Properties.Width = Unit.Percentage(100);
+                    }).Render();
+                });
+            });
+
+            ///////////////////////////////////////LAO /HIV
+            tabGroup.Items.AddGroupItem(group =>
+            {
+                group.Caption = "Lao/HIV";
+                group.ShowCaption = DefaultBoolean.True;
+                group.GroupBoxDecoration = GroupBoxDecoration.None;
+                group.ColSpan = 1;
+                group.ColCount = 1;
+                group.Width = Unit.Percentage(100);
+
+
+
+                //XNHIV1
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "XNHIV1";
+                    m.ColSpan = 1;
+                    m.Caption = "Trong quý";
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.XNHIV1, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("1. Không tư vấn", 1);
+                        cbSettings.Properties.Items.Add("2. Tư vấn nhưng không XN HIV", 2);
+                        cbSettings.Properties.Items.Add("3. Tư vấn, XN HIV không rõ kết quả", 3);
+                        cbSettings.Properties.Items.Add("4. HIV(-)", 4);
+                        cbSettings.Properties.Items.Add("5. Kết quả HIV(+) trước khi khám &amp; ĐKĐT Lao", 5);
+                        cbSettings.Properties.Items.Add("6. HIV(+)", 6);
+                        cbSettings.Width = Unit.Pixel(400);
+                        cbSettings.Properties.Width = Unit.Pixel(400);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //XNHIV2
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "XNHIV2";
+                    m.Caption = "Trong QT ĐT lao";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.XNHIV2, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("1. Không tư vấn", 1);
+                        cbSettings.Properties.Items.Add("2. Tư vấn nhưng không XN HIV", 2);
+                        cbSettings.Properties.Items.Add("3. Tư vấn, XN HIV không rõ kết quả", 3);
+                        cbSettings.Properties.Items.Add("4. HIV(-)", 4);
+                        cbSettings.Properties.Items.Add("5. Kết quả HIV(+) trước khi khám &amp; ĐKĐT Lao", 5);
+                        cbSettings.Properties.Items.Add("6. HIV(+)", 6);
+                        cbSettings.Width = Unit.Pixel(400);
+                        cbSettings.Properties.Width = Unit.Pixel(400);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+
+                //ART
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "ART";
+                    m.Caption = "Điều trị ART";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.ART, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("1. Không điều trị ARV", 1);
+                        cbSettings.Properties.Items.Add("2. Điều trị ARV trước ĐK điều trị Lao", 2);
+                        cbSettings.Properties.Items.Add("3. Điều trị ARV trong khi điều trị Lao", 3);
+                        cbSettings.Width = Unit.Pixel(400);
+                        cbSettings.Properties.Width = Unit.Pixel(400);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //CPT
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "CPT";
+                    m.Caption = "Điều trị CPT";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Percentage(100);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().ComboBoxFor(i => i.CPT, cbSettings =>
+                    {
+                        cbSettings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                        cbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                        cbSettings.Properties.Items.Add("1. Không ĐT Contrimoxazole", 1);
+                        cbSettings.Properties.Items.Add("2. Điều trị Contrimoxazole trước ĐK điều trị Lao", 2);
+                        cbSettings.Properties.Items.Add("3. Điều trị Contrimoxazole trong khi ĐK điều trị Lao", 3);
+                        cbSettings.Width = Unit.Pixel(400);
+                        cbSettings.Properties.Width = Unit.Pixel(400);
+                        cbSettings.ClientEnabled = GridSoDieuTriDisabled;
+                    }).Render();
+                });
+                //LymPho
+                group.Items.Add(m =>
+                {
+                    m.FieldName = "LymPho";
+                    m.Caption = "CD4/ tổng số lympho";
+                    m.ColSpan = 1;
+                    m.NestedExtensionSettings.Width = Unit.Pixel(400);
+                }).SetNestedContent(() =>
+                {
+                    Html.DevExpress().MemoFor(i => i.LymPho, MySettings =>
+                    {
+                        MySettings.ClientEnabled = GridSoDieuTriDisabled;
+                        MySettings.Width = Unit.Pixel(400);
+                        MySettings.Properties.Width = Unit.Pixel(400);
+                    }).Render();
+                });
+            });
+        });//End Tab group Items
+
+        ///////////////////////////////////////////FOOTER
+        settings.Items.Add(itemSettings =>
+        {
+            itemSettings.ShowCaption = DefaultBoolean.False;
+            itemSettings.ColSpan = 2;
+        }).SetNestedContent(() =>
+        {
+            ViewContext.Writer.Write("<div style='float:right'>");
+            Html.DevExpress().Button(
+            btnSettings =>
+            {
+                btnSettings.ClientVisible = GridSoDieuTriDisabled;
+                btnSettings.Name = "btnUpdate1";
+                btnSettings.Text = "Lưu toàn bộ";
+                btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoDieuTri.UpdateEdit(); }";
+            }).Render();
+            Html.DevExpress().Button(
+            btnSettings =>
+            {
+                btnSettings.Name = "btnCancel";
+                btnSettings.Text = "Đóng màn hình";
+                btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                btnSettings.ClientSideEvents.Click = "function(s, e){ GridSoDieuTri.CancelEdit(); }";
+            }).Render();
+            ViewContext.Writer.Write("</div>");
+
+        });
+
+    }).GetHtml()
+
+</div>

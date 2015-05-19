@@ -1,0 +1,179 @@
+﻿@using NTP_MVC.Models
+@using DevExpress.Web.Rendering
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        /*Initial*/
+        settings.Name = "GridSoKhamBenh"; 
+        settings.Width = Unit.Percentage(100);
+        settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhList" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "SoKhamBenh", Action = "GridSoKhamBenhDelete" };
+
+        /* Behavior */
+        //settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsEditing.NewItemRowPosition = GridViewNewItemRowPosition.Bottom;
+
+
+        /*Events*/
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridRowDblClick";
+
+        /*Buttons*/
+        //var EditColumnCommand = new MVCxGridViewCommandColumn();
+        //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //EditColumnCommand.ShowEditButton = true;
+        //EditColumnCommand.Width = 50;
+        //EditColumnCommand.ShowNewButtonInHeader = true;
+        //EditColumnCommand.VisibleIndex = 0;
+        //settings.Columns.Add(EditColumnCommand);
+        //var DeleteColumnCommand = new MVCxGridViewCommandColumn();
+        //DeleteColumnCommand.ButtonType = GridViewCommandButtonType.Button;
+        //DeleteColumnCommand.ShowDeleteButton = true;
+        //DeleteColumnCommand.Width = 50;
+        //DeleteColumnCommand.VisibleIndex = 14;
+        //settings.Columns.Add(DeleteColumnCommand);
+
+        /* Pager */
+        settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.SettingsPager.AllButton.Text = "Tất cả";
+        settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
+        settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
+        settings.SettingsPager.Visible = true;
+
+
+        settings.KeyFieldName = "ID_SoKhamBenh";
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NgayKhamBenh";
+            i.Caption = "Ngày đến khám";
+            i.Width = Unit.Pixel(80);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+            i.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "TrieuChung";
+            i.Caption = "Triệu chứng";
+            i.Width = Unit.Pixel(350);
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+        //BAND Cận lâm sàng
+        settings.Columns.AddBand(CanLamSangBand =>
+        {
+            CanLamSangBand.Caption = "Cận lâm sàng";
+            CanLamSangBand.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            CanLamSangBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+
+            CanLamSangBand.Columns.Add(i =>
+            {
+                i.FieldName = "KetQuaXetNghiemDom";
+                i.Caption = "Kết quả XN đờm";
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                i.ColumnType = MVCxGridViewColumnType.ComboBox;
+                var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+                comboBoxProperties.DropDownRows = 15;
+                comboBoxProperties.Items.Add("Âm", 0);
+                comboBoxProperties.Items.Add("1AFB", 1);
+                comboBoxProperties.Items.Add("2AFB", 2);
+                comboBoxProperties.Items.Add("3AFB", 3);
+                comboBoxProperties.Items.Add("4AFB", 4);
+                comboBoxProperties.Items.Add("5AFB", 5);
+                comboBoxProperties.Items.Add("6AFB", 6);
+                comboBoxProperties.Items.Add("7AFB", 7);
+                comboBoxProperties.Items.Add("8AFB", 8);
+                comboBoxProperties.Items.Add("9AFB", 9);
+                comboBoxProperties.Items.Add("1+", 10);
+                comboBoxProperties.Items.Add("2+", 11);
+                comboBoxProperties.Items.Add("3+", 12);
+            });
+            //CanLamSangBand.Columns.Add("NgayXetNghiemDom", "Ngày XN đờm");
+            CanLamSangBand.Columns.Add(i =>
+            {
+                i.FieldName = "XQ";
+                i.Caption = "Kết quả XQ";
+                i.Width = Unit.Pixel(150);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+                i.ColumnType = MVCxGridViewColumnType.ComboBox;
+                i.ReadOnly = true;
+                var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
+                comboBoxProperties.DropDownHeight = 0;
+                comboBoxProperties.Items.Add("Không chụp XQ", 0);
+                comboBoxProperties.Items.Add("Kết quả XQ bình thường", 1);
+                comboBoxProperties.Items.Add("Kết quả XQ bất thường không nghi lao", 2);
+                comboBoxProperties.Items.Add("Kết quả XQ bất thường nghi lao", 3);
+            });
+            //CanLamSangBand.Columns.Add("NgayChupXQ", "Ngày chụp XQ");
+            CanLamSangBand.Columns.Add(i =>
+            {
+                i.FieldName = "Khac";
+                i.Caption = "Khác";
+                i.Width = Unit.Pixel(80);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+        });
+        //BAND Chẩn đoán
+        settings.Columns.AddBand(ChanDoanBand =>
+        {
+            ChanDoanBand.Caption = "Chẩn đoán";
+            ChanDoanBand.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            ChanDoanBand.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+
+            ChanDoanBand.Columns.Add(i =>
+            {
+                i.FieldName = "NoiGioiThieu";
+                i.Caption = "Nơi giới thiệu";
+                i.Width = Unit.Pixel(80);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+            ChanDoanBand.Columns.Add(i =>
+            {
+                i.FieldName = "ToChongLao";
+                i.Caption = "Tổ chống lao";
+                i.Width = Unit.Pixel(80);
+                i.HeaderStyle.Paddings.Padding = Unit.Pixel(1);
+            });
+        });
+
+        settings.Columns.Add("XuTri", "Xử trí");
+        settings.Columns.Add("BSKhamBenh", "BS khám bệnh");
+        settings.Columns.Add("Ghichu", "Ghi chú");
+        settings.Columns.Add("MaBNQL", "Mã BNQL");
+
+        /*Edit Form*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.SettingsText.PopupEditFormCaption = "Cập nhật thông tin sổ khám bệnh của bệnh nhân: " + Session["HoTen"] + ", " + Session["Gioitinh"] + ", " + Session["Tuoi"] + " tuổi, ở địa chỉ: " + Session["Diachi"];
+        settings.SetEditFormTemplateContent(c =>
+        {
+            SO_SoKhamBenh editItem;
+            if (c.Grid.IsNewRowEditing)
+                editItem = new SO_SoKhamBenh();
+            else
+            {
+                editItem = ViewData["Item"] != null ? (SO_SoKhamBenh)ViewData["Item"] : (SO_SoKhamBenh)c.Grid.GetRow(c.VisibleIndex);
+            }
+            editItem.ID_BENHNHAN = Convert.ToInt64(Session["ID_BenhNhan"]);
+            Html.RenderPartial("_FormSoKhamBenh", editItem);
+        });
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    grid.Bind(ViewData["ListSoKhamBenh"]).GetHtml();
+}
