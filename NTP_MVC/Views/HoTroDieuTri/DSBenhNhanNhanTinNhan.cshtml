@@ -10,7 +10,13 @@
 <link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
-
+@{
+    var tmpdistrictId = "0";
+    if (Session != null && Session["MAHUYEN"] != null && Session["MAHUYEN"] != "")
+    {
+        tmpdistrictId = (string)Session["MAHUYEN"];
+    }
+}
 <script>
     $(document).ready(function () {
         kendo.culture("vi-VN");
@@ -96,8 +102,8 @@
                 dataType: "json",
                 success: function (data) {
                     dataSourceDistrict.data(data);
-                    var districtId = @Session["MAHUYEN"];
-                    if (districtId != null && districtId > 0) {
+                    var districtId = @tmpdistrictId;
+                    if (districtId != null && districtId != "0") {
                         filterDistrict.value(districtId);
                         filterDistrict.enable(false);
                         onChangeFilterDistrict();
@@ -140,7 +146,7 @@
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetCommunes", "HoTroDieuTri")",
-                data: { provinceId : filterDistrict.value() },
+                data: { districtId : filterDistrict.value() },
                 //url: "@Url.Action("GetCommunes", "HoTroDieuTri")",districtId=" + filterDistrict.value(),//Sai URL, phai dung URL Relative
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -274,7 +280,7 @@
                     $.ajax({
                         type: "POST",
                         url: "@Url.Action("GetBenhNhanNhanTinNhan", "HoTroDieuTri")",
-                       // url: "@Url.Action("GetBenhNhanNhanTinNhan", "HoTroDieuTri")",
+                        // url: "@Url.Action("GetBenhNhanNhanTinNhan", "HoTroDieuTri")",
                         data: JSON.stringify(jsonReq),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",

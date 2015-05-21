@@ -10,7 +10,13 @@
 <link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
-
+@{
+    var tmpdistrictId = "0";
+    if (Session != null && Session["MAHUYEN"] != null && Session["MAHUYEN"] != "")
+    {
+        tmpdistrictId = (string)Session["MAHUYEN"];
+    }
+}
 <script>
     $(document).ready(function () {
         kendo.culture("vi-VN");
@@ -94,8 +100,8 @@
                 dataType: "json",
                 success: function (data) {
                     dataSourceDistrict.data(data);
-                    var districtId = @Session["MAHUYEN"];
-                    if (districtId != null && districtId > 0) {
+                    var districtId = @tmpdistrictId;
+                    if (districtId != null && districtId != "0") {
                         filterDistrict.value(districtId);
                         filterDistrict.enable(false);
                         onChangeFilterDistrict();
@@ -138,7 +144,7 @@
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetCommunes", "HoTroDieuTri")",
-                data: { provinceId : filterDistrict.value() }, 
+                data: { districtId : filterDistrict.value() },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -149,7 +155,7 @@
                     alert(errMsg);
                 }
             });
-        };        
+        };
 
         dataSourceTherapy = new kendo.data.DataSource({
             transport: {
@@ -211,7 +217,7 @@
                     var provinceId = $("#filterProvince").val();
                     var districtId = $("#filterDistrict").val();
                     var communeId = $("#filterCommune").val();
-                    
+
                     if (provinceId == '') provinceId = 0;
                     if (districtId == '') districtId = 0;
                     if (communeId == '') communeId = 0;
@@ -219,7 +225,7 @@
                     jsonReq.provinceId = provinceId;
                     jsonReq.districtId = districtId;
                     jsonReq.communeId = communeId;
-                                        
+
                     $.ajax({
                         type: "POST",
                         url: "@Url.Action("GetBenhNhanTuChoiNhanTinNhan", "HoTroDieuTri")",
@@ -297,7 +303,7 @@
                             options.model.NgayTuChoi = datePickerDue.value();
                         });
                     }
-                }                
+                }
             ],
             editable: true,
             dataBound: function (e) {
@@ -307,7 +313,7 @@
                     $("#log").html('Không tìm thấy dữ liệu');
             },
             selectable: true
-        }).data("kendoGrid");        
+        }).data("kendoGrid");
 
         $("#buttonSearch").click(function () {
             searchPatient();

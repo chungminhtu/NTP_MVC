@@ -10,7 +10,13 @@
 <link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
-
+@{
+    var tmpdistrictId = "0";
+    if (Session != null && Session["MAHUYEN"] != null && Session["MAHUYEN"] != "")
+    {
+        tmpdistrictId = (string)Session["MAHUYEN"];
+    }
+}
 <script>
     $(document).ready(function () {
         kendo.culture("vi-VN");
@@ -40,7 +46,7 @@
         function getProvinces() {
             $.ajax({
                 type: "GET",
-                url: "@Url.Action("GetProvinces", "HoTroDieuTri")",  
+                url: "@Url.Action("GetProvinces", "HoTroDieuTri")",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -58,21 +64,21 @@
                     alert(errMsg);
                 }
             });
-    }
+        }
 
         dataSourceDistrict = new kendo.data.DataSource({
-        serverFiltering: true,
-        batch: true,
-        serverPaging: true,
-        schema: {
-            model: {
+            serverFiltering: true,
+            batch: true,
+            serverPaging: true,
+            schema: {
+                model: {
                     id: "MA_HUYEN",
                     fields: {
-                    MA_HUYEN: { editable: false, nullable: true },
-                    TEN_HUYEN: { validation: { required: true } }
+                        MA_HUYEN: { editable: false, nullable: true },
+                        TEN_HUYEN: { validation: { required: true } }
                     }
+                }
             }
-        }
         });
 
         var filterDistrict = $("#filterDistrict").kendoDropDownList({
@@ -89,13 +95,13 @@
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetDistricts", "HoTroDieuTri")",
-                data: { provinceId : filterProvince.value() }, 
+                data: { provinceId : filterProvince.value() },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
                     dataSourceDistrict.data(data);
-                    var districtId = @Session["MAHUYEN"];
-                    if (districtId != null && districtId > 0) {
+                    var districtId = @tmpdistrictId;
+                    if (districtId != null && districtId != "0") {
                         filterDistrict.value(districtId);
                         filterDistrict.enable(false);
                         onChangeFilterDistrict();
@@ -138,7 +144,7 @@
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetCommunes", "HoTroDieuTri")",
-                data: { provinceId : filterDistrict.value() }, 
+                data: { districtId : filterDistrict.value() },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -750,7 +756,7 @@
             }
         });
 
-        });
+    });
 
 </script>
 <h2>Danh sách bệnh nhân được giám sát</h2>

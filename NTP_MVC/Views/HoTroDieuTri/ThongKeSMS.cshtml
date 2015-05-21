@@ -10,7 +10,13 @@
 <link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
-
+@{
+    var tmpdistrictId = "0";
+    if (Session != null && Session["MAHUYEN"] != null && Session["MAHUYEN"] != "")
+    {
+        tmpdistrictId = (string)Session["MAHUYEN"];
+    }
+}
 <script>
     $(document).ready(function () {
         kendo.culture("vi-VN");
@@ -93,8 +99,8 @@
                 dataType: "json",
                 success: function (data) {
                     dataSourceDistrict.data(data);
-                    var districtId = @Session["MAHUYEN"];
-                    if (districtId != null && districtId > 0) {
+                    var districtId = @tmpdistrictId;
+                    if (districtId != null && districtId != "0") {
                         filterDistrict.value(districtId);
                         filterDistrict.enable(false);
                         onChangeFilterDistrict();
@@ -120,7 +126,7 @@
             value: new Date()
         }).data("kendoDatePicker");
 
-        var dataSourceSMS = new kendo.data.DataSource({            
+        var dataSourceSMS = new kendo.data.DataSource({
             pageSize: 10,
             schema: {
                 model: {
@@ -153,7 +159,7 @@
                 { field: "SoTinNhanTaiKham", title: 'Số tin nhắn nhắc xét nghiệm' },
                 { field: "SoTinNhanGuiKhac", title: 'Số tin nhắn truyền thông' },
                 { field: "SoTinNhanPhanHoiUT", width: "200px", title: 'Số tin phản hồi uống thuốc'},
-                { field: "SoTinNhanTrieuChung", title: 'Số tin phản hồi tác dụng phụ'}                
+                { field: "SoTinNhanTrieuChung", title: 'Số tin phản hồi tác dụng phụ'}
             ],
             editable: false,
             dataBound: function (e) {
@@ -163,7 +169,7 @@
                     $("#log").html('Không tìm thấy dữ liệu');
             },
             selectable: true
-        }).data("kendoGrid");       
+        }).data("kendoGrid");
 
         $("#buttonSearch").click(function () {
             searchSMS();
@@ -172,7 +178,7 @@
         function searchSMS() {
             var provinceId = $("#filterProvince").val();
             var districtId = $("#filterDistrict").val();
-            
+
             var textdatefilterFrom = kendo.toString(fromDate.value(),"yyyy-MM-dd HH:mm:ss");
             var textdatefilterTo = kendo.toString(toDate.value(),"yyyy-MM-dd HH:mm:ss");
             var today = new Date();texttoday = kendo.toString(today,"yyyy-MM-dd HH:mm:ss");
@@ -189,9 +195,9 @@
                 alert("Ngày lựa chọn không được lớn hơn ngày hiện tại");
                 return;
             }
-            if (provinceId == '') provinceId = 0;	
-            if (districtId == '') districtId = 0;	
-            	
+            if (provinceId == '') provinceId = 0;
+            if (districtId == '') districtId = 0;
+
             paramDue = {provinceId: provinceId, districtId: districtId, fromDate: textdatefilterFrom, toDate: textdatefilterTo};
 
             $.ajax({
@@ -209,9 +215,9 @@
                         tongSoTinGD = data.totalSoTinNhanTruyenThong;
                         tongSoTinNhanPhanHoiUT = data.totalSoTinNhanPhanHoiUT;
                         tongSoTinNhanTacDungPhu = data.totalSoTinNhanTacDungPhu;
-                        dataSourceSMS.data(data.smss);    
+                        dataSourceSMS.data(data.smss);
                     }
-                    
+
                 },
                 failure: function(errMsg) {
                     alert(errMsg);
