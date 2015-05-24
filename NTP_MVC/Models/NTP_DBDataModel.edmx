@@ -516,13 +516,21 @@ warning 6002: The table/view 'NTP_MVC.dbo.HTDT_BenhNhanTuChoiNhanTin' does not h
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="ID_BenhNhan" />
-            <PropertyRef Name="LyDoTuChoi" />
-            <PropertyRef Name="NgayTao" />
+            <PropertyRef Name="TuChoiNhanTinNhanUT" />
+            <PropertyRef Name="TuChoiNhanTinNhanXN" />
+            <PropertyRef Name="TuChoiNhanTinNhanTT" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_BenhNhan" Type="bigint" Nullable="false" />
-          <Property Name="LyDoTuChoi" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="NgayTao" Type="datetime" Nullable="false" />
+          <Property Name="TuChoiNhanTinNhanUT" Type="bit" Nullable="false" />
+          <Property Name="TuChoiNhanTinNhanXN" Type="bit" Nullable="false" />
+          <Property Name="TuChoiNhanTinNhanTT" Type="bit" Nullable="false" />
+          <Property Name="NgayTuChoiTinNhanUT" Type="datetime" />
+          <Property Name="NgayTuChoiTinNhanXN" Type="datetime" />
+          <Property Name="NgayTuChoiTinNhanTT" Type="datetime" />
+          <Property Name="LyDoTuChoiTinNhanUT" Type="nvarchar" MaxLength="450" />
+          <Property Name="LyDoTuChoiTinNhanXN" Type="nvarchar" MaxLength="450" />
+          <Property Name="LyDoTuChoiTinNhanTT" Type="nvarchar" MaxLength="450" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NTP_MVC.dbo.HTDT_LichHenXN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -939,8 +947,15 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
             <DefiningQuery>SELECT 
     [HTDT_BenhNhanTuChoiNhanTin].[ID] AS [ID], 
     [HTDT_BenhNhanTuChoiNhanTin].[ID_BenhNhan] AS [ID_BenhNhan], 
-    [HTDT_BenhNhanTuChoiNhanTin].[LyDoTuChoi] AS [LyDoTuChoi], 
-    [HTDT_BenhNhanTuChoiNhanTin].[NgayTao] AS [NgayTao]
+    [HTDT_BenhNhanTuChoiNhanTin].[TuChoiNhanTinNhanUT] AS [TuChoiNhanTinNhanUT], 
+    [HTDT_BenhNhanTuChoiNhanTin].[TuChoiNhanTinNhanXN] AS [TuChoiNhanTinNhanXN], 
+    [HTDT_BenhNhanTuChoiNhanTin].[TuChoiNhanTinNhanTT] AS [TuChoiNhanTinNhanTT], 
+    [HTDT_BenhNhanTuChoiNhanTin].[NgayTuChoiTinNhanUT] AS [NgayTuChoiTinNhanUT], 
+    [HTDT_BenhNhanTuChoiNhanTin].[NgayTuChoiTinNhanXN] AS [NgayTuChoiTinNhanXN], 
+    [HTDT_BenhNhanTuChoiNhanTin].[NgayTuChoiTinNhanTT] AS [NgayTuChoiTinNhanTT], 
+    [HTDT_BenhNhanTuChoiNhanTin].[LyDoTuChoiTinNhanUT] AS [LyDoTuChoiTinNhanUT], 
+    [HTDT_BenhNhanTuChoiNhanTin].[LyDoTuChoiTinNhanXN] AS [LyDoTuChoiTinNhanXN], 
+    [HTDT_BenhNhanTuChoiNhanTin].[LyDoTuChoiTinNhanTT] AS [LyDoTuChoiTinNhanTT]
     FROM [dbo].[HTDT_BenhNhanTuChoiNhanTin] AS [HTDT_BenhNhanTuChoiNhanTin]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="HTDT_LichHenXN" EntityType="Self.HTDT_LichHenXN" store:Type="Tables" store:Schema="dbo">
@@ -1084,7 +1099,6 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
           <EntitySet Name="HTDT_BenhNhanDoiDiaChi" EntityType="NTP_DBModel.HTDT_BenhNhanDoiDiaChi" />
           <EntitySet Name="HTDT_BenhNhanNhanTinNhan" EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" />
           <EntitySet Name="HTDT_BenhNhanPhanHoiTacDungPhu" EntityType="NTP_DBModel.HTDT_BenhNhanPhanHoiTacDungPhu" />
-          <EntitySet Name="HTDT_BenhNhanTuChoiNhanTin" EntityType="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin" />
           <EntitySet Name="HTDT_LichHenXN" EntityType="NTP_DBModel.HTDT_LichHenXN" />
           <EntitySet Name="HTDT_ThongDiepTruyenThong" EntityType="NTP_DBModel.HTDT_ThongDiepTruyenThong" />
           <EntitySet Name="HTDT_ThongKeTinNhan" EntityType="NTP_DBModel.HTDT_ThongKeTinNhan" />
@@ -1094,6 +1108,7 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
             <End Role="DM_Huyen" EntitySet="DM_Huyen" />
             <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
           </AssociationSet>
+          <EntitySet Name="HTDT_BenhNhanTuChoiNhanTin" EntityType="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin" />
         </EntityContainer>
         <EntityType Name="AD_Menu">
           <Key>
@@ -1769,18 +1784,6 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
           <Property Name="TacDungPhu" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="NgayNhan" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="HTDT_BenhNhanTuChoiNhanTin">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="ID_BenhNhan" />
-            <PropertyRef Name="LyDoTuChoi" />
-            <PropertyRef Name="NgayTao" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
-          <Property Name="LyDoTuChoi" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="HTDT_LichHenXN">
           <Key>
             <PropertyRef Name="ID" />
@@ -1906,6 +1909,26 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="HTDT_BenhNhanTuChoiNhanTin">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_BenhNhan" />
+            <PropertyRef Name="TuChoiNhanTinNhanUT" />
+            <PropertyRef Name="TuChoiNhanTinNhanXN" />
+            <PropertyRef Name="TuChoiNhanTinNhanTT" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BenhNhan" Type="Int64" Nullable="false" />
+          <Property Name="TuChoiNhanTinNhanUT" Type="Boolean" Nullable="false" />
+          <Property Name="TuChoiNhanTinNhanXN" Type="Boolean" Nullable="false" />
+          <Property Name="TuChoiNhanTinNhanTT" Type="Boolean" Nullable="false" />
+          <Property Name="NgayTuChoiTinNhanUT" Type="DateTime" Precision="3" />
+          <Property Name="NgayTuChoiTinNhanXN" Type="DateTime" Precision="3" />
+          <Property Name="NgayTuChoiTinNhanTT" Type="DateTime" Precision="3" />
+          <Property Name="LyDoTuChoiTinNhanUT" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="LyDoTuChoiTinNhanXN" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="LyDoTuChoiTinNhanTT" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2581,16 +2604,6 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HTDT_BenhNhanTuChoiNhanTin">
-            <EntityTypeMapping TypeName="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin">
-              <MappingFragment StoreEntitySet="HTDT_BenhNhanTuChoiNhanTin">
-                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="LyDoTuChoi" ColumnName="LyDoTuChoi" />
-                <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HTDT_LichHenXN">
             <EntityTypeMapping TypeName="NTP_DBModel.HTDT_LichHenXN">
               <MappingFragment StoreEntitySet="HTDT_LichHenXN">
@@ -2685,6 +2698,23 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
                 <ScalarProperty Name="SoThangDT" ColumnName="SoThangDT" />
                 <ScalarProperty Name="LydoXN" ColumnName="LydoXN" />
                 <ScalarProperty Name="SoXN" ColumnName="SoXN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HTDT_BenhNhanTuChoiNhanTin">
+            <EntityTypeMapping TypeName="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin">
+              <MappingFragment StoreEntitySet="HTDT_BenhNhanTuChoiNhanTin">
+                <ScalarProperty Name="LyDoTuChoiTinNhanTT" ColumnName="LyDoTuChoiTinNhanTT" />
+                <ScalarProperty Name="LyDoTuChoiTinNhanXN" ColumnName="LyDoTuChoiTinNhanXN" />
+                <ScalarProperty Name="LyDoTuChoiTinNhanUT" ColumnName="LyDoTuChoiTinNhanUT" />
+                <ScalarProperty Name="NgayTuChoiTinNhanTT" ColumnName="NgayTuChoiTinNhanTT" />
+                <ScalarProperty Name="NgayTuChoiTinNhanXN" ColumnName="NgayTuChoiTinNhanXN" />
+                <ScalarProperty Name="NgayTuChoiTinNhanUT" ColumnName="NgayTuChoiTinNhanUT" />
+                <ScalarProperty Name="TuChoiNhanTinNhanTT" ColumnName="TuChoiNhanTinNhanTT" />
+                <ScalarProperty Name="TuChoiNhanTinNhanXN" ColumnName="TuChoiNhanTinNhanXN" />
+                <ScalarProperty Name="TuChoiNhanTinNhanUT" ColumnName="TuChoiNhanTinNhanUT" />
+                <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

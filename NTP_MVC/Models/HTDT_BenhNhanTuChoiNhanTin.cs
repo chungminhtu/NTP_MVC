@@ -16,7 +16,14 @@ namespace NTP_MVC.Models
     {
         public long ID { get; set; }
         public long ID_BenhNhan { get; set; }
-        public string LyDoTuChoi { get; set; }
-        public System.DateTime NgayTao { get; set; }
+        public bool TuChoiNhanTinNhanUT { get; set; }
+        public bool TuChoiNhanTinNhanXN { get; set; }
+        public bool TuChoiNhanTinNhanTT { get; set; }
+        public Nullable<System.DateTime> NgayTuChoiTinNhanUT { get; set; }
+        public Nullable<System.DateTime> NgayTuChoiTinNhanXN { get; set; }
+        public Nullable<System.DateTime> NgayTuChoiTinNhanTT { get; set; }
+        public string LyDoTuChoiTinNhanUT { get; set; }
+        public string LyDoTuChoiTinNhanXN { get; set; }
+        public string LyDoTuChoiTinNhanTT { get; set; }
     }
 }
