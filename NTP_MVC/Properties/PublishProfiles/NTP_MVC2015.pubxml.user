@@ -7,6 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>D:\PROJECT\PROJECT 2015\NTP_MVC2015\DEPLOY</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9fDEmJ0zJ0q2HwDXrbRhVwAAAAACAAAAAAAQZgAAAAEAACAAAAD/TOYQouu5z9iWQ7N6k3mMc+Cb8ZT3WsLCFHIytWQKEAAAAAAOgAAAAAIAACAAAAA5xReZoPslzUA0NNl9XGcvmDW6vkquarZYbGB4scNBACAAAAATOcn15cj0+YZ48U704vtVe4pCwKfzHKyarS1g6zGNqEAAAACcmectIGsS1+NhnMUf7j7f6YATpd7QA/EJFYy7TfGiRuIDIf8lWVNLOm9mXiDuUQxBNeh82xiMKxNIthecU6fA</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Data/SideMenu.xml">
