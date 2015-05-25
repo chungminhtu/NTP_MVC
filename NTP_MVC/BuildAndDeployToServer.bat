@@ -1,0 +1,2 @@
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild "NTP_MVC.sln" /p:DeployOnBuild=true /p:PublishProfile=NTP_MVC2015 /p:Password=ctclqg@nam1988* /p:AllowUntrustedCertificate=true /p:VisualStudioVersion=12.0  /property:Configuration=Debug /m
+pause
