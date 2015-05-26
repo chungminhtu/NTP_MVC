@@ -70,10 +70,10 @@ namespace NTP_MVC.Models
         public virtual DbSet<HTDT_BenhNhanNhanTinNhan> HTDT_BenhNhanNhanTinNhan { get; set; }
         public virtual DbSet<HTDT_BenhNhanPhanHoiTacDungPhu> HTDT_BenhNhanPhanHoiTacDungPhu { get; set; }
         public virtual DbSet<HTDT_LichHenXN> HTDT_LichHenXN { get; set; }
-        public virtual DbSet<HTDT_ThongDiepTruyenThong> HTDT_ThongDiepTruyenThong { get; set; }
         public virtual DbSet<HTDT_ThongKeTinNhan> HTDT_ThongKeTinNhan { get; set; }
         public virtual DbSet<InDanhSachBenhNhan> InDanhSachBenhNhans { get; set; }
         public virtual DbSet<InPhieuXetNghiem> InPhieuXetNghiems { get; set; }
         public virtual DbSet<HTDT_BenhNhanTuChoiNhanTin> HTDT_BenhNhanTuChoiNhanTin { get; set; }
+        public virtual DbSet<HTDT_ThongDiepTruyenThong> HTDT_ThongDiepTruyenThong { get; set; }
     }
 }

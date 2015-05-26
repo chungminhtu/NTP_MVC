@@ -75,7 +75,7 @@ namespace NTP_MVC.Job
             //scheduler.ScheduleJob(jobHTDTGeneratePatientDue, triggerHTDTGeneratePatientDue);
             //scheduler.ScheduleJob(jobGeneratePatientReminder, triggerGeneratePatientReminder);
             //scheduler.ScheduleJob(jobDrugReminder, triggerDrugReminder);
-            scheduler.ScheduleJob(jobExamReminder, triggerExamReminder);
+            //scheduler.ScheduleJob(jobExamReminder, triggerExamReminder);
             
         }
     }

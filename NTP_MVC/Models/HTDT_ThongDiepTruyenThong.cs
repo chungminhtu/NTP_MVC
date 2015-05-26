@@ -16,13 +16,33 @@ namespace NTP_MVC.Models
     {
         public long ID { get; set; }
         public string NoiDung { get; set; }
-        public short Loai { get; set; }
-        public Nullable<short> GiaiDoan { get; set; }
-        public Nullable<short> TuTuan { get; set; }
-        public Nullable<short> DenTuan { get; set; }
-        public Nullable<short> TanSuat { get; set; }
-        public Nullable<short> LoaiTanSuat { get; set; }
-        public System.DateTime NgayNhap { get; set; }
-        public bool TamDungSuDung { get; set; }
+        public short LoaiTinNhan { get; set; }
+        public short LoaiBenhNhan { get; set; }
+        public short T1 { get; set; }
+        public short T2 { get; set; }
+        public short T3 { get; set; }
+        public short T4 { get; set; }
+        public short T5 { get; set; }
+        public short T6 { get; set; }
+        public short T7 { get; set; }
+        public short T8 { get; set; }
+        public short T9 { get; set; }
+        public short T10 { get; set; }
+        public short T11 { get; set; }
+        public short T12 { get; set; }
+        public short T13 { get; set; }
+        public short T14 { get; set; }
+        public short T15 { get; set; }
+        public short T16 { get; set; }
+        public short T17 { get; set; }
+        public short T18 { get; set; }
+        public short T19 { get; set; }
+        public short T20 { get; set; }
+        public short T21 { get; set; }
+        public short T22 { get; set; }
+        public short T23 { get; set; }
+        public short T24 { get; set; }
+        public short T25 { get; set; }
+        public Nullable<short> T26 { get; set; }
     }
 }

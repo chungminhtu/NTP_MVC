@@ -556,20 +556,64 @@ warning 6002: The table/view 'NTP_MVC.dbo.HTDT_ThongDiepTruyenThong' does not ha
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="NoiDung" />
-            <PropertyRef Name="Loai" />
-            <PropertyRef Name="NgayNhap" />
-            <PropertyRef Name="TamDungSuDung" />
+            <PropertyRef Name="LoaiTinNhan" />
+            <PropertyRef Name="LoaiBenhNhan" />
+            <PropertyRef Name="T1" />
+            <PropertyRef Name="T2" />
+            <PropertyRef Name="T3" />
+            <PropertyRef Name="T4" />
+            <PropertyRef Name="T5" />
+            <PropertyRef Name="T6" />
+            <PropertyRef Name="T7" />
+            <PropertyRef Name="T8" />
+            <PropertyRef Name="T9" />
+            <PropertyRef Name="T10" />
+            <PropertyRef Name="T11" />
+            <PropertyRef Name="T12" />
+            <PropertyRef Name="T13" />
+            <PropertyRef Name="T14" />
+            <PropertyRef Name="T15" />
+            <PropertyRef Name="T16" />
+            <PropertyRef Name="T17" />
+            <PropertyRef Name="T18" />
+            <PropertyRef Name="T19" />
+            <PropertyRef Name="T20" />
+            <PropertyRef Name="T21" />
+            <PropertyRef Name="T22" />
+            <PropertyRef Name="T23" />
+            <PropertyRef Name="T24" />
+            <PropertyRef Name="T25" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="Loai" Type="smallint" Nullable="false" />
-          <Property Name="GiaiDoan" Type="smallint" />
-          <Property Name="TuTuan" Type="smallint" />
-          <Property Name="DenTuan" Type="smallint" />
-          <Property Name="TanSuat" Type="smallint" />
-          <Property Name="LoaiTanSuat" Type="smallint" />
-          <Property Name="NgayNhap" Type="datetime" Nullable="false" />
-          <Property Name="TamDungSuDung" Type="bit" Nullable="false" />
+          <Property Name="LoaiTinNhan" Type="smallint" Nullable="false" />
+          <Property Name="LoaiBenhNhan" Type="smallint" Nullable="false" />
+          <Property Name="T1" Type="smallint" Nullable="false" />
+          <Property Name="T2" Type="smallint" Nullable="false" />
+          <Property Name="T3" Type="smallint" Nullable="false" />
+          <Property Name="T4" Type="smallint" Nullable="false" />
+          <Property Name="T5" Type="smallint" Nullable="false" />
+          <Property Name="T6" Type="smallint" Nullable="false" />
+          <Property Name="T7" Type="smallint" Nullable="false" />
+          <Property Name="T8" Type="smallint" Nullable="false" />
+          <Property Name="T9" Type="smallint" Nullable="false" />
+          <Property Name="T10" Type="smallint" Nullable="false" />
+          <Property Name="T11" Type="smallint" Nullable="false" />
+          <Property Name="T12" Type="smallint" Nullable="false" />
+          <Property Name="T13" Type="smallint" Nullable="false" />
+          <Property Name="T14" Type="smallint" Nullable="false" />
+          <Property Name="T15" Type="smallint" Nullable="false" />
+          <Property Name="T16" Type="smallint" Nullable="false" />
+          <Property Name="T17" Type="smallint" Nullable="false" />
+          <Property Name="T18" Type="smallint" Nullable="false" />
+          <Property Name="T19" Type="smallint" Nullable="false" />
+          <Property Name="T20" Type="smallint" Nullable="false" />
+          <Property Name="T21" Type="smallint" Nullable="false" />
+          <Property Name="T22" Type="smallint" Nullable="false" />
+          <Property Name="T23" Type="smallint" Nullable="false" />
+          <Property Name="T24" Type="smallint" Nullable="false" />
+          <Property Name="T25" Type="smallint" Nullable="false" />
+          <Property Name="T26" Type="smallint" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NTP_MVC.dbo.HTDT_ThongKeTinNhan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -972,14 +1016,34 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
             <DefiningQuery>SELECT 
     [HTDT_ThongDiepTruyenThong].[ID] AS [ID], 
     [HTDT_ThongDiepTruyenThong].[NoiDung] AS [NoiDung], 
-    [HTDT_ThongDiepTruyenThong].[Loai] AS [Loai], 
-    [HTDT_ThongDiepTruyenThong].[GiaiDoan] AS [GiaiDoan], 
-    [HTDT_ThongDiepTruyenThong].[TuTuan] AS [TuTuan], 
-    [HTDT_ThongDiepTruyenThong].[DenTuan] AS [DenTuan], 
-    [HTDT_ThongDiepTruyenThong].[TanSuat] AS [TanSuat], 
-    [HTDT_ThongDiepTruyenThong].[LoaiTanSuat] AS [LoaiTanSuat], 
-    [HTDT_ThongDiepTruyenThong].[NgayNhap] AS [NgayNhap], 
-    [HTDT_ThongDiepTruyenThong].[TamDungSuDung] AS [TamDungSuDung]
+    [HTDT_ThongDiepTruyenThong].[LoaiTinNhan] AS [LoaiTinNhan], 
+    [HTDT_ThongDiepTruyenThong].[LoaiBenhNhan] AS [LoaiBenhNhan], 
+    [HTDT_ThongDiepTruyenThong].[T1] AS [T1], 
+    [HTDT_ThongDiepTruyenThong].[T2] AS [T2], 
+    [HTDT_ThongDiepTruyenThong].[T3] AS [T3], 
+    [HTDT_ThongDiepTruyenThong].[T4] AS [T4], 
+    [HTDT_ThongDiepTruyenThong].[T5] AS [T5], 
+    [HTDT_ThongDiepTruyenThong].[T6] AS [T6], 
+    [HTDT_ThongDiepTruyenThong].[T7] AS [T7], 
+    [HTDT_ThongDiepTruyenThong].[T8] AS [T8], 
+    [HTDT_ThongDiepTruyenThong].[T9] AS [T9], 
+    [HTDT_ThongDiepTruyenThong].[T10] AS [T10], 
+    [HTDT_ThongDiepTruyenThong].[T11] AS [T11], 
+    [HTDT_ThongDiepTruyenThong].[T12] AS [T12], 
+    [HTDT_ThongDiepTruyenThong].[T13] AS [T13], 
+    [HTDT_ThongDiepTruyenThong].[T14] AS [T14], 
+    [HTDT_ThongDiepTruyenThong].[T15] AS [T15], 
+    [HTDT_ThongDiepTruyenThong].[T16] AS [T16], 
+    [HTDT_ThongDiepTruyenThong].[T17] AS [T17], 
+    [HTDT_ThongDiepTruyenThong].[T18] AS [T18], 
+    [HTDT_ThongDiepTruyenThong].[T19] AS [T19], 
+    [HTDT_ThongDiepTruyenThong].[T20] AS [T20], 
+    [HTDT_ThongDiepTruyenThong].[T21] AS [T21], 
+    [HTDT_ThongDiepTruyenThong].[T22] AS [T22], 
+    [HTDT_ThongDiepTruyenThong].[T23] AS [T23], 
+    [HTDT_ThongDiepTruyenThong].[T24] AS [T24], 
+    [HTDT_ThongDiepTruyenThong].[T25] AS [T25], 
+    [HTDT_ThongDiepTruyenThong].[T26] AS [T26]
     FROM [dbo].[HTDT_ThongDiepTruyenThong] AS [HTDT_ThongDiepTruyenThong]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="HTDT_ThongKeTinNhan" EntityType="Self.HTDT_ThongKeTinNhan" store:Type="Tables" store:Schema="dbo">
@@ -1100,7 +1164,6 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
           <EntitySet Name="HTDT_BenhNhanNhanTinNhan" EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" />
           <EntitySet Name="HTDT_BenhNhanPhanHoiTacDungPhu" EntityType="NTP_DBModel.HTDT_BenhNhanPhanHoiTacDungPhu" />
           <EntitySet Name="HTDT_LichHenXN" EntityType="NTP_DBModel.HTDT_LichHenXN" />
-          <EntitySet Name="HTDT_ThongDiepTruyenThong" EntityType="NTP_DBModel.HTDT_ThongDiepTruyenThong" />
           <EntitySet Name="HTDT_ThongKeTinNhan" EntityType="NTP_DBModel.HTDT_ThongKeTinNhan" />
           <EntitySet Name="InDanhSachBenhNhans" EntityType="NTP_DBModel.InDanhSachBenhNhan" />
           <EntitySet Name="InPhieuXetNghiems" EntityType="NTP_DBModel.InPhieuXetNghiem" />
@@ -1109,6 +1172,7 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
             <End Role="SO_BenhNhan" EntitySet="SO_BenhNhan" />
           </AssociationSet>
           <EntitySet Name="HTDT_BenhNhanTuChoiNhanTin" EntityType="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin" />
+          <EntitySet Name="HTDT_ThongDiepTruyenThong" EntityType="NTP_DBModel.HTDT_ThongDiepTruyenThong" />
         </EntityContainer>
         <EntityType Name="AD_Menu">
           <Key>
@@ -1800,25 +1864,6 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
           <Property Name="LanXN" Type="Int16" Nullable="false" />
           <Property Name="DaXN" Type="Int16" Nullable="false" />
         </EntityType>
-        <EntityType Name="HTDT_ThongDiepTruyenThong">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="NoiDung" />
-            <PropertyRef Name="Loai" />
-            <PropertyRef Name="NgayNhap" />
-            <PropertyRef Name="TamDungSuDung" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Loai" Type="Int16" Nullable="false" />
-          <Property Name="GiaiDoan" Type="Int16" />
-          <Property Name="TuTuan" Type="Int16" />
-          <Property Name="DenTuan" Type="Int16" />
-          <Property Name="TanSuat" Type="Int16" />
-          <Property Name="LoaiTanSuat" Type="Int16" />
-          <Property Name="NgayNhap" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TamDungSuDung" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="HTDT_ThongKeTinNhan">
           <Key>
             <PropertyRef Name="ID" />
@@ -1928,6 +1973,69 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
           <Property Name="LyDoTuChoiTinNhanUT" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="LyDoTuChoiTinNhanXN" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="LyDoTuChoiTinNhanTT" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HTDT_ThongDiepTruyenThong">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NoiDung" />
+            <PropertyRef Name="LoaiTinNhan" />
+            <PropertyRef Name="LoaiBenhNhan" />
+            <PropertyRef Name="T1" />
+            <PropertyRef Name="T2" />
+            <PropertyRef Name="T3" />
+            <PropertyRef Name="T4" />
+            <PropertyRef Name="T5" />
+            <PropertyRef Name="T6" />
+            <PropertyRef Name="T7" />
+            <PropertyRef Name="T8" />
+            <PropertyRef Name="T9" />
+            <PropertyRef Name="T10" />
+            <PropertyRef Name="T11" />
+            <PropertyRef Name="T12" />
+            <PropertyRef Name="T13" />
+            <PropertyRef Name="T14" />
+            <PropertyRef Name="T15" />
+            <PropertyRef Name="T16" />
+            <PropertyRef Name="T17" />
+            <PropertyRef Name="T18" />
+            <PropertyRef Name="T19" />
+            <PropertyRef Name="T20" />
+            <PropertyRef Name="T21" />
+            <PropertyRef Name="T22" />
+            <PropertyRef Name="T23" />
+            <PropertyRef Name="T24" />
+            <PropertyRef Name="T25" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiTinNhan" Type="Int16" Nullable="false" />
+          <Property Name="LoaiBenhNhan" Type="Int16" Nullable="false" />
+          <Property Name="T1" Type="Int16" Nullable="false" />
+          <Property Name="T2" Type="Int16" Nullable="false" />
+          <Property Name="T3" Type="Int16" Nullable="false" />
+          <Property Name="T4" Type="Int16" Nullable="false" />
+          <Property Name="T5" Type="Int16" Nullable="false" />
+          <Property Name="T6" Type="Int16" Nullable="false" />
+          <Property Name="T7" Type="Int16" Nullable="false" />
+          <Property Name="T8" Type="Int16" Nullable="false" />
+          <Property Name="T9" Type="Int16" Nullable="false" />
+          <Property Name="T10" Type="Int16" Nullable="false" />
+          <Property Name="T11" Type="Int16" Nullable="false" />
+          <Property Name="T12" Type="Int16" Nullable="false" />
+          <Property Name="T13" Type="Int16" Nullable="false" />
+          <Property Name="T14" Type="Int16" Nullable="false" />
+          <Property Name="T15" Type="Int16" Nullable="false" />
+          <Property Name="T16" Type="Int16" Nullable="false" />
+          <Property Name="T17" Type="Int16" Nullable="false" />
+          <Property Name="T18" Type="Int16" Nullable="false" />
+          <Property Name="T19" Type="Int16" Nullable="false" />
+          <Property Name="T20" Type="Int16" Nullable="false" />
+          <Property Name="T21" Type="Int16" Nullable="false" />
+          <Property Name="T22" Type="Int16" Nullable="false" />
+          <Property Name="T23" Type="Int16" Nullable="false" />
+          <Property Name="T24" Type="Int16" Nullable="false" />
+          <Property Name="T25" Type="Int16" Nullable="false" />
+          <Property Name="T26" Type="Int16" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2616,22 +2724,6 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HTDT_ThongDiepTruyenThong">
-            <EntityTypeMapping TypeName="NTP_DBModel.HTDT_ThongDiepTruyenThong">
-              <MappingFragment StoreEntitySet="HTDT_ThongDiepTruyenThong">
-                <ScalarProperty Name="TamDungSuDung" ColumnName="TamDungSuDung" />
-                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
-                <ScalarProperty Name="LoaiTanSuat" ColumnName="LoaiTanSuat" />
-                <ScalarProperty Name="TanSuat" ColumnName="TanSuat" />
-                <ScalarProperty Name="DenTuan" ColumnName="DenTuan" />
-                <ScalarProperty Name="TuTuan" ColumnName="TuTuan" />
-                <ScalarProperty Name="GiaiDoan" ColumnName="GiaiDoan" />
-                <ScalarProperty Name="Loai" ColumnName="Loai" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HTDT_ThongKeTinNhan">
             <EntityTypeMapping TypeName="NTP_DBModel.HTDT_ThongKeTinNhan">
               <MappingFragment StoreEntitySet="HTDT_ThongKeTinNhan">
@@ -2714,6 +2806,42 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
                 <ScalarProperty Name="TuChoiNhanTinNhanXN" ColumnName="TuChoiNhanTinNhanXN" />
                 <ScalarProperty Name="TuChoiNhanTinNhanUT" ColumnName="TuChoiNhanTinNhanUT" />
                 <ScalarProperty Name="ID_BenhNhan" ColumnName="ID_BenhNhan" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HTDT_ThongDiepTruyenThong">
+            <EntityTypeMapping TypeName="NTP_DBModel.HTDT_ThongDiepTruyenThong">
+              <MappingFragment StoreEntitySet="HTDT_ThongDiepTruyenThong">
+                <ScalarProperty Name="T26" ColumnName="T26" />
+                <ScalarProperty Name="T25" ColumnName="T25" />
+                <ScalarProperty Name="T24" ColumnName="T24" />
+                <ScalarProperty Name="T23" ColumnName="T23" />
+                <ScalarProperty Name="T22" ColumnName="T22" />
+                <ScalarProperty Name="T21" ColumnName="T21" />
+                <ScalarProperty Name="T20" ColumnName="T20" />
+                <ScalarProperty Name="T19" ColumnName="T19" />
+                <ScalarProperty Name="T18" ColumnName="T18" />
+                <ScalarProperty Name="T17" ColumnName="T17" />
+                <ScalarProperty Name="T16" ColumnName="T16" />
+                <ScalarProperty Name="T15" ColumnName="T15" />
+                <ScalarProperty Name="T14" ColumnName="T14" />
+                <ScalarProperty Name="T13" ColumnName="T13" />
+                <ScalarProperty Name="T12" ColumnName="T12" />
+                <ScalarProperty Name="T11" ColumnName="T11" />
+                <ScalarProperty Name="T10" ColumnName="T10" />
+                <ScalarProperty Name="T9" ColumnName="T9" />
+                <ScalarProperty Name="T8" ColumnName="T8" />
+                <ScalarProperty Name="T7" ColumnName="T7" />
+                <ScalarProperty Name="T6" ColumnName="T6" />
+                <ScalarProperty Name="T5" ColumnName="T5" />
+                <ScalarProperty Name="T4" ColumnName="T4" />
+                <ScalarProperty Name="T3" ColumnName="T3" />
+                <ScalarProperty Name="T2" ColumnName="T2" />
+                <ScalarProperty Name="T1" ColumnName="T1" />
+                <ScalarProperty Name="LoaiBenhNhan" ColumnName="LoaiBenhNhan" />
+                <ScalarProperty Name="LoaiTinNhan" ColumnName="LoaiTinNhan" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
