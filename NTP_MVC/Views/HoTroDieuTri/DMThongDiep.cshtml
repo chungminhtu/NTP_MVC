@@ -10,7 +10,17 @@
 <link href="@Url.Content("~/Scripts/jquery.confirm/jquery.confirm.css")" rel="stylesheet">
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
+<style type="text/css">
+    .htable th {
+background-color:#f5f5f5;
+border-bottom:thin solid #c5c5c5;
+border-left:thin solid #c5c5c5;
+padding:2px 0px 2px 0px;
+margin-top:0px;
+font-weight:normal;
+}
 
+</style>
 <script>
     $(document).ready(function () {
         kendo.culture("vi-VN");
@@ -110,13 +120,39 @@
             },
             resizable: true,
             sortable: true,
+            toolbar: ["create","delete"],
             columns: [
-                { field: "GiaiDoan", width: "120px", title: "Giai đoạn điều trị", template: "#= dataSourceTreatmentState.at(GiaiDoan-1).text #" },
-                { field: "Loai", width: "120px", title: 'Loại nội dung', template: "#= dataSourceMessageType.at(Loai-1).text #" },
-                { field: "NoiDung", title: 'Nội dung', attributes: { style: "white-space: normal" } },
-                { field: "TamDungSuDung", width: "120px", title: 'Tình trạng sử dụng', template: "#= TamDungSuDung ? 'Tạm dừng' : 'Đang sử dụng' #" }
+                { field: "NoiDung", width: "150px", title: 'Tin nhắn', attributes: { style: "white-space: normal" } },
+                { field: "LoaiTinNhan", width: "80px", title: "Loại tin nhắn", template: "#= dataSourceTreatmentState.at(GiaiDoan-1).text #" },
+                { field: "LoaiBenhNhan", width: "80px", title: 'Loại bệnh nhân', template: "#= dataSourceMessageType.at(Loai-1).text #" },                
+                { field: "T1", width: "20px", title: 'T1' },
+                { field: "T2", width: "20px", title: 'T2' },
+                { field: "T3", width: "20px", title: 'T3' },
+                { field: "T4", width: "20px", title: 'T4' },
+                { field: "T5", width: "20px", title: 'T5' },
+                { field: "T6", width: "20px", title: 'T6' },
+                { field: "T7", width: "20px", title: 'T7' },
+                { field: "T8", width: "20px", title: 'T8' },
+                { field: "T9", width: "20px", title: 'T9' },
+                { field: "T10", width: "20px", title: 'T10' },
+                { field: "T11", width: "20px", title: 'T11' },
+                { field: "T12", width: "20px", title: 'T12' },
+                { field: "T13", width: "20px", title: 'T13' },
+                { field: "T14", width: "20px", title: 'T14' },
+                { field: "T15", width: "20px", title: 'T15' },
+                { field: "T16", width: "20px", title: 'T16' },
+                { field: "T17", width: "20px", title: 'T17' },
+                { field: "T18", width: "20px", title: 'T18' },
+                { field: "T19", width: "20px", title: 'T19' },
+                { field: "T20", width: "20px", title: 'T20' },
+                { field: "T21", width: "20px", title: 'T21' },
+                { field: "T22", width: "20px", title: 'T22' },
+                { field: "T23", width: "20px", title: 'T23' },
+                { field: "T24", width: "20px", title: 'T24' },
+                { field: "T25", width: "20px", title: 'T25' },
+                { field: "T26", width: "20px", title: 'T26' }
             ],
-            editable: false,
+            editable: true,
             dataBound: function (e) {
                 if (dataSourceMessage.total() > 0)
                     $("#log").html(dataSourceMessage.total() + ' thông điệp');
@@ -125,6 +161,8 @@
             },
             selectable: true
         }).data("kendoGrid");
+
+        $("#gridThongDiep").data().kendoGrid.thead.prepend("<tr class='htable'  style='font-size:11px;' cellspacing='0'><th style='border-bottom:none;border-left:none;'></th><th style='border-bottom:none;'></th><th style='border-bottom:none;'></th><th colspan='26'>Số lần gửi tin nhắn theo tuần</th></tr>");
 
         function getMessages() {
             $.ajax({
@@ -312,10 +350,10 @@ Loại nội dung:&nbsp;<input id="filterLoaiNoiDung" style="width:200px" />&nbs
 <p style="height:3px"></p>
 <font color="#08C"><strong>Bảng nhập liệu</strong></font>
 <br /><br />
-<div class="k-edit-label" style="width:60px;text-align:right;padding-right:5px;">Giai đoạn</div><input type="text" id="textMessageState" name="textMessageState" disabled />&nbsp;&nbsp;
-<div class="k-edit-label" style="width:auto;text-align:right;padding-right:5px;">Loại nội dung</div><input type="text" id="textMessageType" name="textMessageType" disabled />&nbsp;&nbsp;
+<div class="k-edit-label" style="width:60px;text-align:right;padding-right:5px;">Loại tin nhắn</div><input type="text" id="textMessageState" name="textMessageState" disabled />&nbsp;&nbsp;
+<div class="k-edit-label" style="width:auto;text-align:right;padding-right:5px;">Loại bệnh nhân</div><input type="text" id="textMessageType" name="textMessageType" disabled />&nbsp;&nbsp;
 <br />
-<div class="k-edit-label" style="width:60px;text-align:right;padding-right:5px;">Nội dung</div><textarea id="textMessage" rows="3" cols="50" style="width:450px;" name="textMessage" disabled></textarea>
+<div class="k-edit-label" style="width:60px;text-align:right;padding-right:5px;">Tin nhắn</div><textarea id="textMessage" rows="3" cols="50" style="width:450px;" name="textMessage" disabled></textarea>
 <br />
 Gửi từ tuần:&nbsp;<input name="tuTuan" style="width:30px;text-align:right;" id="tuTuan" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
 Đến tuần:&nbsp;<input name="denTuan" style="width:30px;;text-align:right;" id="denTuan" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;

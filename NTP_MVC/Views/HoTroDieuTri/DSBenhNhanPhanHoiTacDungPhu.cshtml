@@ -329,7 +329,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    window.open("/" + data, '_blank');
+                    window.open('@Url.Content("~/")' + data, '_blank');
                 },
                 failure: function (errMsg) {
                     alert(errMsg);

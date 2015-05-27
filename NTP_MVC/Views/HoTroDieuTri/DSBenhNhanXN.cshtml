@@ -144,7 +144,7 @@
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetCommunes", "HoTroDieuTri")",
-                data: { districtId : filterDistrict.value() }, 
+                data: { districtId : filterDistrict.value() },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -273,7 +273,7 @@
                     jsonReq.fromDate = textdatefilterFrom;
                     jsonReq.toDate = textdatefilterTo;
                     jsonReq.statusId = examineStatusId;
-                    
+
                     $.ajax({
                         type: "POST",
                         url: "@Url.Action("GetDsBenhNhanXetNghiem", "HoTroDieuTri")",
@@ -374,7 +374,7 @@
         }).data("kendoGrid");
 
         $('#gridBenhNhanXN').on("click", "td", function (e) {
-            var selectedTd = $(e.target).closest("td");              
+            var selectedTd = $(e.target).closest("td");
             var grdChkBox = selectedTd.find('input:checkbox');
             var dataItem = gridBenhNhanXN.dataItem($(this).closest('tr'));
             if (grdChkBox.prop('checked'))
@@ -384,7 +384,7 @@
         });
 
         $('#gridBenhNhanXN').on('click', '.chkbxDue', function() {
-            var checked = $(this).is(':checked');            
+            var checked = $(this).is(':checked');
             var dataItem = gridBenhNhanXN.dataItem($(this).closest('tr'));
             if (checked)
                 dataItem.set('DaXN', 1);
@@ -431,7 +431,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    window.open("/" + data, '_blank');
+                    window.open('@Url.Content("~/")' + data, '_blank');
                 },
                 failure: function (errMsg) {
                     alert(errMsg);

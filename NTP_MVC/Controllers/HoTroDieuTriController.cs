@@ -35,6 +35,8 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using System.Globalization;
 using System.Data;
+using NghiepCT.Utilities.Security;
+using System.Text;
 
 namespace NTP_MVC.Controllers
 {
@@ -445,6 +447,7 @@ namespace NTP_MVC.Controllers
             return "";
         }
 
+        
         [WebMethod]
         public string XuatExcelBenhNhanXN()
         {
@@ -457,7 +460,7 @@ namespace NTP_MVC.Controllers
             BenhNhanGrid grid = GetGridBenhNhanXetNghiem(req, false);
             List<BenhNhanVO> patients = grid.patients;
 
-            FileStream fs = new FileStream(Server.MapPath(@"\Content\HTDT_TemplateFiles\ListPatientsDue_Template.xls"), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(Server.MapPath("~") + "/Content/HTDT_TemplateFiles/ListPatientsDue_Template.xls", FileMode.Open, FileAccess.Read);
             HSSFWorkbook wb = new HSSFWorkbook(fs, true);
             HSSFSheet s = (HSSFSheet)wb.GetSheetAt(0);
             HSSFRow r = null;
@@ -510,7 +513,7 @@ namespace NTP_MVC.Controllers
             }
             string filepath = "/Content/HTDT_ReportFiles/ThongKeBenhNhanTaiKham_" + provinceId + "_" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".xls";
 
-            using (FileStream ms = new FileStream(Server.MapPath(@filepath), FileMode.Create, FileAccess.Write))
+            using (FileStream ms = new FileStream(Server.MapPath("~") + filepath, FileMode.Create, FileAccess.Write))
             {
                 r = (HSSFRow)s.GetRow(4);
                 c = (HSSFCell)r.GetCell(1);
@@ -740,7 +743,7 @@ namespace NTP_MVC.Controllers
             BenhNhanGrid grid = GetGridBenhNhanNhanTinNhan(req, false);
             List<BenhNhanVO> patients = grid.patients;
 
-            FileStream fs = new FileStream(Server.MapPath(@"\Content\HTDT_TemplateFiles\ListPatientsRemind_Template.xls"), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(Server.MapPath("~") + "/Content/HTDT_TemplateFiles/ListPatientsRemind_Template.xls", FileMode.Open, FileAccess.Read);
             HSSFWorkbook wb = new HSSFWorkbook(fs, true);
             HSSFSheet s = (HSSFSheet)wb.GetSheetAt(0);
             HSSFRow r = null;
@@ -792,7 +795,7 @@ namespace NTP_MVC.Controllers
                 duration = strfromDate + " - " + strtoDate;
             }            
            
-            using (FileStream ms = new FileStream(Server.MapPath(@filepath), FileMode.Create, FileAccess.Write))
+            using (FileStream ms = new FileStream(Server.MapPath("~") + filepath, FileMode.Create, FileAccess.Write))
             {
                 r = (HSSFRow)s.GetRow(4);
                 c = (HSSFCell)r.GetCell(1);
@@ -876,7 +879,7 @@ namespace NTP_MVC.Controllers
             JObject req = JObject.Parse(input);
             List<BenhNhanVO> patients = GetDsTacDungPhu(req);
 
-            FileStream fs = new FileStream(Server.MapPath(@"\Content\HTDT_TemplateFiles\ListPatientSymptoms_Template.xls"), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(Server.MapPath("~") + "/Content/HTDT_TemplateFiles/ListPatientSymptoms_Template.xls", FileMode.Open, FileAccess.Read);
             HSSFWorkbook wb = new HSSFWorkbook(fs, true);
             HSSFSheet s = (HSSFSheet)wb.GetSheetAt(0);
             HSSFRow r = null;
@@ -926,7 +929,7 @@ namespace NTP_MVC.Controllers
             {
                 duration = strfromDate + " - " + strtoDate;
             }
-            using (FileStream ms = new FileStream(Server.MapPath(@filepath), FileMode.Create, FileAccess.Write))
+            using (FileStream ms = new FileStream(Server.MapPath("~") + filepath, FileMode.Create, FileAccess.Write))
             {
                 r = (HSSFRow)s.GetRow(4);
                 c = (HSSFCell)r.GetCell(1);
@@ -1010,7 +1013,7 @@ namespace NTP_MVC.Controllers
             BenhNhanGSGrid grid = GetGridBenhNhanGS(req, false);
             List<BenhNhanGS> patients = grid.patients;
 
-            FileStream fs = new FileStream(Server.MapPath(@"\Content\HTDT_TemplateFiles\ListSupervisionPatients_Template.xls"), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(Server.MapPath("~") + "/Content/HTDT_TemplateFiles/ListSupervisionPatients_Template.xls", FileMode.Open, FileAccess.Read);
             HSSFWorkbook wb = new HSSFWorkbook(fs, true);
             HSSFSheet s = (HSSFSheet)wb.GetSheetAt(0);
             HSSFRow r = null;
@@ -1060,7 +1063,7 @@ namespace NTP_MVC.Controllers
             {
                 duration = strfromDate + " - " + strtoDate;
             }
-            using (FileStream ms = new FileStream(Server.MapPath(@filepath), FileMode.Create, FileAccess.Write))
+            using (FileStream ms = new FileStream(Server.MapPath("~") + filepath, FileMode.Create, FileAccess.Write))
             {
                 r = (HSSFRow)s.GetRow(4);
                 c = (HSSFCell)r.GetCell(1);
@@ -1142,7 +1145,7 @@ namespace NTP_MVC.Controllers
             {
                 SO_BenhNhan benhNhan = db.SO_BenhNhan.Where(p => p.ID_BenhNhan == benhNhanId).FirstOrDefault();
                 SO_SoDieuTri dieuTri = db.SO_SoDieuTri.Where(p => p.ID_BENHNHAN == benhNhanId).FirstOrDefault();
-                FileStream fs = new FileStream(Server.MapPath(@"\Content\HTDT_TemplateFiles\PatientSupervision_Template.xls"), FileMode.Open, FileAccess.Read);
+                FileStream fs = new FileStream(Server.MapPath("~") + "/Content/HTDT_TemplateFiles/PatientSupervision_Template.xls", FileMode.Open, FileAccess.Read);
                 HSSFWorkbook wb = new HSSFWorkbook(fs, true);
                 HSSFSheet s = (HSSFSheet)wb.GetSheetAt(0);
                 HSSFRow r = null;
@@ -1178,7 +1181,7 @@ namespace NTP_MVC.Controllers
 
                 string filepath = "/Content/HTDT_ReportFiles/ThongTinGiamSatDieuTriBN_" + benhNhanId + "_" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".xls";
 
-                using (FileStream ms = new FileStream(Server.MapPath(@filepath), FileMode.Create, FileAccess.Write))
+                using (FileStream ms = new FileStream(Server.MapPath("~") + filepath, FileMode.Create, FileAccess.Write))
                 {
                     r = (HSSFRow)s.GetRow(5);
                     c = (HSSFCell)r.GetCell(1);

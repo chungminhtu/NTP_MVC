@@ -1,9 +1,11 @@
-﻿using NTP_MVC.Models;
+﻿using NghiepCT.Utilities.Security;
+using NTP_MVC.Models;
 using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace NTP_MVC.Job
@@ -16,6 +18,30 @@ namespace NTP_MVC.Job
             string provinceId = "45";
             DoReminder(provinceId, "4501");
             DoReminder(provinceId, "4502");
+        }
+
+        private const string PARTNER_CODE = "126fa5f1-6e98-11e2-8420-18a90565e6c8";
+        private AdvertMessage.FO_API_Advert.Service m_WSInstance = null;
+        private const string WebAppDir = "C:/inetpub/wwwroot/ntp";
+        private AdvertMessage.FO_API_Advert.Service WSInstance
+        {
+            get
+            {
+                if (m_WSInstance == null)
+                {
+                    m_WSInstance = new AdvertMessage.FO_API_Advert.Service();
+                }
+
+                return m_WSInstance;
+            }
+        }
+        private string GenerateSignature(string Message, string Phone)
+        {
+            string OriginalData = string.Empty;
+            string CertFilePath = WebAppDir + "/Content/HTDT_TemplateFiles/SMS.pfx";
+            string CertPassword = "smsgatevn";
+            OriginalData = string.Format("{0}{1}{2}", PARTNER_CODE, Message, Phone);
+            return DigitalSignature.RSASignData(CertFilePath, CertPassword, OriginalData);
         }
 
         public void DoReminder(string provinceId, string districtId)
@@ -43,6 +69,38 @@ namespace NTP_MVC.Job
                 for (int i = 0; i < patients.Count;i++ )
                 {
                     p = patients[i];
+
+                    int MessageCode = 0;
+
+                    bool IsSendNow = true;
+
+                    string Telco = "viettel";
+                    string Phone = "84915164626";
+                    string ServiceNum = "8100";
+
+                    string Message = "Test gui tu vitimes chuong trinh Lao QG";
+
+                    string Signature = GenerateSignature(Message, Phone);
+
+                    string EncryptMessage = Convert.ToBase64String(Encoding.UTF8.GetBytes(Message));
+
+                    DateTime DateSend = DateTime.Parse("2015-05-27 15:00:00"); // yyyy-mm-dd HH:MM:ss
+
+                    int Result = WSInstance.Send(Telco
+                                                 , Phone
+                                                 , ServiceNum
+                                                 , MessageCode
+                                                 , EncryptMessage
+                                                 , PARTNER_CODE
+                                                 , Signature
+                                                 , DateSend
+                                                 , IsSendNow);
+
+                    if (Result == 0)
+                    {
+                        // Gui thanh cong.
+                    }
+
                     TongSoTinNhan++;
                     SQLUpdateTinNhan += p.ID + ",";
                 }
