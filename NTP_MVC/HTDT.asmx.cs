@@ -46,24 +46,24 @@ namespace NTP_MVC
             return Convert.ToBase64String(HashedBytes);
         }
 
-        [WebMethod]
-        public string Receive(int MOId, string Telco, string ServiceNum, string Phone, string Syntax, string message)
-        {
-            int MessageCode = 0; /*
-                                      * Ma tin nhan: 0    - ban tin text.
-                                      *              1000 - ban tin wappush.
-                                      */
+        //[WebMethod]
+        //public string Receive(int MOId, string Telco, string ServiceNum, string Phone, string Syntax, string message)
+        //{
+        //    int MessageCode = 0; /*
+        //                              * Ma tin nhan: 0    - ban tin text.
+        //                              *              1000 - ban tin wappush.
+        //                              */
 
-            string Response = string.Empty;
+        //    string Response = string.Empty;
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(Server.MapPath("~") + "/Content/HTDT_TemplateFiles/logpath.txt"))
-            {
-                file.WriteLine(Phone);
-            }
-            Response = MessageCode + "|" + "Cam on ban da nhan tin uong thuoc.";
+        //    using (System.IO.StreamWriter file = new System.IO.StreamWriter(Server.MapPath("~") + "/Content/HTDT_TemplateFiles/logpath.txt"))
+        //    {
+        //        file.WriteLine(Phone);
+        //    }
+        //    Response = MessageCode + "|" + "Cam on ban da nhan tin uong thuoc.";
 
-            return Response;
-        }
+        //    return Response;
+        //}
 
         [WebMethod]
         public string Receive(int MOId, string Telco, string ServiceNum, string Phone, string Syntax, string EncryptedMessage, string Signature)

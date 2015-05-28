@@ -12,84 +12,71 @@
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
 <style type="text/css">
     .htable th {
-background-color:#f5f5f5;
-border-bottom:thin solid #c5c5c5;
-border-left:thin solid #c5c5c5;
-padding:2px 0px 2px 0px;
-margin-top:0px;
-font-weight:normal;
-}
-
+        background-color: #f5f5f5;
+        border-bottom: thin solid #c5c5c5;
+        border-left: thin solid #c5c5c5;
+        padding: 2px 0px 2px 0px;
+        margin-top: 0px;
+        font-weight: normal;
+    }
 </style>
 <script>
     $(document).ready(function () {
         kendo.culture("vi-VN");
         var jsonReq = {}; var modelMsg = {}; var isNew = 0;
 
-        var messageType = [
-            { id: 1, text: 'Nhắc uống thuốc' },
-            { id: 2, text: 'Truyền thông' },
-            { id: 3, text: 'Nhắc tái khám' }
+        var MessageLoaiTinNhan = [
+            { id: 1, name: 'Kiến thức về bệnh lao' },
+            { id: 2, name: 'Uống thuốc đầy đủ' },
+            { id: 3, name: 'Xét nghiệm lại đờm đầy đủ' },
+            { id: 4, name: 'Về tác dụng phụ của thuốc' },
+            { id: 5, name: 'Động lực cá nhân' },
+            { id: 6, name: 'Động lực xã hội' },
+            { id: 7, name: 'Kỹ năng thực hiện' }
         ];
-        dataSourceMessageType = new kendo.data.DataSource({
-            data: messageType
+        dataSourceMessageLoaiTinNhan = new kendo.data.DataSource({
+            data: MessageLoaiTinNhan
         });
-        var textMessageType = $("#textMessageType").kendoDropDownList({
+        var textMessageLoaiTinNhan = $("#textMessageLoaiTinNhan").kendoDropDownList({
             autoBind: true,
-            dataTextField: "text",
+            dataTextField: "name",
             dataValueField: "id",
             filter: "contains",
-            dataSource: dataSourceMessageType
+            dataSource: dataSourceMessageLoaiTinNhan
         }).data("kendoDropDownList");
 
-        var filterLoaiNoiDung = $("#filterLoaiNoiDung").kendoDropDownList({
+        var filterLoaiTinNhan = $("#filterLoaiTinNhan").kendoDropDownList({
+            autoBind: true,
+            optionLabel: "---",
+            dataTextField: "name",
+            dataValueField: "id",
+            filter: "contains",
+            dataSource: dataSourceMessageLoaiTinNhan
+        }).data("kendoDropDownList");
+
+        var loaiBenh = [
+            { id: 1, name: "Lao phổi" },
+            { id: 2, name: "Lao các thể" }
+        ];
+        dataSourceLoaiBenh = new kendo.data.DataSource({
+            data: loaiBenh
+        });
+
+        var textMessageLoaiBenh = $("#textMessageLoaiBenh").kendoDropDownList({
+            autoBind: true,
+            dataTextField: "name",
+            dataValueField: "id",
+            filter: "contains",
+            dataSource: dataSourceLoaiBenh
+        }).data("kendoDropDownList");
+
+        var filterLoaiBenh = $("#filterLoaiBenh").kendoDropDownList({
             autoBind: true,
             optionLabel: "---",
             dataTextField: "text",
             dataValueField: "id",
             filter: "contains",
-            dataSource: dataSourceMessageType
-        }).data("kendoDropDownList");
-
-        var treatmentState = [
-            { id: 1, text: "Tấn công" },
-            { id: 2, text: "Duy trì" }
-        ];
-        dataSourceTreatmentState = new kendo.data.DataSource({
-            data: treatmentState
-        });
-
-        var textMessageState = $("#textMessageState").kendoDropDownList({
-            autoBind: true,
-            dataTextField: "text",
-            dataValueField: "id",
-            filter: "contains",
-            dataSource: dataSourceTreatmentState
-        }).data("kendoDropDownList");
-
-        var filterGiaiDoanDieuTri = $("#filterGiaiDoanDieuTri").kendoDropDownList({
-            autoBind: true,
-            optionLabel: "---",
-            dataTextField: "text",
-            dataValueField: "id",
-            filter: "contains",
-            dataSource: dataSourceTreatmentState
-        }).data("kendoDropDownList");
-
-        var loaiTanSuat = [
-            { id: 1, text: "lần/tuần" },
-            { id: 2, text: "tuần/lần" }
-        ];
-        dataSourceLoaiTanSuat = new kendo.data.DataSource({
-            data: loaiTanSuat
-        });
-
-        var loaiTanSuat = $("#loaiTanSuat").kendoDropDownList({
-            autoBind: true,
-            dataTextField: "text",
-            dataValueField: "id",
-            filter: "contains",
-            dataSource: dataSourceLoaiTanSuat
+            dataSource: dataSourceLoaiBenh
         }).data("kendoDropDownList");
 
         dataSourceMessage = new kendo.data.DataSource({
@@ -99,8 +86,8 @@ font-weight:normal;
                     id: "ID",
                     fields: {
                         ID: { editable: false, nullable: true },
-                        NoiDung: { editable: false, validation: { required: true } },
-                        Loai: { editable: false, validation: { required: true } }
+                        NoiDung: { editable: true, validation: { required: true } },
+                        LoaiTinNhan: { editable: true, validation: { required: true } }
                     }
                 }
             },
@@ -120,11 +107,10 @@ font-weight:normal;
             },
             resizable: true,
             sortable: true,
-            toolbar: ["create","delete"],
             columns: [
                 { field: "NoiDung", width: "150px", title: 'Tin nhắn', attributes: { style: "white-space: normal" } },
-                { field: "LoaiTinNhan", width: "80px", title: "Loại tin nhắn", template: "#= dataSourceTreatmentState.at(GiaiDoan-1).text #" },
-                { field: "LoaiBenhNhan", width: "80px", title: 'Loại bệnh nhân', template: "#= dataSourceMessageType.at(Loai-1).text #" },                
+                { field: "LoaiTinNhan", width: "80px", title: "Loại tin nhắn", attributes: { style: "white-space: normal" }, template: "#= dataSourceMessageLoaiTinNhan.at(LoaiTinNhan-1).name #" },
+                { field: "LoaiBenhNhan", width: "80px", title: 'Loại bệnh nhân', attributes: { style: "white-space: normal" }, template: "#= dataSourceLoaiBenh.at(LoaiBenhNhan-1).name #" },
                 { field: "T1", width: "20px", title: 'T1' },
                 { field: "T2", width: "20px", title: 'T2' },
                 { field: "T3", width: "20px", title: 'T3' },
@@ -152,7 +138,7 @@ font-weight:normal;
                 { field: "T25", width: "20px", title: 'T25' },
                 { field: "T26", width: "20px", title: 'T26' }
             ],
-            editable: true,
+            editable: false,
             dataBound: function (e) {
                 if (dataSourceMessage.total() > 0)
                     $("#log").html(dataSourceMessage.total() + ' thông điệp');
@@ -168,8 +154,8 @@ font-weight:normal;
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetDMThongDiep", "HoTroDieuTri")",
-                data: { giaidoan: filterGiaiDoanDieuTri.value(), loai: filterLoaiNoiDung.value() },
-                //url: "@Url.Action("GetDMThongDiep", "HoTroDieuTri")",giaidoan=" + filterGiaiDoanDieuTri.value() + "&loai=" + filterLoaiNoiDung.value(),
+                data: { giaidoan: filterLoaiTinNhan.value(), loai: filterLoaiBenh.value() },
+                //url: "@Url.Action("GetDMThongDiep", "HoTroDieuTri")",giaidoan=" + filterGiaiDoanDieuTri.value() + "&loai=" + filterLoaiTinNhan.value(),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -197,37 +183,34 @@ font-weight:normal;
                 isNew = 0;
                 modelMsg = gridThongDiep.dataItem(selectedRow);
                 $("#textMessage").val(modelMsg.NoiDung);
-                $("#tuTuan").val(modelMsg.TuTuan);
-                $("#denTuan").val(modelMsg.DenTuan);
-                $("#tanSuat").val(modelMsg.TanSuat);
-                textMessageType.value(modelMsg.Loai);
-                textMessageState.value(modelMsg.GiaiDoan);
-                loaiTanSuat.value(modelMsg.LoaiTanSuat);
-                if (modelMsg.TamDungSuDung) {
-                    $("#textMessageDisable").prop("checked", true);
-                } else {
-                    $("#textMessageDisable").prop("checked", false);
-                }
+                textMessageLoaiTinNhan.value(modelMsg.LoaiTinNhan);
+                textMessageLoaiBenh.value(modelMsg.LoaiBenhNhan);
                 setEnableMsgForm(false);
+                for (var i = 1; i < 27; i++) {
+                    $("#T" + i).val(modelMsg["T" + i]);
+                }
             }
 
         });
 
         function setEnableMsgForm(status) {
-            $("#textMessage").prop('disabled', status); $("#tuTuan").prop('disabled', status);
-            $("#denTuan").prop('disabled', status); $("#tanSuat").prop('disabled', status);
-            textMessageState.enable(!status);
-            textMessageType.enable(!status);
-            loaiTanSuat.enable(!status);
-            $("#textMessageDisable").prop("disabled", status);
+            $("#textMessage").prop('disabled', status); 
+           
+            for (var i = 1; i < 27; i++) {
+                $("#T" + i).prop('disabled', status);
+            }
+            textMessageLoaiTinNhan.enable(!status);
+            textMessageLoaiBenh.enable(!status);
         }
 
         function resetMsgForm() {
-            $("#textMessage").val(''); $("#tuTuan").val(''); $("#denTuan").val(''); $("#tanSuat").val('');
-            textMessageState.value('');
-            textMessageType.value('');
-            loaiTanSuat.value('');
-            $("#textMessageDisable").prop("checked", false);
+            $("#textMessage").val(''); $("#T1").val(''); $("#T2").val(''); $("#T3").val('');
+            for (var i=1;i<27;i++) {
+                $("#T" + i).val('');
+            }
+
+            textMessageLoaiBenh.value('');
+            textMessageLoaiTinNhan.value('');
         }
 
         $("#buttonNewMsg").click(function () {
@@ -247,15 +230,15 @@ font-weight:normal;
                 return;
             }
 
-            var giaidoan = $("#textMessageState").val();
-            if (loai == '') {
-                alert("Bạn chưa nhập giai đoạn điều trị");
+            var loaiBenh = $("#textMessageLoaiBenh").val();
+            if (loaiBenh == '') {
+                alert("Bạn chưa nhập loại bệnh nhân");
                 return;
             }
 
-            var loai = $("#textMessageType").val();
-            if (loai == '') {
-                alert("Bạn chưa nhập loại thông điệp");
+            var LoaiTinNhan = $("#textMessageLoaiTinNhan").val();
+            if (LoaiTinNhan == '') {
+                alert("Bạn chưa nhập loại nội dung");
                 return;
             }
 
@@ -264,22 +247,17 @@ font-weight:normal;
             }
 
             modelMsg.NoiDung = noiDung;
-            modelMsg.Loai = loai;
-            modelMsg.GiaiDoan = giaidoan;
-            modelMsg.TuTuan = $("#tuTuan").val();
-            modelMsg.DenTuan = $("#denTuan").val();
-            modelMsg.TanSuat = $("#tanSuat").val();
-            modelMsg.LoaiTanSuat = $("#loaiTanSuat").val();
-
-            if ($("#textMessageDisable").is(':checked')) {
-                modelMsg.TamDungSuDung = true;
-            } else {
-                modelMsg.TamDungSuDung = false;
+            modelMsg.LoaiTinNhan = LoaiTinNhan;
+            modelMsg.LoaiBenhNhan = loaiBenh;
+            for (var i = 1; i < 27; i++) {
+                var temp = $("#T" + i).val();
+                temp = temp != '' ? temp : 0;
+                modelMsg["T" + i] = temp;
             }
 
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("SaveThongDiep", "HoTroDieuTri")", 
+                url: "@Url.Action("SaveThongDiep", "HoTroDieuTri")",
                 data: JSON.stringify(modelMsg),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -334,15 +312,15 @@ font-weight:normal;
             }
         });
         resetMsgForm();
-        filterGiaiDoanDieuTri.value(''); filterLoaiNoiDung.value('');
+        filterLoaiBenh.value(''); filterLoaiTinNhan.value('');
         getMessages();
 
     });
 
 </script>
 <h2>Thông điệp truyền thông</h2>
-Giai đoạn điều trị:&nbsp;<input id="filterGiaiDoanDieuTri" style="width:130px" />&nbsp;&nbsp;&nbsp;
-Loại nội dung:&nbsp;<input id="filterLoaiNoiDung" style="width:200px" />&nbsp;&nbsp;&nbsp;
+<strong>Lọc theo</strong>: Loại tin nhắn:&nbsp;<input id="filterLoaiTinNhan" style="width:190px" />&nbsp;&nbsp;&nbsp;
+Loại bệnh nhân:&nbsp;<input id="filterLoaiBenh" style="width:100px" />&nbsp;&nbsp;&nbsp;
 <input class="btn btn-primary" style="width:50px;cursor:pointer;" id="buttonSearch" name="buttonSearch" value="Tìm" readonly /><br />
 <p style="height:3px"></p>
 <font color="#EE7318"><div id="log">&nbsp;</div></font>
@@ -350,17 +328,37 @@ Loại nội dung:&nbsp;<input id="filterLoaiNoiDung" style="width:200px" />&nbs
 <p style="height:3px"></p>
 <font color="#08C"><strong>Bảng nhập liệu</strong></font>
 <br /><br />
-<div class="k-edit-label" style="width:60px;text-align:right;padding-right:5px;">Loại tin nhắn</div><input type="text" id="textMessageState" name="textMessageState" disabled />&nbsp;&nbsp;
-<div class="k-edit-label" style="width:auto;text-align:right;padding-right:5px;">Loại bệnh nhân</div><input type="text" id="textMessageType" name="textMessageType" disabled />&nbsp;&nbsp;
+<div class="k-edit-label" style="width:auto;text-align:right;padding-right:5px;">Loại tin nhắn</div><input type="text" id="textMessageLoaiTinNhan" name="textMessageLoaiTinNhan" disabled style="width:190px" />&nbsp;&nbsp;
+<div class="k-edit-label" style="width:auto;text-align:right;padding-right:5px;">Loại bệnh nhân</div><input type="text" id="textMessageLoaiBenh" name="textMessageLoaiBenh" disabled style="width:100px" />&nbsp;&nbsp;
 <br />
 <div class="k-edit-label" style="width:60px;text-align:right;padding-right:5px;">Tin nhắn</div><textarea id="textMessage" rows="3" cols="50" style="width:450px;" name="textMessage" disabled></textarea>
 <br />
-Gửi từ tuần:&nbsp;<input name="tuTuan" style="width:30px;text-align:right;" id="tuTuan" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
-Đến tuần:&nbsp;<input name="denTuan" style="width:30px;;text-align:right;" id="denTuan" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
-Tần suất:&nbsp;<input name="tanSuat" style="width:30px;;text-align:right;" id="tanSuat" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">
-<input name="loaiTanSuat" style="width:80px;margin-top:0px;padding-top:0px;vertical-align:top;" id="loaiTanSuat">
-<br />
-<div class="k-edit-label" style="width:auto;padding-right:5px;padding-left:10px;">Tạm dừng sử dụng</div><input type="checkbox" id="textMessageDisable" name="textMessageDisable" disabled />
+Số lần gửi tin nhắn theo tuần:<br />T1&nbsp;<input name="T1" style="width:15px;text-align:center;padding:0px;" id="T1" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T2&nbsp;<input name="T2" style="width:15px;text-align:center;padding:0px;" id="T2" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T3&nbsp;<input name="T3" style="width:15px;text-align:center;padding:0px;" id="T3" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T4&nbsp;<input name="T4" style="width:15px;text-align:center;padding:0px;" id="T4" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T5&nbsp;<input name="T5" style="width:15px;text-align:center;padding:0px;" id="T5" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T6&nbsp;<input name="T6" style="width:15px;text-align:center;padding:0px;" id="T6" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T7&nbsp;<input name="T7" style="width:15px;text-align:center;padding:0px;" id="T7" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T8&nbsp;<input name="T8" style="width:15px;text-align:center;padding:0px;" id="T8" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T9&nbsp;<input name="T9" style="width:15px;text-align:center;padding:0px;" id="T9" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T10&nbsp;<input name="T10" style="width:15px;text-align:center;padding:0px;" id="T10" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T11&nbsp;<input name="T11" style="width:15px;text-align:center;padding:0px;" id="T11" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T12&nbsp;<input name="T12" style="width:15px;text-align:center;padding:0px;" id="T12" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T13&nbsp;<input name="T13" style="width:15px;text-align:center;padding:0px;" id="T13" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;<br />
+T14&nbsp;<input name="T14" style="width:15px;text-align:center;padding:0px;" id="T14" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T15&nbsp;<input name="T15" style="width:15px;text-align:center;padding:0px;" id="T15" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T16&nbsp;<input name="T16" style="width:15px;text-align:center;padding:0px;" id="T16" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T17&nbsp;<input name="T17" style="width:15px;text-align:center;padding:0px;" id="T17" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T18&nbsp;<input name="T18" style="width:15px;text-align:center;padding:0px;" id="T18" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T19&nbsp;<input name="T19" style="width:15px;text-align:center;padding:0px;" id="T19" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T20&nbsp;<input name="T20" style="width:15px;text-align:center;padding:0px;" id="T20" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T21&nbsp;<input name="T21" style="width:15px;text-align:center;padding:0px;" id="T21" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T22&nbsp;<input name="T22" style="width:15px;text-align:center;padding:0px;" id="T22" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T23&nbsp;<input name="T23" style="width:15px;text-align:center;padding:0px;" id="T23" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T24&nbsp;<input name="T24" style="width:15px;text-align:center;padding:0px;" id="T24" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T25&nbsp;<input name="T25" style="width:15px;text-align:center;padding:0px;" id="T25" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
+T26&nbsp;<input name="T26" style="width:15px;text-align:center;padding:0px;" id="T26" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;
 <br />
 <input class="btn btn-primary" id="buttonNewMsg" style="width:80px;cursor:pointer;" readonly value="Tạo mới" />
 <input class="btn btn-primary" id="buttonSaveMsg" style="width:80px;cursor:pointer;" readonly value="Lưu" />

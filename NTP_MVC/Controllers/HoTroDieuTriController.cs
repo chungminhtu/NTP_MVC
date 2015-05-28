@@ -1774,25 +1774,46 @@ namespace NTP_MVC.Controllers
             List<SqlParameter> parameterList = new List<SqlParameter>();
             if (ID > 0)
             {
-                sql = "UPDATE dbo.HTDT_ThongDiepTruyenThong SET NoiDung=@P0,GiaiDoan=@P1,Loai=@P2,TamDungSuDung=@P3,TuTuan=@P4,DenTuan=@P5,"
-                + " TanSuat=@P6,LoaiTanSuat=@P7 WHERE ID=@P9";
-                parameterList.Add(new SqlParameter("@P9", ID));
+                sql = "UPDATE dbo.HTDT_ThongDiepTruyenThong SET NoiDung=@P0,LoaiBenhNhan=@P1,LoaiTinNhan=@P2,T1=@P3,T2=@P4,T3=@P5,"
+                + " T4=@P6,T5=@P7,T6=@P8,T7=@P9,T8=@P10,T9=@P11,T10=@P12,T11=@P13,T12=@P14,T13=@P15,T14=@P16,T15=@P17,T16=@P18,T17=@P19 "
+                + " ,T18=@P20,T19=@P21,T20=@P22,T21=@P23,T22=@P24,T23=@P25,T24=@P26,T25=@P27,T26=@P28 WHERE ID=@P29";
+                parameterList.Add(new SqlParameter("@P29", ID));
             }
             else
             {
                 sql = "SET NOCOUNT ON;INSERT INTO dbo.HTDT_ThongDiepTruyenThong "
-                + " (NoiDung,GiaiDoan,Loai,TamDungSuDung,TuTuan,DenTuan,TanSuat,LoaiTanSuat,NgayNhap)"
-                + " VALUES (@P0,@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8);SELECT SCOPE_IDENTITY();";
-                parameterList.Add(new SqlParameter("@P8", DateTime.Now));
+                + " (NoiDung,LoaiBenhNhan,LoaiTinNhan,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15,T16,T17,T18,T19,T20,T21,T22,T23,T24,T25,T26)"
+                + " VALUES (@P0,@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8,@P9,@P10,@P11,@P12,@P13,@P14,@P15,@P16,@P17,@P18,@P19,@P20,@P21,@P22,@P23,@P24,@P25,@P26,@P27,@P28);SELECT SCOPE_IDENTITY();";
             }
             parameterList.Add(new SqlParameter("@P0", (string)req["NoiDung"]));
-            parameterList.Add(new SqlParameter("@P1", (short)req["GiaiDoan"]));
-            parameterList.Add(new SqlParameter("@P2", (short)req["Loai"]));
-            parameterList.Add(new SqlParameter("@P3", (bool)req["TamDungSuDung"]));
-            parameterList.Add(new SqlParameter("@P4", (short)req["TuTuan"]));
-            parameterList.Add(new SqlParameter("@P5", (short)req["DenTuan"]));
-            parameterList.Add(new SqlParameter("@P6", (short)req["TanSuat"]));
-            parameterList.Add(new SqlParameter("@P7", (short)req["LoaiTanSuat"]));
+            parameterList.Add(new SqlParameter("@P1", (short)req["LoaiBenhNhan"]));
+            parameterList.Add(new SqlParameter("@P2", (short)req["LoaiTinNhan"]));
+            parameterList.Add(new SqlParameter("@P3", (short)req["T1"]));
+            parameterList.Add(new SqlParameter("@P4", (short)req["T2"]));
+            parameterList.Add(new SqlParameter("@P5", (short)req["T3"]));
+            parameterList.Add(new SqlParameter("@P6", (short)req["T4"]));
+            parameterList.Add(new SqlParameter("@P7", (short)req["T5"]));
+            parameterList.Add(new SqlParameter("@P8", (short)req["T6"]));
+            parameterList.Add(new SqlParameter("@P9", (short)req["T7"]));
+            parameterList.Add(new SqlParameter("@P10", (short)req["T8"]));
+            parameterList.Add(new SqlParameter("@P11", (short)req["T9"]));
+            parameterList.Add(new SqlParameter("@P12", (short)req["T10"]));
+            parameterList.Add(new SqlParameter("@P13", (short)req["T11"]));
+            parameterList.Add(new SqlParameter("@P14", (short)req["T12"]));
+            parameterList.Add(new SqlParameter("@P15", (short)req["T13"]));
+            parameterList.Add(new SqlParameter("@P16", (short)req["T14"]));
+            parameterList.Add(new SqlParameter("@P17", (short)req["T15"]));
+            parameterList.Add(new SqlParameter("@P18", (short)req["T16"]));
+            parameterList.Add(new SqlParameter("@P19", (short)req["T17"]));
+            parameterList.Add(new SqlParameter("@P20", (short)req["T18"]));
+            parameterList.Add(new SqlParameter("@P21", (short)req["T19"]));
+            parameterList.Add(new SqlParameter("@P22", (short)req["T20"]));
+            parameterList.Add(new SqlParameter("@P23", (short)req["T21"]));
+            parameterList.Add(new SqlParameter("@P24", (short)req["T22"]));
+            parameterList.Add(new SqlParameter("@P25", (short)req["T23"]));
+            parameterList.Add(new SqlParameter("@P26", (short)req["T24"]));
+            parameterList.Add(new SqlParameter("@P27", (short)req["T25"]));
+            parameterList.Add(new SqlParameter("@P28", (short)req["T26"]));
             SqlParameter[] parameters = parameterList.ToArray();
             long result = 0;
             if (ID > 0)
