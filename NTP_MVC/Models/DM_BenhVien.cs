@@ -27,5 +27,6 @@ namespace NTP_MVC.Models
         public Nullable<byte> PHANBIET { get; set; }
         public string ID_LOAIBV { get; set; }
         public Nullable<long> Huy { get; set; }
+        public string ID_XA { get; set; }
     }
 }

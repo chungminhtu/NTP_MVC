@@ -31,10 +31,16 @@ namespace NTP_MVC.Controllers
                 {
                     HttpContext.Session["MATINH"] = s.ID_MATINH + ""; 
                 }
-                else
+                else if (s.CAPQUANLY==3) 
                 {
                     HttpContext.Session["MATINH"] = s.ID_MATINH + "";
                     HttpContext.Session["MAHUYEN"] = s.ID_HUYEN + ""; 
+                }
+                else if (s.CAPQUANLY == 4)
+                {
+                    HttpContext.Session["MATINH"] = s.ID_MATINH + "";
+                    HttpContext.Session["MAHUYEN"] = s.ID_HUYEN + "";
+                    HttpContext.Session["MAXA"] = s.ID_XA + ""; 
                 }
                 HttpContext.Session["TenBV"] = s.TEN_BENHVIEN + "";
 

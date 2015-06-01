@@ -258,6 +258,7 @@
           <Property Name="PHANBIET" Type="tinyint" />
           <Property Name="ID_LOAIBV" Type="nvarchar" MaxLength="50" />
           <Property Name="Huy" Type="bigint" />
+          <Property Name="ID_XA" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DM_Cap">
           <Key>
@@ -1427,6 +1428,7 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
           <Property Name="PHANBIET" Type="Byte" />
           <Property Name="ID_LOAIBV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Huy" Type="Int64" />
+          <Property Name="ID_XA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DM_Cap">
           <Key>
@@ -2286,6 +2288,7 @@ warning 6002: The table/view 'NTP_MVC.dbo.InPhieuXetNghiem' does not have a prim
           <EntitySetMapping Name="DM_BenhVien">
             <EntityTypeMapping TypeName="NTP_DBModel.DM_BenhVien">
               <MappingFragment StoreEntitySet="DM_BenhVien">
+                <ScalarProperty Name="ID_XA" ColumnName="ID_XA" />
                 <ScalarProperty Name="Huy" ColumnName="Huy" />
                 <ScalarProperty Name="ID_LOAIBV" ColumnName="ID_LOAIBV" />
                 <ScalarProperty Name="PHANBIET" ColumnName="PHANBIET" />
