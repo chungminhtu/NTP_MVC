@@ -9,9 +9,9 @@ namespace NTP_MVC.Models.VO
     {
         public List<BenhNhanVO> patients { get; set; }
         public int total { get; set; }
-        public int totalTuChoiNhanTinNhan { get; set; }
-        public int totalSoTinNhanUT { get; set; }
-        public int totalSoTinNhanXN { get; set; }
-        public int totalSoTinNhanTruyenThong { get; set; }
+        public Nullable<int> totalTuChoiNhanTinNhan { get; set; }
+        public Nullable<int> totalSoTinNhanUT { get; set; }
+        public Nullable<int> totalSoTinNhanXN { get; set; }
+        public Nullable<int> totalSoTinNhanTruyenThong { get; set; }
     }
 }

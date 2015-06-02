@@ -29,12 +29,15 @@ namespace NTP_MVC.Controllers
             {
                 if (s.CAPQUANLY==2)
                 {
-                    HttpContext.Session["MATINH"] = s.ID_MATINH + ""; 
+                    HttpContext.Session["MATINH"] = s.ID_MATINH + "";
+                    HttpContext.Session["MAHUYEN"] = "";
+                    HttpContext.Session["MAXA"] = "";
                 }
                 else if (s.CAPQUANLY==3) 
                 {
                     HttpContext.Session["MATINH"] = s.ID_MATINH + "";
-                    HttpContext.Session["MAHUYEN"] = s.ID_HUYEN + ""; 
+                    HttpContext.Session["MAHUYEN"] = s.ID_HUYEN + "";
+                    HttpContext.Session["MAXA"] = "";
                 }
                 else if (s.CAPQUANLY == 4)
                 {

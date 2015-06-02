@@ -228,44 +228,111 @@ namespace NTP_MVC.Controllers
         {
             string provinceId = (string)req["provinceId"];
             string districtId = (string)req["districtId"];
+            string communeId = (string)req["communeId"];
             int pageSize = (int)req["pageSize"];
             int skip = (int)req["skip"];
-            
+
             string sql = "SELECT count(bn.ID_BenhNhan) FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn "
-                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan ";
+            if (!communeId.Equals("0"))
+            {
+                sql += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             
             List<SqlParameter> parameterList = new List<SqlParameter>();
-            parameterList.Add(new SqlParameter("@P0", provinceId));
-            parameterList.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMATINH", provinceId));
+            }
             
             SqlParameter[] parameters = parameterList.ToArray();
             int total = db.Database.SqlQuery<int>(sql, parameters).Single();
 
             string sql3 = "SELECT count(DISTINCT(tc.ID_BenhNhan)) FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanTuChoiNhanTin AS tc "
                     + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tc.ID_BenhNhan=bn.ID_BenhNhan AND tc.LyDoTuChoi IS NOT NULL "
-                    + " AND tc.LyDoTuChoi != '' AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                    + " AND tc.LyDoTuChoi != '' ";
+            if (!communeId.Equals("0"))
+            {
+                sql3 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql3 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql3 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql3 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
 
             List<SqlParameter> parameterList3 = new List<SqlParameter>();
-            parameterList3.Add(new SqlParameter("@P0", provinceId));
-            parameterList3.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList3.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList3.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList3.Add(new SqlParameter("@PMATINH", provinceId));
+            }
 
             SqlParameter[] parameters3 = parameterList3.ToArray();
             int totalTuChoi = db.Database.SqlQuery<int>(sql3, parameters3).Single();
 
-            string sql2 = "SELECT bn.ID_BenhNhan AS ID_BenhNhan, sdt.ID_SoDieuTri AS ID_SoDieuTri,bn.HoTen AS HoTen, bn.Tuoi AS Tuoi, bn.Gioitinh AS Gioitinh, "
+            string sql2 = "SELECT bn.ID_BenhNhan AS ID_BenhNhan, sdt.ID_SoDieuTri AS ID_SoDieuTri,bn.HoTen AS HoTen, bn.Tuoi AS Tuoi, "
+                + " xa.TEN_XA AS TEN_XA, bn.Gioitinh AS Gioitinh, "
                 + " bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, sdt.NgayDT AS NgayDT, sdt.ID_PhacdoDT AS ID_PhacDoDT, "
                 + " sdt.ID_PhanLoaiBenh AS ID_PhanLoaiBenh, gs.LyDoTuChoi AS LyDoTuChoi, gs.NgayTao AS NgayTuChoi "
-                + " FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn "
+                + " FROM dbo.SO_SoDieuTri sdt, dbo.DM_Xa xa, dbo.SO_BenhNhan bn "
                 + " LEFT JOIN dbo.HTDT_BenhNhanTuChoiNhanTin gs ON gs.ID_BenhNhan=bn.ID_BenhNhan "
-                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
-           
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_XA=xa.MA_XA ";
+            if (!communeId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";           
            
             List<SqlParameter> parameterList2 = new List<SqlParameter>();
-            parameterList2.Add(new SqlParameter("@P0", provinceId));
-            parameterList2.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMATINH", provinceId));
+            }
 
             SqlParameter[] parameters2 = parameterList2.ToArray();
 
@@ -297,6 +364,7 @@ namespace NTP_MVC.Controllers
         {
             string provinceId = (string)req["provinceId"];
             string districtId = (string)req["districtId"];
+            string communeId = (string)req["communeId"];
             int pageSize = (int)req["pageSize"];
             int skip = (int)req["skip"];
             short statusId = (short)req["statusId"];
@@ -306,8 +374,16 @@ namespace NTP_MVC.Controllers
             DateTime toDate = strtoDate.Length > 0 ? DateTime.ParseExact(strtoDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now;
 
             string sql = "SELECT count(xn.ID) FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn, dbo.HTDT_LichHenXN xn "
-                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND xn.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND xn.ID_SoDieuTri=sdt.ID_SoDieuTri ";
+            if (!communeId.Equals("0")) {
+                sql += " AND bn.MA_XA=@PMAXA ";
+            } else if (!districtId.Equals("0")) {
+                sql += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            } else if (!provinceId.Equals("0")) {
+                sql += " AND bn.MA_TINH=@PMATINH ";
+            }
+
+            sql += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             if (strfromDate.Length > 0)
                 sql += " AND convert(date, xn.NgayXN) >= convert(date,@fromDate) ";
             if (strtoDate.Length > 0)
@@ -325,8 +401,18 @@ namespace NTP_MVC.Controllers
                 sql += " AND xn.DaXN = 1";
             }
             List<SqlParameter> parameterList = new List<SqlParameter>();
-            parameterList.Add(new SqlParameter("@P0", provinceId));
-            parameterList.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMATINH", provinceId));
+            }            
             parameterList.Add(new SqlParameter("@fromDate", fromDate));
             parameterList.Add(new SqlParameter("@toDate", toDate));
             SqlParameter[] parameters = parameterList.ToArray();
@@ -335,10 +421,22 @@ namespace NTP_MVC.Controllers
             string sql2 = "SELECT xn.ID AS ID, bn.ID_BenhNhan AS ID_BenhNhan, bn.HoTen AS HoTen, bn.Tuoi AS Tuoi, "
                 + " bn.Gioitinh AS Gioitinh, bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, sdt.NgayDT AS NgayDT, "
                 + " sdt.ID_PhacdoDT AS ID_PhacDoDT, sdt.ID_PhanLoaiBenh AS ID_PhanLoaiBenh, xn.LanXN AS LanXN, xn.NgayXN AS NgayXN, "
-                + " xn.DaXN AS DaXN, '' AS TEN_XA, DATEDIFF(day,xn.NgayXN,getdate()) AS SoNgayTreHen "
-                + " FROM dbo.SO_BenhNhan bn, dbo.SO_SoDieuTri sdt, dbo.HTDT_LichHenXN xn "
-                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND xn.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                + " xn.DaXN AS DaXN, xa.TEN_XA AS TEN_XA, DATEDIFF(day,xn.NgayXN,getdate()) AS SoNgayTreHen "
+                + " FROM dbo.SO_BenhNhan bn, dbo.SO_SoDieuTri sdt, dbo.HTDT_LichHenXN xn, dbo.DM_Xa xa "
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND xn.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_XA=xa.MA_XA ";
+            if (!communeId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             if (strfromDate.Length > 0)
                 sql2 += " AND convert(date, xn.NgayXN) >= convert(date,@fromDate) ";
             if (strtoDate.Length > 0)
@@ -357,8 +455,18 @@ namespace NTP_MVC.Controllers
             }
             //sql2 += " GROUP BY bn.ID_BenhNhan,bn.HoTen,bn.Gioitinh,bn.Diachi,bn.Sodienthoai,sdt.ID_SoDieuTri,sdt.NgayDT,sdt.ID_PhacdoDT,sdt.ID_PhanLoaiBenh ";
             List<SqlParameter> parameterList2 = new List<SqlParameter>();
-            parameterList2.Add(new SqlParameter("@P0", provinceId));
-            parameterList2.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMATINH", provinceId));
+            } 
             parameterList2.Add(new SqlParameter("@fromDate", fromDate));
             parameterList2.Add(new SqlParameter("@toDate", toDate));
             SqlParameter[] parameters2 = parameterList2.ToArray();
@@ -617,6 +725,7 @@ namespace NTP_MVC.Controllers
         {
             string provinceId = (string)req["provinceId"];
             string districtId = (string)req["districtId"];
+            string communeId = (string)req["communeId"];
             int pageSize = (int)req["pageSize"];
             int skip = (int)req["skip"];
             short statusId = (short)req["statusId"];
@@ -626,8 +735,20 @@ namespace NTP_MVC.Controllers
             DateTime toDate = strtoDate.Length > 0 ? DateTime.ParseExact(strtoDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now;
 
             string sql = "SELECT count(sdt.ID_BenhNhan) FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanNhanTinNhan tn "
-                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tn.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tn.ID_SoDieuTri=sdt.ID_SoDieuTri ";
+            if (!communeId.Equals("0"))
+            {
+                sql += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             if (strfromDate.Length > 0)
                 sql += " AND convert(date, tn.NgayGui) >= convert(date,@fromDate) ";
             if (strtoDate.Length > 0)
@@ -641,21 +762,43 @@ namespace NTP_MVC.Controllers
                 sql += " AND sdt.NgayRV IS NOT NULL ";
             }
             List<SqlParameter> parameterList = new List<SqlParameter>();
-            parameterList.Add(new SqlParameter("@P0", provinceId));
-            parameterList.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMATINH", provinceId));
+            }
             parameterList.Add(new SqlParameter("@fromDate", fromDate));
             parameterList.Add(new SqlParameter("@toDate", toDate));
             SqlParameter[] parameters = parameterList.ToArray();
             int total = db.Database.SqlQuery<int>(sql, parameters).Single();
 
             string sql2 = "SELECT bn.ID_BenhNhan AS ID_BenhNhan, sdt.ID_SoDieuTri AS ID_SoDieuTri,bn.HoTen AS HoTen, AVG(bn.Tuoi) AS Tuoi, bn.Gioitinh AS Gioitinh, "
-                + " bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, sdt.NgayDT AS NgayDT, sdt.ID_PhacdoDT AS ID_PhacDoDT, "
+                + " bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, sdt.NgayDT AS NgayDT, sdt.ID_PhacdoDT AS ID_PhacDoDT, xa.TEN_XA AS TEN_XA, "
                 + " sdt.ID_PhanLoaiBenh AS ID_PhanLoaiBenh, SUM(CASE WHEN ISNULL(tn.LoaiTinNhan,0)=1 THEN 1 ELSE 0 END) AS SoTinNhanUT, "
                 + " SUM(CASE WHEN ISNULL(tn.LoaiTinNhan,0)=3 THEN 1 ELSE 0 END) AS SoTinNhanXN, "
                 + " SUM(CASE WHEN ISNULL(tn.LoaiTinNhan,0)=2 THEN 1 ELSE 0 END) AS SoTinNhanGD "
-                + " FROM dbo.SO_BenhNhan bn, dbo.SO_SoDieuTri sdt, dbo.HTDT_BenhNhanNhanTinNhan tn "
-                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tn.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                + " FROM dbo.SO_BenhNhan bn, dbo.SO_SoDieuTri sdt, dbo.HTDT_BenhNhanNhanTinNhan tn, dbo.DM_Xa xa "
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tn.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_XA=xa.MA_XA ";
+            if (!communeId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             if (strfromDate.Length > 0)
                 sql2 += " AND convert(date, tn.NgayGui) >= convert(date,@fromDate) ";
             if (strtoDate.Length > 0)
@@ -669,10 +812,20 @@ namespace NTP_MVC.Controllers
             {
                 sql2 += " AND sdt.NgayRV IS NOT NULL ";
             }
-            sql2 += " GROUP BY bn.ID_BenhNhan,bn.HoTen,bn.Gioitinh,bn.Diachi,bn.Sodienthoai,sdt.ID_SoDieuTri,sdt.NgayDT,sdt.ID_PhacdoDT,sdt.ID_PhanLoaiBenh ";
+            sql2 += " GROUP BY bn.ID_BenhNhan,bn.HoTen,bn.Gioitinh,bn.Diachi,bn.Sodienthoai,sdt.ID_SoDieuTri,sdt.NgayDT,sdt.ID_PhacdoDT,sdt.ID_PhanLoaiBenh,xa.TEN_XA ";
             List<SqlParameter> parameterList2 = new List<SqlParameter>();
-            parameterList2.Add(new SqlParameter("@P0", provinceId));
-            parameterList2.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMATINH", provinceId));
+            }
             parameterList2.Add(new SqlParameter("@fromDate", fromDate));
             parameterList2.Add(new SqlParameter("@toDate", toDate));
             SqlParameter[] parameters2 = parameterList2.ToArray();
@@ -691,8 +844,20 @@ namespace NTP_MVC.Controllers
                 + " SUM(CASE WHEN ISNULL(tn.LoaiTinNhan,0)=3 THEN 1 ELSE 0 END) AS totalSoTinNhanXN, "
                 + " SUM(CASE WHEN ISNULL(tn.LoaiTinNhan,0)=2 THEN 1 ELSE 0 END) AS totalSoTinNhanTruyenThong "
                 + " FROM dbo.SO_BenhNhan bn, dbo.SO_SoDieuTri sdt, dbo.HTDT_BenhNhanNhanTinNhan tn "
-                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tn.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tn.ID_SoDieuTri=sdt.ID_SoDieuTri ";
+            if (!communeId.Equals("0"))
+            {
+                sql3 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql3 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql3 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql3 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             if (strfromDate.Length > 0)
                 sql3 += " AND convert(date, tn.NgayGui) >= convert(date,@fromDate) ";
             if (strtoDate.Length > 0)
@@ -708,15 +873,29 @@ namespace NTP_MVC.Controllers
             }
             
             List<SqlParameter> parameterList3 = new List<SqlParameter>();
-            parameterList3.Add(new SqlParameter("@P0", provinceId));
-            parameterList3.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList3.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList3.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList3.Add(new SqlParameter("@PMATINH", provinceId));
+            }
             parameterList3.Add(new SqlParameter("@fromDate", fromDate));
             parameterList3.Add(new SqlParameter("@toDate", toDate));
             SqlParameter[] parameters3 = parameterList3.ToArray();
 
             BenhNhanGrid grid = new BenhNhanGrid();
 
-            grid = db.Database.SqlQuery<BenhNhanGrid>(sql3, parameters3).SingleOrDefault();
+            var tmplist = db.Database.SqlQuery<BenhNhanGrid>(sql3, parameters3);
+            if (tmplist != null)
+            {
+                grid = tmplist.FirstOrDefault();
+            }
             
             if (patients != null && patients.Count > 0)
             {
@@ -1449,6 +1628,7 @@ namespace NTP_MVC.Controllers
         {
             string provinceId = (string)req["provinceId"];
             string districtId = (string)req["districtId"];
+            string communeId = (string)req["communeId"];
             int pageSize = (int)req["pageSize"];
             int skip = (int)req["skip"];
             short statusId = (short)req["statusId"];
@@ -1458,8 +1638,20 @@ namespace NTP_MVC.Controllers
             DateTime toDate = strtoDate.Length > 0 ? DateTime.ParseExact(strtoDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now;
 
             string sql = "SELECT count(sdt.ID_BenhNhan) FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn "
-                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan ";
+            if (!communeId.Equals("0"))
+            {
+                sql += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             if (strfromDate.Length > 0)
                 sql += " AND convert(date, sdt.NgayDT) >= convert(date,@fromDate) ";
             if (strtoDate.Length > 0)
@@ -1474,20 +1666,43 @@ namespace NTP_MVC.Controllers
                 sql += " AND sdt.NgayRV IS NOT NULL ";
             }
             List<SqlParameter> parameterList = new List<SqlParameter>();
-            parameterList.Add(new SqlParameter("@P0", provinceId));
-            parameterList.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMATINH", provinceId));
+            }
             parameterList.Add(new SqlParameter("@fromDate", fromDate));
             parameterList.Add(new SqlParameter("@toDate", toDate));
             SqlParameter[] parameters = parameterList.ToArray();
             int total = db.Database.SqlQuery<int>(sql, parameters).Single();
 
-            string sql2 = "SELECT bn.ID_BenhNhan AS ID_BenhNhan, sdt.ID_SoDieuTri AS ID_SoDieuTri,bn.HoTen AS HoTen, AVG(bn.Tuoi) AS Tuoi, bn.Gioitinh AS Gioitinh, "
+            string sql2 = "SELECT bn.ID_BenhNhan AS ID_BenhNhan, sdt.ID_SoDieuTri AS ID_SoDieuTri,bn.HoTen AS HoTen, AVG(bn.Tuoi) AS Tuoi, "
+                + " bn.Gioitinh AS Gioitinh, xa.TEN_XA AS TEN_XA, "
                 + " bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, sdt.NgayDT AS NgayDT, sdt.ID_PhacdoDT AS ID_PhacDoDT, "
                 + " sdt.ID_PhanLoaiBenh AS ID_PhanLoaiBenh, COUNT(gs.ID) AS SoLanGiamSat "
-                + " FROM dbo.SO_BenhNhan bn, dbo.SO_SoDieuTri sdt"
+                + " FROM dbo.SO_BenhNhan bn, dbo.DM_Xa xa, dbo.SO_SoDieuTri sdt"
                 + " LEFT JOIN dbo.HTDT_BaoCaoGiamSat gs ON gs.ID_SoDieuTri=sdt.ID_SoDieuTri "
-                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1"
-                + " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_XA=xa.MA_XA ";
+            if (!communeId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
             if (strfromDate.Length > 0)
                 sql2 += " AND convert(date, sdt.NgayDT) >= convert(date,@fromDate) ";
             if (strtoDate.Length > 0)
@@ -1500,10 +1715,20 @@ namespace NTP_MVC.Controllers
             {
                 sql2 += " AND sdt.NgayRV IS NOT NULL ";
             }
-            sql2 += " GROUP BY bn.ID_BenhNhan,bn.HoTen,bn.Gioitinh,bn.Diachi,bn.Sodienthoai,sdt.ID_SoDieuTri,sdt.NgayDT,sdt.ID_PhacdoDT,sdt.ID_PhanLoaiBenh ";
+            sql2 += " GROUP BY bn.ID_BenhNhan,bn.HoTen,bn.Gioitinh,bn.Diachi,bn.Sodienthoai,sdt.ID_SoDieuTri,sdt.NgayDT,sdt.ID_PhacdoDT,sdt.ID_PhanLoaiBenh,xa.TEN_XA ";
             List<SqlParameter> parameterList2 = new List<SqlParameter>();
-            parameterList2.Add(new SqlParameter("@P0", provinceId));
-            parameterList2.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMATINH", provinceId));
+            }
             parameterList2.Add(new SqlParameter("@fromDate", fromDate));
             parameterList2.Add(new SqlParameter("@toDate", toDate));
             SqlParameter[] parameters2 = parameterList2.ToArray();
@@ -1612,39 +1837,56 @@ namespace NTP_MVC.Controllers
         {
             string provinceId = (string)req["provinceId"];
             string districtId = (string)req["districtId"];
+            string communeId = (string)req["communeId"];            
             string strfromDate = (string)req["fromDate"];
             string strtoDate = (string)req["toDate"];
-            DateTime fromDate = DateTime.ParseExact(strfromDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-            DateTime toDate = DateTime.ParseExact(strtoDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-            var query = (from d in db.SO_BenhNhan
-                         join e in db.DM_Huyen on d.MA_HUYEN equals e.MA_HUYEN
-                         join f in db.DM_Tinh on e.MA_TINH equals f.MA_TINH
-                         join tc in db.HTDT_BenhNhanPhanHoiTacDungPhu on d.ID_BenhNhan equals tc.ID_BenhNhan
-                         join dt in db.SO_SoDieuTri on tc.ID_SoDieuTri equals dt.ID_SoDieuTri
-                         where (
-                             d.MA_HUYEN.Equals(districtId) &&
-                             d.MA_TINH.Equals(provinceId) &&
-                             tc.NgayNhan >= fromDate && tc.NgayNhan <= toDate
-                               )
-                         orderby d.MA_TINH
-                         select new BenhNhanVO
-                         {
-                             ID = tc.ID,
-                             ID_BenhNhan = d.ID_BenhNhan,
-                             HoTen = d.HoTen,
-                             Tuoi = (int)d.Tuoi,
-                             Gioitinh = (bool)d.Gioitinh,
-                             Diachi = d.Diachi,
-                             Sodienthoai = d.Sodienthoai,
-                             NgayDT = (DateTime)dt.NgayDT,
-                             ID_PhacDoDT = (byte)dt.ID_PhacdoDT,
-                             ID_PhanLoaiBenh = (int)dt.ID_PhanLoaiBenh,
-                             TacDungPhu = tc.TacDungPhu,
-                             NgayNhanTinTacDungPhu = tc.NgayNhan
-                         });
+            DateTime fromDate = strfromDate.Length > 0 ? DateTime.ParseExact(strfromDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now;
+            DateTime toDate = strtoDate.Length > 0 ? DateTime.ParseExact(strtoDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now;
+            
+            string sql2 = "SELECT tc.ID AS ID, bn.ID_BenhNhan AS ID_BenhNhan, bn.HoTen AS HoTen, bn.Tuoi AS Tuoi, "
+                + " bn.Gioitinh AS Gioitinh, bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, sdt.NgayDT AS NgayDT, "
+                + " xa.TEN_XA AS TEN_XA, sdt.ID_PhacdoDT AS ID_PhacDoDT, sdt.ID_PhanLoaiBenh AS ID_PhanLoaiBenh, "
+                + " tc.TacDungPhu AS TacDungPhu, tc.NgayNhan AS NgayNhanTinTacDungPhu "
+                + " FROM dbo.SO_BenhNhan bn, dbo.SO_SoDieuTri sdt, dbo.HTDT_BenhNhanPhanHoiTacDungPhu tc, dbo.DM_Xa xa "
+                + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tc.ID_SoDieuTri=sdt.ID_SoDieuTri AND bn.MA_XA=xa.MA_XA ";
+            if (!communeId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql2 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+            if (strfromDate.Length > 0)
+                sql2 += " AND convert(date, tc.NgayNhan) >= convert(date,@fromDate) ";
+            if (strtoDate.Length > 0)
+                sql2 += " AND convert(date, tc.NgayNhan) <= convert(date,@toDate) ";
+                        
+            List<SqlParameter> parameterList2 = new List<SqlParameter>();
+            if (!communeId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList2.Add(new SqlParameter("@PMATINH", provinceId));
+            }
+            parameterList2.Add(new SqlParameter("@fromDate", fromDate));
+            parameterList2.Add(new SqlParameter("@toDate", toDate));
+            SqlParameter[] parameters2 = parameterList2.ToArray();
 
-            List<BenhNhanVO> patients = query.ToList();
-            return patients;
+            List<BenhNhanVO> patients = new List<BenhNhanVO>();
+            patients = db.Database.SqlQuery<BenhNhanVO>(sql2, parameters2).ToList();
+            return patients;            
         }
 
         [WebMethod]
@@ -1672,15 +1914,38 @@ namespace NTP_MVC.Controllers
         {
             string provinceId = (string)req["provinceId"];
             string districtId = (string)req["districtId"];
-
-            string sql = "SELECT dc.ID AS ID, bn.ID_BenhNhan AS ID_BenhNhan, bn.HoTen AS HoTen, bn.Tuoi AS Tuoi, bn.Gioitinh AS Gioitinh, "
-                + " bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, dc.NgayTao AS NgayTaoBaoCaoDoiDiaChi, dc.CapNhap AS CapNhapDiaChi "
-                + " FROM dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanDoiDiaChi dc"
-                + " WHERE dc.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_TINH=@P0 AND bn.MA_HUYEN=@P1";                
+            string communeId = (string)req["communeId"];
+            string sql = "SELECT dc.ID AS ID, bn.ID_BenhNhan AS ID_BenhNhan, bn.HoTen AS HoTen, bn.Tuoi AS Tuoi, "
+                + " bn.Gioitinh AS Gioitinh, xa.TEN_XA AS TEN_XA, bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, "
+                + " dc.NgayTao AS NgayTaoBaoCaoDoiDiaChi, dc.CapNhap AS CapNhapDiaChi "
+                + " FROM dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanDoiDiaChi dc, dbo.DM_Xa xa "
+                + " WHERE dc.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_XA=xa.MA_XA ";
+            if (!communeId.Equals("0"))
+            {
+                sql += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql += " AND bn.MA_TINH=@PMATINH ";
+            }
            
             List<SqlParameter> parameterList = new List<SqlParameter>();
-            parameterList.Add(new SqlParameter("@P0", provinceId));
-            parameterList.Add(new SqlParameter("@P1", districtId));
+            if (!communeId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList.Add(new SqlParameter("@PMATINH", provinceId));
+            }
             SqlParameter[] parameters = parameterList.ToArray();
 
             List<BenhNhanVO> patients = db.Database.SqlQuery<BenhNhanVO>(sql, parameters).ToList();

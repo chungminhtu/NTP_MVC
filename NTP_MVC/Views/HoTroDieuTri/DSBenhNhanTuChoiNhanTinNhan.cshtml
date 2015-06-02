@@ -11,10 +11,14 @@
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi-VN.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/js/cultures/kendo.culture.vi.min.js")"></script>
 @{
-    var tmpdistrictId = "0";
+    var tmpdistrictId = "0"; var tmpcommuneId = "0";
     if (Session != null && Session["MAHUYEN"] != null && Session["MAHUYEN"] != "")
     {
         tmpdistrictId = (string)Session["MAHUYEN"];
+    }
+    if (Session != null && Session["MAXA"] != null && Session["MAXA"] != "")
+    {
+        tmpcommuneId = (string)Session["MAXA"];
     }
 }
 <script>
@@ -149,7 +153,13 @@
                 dataType: "json",
                 success: function (data) {
                     dataSourceCommune.data(data);
-                    filterCommune.value('');
+                    var communeId = @tmpcommuneId;
+                    if (communeId != null && communeId != "0") {
+                        filterCommune.value(communeId);
+                        filterCommune.enable(false);
+                    } else {
+                        filterCommune.value('');
+                    }
                 },
                 failure: function (errMsg) {
                     alert(errMsg);
