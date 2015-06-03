@@ -231,11 +231,11 @@
                     if (provinceId == '') provinceId = 0;
                     if (districtId == '') districtId = 0;
                     if (communeId == '') communeId = 0;
-
+                    var mobile = $.trim($("#filterMobile").val());
                     jsonReq.provinceId = provinceId;
                     jsonReq.districtId = districtId;
                     jsonReq.communeId = communeId;
-
+                    jsonReq.mobile = mobile;
                     $.ajax({
                         type: "POST",
                         url: "@Url.Action("GetBenhNhanTuChoiNhanTinNhan", "HoTroDieuTri")",
@@ -606,9 +606,10 @@
 
 </script>
 <h2>Danh sách bệnh nhân từ chối nhận tin nhắn</h2>
-Tỉnh:&nbsp;<input id="filterProvince" style="width:130px" />&nbsp;&nbsp;&nbsp;
-Huyện:&nbsp;<input id="filterDistrict" style="width:200px" />&nbsp;&nbsp;&nbsp;
-Phường / Xã:&nbsp;<input id="filterCommune" style="width:200px" />
+Tỉnh:&nbsp;<input id="filterProvince" style="width:130px" />&nbsp;&nbsp;
+Huyện:&nbsp;<input id="filterDistrict" style="width:200px" />&nbsp;&nbsp;
+Phường / Xã:&nbsp;<input id="filterCommune" style="width:200px" />&nbsp;&nbsp;
+Tên hoặc Số điện thoại:&nbsp;<input id="filterMobile" style="width:100px;margin-top:10px;" />
 <input class="btn btn-primary" style="width:50px;cursor:pointer;" id="buttonSearch" name="buttonSearch" value="Tìm" readonly /><br />
 <p style="height:3px"></p>
 <font color="#EE7318"><div id="log">&nbsp;</div></font>

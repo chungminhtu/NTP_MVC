@@ -231,7 +231,7 @@ namespace NTP_MVC.Controllers
             string communeId = (string)req["communeId"];
             int pageSize = (int)req["pageSize"];
             int skip = (int)req["skip"];
-
+            string mobile = (string)req["mobile"];
             string sql = "SELECT count(bn.ID_BenhNhan) FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn "
                     + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan ";
             if (!communeId.Equals("0"))
@@ -246,7 +246,11 @@ namespace NTP_MVC.Controllers
             {
                 sql += " AND bn.MA_TINH=@PMATINH ";
             }
-            sql += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+            sql += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL";
+            if (mobile.Length > 0)
+            {
+                sql += " AND (bn.Sodienthoai like @PMobile OR bn.HoTen like @PHoTen) ";
+            }                
             
             List<SqlParameter> parameterList = new List<SqlParameter>();
             if (!communeId.Equals("0"))
@@ -261,7 +265,12 @@ namespace NTP_MVC.Controllers
             {
                 parameterList.Add(new SqlParameter("@PMATINH", provinceId));
             }
-            
+            if (mobile.Length > 0)
+            {
+                mobile = "%" + mobile + "%";
+                parameterList.Add(new SqlParameter("@PMobile", mobile));
+                parameterList.Add(new SqlParameter("@PHoTen", mobile));
+            }
             SqlParameter[] parameters = parameterList.ToArray();
             int total = db.Database.SqlQuery<int>(sql, parameters).Single();
 
@@ -281,7 +290,10 @@ namespace NTP_MVC.Controllers
                 sql3 += " AND bn.MA_TINH=@PMATINH ";
             }
             sql3 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
-
+            if (mobile.Length > 0)
+            {
+                sql3 += " AND (bn.Sodienthoai like @PMobile OR bn.HoTen like @PHoTen) ";
+            }
             List<SqlParameter> parameterList3 = new List<SqlParameter>();
             if (!communeId.Equals("0"))
             {
@@ -295,7 +307,12 @@ namespace NTP_MVC.Controllers
             {
                 parameterList3.Add(new SqlParameter("@PMATINH", provinceId));
             }
-
+            if (mobile.Length > 0)
+            {
+                mobile = "%" + mobile + "%";
+                parameterList3.Add(new SqlParameter("@PMobile", mobile));
+                parameterList3.Add(new SqlParameter("@PHoTen", mobile));
+            }
             SqlParameter[] parameters3 = parameterList3.ToArray();
             int totalTuChoiTinNhanUT = db.Database.SqlQuery<int>(sql3, parameters3).Single();
 
@@ -315,7 +332,10 @@ namespace NTP_MVC.Controllers
                 sql4 += " AND bn.MA_TINH=@PMATINH ";
             }
             sql4 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
-
+            if (mobile.Length > 0)
+            {
+                sql4 += " AND (bn.Sodienthoai like @PMobile OR bn.HoTen like @PHoTen) ";
+            }
             List<SqlParameter> parameterList4 = new List<SqlParameter>();
             if (!communeId.Equals("0"))
             {
@@ -329,7 +349,12 @@ namespace NTP_MVC.Controllers
             {
                 parameterList4.Add(new SqlParameter("@PMATINH", provinceId));
             }
-
+            if (mobile.Length > 0)
+            {
+                mobile = "%" + mobile + "%";
+                parameterList4.Add(new SqlParameter("@PMobile", mobile));
+                parameterList4.Add(new SqlParameter("@PHoTen", mobile));
+            }
             SqlParameter[] parameters4 = parameterList4.ToArray();
             int totalTuChoiTinNhanXN = db.Database.SqlQuery<int>(sql4, parameters4).Single();
 
@@ -349,7 +374,10 @@ namespace NTP_MVC.Controllers
                 sql5 += " AND bn.MA_TINH=@PMATINH ";
             }
             sql5 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
-
+            if (mobile.Length > 0)
+            {
+                sql5 += " AND (bn.Sodienthoai like @PMobile OR bn.HoTen like @PHoTen) ";
+            }
             List<SqlParameter> parameterList5 = new List<SqlParameter>();
             if (!communeId.Equals("0"))
             {
@@ -363,7 +391,12 @@ namespace NTP_MVC.Controllers
             {
                 parameterList5.Add(new SqlParameter("@PMATINH", provinceId));
             }
-
+            if (mobile.Length > 0)
+            {
+                mobile = "%" + mobile + "%";
+                parameterList5.Add(new SqlParameter("@PMobile", mobile));
+                parameterList5.Add(new SqlParameter("@PHoTen", mobile));
+            }
             SqlParameter[] parameters5 = parameterList5.ToArray();
             int totalTuChoiTinNhanTruyenThong = db.Database.SqlQuery<int>(sql5, parameters5).Single();
 
@@ -389,6 +422,10 @@ namespace NTP_MVC.Controllers
             {
                 sql2 += " AND bn.MA_TINH=@PMATINH ";
             }
+            if (mobile.Length > 0)
+            {
+                sql2 += " AND (bn.Sodienthoai like @PMobile OR bn.HoTen like @PHoTen) ";
+            }
             sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL "
                  + "ORDER BY tc.TuChoiNhanTinNhanUT DESC, tc.TuChoiNhanTinNhanXN DESC, tc.TuChoiNhanTinNhanTT DESC ";           
            
@@ -405,7 +442,12 @@ namespace NTP_MVC.Controllers
             {
                 parameterList2.Add(new SqlParameter("@PMATINH", provinceId));
             }
-
+            if (mobile.Length > 0)
+            {
+                mobile = "%" + mobile + "%";
+                parameterList2.Add(new SqlParameter("@PMobile", mobile));
+                parameterList2.Add(new SqlParameter("@PHoTen", mobile));
+            }
             SqlParameter[] parameters2 = parameterList2.ToArray();
 
             List<BenhNhanVO> patients = new List<BenhNhanVO>();
