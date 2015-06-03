@@ -219,7 +219,7 @@
             }
         });
         dataSourceLoaiBenh.fetch();
-        var totalTuChoiNhanTinNhan = 0;
+        var totalTuChoiNhanTinNhanUT = 0;var totalTuChoiNhanTinNhanXN = 0;var totalTuChoiNhanTinNhanTT = 0;
         var dataSourceBenhNhanTuChoiNhanTinNhan = new kendo.data.DataSource({
             transport: {
                 read: function (options) {
@@ -243,7 +243,9 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
-                            totalTuChoiNhanTinNhan = data.totalTuChoiNhanTinNhan;
+                            totalTuChoiNhanTinNhanUT = data.totalTuChoiNhanTinNhanUT;
+                            totalTuChoiNhanTinNhanXN = data.totalTuChoiNhanTinNhanXN;
+                            totalTuChoiNhanTinNhanTT = data.totalTuChoiNhanTinNhanTT;
                             options.success(data);
                         },
                         failure: function (errMsg) {
@@ -290,41 +292,146 @@
             sortable: true,
             columns: [
                 { field: "HoTen", title: 'Họ tên', editor: function (element, options) { element.text(options.model.HoTen) }, template: '#= HoTen #' },
-                { field: "Tuoi", width: "40px", title: 'Tuổi', editor: function (element, options) { element.text(options.model.Tuoi) }, template: '#= Tuoi #' },
-                { field: "Gioitinh", width: "70px", title: 'Giới tính', editor: function (element, options) { element.text(genders[options.model.Gioitinh ? 0 : 1].sex) }, template: "#= Gioitinh ? 'Nam' : 'Nữ' #" },
+                //{ field: "Tuoi", width: "40px", title: 'Tuổi', editor: function (element, options) { element.text(options.model.Tuoi) }, template: '#= Tuoi #' },
+                //{ field: "Gioitinh", width: "70px", title: 'Giới tính', editor: function (element, options) { element.text(genders[options.model.Gioitinh ? 0 : 1].sex) }, template: "#= Gioitinh ? 'Nam' : 'Nữ' #" },
                 { field: "Sodienthoai", title: 'Di động', editor: function (element, options) { element.text(options.model.Sodienthoai) }, template: '#= Sodienthoai #' },
                 { field: "TEN_XA", title: 'Phường/Xã', editor: function (element, options) { element.text(options.model.TEN_XA) }, template: "#= TEN_XA #" },
                 { field: "NgayDT", width: "90px", title: 'Ngày điều trị', editor: function (element, options) { var treatDate = options.model.NgayDT; element.text(treatDate ? kendo.toString(kendo.parseDate(treatDate,"yyyy-MM-dd"), "dd/MM/yyyy") : "") }, template: '#= NgayDT ? kendo.toString(kendo.parseDate(NgayDT,"yyyy-MM-dd"), "dd/MM/yyyy") : "" #' },
-                { field: "ID_PhacDoDT", title: 'Phác đồ', editor: function (element, options) { element.text(dataSourceTherapy.at(options.model.ID_PhacDoDT - 1).Ten_PhacdoDT) }, template: "#= dataSourceTherapy.at(ID_PhacDoDT - 1).Ten_PhacdoDT #" },
+                //{ field: "ID_PhacDoDT", title: 'Phác đồ', editor: function (element, options) { element.text(dataSourceTherapy.at(options.model.ID_PhacDoDT - 1).Ten_PhacdoDT) }, template: "#= dataSourceTherapy.at(ID_PhacDoDT - 1).Ten_PhacdoDT #" },
                 { field: "ID_PhanLoaiBenh", title: 'Loại bệnh', editor: function (element, options) {var benh = options.model.ID_PhanLoaiBenh;  element.text(benh > 0 ? dataSourceLoaiBenh.at(benh-1).Ten_PhanLoaiBenh : '') }, template: "#= ID_PhanLoaiBenh ? dataSourceLoaiBenh.at(ID_PhanLoaiBenh-1).Ten_PhanLoaiBenh : '' #" },
-                { field: "LyDoTuChoi", width: "120px", title: 'Lý do từ chối'},
-                {
-                    field: "NgayTuChoi", width: "120px",
-                    title: 'Ngày cập nhập',
-                    template: '#= NgayTuChoi ? kendo.toString(kendo.parseDate(NgayTuChoi,"yyyy-MM-dd"), "dd/MM/yyyy") : "" #',
-                    editor: function (container, options) {
-                        $('<input id=\"' + options.field + '\" />').appendTo(container)
-                        .kendoDatePicker({ format: "dd/MM/yyyy" });
-                        var datePickerDue = $("#NgayTuChoi").data("kendoDatePicker");
-                        datePickerDue.value(options.model.NgayTuChoi);
-                        // bind to the close event
-
-                        datePickerDue.bind('close', function (e) {
-                            options.model.NgayTuChoi = datePickerDue.value();
-                        });
-                    }
-                }
+                { field: "TuChoiNhanTinNhanUT", width: "120px", title: 'Từ chối nhận tin nhắc uống thuốc', template: '#= TuChoiNhanTinNhanUT ? "Từ chối" : "" #'},                
+                { field: "TuChoiNhanTinNhanXN", width: "120px", title: 'Từ chối nhận tin nhắc xét nghiệm', template: '#= TuChoiNhanTinNhanXN ? "Từ chối" : "" #'},
+                { field: "TuChoiNhanTinNhanXN", width: "120px", title: 'Từ chối nhận tin nhắn truyền thông', template: '#= TuChoiNhanTinNhanTT ? "Từ chối" : "" #'}
             ],
-            editable: true,
+            editable: false,
             dataBound: function (e) {
                 if (dataSourceBenhNhanTuChoiNhanTinNhan.total() > 0)
-                    $("#log").html(totalTuChoiNhanTinNhan + "/" + dataSourceBenhNhanTuChoiNhanTinNhan.total() + ' bệnh nhân từ chối nhận tin nhắn');
+                    $("#log").html(dataSourceBenhNhanTuChoiNhanTinNhan.total() + " bệnh nhân, trong đó: " + totalTuChoiNhanTinNhanUT + "BN từ chối nhận tin nhắn uống thuốc, " + totalTuChoiNhanTinNhanXN + " BN từ chối nhận tin nhắn xét nghiệm, " + totalTuChoiNhanTinNhanTT + " BN từ chối nhận tin nhắn truyền thông. ");
                 else
                     $("#log").html('Không tìm thấy dữ liệu');
             },
             selectable: true
         }).data("kendoGrid");
 
+        var ngayTuChoiTinNhanUT = $("#ngayTuChoiTinNhanUT").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: new Date()
+        }).data("kendoDatePicker");
+
+        var ngayTuChoiTinNhanXN = $("#ngayTuChoiTinNhanXN").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: new Date()
+        }).data("kendoDatePicker");
+
+        var ngayTuChoiTinNhanTT = $("#ngayTuChoiTinNhanTT").kendoDatePicker({
+            format: "dd/MM/yyyy",
+            value: new Date()
+        }).data("kendoDatePicker");
+
+        $("#gridBenhNhanTuChoiNhanTinNhan").delegate("tbody>tr", "dblclick", function(){
+            var selectedRow = gridBenhNhanTuChoiNhanTinNhan.select();
+            var modelBenhNhan = gridBenhNhanTuChoiNhanTinNhan.dataItem(selectedRow);
+
+            $("#textPatientName").val(modelBenhNhan.HoTen);
+            $("#textPatientAge").val(modelBenhNhan.Tuoi);
+            $("#textPatientGender").val(modelBenhNhan.Gioitinh ? "Nam" : "Nữ");
+            $("#textPatientAddress").val(modelBenhNhan.Diachi);
+            $("#mobileNumber").val(modelBenhNhan.Sodienthoai);
+            $("#treatmentDate").val(kendo.toString(kendo.parseDate(modelBenhNhan.NgayDT,"yyyy-MM-dd"),"dd/MM/yyyy"));            
+            $("#textPatientPhanLoaiBenh").val(dataSourceLoaiBenh.get(modelBenhNhan.ID_PhanLoaiBenh).Ten_PhanLoaiBenh);            
+            $("#therapy").val(modelBenhNhan.ID_PhacdoDT > 0 ? dataSourceTherapy.get(modelBenhNhan.ID_PhacdoDT).Ten_PhacdoDT : "");
+            if (modelBenhNhan.TuChoiNhanTinNhanUT) {
+                $("#tuChoiNhanTinNhanUT").prop("checked", true);
+                //$("#lyDoTuChoiNhanTinNhanUT").show();
+                $("#lyDoTuChoiNhanTinNhanUT").prop("disabled", false);
+                $("#lyDoTuChoiNhanTinNhanUT").val(modelBenhNhan.LyDoTuChoiTinNhanUT);
+                ngayTuChoiTinNhanUT.enable(true);
+                ngayTuChoiTinNhanUT.value(kendo.parseDate(modelBenhNhan.NgayTuChoiTinNhanUT,"yyyy-MM-dd"));
+            } else {
+                $("#tuChoiNhanTinNhanUT").prop("checked", false);
+                //$("#lyDoTuChoiNhanTinNhanUT").hide();
+                $("#lyDoTuChoiNhanTinNhanUT").prop("disabled", true);
+                $("#lyDoTuChoiNhanTinNhanUT").val("");
+                ngayTuChoiTinNhanUT.value('');
+                ngayTuChoiTinNhanUT.enable(false);
+            }
+            if (modelBenhNhan.TuChoiNhanTinNhanXN) {
+                $("#tuChoiNhanTinNhanXN").prop("checked", true);
+                //$("#lyDoTuChoiNhanTinNhanXN").show();
+                $("#lyDoTuChoiNhanTinNhanXN").prop("disabled", false);
+                $("#lyDoTuChoiNhanTinNhanXN").val(modelBenhNhan.LyDoTuChoiTinNhanXN);
+                ngayTuChoiTinNhanXN.enable(true);
+                ngayTuChoiTinNhanXN.value(kendo.parseDate(modelBenhNhan.NgayTuChoiTinNhanXN,"yyyy-MM-dd"));
+            } else {
+                $("#tuChoiNhanTinNhanXN").prop("checked", false);
+                //$("#lyDoTuChoiNhanTinNhanXN").hide();
+                $("#lyDoTuChoiNhanTinNhanXN").prop("disabled", true);
+                $("#lyDoTuChoiNhanTinNhanXN").val("");
+                ngayTuChoiTinNhanXN.value('');
+                ngayTuChoiTinNhanXN.enable(false);
+            }
+            if (modelBenhNhan.TuChoiNhanTinNhanTT) {
+                $("#tuChoiNhanTinNhanTT").prop("checked", true);
+                //$("#lyDoTuChoiNhanTinNhanTT").show();
+                $("#lyDoTuChoiNhanTinNhanTT").prop("disabled", false);
+                $("#lyDoTuChoiNhanTinNhanTT").val(modelBenhNhan.LyDoTuChoiTinNhanTT);
+                ngayTuChoiTinNhanTT.enable(true);
+                ngayTuChoiTinNhanTT.value(kendo.parseDate(modelBenhNhan.NgayTuChoiTinNhanTT,"yyyy-MM-dd"));
+            } else {
+                $("#tuChoiNhanTinNhanTT").prop("checked", false);
+                //$("#lyDoTuChoiNhanTinNhanTT").hide();
+                $("#lyDoTuChoiNhanTinNhanTT").prop("disabled", true);
+                $("#lyDoTuChoiNhanTinNhanTT").val("");
+                ngayTuChoiTinNhanTT.value('');
+                ngayTuChoiTinNhanTT.enable(false);
+            }
+            centerPopup();
+            loadPopup();
+
+        });
+
+        $("#tuChoiNhanTinNhanUT").click(function(){
+            if($("#tuChoiNhanTinNhanUT").is(':checked')) {
+                $("#lyDoTuChoiNhanTinNhanUT").prop("disabled", false);
+                $("#lyDoTuChoiNhanTinNhanUT").val("");
+                ngayTuChoiTinNhanUT.enable(true);
+                ngayTuChoiTinNhanUT.value(new Date());
+            } else {
+                $("#lyDoTuChoiNhanTinNhanUT").prop("disabled", true);
+                $("#lyDoTuChoiNhanTinNhanUT").val("");
+                ngayTuChoiTinNhanUT.value('');
+                ngayTuChoiTinNhanUT.enable(false);
+            }
+        });
+
+        $("#tuChoiNhanTinNhanXN").click(function(){
+            if($("#tuChoiNhanTinNhanXN").is(':checked')) {
+                $("#lyDoTuChoiNhanTinNhanXN").prop("disabled", false);
+                $("#lyDoTuChoiNhanTinNhanXN").val("");
+                ngayTuChoiTinNhanXN.enable(true);
+                ngayTuChoiTinNhanXN.value(new Date());
+            } else {
+                $("#lyDoTuChoiNhanTinNhanXN").prop("disabled", true);
+                $("#lyDoTuChoiNhanTinNhanXN").val("");
+                ngayTuChoiTinNhanXN.value('');
+                ngayTuChoiTinNhanXN.enable(false);
+            }
+        });
+
+        $("#tuChoiNhanTinNhanTT").click(function(){
+            if($("#tuChoiNhanTinNhanTT").is(':checked')) {
+                $("#lyDoTuChoiNhanTinNhanTT").prop("disabled", false);
+                $("#lyDoTuChoiNhanTinNhanTT").val("");
+                ngayTuChoiTinNhanTT.enable(true);
+                ngayTuChoiTinNhanTT.value(new Date());
+            } else {
+                $("#lyDoTuChoiNhanTinNhanTT").prop("disabled", true);
+                $("#lyDoTuChoiNhanTinNhanTT").val("");
+                ngayTuChoiTinNhanTT.value('');
+                ngayTuChoiTinNhanTT.enable(false);
+            }
+        });
+        
         $("#buttonSearch").click(function () {
             searchPatient();
 
@@ -335,24 +442,83 @@
         }
 
 
-        $("#buttonSave").click(function () {
-
-            if (dataSourceBenhNhanTuChoiNhanTinNhan.total() > 0) {
-                $.ajax({
-                    url: "@Url.Action("SaveBenhNhanTuChoiNhanTinNhan", "HoTroDieuTri")",
-                    data: JSON.stringify(dataSourceBenhNhanTuChoiNhanTinNhan.view()),
-                    type: 'POST',
-                    processData: true,
-                    async: false,
-                    contentType: "application/json",
-                    success: function (data) {
-                        alert("Dữ liệu đã được lưu thành công");
-                    },
-                    failure: function (errMsg) {
-                        alert(errMsg);
-                    }
-                });
+        $("#buttonUpdate").click(function () {
+            var selectedRow = gridBenhNhanTuChoiNhanTinNhan.select();
+            var modelBenhNhan = gridBenhNhanTuChoiNhanTinNhan.dataItem(selectedRow);
+            var today = new Date();texttoday = kendo.toString(today,"yyyy-MM-dd HH:mm:ss");
+            var strNgayTuChoiNhanTinNhanUT = "";
+            if($("#tuChoiNhanTinNhanUT").is(':checked')) {
+                modelBenhNhan.TuChoiNhanTinNhanUT = 1;
+                strNgayTuChoiNhanTinNhanUT = kendo.toString(ngayTuChoiTinNhanUT.value(),"yyyy-MM-dd HH:mm:ss");
+                if (strNgayTuChoiNhanTinNhanUT == null) {
+                    alert("Bạn chưa nhập ngày bắt đầu từ chối nhận tin nhắn");
+                    return;
+                }
+                if (strNgayTuChoiNhanTinNhanUT > texttoday) {
+                    alert("Ngày từ chối không được lớn hơn ngày hiện tại");
+                    return;
+                }
+                modelBenhNhan.LyDoTuChoiTinNhanUT = $("#lyDoTuChoiNhanTinNhanUT").val();
+                modelBenhNhan.NgayTuChoiTinNhanUT = strNgayTuChoiNhanTinNhanUT;
+            } else {
+                modelBenhNhan.TuChoiNhanTinNhanUT = 0;
+                modelBenhNhan.LyDoTuChoiTinNhanUT = "";
+                modelBenhNhan.NgayTuChoiTinNhanUT = "";
             }
+            var strNgayTuChoiNhanTinNhanXN = "";
+            if($("#tuChoiNhanTinNhanXN").is(':checked')) {
+                modelBenhNhan.TuChoiNhanTinNhanXN = 1;
+                strNgayTuChoiNhanTinNhanXN = kendo.toString(ngayTuChoiTinNhanXN.value(),"yyyy-MM-dd HH:mm:ss");
+                if (strNgayTuChoiNhanTinNhanXN == null) {
+                    alert("Bạn chưa nhập ngày bắt đầu từ chối nhận tin nhắn");
+                    return;
+                }
+                if (strNgayTuChoiNhanTinNhanXN > texttoday) {
+                    alert("Ngày từ chối không được lớn hơn ngày hiện tại");
+                    return;
+                }
+                modelBenhNhan.LyDoTuChoiTinNhanXN = $("#lyDoTuChoiNhanTinNhanXN").val();
+                modelBenhNhan.NgayTuChoiTinNhanXN = strNgayTuChoiNhanTinNhanXN;
+            } else {
+                modelBenhNhan.TuChoiNhanTinNhanXN = 0;
+                modelBenhNhan.LyDoTuChoiTinNhanXN = "";
+                modelBenhNhan.NgayTuChoiTinNhanXN = "";
+            }
+            var strNgayTuChoiNhanTinNhanTT = "";
+            if($("#tuChoiNhanTinNhanTT").is(':checked')) {
+                modelBenhNhan.TuChoiNhanTinNhanTT = 1;
+                strNgayTuChoiNhanTinNhanTT = kendo.toString(ngayTuChoiTinNhanTT.value(),"yyyy-MM-dd HH:mm:ss");
+                if (strNgayTuChoiNhanTinNhanTT == null) {
+                    alert("Bạn chưa nhập ngày bắt đầu từ chối nhận tin nhắn");
+                    return;
+                }
+                if (strNgayTuChoiNhanTinNhanTT > texttoday) {
+                    alert("Ngày từ chối không được lớn hơn ngày hiện tại");
+                    return;
+                }
+                modelBenhNhan.LyDoTuChoiTinNhanTT = $("#lyDoTuChoiNhanTinNhanTT").val();
+                modelBenhNhan.NgayTuChoiTinNhanTT = strNgayTuChoiNhanTinNhanTT;
+            } else {
+                modelBenhNhan.TuChoiNhanTinNhanTT = 0;
+                modelBenhNhan.LyDoTuChoiTinNhanTT = "";
+                modelBenhNhan.NgayTuChoiTinNhanTT = "";
+            }
+            alert(JSON.stringify(modelBenhNhan));
+            $.ajax({
+                url: "@Url.Action("SaveBenhNhanTuChoiNhanTinNhan", "HoTroDieuTri")",
+                data: JSON.stringify(modelBenhNhan),
+                type: 'POST',
+                processData: true,
+                async: false,
+                contentType: "application/json",
+                success: function (data) {
+                    alert("Dữ liệu đã được lưu thành công");
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+            
         });
 
         $("#buttonExcel").click(function () {
@@ -375,6 +541,67 @@
 
         getProvinces();
 
+        $("#bgPopup2").data("state",0);
+        $("#popupClose2").click(function(){
+            disablePopup();
+        });
+        $("#buttonCancel").click(function(){
+            disablePopup();
+        });
+        $(document).keypress(function(e){
+            if(e.keyCode==27) {
+                disablePopup();
+            }
+        });
+
+        $(window).resize(function() {
+            centerPopup();
+        });
+
+        function loadPopup(){
+            //loads popup only if it is disabled
+            if($("#bgPopup2").data("state")==0){
+                $("#bgPopup2").css({
+                    "opacity": "0.7"
+                });
+                $("#bgPopup2").fadeIn("medium");
+                $("#Popup2").fadeIn("medium");
+                $("#bgPopup2").data("state",1);
+            }
+        }
+        function disablePopup(){
+            if ($("#bgPopup2").data("state")==1){
+                $("#bgPopup2").fadeOut("medium");
+                $("#Popup2").fadeOut("medium");
+                $("#bgPopup2").data("state",0);
+            }
+        }
+        function centerPopup(){
+            var winw = $(window).width();
+            var winh = $(window).height();
+            var popw = $('#Popup2').width();
+            var poph = $('#Popup2').height();
+            $("#Popup2").css({
+                "position" : "absolute",
+                "top" : winh/2-poph/2,
+                "left" : winw/2-popw/2
+            });
+            //IE6
+            $("#bgPopup2").css({
+                "height": winh
+            });
+        }
+
+        function resetFormBenhNhanTuChoi() {
+            $("#textPatientAge").val('');
+            $("#textPatientGender").val('');
+            $("#textPatientAddress").val('');
+            $("#mobileNumber").val('');
+            $("#textPatientPhanLoaiBenh").val('');
+            $("#therapy").val('');            
+            $("#treatmentDate").val('');            
+        };
+
     });
 
 </script>
@@ -387,8 +614,57 @@ Phường / Xã:&nbsp;<input id="filterCommune" style="width:200px" />
 <font color="#EE7318"><div id="log">&nbsp;</div></font>
 <div id="gridBenhNhanTuChoiNhanTinNhan"></div>
 <p style="height:3px"></p>
-<input class="btn btn-primary" id="buttonSave" name="buttonSave" value="Lưu" style="width:50px;cursor:pointer;" readonly />
+<div id="Popup2">
+    <div style="margin-top: 0px;margin-left:0px;padding-left:0px;margin-bottom:0px;padding-bottom:0px;height:30px;" class="k-window-titlebar k-header">
+        &nbsp;<span class="k-window-title">Thông tin bệnh nhân</span>
+        <div class="k-window-actions">
+            <a id="popupClose2" role="button" href="#" class="k-window-action k-link">
+                <span role="presentation" class="k-icon k-i-close">Close</span>
+            </a>
+        </div>
+    </div><br /><br />
+    <div>
+        <div class="k-edit-form-container" style="margin-top:10px;padding-top:0px;width:900px;padding-left:10px;">
+            <div class="k-edit-label" style="width:41px;text-align:left;padding-right:5px;">Họ tên</div>
+            <input type="text" id="textPatientName" name="textPatientName" disabled />&nbsp;&nbsp;
+            <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Tuổi</div>
+            <input id="textPatientAge" name="textPatientAge" style="width:80px;" disabled />&nbsp;&nbsp;
+            <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Giới tính</div>
+            <input id="textPatientGender" name="textPatientGender" style="width:60px;margin-top:0px;padding-top:0px;" disabled /><br />
+            <div class="k-edit-label" style="width:41px;text-align:left;padding-right:5px;">Địa chỉ</div>
+            <input name="textPatientAddress" id="textPatientAddress" style="width:350px;" type="text" disabled>&nbsp;&nbsp;
+            <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Di động</div>
+            <input name="mobileNumber" id="mobileNumber" style="width:90px;" disabled>&nbsp;&nbsp;
+            <div class="k-edit-label" style="width:auto;text-align:right;padding-right:5px;">Ngày điều trị</div>
+            <input id="treatmentDate" value="" style="width:90px;" disabled /><br />
+            <div class="k-edit-label" style="width:55px;text-align:left;padding-right:5px;">Thể bệnh</div>
+            <input name="textPatientPhanLoaiBenh" id="textPatientPhanLoaiBenh" type="text" disabled>&nbsp;&nbsp;
+            <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Phác đồ</div>
+            <input name="therapy" id="therapy" style="width:150px;" disabled /><br/>
+            <div class="k-edit-label" style="width:270px;font-weight:bold;text-align:left;padding:3px 0px 0px 0px;vertical-align:top;">Từ chối nhận tin nhắn nhắc uống thuốc: </div>
+            <input id="tuChoiNhanTinNhanUT" name="tuChoiNhanTinNhanUT" type="checkbox" style="vertical-align:top;margin-top:5px;" />&nbsp;
+            <input type="text" id="lyDoTuChoiNhanTinNhanUT" name="lyDoTuChoiNhanTinNhanUT" style="width:300px;" placeholder="Lý do từ chối" /> 
+            <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Ngày từ chối</div>
+            <input id="ngayTuChoiTinNhanUT" value="" style="width:100px;" /><br />
+            <div class="k-edit-label" style="width:270px;font-weight:bold;text-align:left;padding:3px 0px 0px 0px;vertical-align:top;">Từ chối nhận tin nhắn xét nghiệm: </div>
+            <input id="tuChoiNhanTinNhanXN" name="tuChoiNhanTinNhanXN" type="checkbox" style="vertical-align:top;margin-top:5px;" />&nbsp;
+            <input type="text" id="lyDoTuChoiNhanTinNhanXN" name="lyDoTuChoiNhanTinNhanXN" style="width:300px;" placeholder="Lý do từ chối" />
+            <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Ngày từ chối</div>
+            <input id="ngayTuChoiTinNhanXN" value="" style="width:100px;" /><br />
+            <div class="k-edit-label" style="width:270px;font-weight:bold;text-align:left;padding:3px 0px 0px 0px;vertical-align:top;">Từ chối nhận tin nhắn truyền thông: </div>
+            <input id="tuChoiNhanTinNhanTT" name="tuChoiNhanTinNhanTT" type="checkbox" style="vertical-align:top;margin-top:5px;" />&nbsp;
+            <input type="text" id="lyDoTuChoiNhanTinNhanTT" name="lyDoTuChoiNhanTinNhanTT" style="width:300px;" placeholder="Lý do từ chối" />
+            <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Ngày từ chối</div>
+            <input id="ngayTuChoiTinNhanTT" value="" style="width:100px;" /><br />
+        </div>
 
+        <p style="padding-left:10px;padding-top:10px;">
+            <input class="btn btn-primary" style="width:60px;" value="Lưu" id="buttonUpdate" name="buttonUpdate" />
+            <input class="btn btn-primary" style="width:60px;" value="Thoát" id="buttonCancel" name="buttonCancel" />
+        </p>
+    </div>
+</div>
+<div id="bgPopup2"></div>
 
 
 

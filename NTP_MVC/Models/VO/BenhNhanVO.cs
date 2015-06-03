@@ -40,8 +40,15 @@ namespace NTP_MVC.Models.VO
         public DateTime NgayTaoBaoCaoDoiDiaChi { get; set; }
         public short CapNhapDiaChi { get; set; }
 
-        public string LyDoTuChoi { get; set; }
-
-        public Nullable<DateTime> NgayTuChoi { get; set; }
+        public Nullable<long> TuChoiTinNhanID { get; set; }
+        public Nullable<bool> TuChoiNhanTinNhanUT { get; set; }
+        public Nullable<bool> TuChoiNhanTinNhanXN { get; set; }
+        public Nullable<bool> TuChoiNhanTinNhanTT { get; set; }
+        public Nullable<System.DateTime> NgayTuChoiTinNhanUT { get; set; }
+        public Nullable<System.DateTime> NgayTuChoiTinNhanXN { get; set; }
+        public Nullable<System.DateTime> NgayTuChoiTinNhanTT { get; set; }
+        public string LyDoTuChoiTinNhanUT { get; set; }
+        public string LyDoTuChoiTinNhanXN { get; set; }
+        public string LyDoTuChoiTinNhanTT { get; set; }
     }
 }

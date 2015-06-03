@@ -265,9 +265,9 @@ namespace NTP_MVC.Controllers
             SqlParameter[] parameters = parameterList.ToArray();
             int total = db.Database.SqlQuery<int>(sql, parameters).Single();
 
-            string sql3 = "SELECT count(DISTINCT(tc.ID_BenhNhan)) FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanTuChoiNhanTin AS tc "
-                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tc.ID_BenhNhan=bn.ID_BenhNhan AND tc.LyDoTuChoi IS NOT NULL "
-                    + " AND tc.LyDoTuChoi != '' ";
+            string sql3 = "SELECT count(DISTINCT(tc.ID_BenhNhan)) "
+                    + " FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanTuChoiNhanTin AS tc "
+                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tc.ID_BenhNhan=bn.ID_BenhNhan AND tc.TuChoiNhanTinNhanUT=1 ";
             if (!communeId.Equals("0"))
             {
                 sql3 += " AND bn.MA_XA=@PMAXA ";
@@ -297,14 +297,85 @@ namespace NTP_MVC.Controllers
             }
 
             SqlParameter[] parameters3 = parameterList3.ToArray();
-            int totalTuChoi = db.Database.SqlQuery<int>(sql3, parameters3).Single();
+            int totalTuChoiTinNhanUT = db.Database.SqlQuery<int>(sql3, parameters3).Single();
+
+            string sql4 = "SELECT count(DISTINCT(tc.ID_BenhNhan)) "
+                    + " FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanTuChoiNhanTin AS tc "
+                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tc.ID_BenhNhan=bn.ID_BenhNhan AND tc.TuChoiNhanTinNhanXN=1 ";
+            if (!communeId.Equals("0"))
+            {
+                sql4 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql4 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql4 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql4 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+
+            List<SqlParameter> parameterList4 = new List<SqlParameter>();
+            if (!communeId.Equals("0"))
+            {
+                parameterList4.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList4.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList4.Add(new SqlParameter("@PMATINH", provinceId));
+            }
+
+            SqlParameter[] parameters4 = parameterList4.ToArray();
+            int totalTuChoiTinNhanXN = db.Database.SqlQuery<int>(sql4, parameters4).Single();
+
+            string sql5 = "SELECT count(DISTINCT(tc.ID_BenhNhan)) "
+                    + " FROM dbo.SO_SoDieuTri sdt, dbo.SO_BenhNhan bn, dbo.HTDT_BenhNhanTuChoiNhanTin AS tc "
+                    + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND tc.ID_BenhNhan=bn.ID_BenhNhan AND tc.TuChoiNhanTinNhanTT=1 ";
+            if (!communeId.Equals("0"))
+            {
+                sql5 += " AND bn.MA_XA=@PMAXA ";
+            }
+            else if (!districtId.Equals("0"))
+            {
+                sql5 += " AND bn.MA_HUYEN=@PMAHUYEN ";
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                sql5 += " AND bn.MA_TINH=@PMATINH ";
+            }
+            sql5 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";
+
+            List<SqlParameter> parameterList5 = new List<SqlParameter>();
+            if (!communeId.Equals("0"))
+            {
+                parameterList5.Add(new SqlParameter("@PMAXA", communeId));
+            }
+            else if (!districtId.Equals("0"))
+            {
+                parameterList5.Add(new SqlParameter("@PMAHUYEN", districtId));
+            }
+            else if (!provinceId.Equals("0"))
+            {
+                parameterList5.Add(new SqlParameter("@PMATINH", provinceId));
+            }
+
+            SqlParameter[] parameters5 = parameterList5.ToArray();
+            int totalTuChoiTinNhanTruyenThong = db.Database.SqlQuery<int>(sql5, parameters5).Single();
 
             string sql2 = "SELECT bn.ID_BenhNhan AS ID_BenhNhan, sdt.ID_SoDieuTri AS ID_SoDieuTri,bn.HoTen AS HoTen, bn.Tuoi AS Tuoi, "
-                + " xa.TEN_XA AS TEN_XA, bn.Gioitinh AS Gioitinh, "
-                + " bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, sdt.NgayDT AS NgayDT, sdt.ID_PhacdoDT AS ID_PhacDoDT, "
-                + " sdt.ID_PhanLoaiBenh AS ID_PhanLoaiBenh, gs.LyDoTuChoi AS LyDoTuChoi, gs.NgayTao AS NgayTuChoi "
+                + " xa.TEN_XA AS TEN_XA, bn.Gioitinh AS Gioitinh, bn.Diachi AS Diachi, bn.Sodienthoai AS Sodienthoai, "
+                + " sdt.NgayDT AS NgayDT, sdt.ID_PhacdoDT AS ID_PhacDoDT, sdt.ID_PhanLoaiBenh AS ID_PhanLoaiBenh, "
+                + " (CASE WHEN tc.ID IS NULL THEN 0 ELSE tc.ID END) AS TuChoiTinNhanID, "
+                + " tc.TuChoiNhanTinNhanUT AS TuChoiNhanTinNhanUT, tc.NgayTuChoiTinNhanUT AS NgayTuChoiTinNhanUT, tc.LyDoTuChoiTinNhanUT AS LyDoTuChoiTinNhanUT, "
+                + " tc.TuChoiNhanTinNhanXN AS TuChoiNhanTinNhanXN, tc.NgayTuChoiTinNhanXN AS NgayTuChoiTinNhanXN, tc.LyDoTuChoiTinNhanXN AS LyDoTuChoiTinNhanXN, "
+                + " tc.TuChoiNhanTinNhanTT AS TuChoiNhanTinNhanTT, tc.NgayTuChoiTinNhanTT AS NgayTuChoiTinNhanTT, tc.LyDoTuChoiTinNhanTT AS LyDoTuChoiTinNhanTT "
                 + " FROM dbo.SO_SoDieuTri sdt, dbo.DM_Xa xa, dbo.SO_BenhNhan bn "
-                + " LEFT JOIN dbo.HTDT_BenhNhanTuChoiNhanTin gs ON gs.ID_BenhNhan=bn.ID_BenhNhan "
+                + " LEFT JOIN dbo.HTDT_BenhNhanTuChoiNhanTin tc ON tc.ID_BenhNhan=bn.ID_BenhNhan "
                 + " WHERE sdt.ID_BENHNHAN=bn.ID_BenhNhan AND bn.MA_XA=xa.MA_XA ";
             if (!communeId.Equals("0"))
             {
@@ -318,7 +389,8 @@ namespace NTP_MVC.Controllers
             {
                 sql2 += " AND bn.MA_TINH=@PMATINH ";
             }
-            sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL ";           
+            sql2 += " AND (bn.Huy=0 OR bn.Huy IS NULL) AND (sdt.Huy=0 OR sdt.Huy IS NULL) AND sdt.NgayDT IS NOT NULL "
+                 + "ORDER BY tc.TuChoiNhanTinNhanUT DESC, tc.TuChoiNhanTinNhanXN DESC, tc.TuChoiNhanTinNhanTT DESC ";           
            
             List<SqlParameter> parameterList2 = new List<SqlParameter>();
             if (!communeId.Equals("0"))
@@ -356,7 +428,9 @@ namespace NTP_MVC.Controllers
                 grid.total = 0;
                 grid.patients = null;
             }
-            grid.totalTuChoiNhanTinNhan = totalTuChoi;
+            grid.totalTuChoiNhanTinNhanUT = totalTuChoiTinNhanUT;
+            grid.totalTuChoiNhanTinNhanXN = totalTuChoiTinNhanXN;
+            grid.totalTuChoiNhanTinNhanTT = totalTuChoiTinNhanTruyenThong;
             return grid;
         }
 
@@ -520,39 +594,58 @@ namespace NTP_MVC.Controllers
         }
 
         [WebMethod]
-        public string SaveBenhNhanTuChoiNhanTinNhan()
+        public int SaveBenhNhanTuChoiNhanTinNhan()
         {
             string input;
             using (var reader = new StreamReader(Request.InputStream))
             {
                 input = reader.ReadToEnd();
             }
-            JArray req = JArray.Parse(input);
+            JObject req = JObject.Parse(input);
 
-            for (int i = 0; i < req.Count; i++)
+            short TuChoiNhanTinNhanUT = (short)req["TuChoiNhanTinNhanUT"];
+            string LyDoTuChoiTinNhanUT = (string)req["LyDoTuChoiTinNhanUT"];
+            string NgayTuChoiTinNhanUT = (string)req["NgayTuChoiTinNhanUT"];
+            short TuChoiNhanTinNhanXN = (short)req["TuChoiNhanTinNhanXN"];
+            string LyDoTuChoiTinNhanXN = (string)req["LyDoTuChoiTinNhanXN"];
+            string NgayTuChoiTinNhanXN = (string)req["NgayTuChoiTinNhanXN"];
+            short TuChoiNhanTinNhanTT = (short)req["TuChoiNhanTinNhanTT"];
+            string LyDoTuChoiTinNhanTT = (string)req["LyDoTuChoiTinNhanTT"];
+            string NgayTuChoiTinNhanTT = (string)req["NgayTuChoiTinNhanTT"];
+            var tmp = req["TuChoiTinNhanID"]; long TuChoiTinNhanID = 0;
+            if (tmp != null)
+                TuChoiTinNhanID = (long)tmp;
+            string sql = "";
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+            if (TuChoiTinNhanID > 0)
             {
-                JObject due = (JObject)req[i];
-                var tmp = due["LyDoTuChoi"];
-                if (tmp != null)
-                {
-                    String LyDoTuChoi = (string)tmp;
-                    if (LyDoTuChoi != null && LyDoTuChoi.Length > 0)
-                    {
-                        List<SqlParameter> parameterList = new List<SqlParameter>();
-                        string sql = "INSERT INTO dbo.HTDT_BenhNhanTuChoiNhanTin (ID_BenhNhan,LyDoTuChoi,NgayTao)"
-                        + " VALUES (@P0,@P1,@P2)";
-                        parameterList.Add(new SqlParameter("@P0", (long)due["ID_BenhNhan"]));
-                        parameterList.Add(new SqlParameter("@P1", LyDoTuChoi));
-                        parameterList.Add(new SqlParameter("@P2", DateTime.Now));
-
-                        SqlParameter[] parameters = parameterList.ToArray();
-                        int result = db.Database.ExecuteSqlCommand(sql, parameters);
-                    }
-                }
-                
+                sql = "UPDATE dbo.HTDT_BenhNhanTuChoiNhanTin SET TuChoiNhanTinNhanUT=@P1,NgayTuChoiTinNhanUT=@P2,LyDoTuChoiTinNhanUT=@P3,"
+                + " TuChoiNhanTinNhanXN=@P4,NgayTuChoiTinNhanXN=@P5,LyDoTuChoiTinNhanXN=@P6,"
+                + " TuChoiNhanTinNhanTT=@P7,NgayTuChoiTinNhanTT=@P8,LyDoTuChoiTinNhanTT=@P9 "
+                + " WHERE ID=@P10";
+                parameterList.Add(new SqlParameter("@P10", TuChoiTinNhanID));
+            }
+            else
+            {
+                sql = "INSERT INTO dbo.HTDT_BenhNhanTuChoiNhanTin (ID_BenhNhan,TuChoiNhanTinNhanUT,NgayTuChoiTinNhanUT,LyDoTuChoiTinNhanUT, "
+                + " TuChoiNhanTinNhanXN,NgayTuChoiTinNhanXN,LyDoTuChoiTinNhanXN, "
+                + " TuChoiNhanTinNhanTT,NgayTuChoiTinNhanTT,LyDoTuChoiTinNhanTT)"
+                + " VALUES (@P0,@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8,@P9)";
+                parameterList.Add(new SqlParameter("@P0", (long)req["ID_BenhNhan"]));
             }
 
-            return "";
+            parameterList.Add(new SqlParameter("@P1", TuChoiNhanTinNhanUT));
+            parameterList.Add(new SqlParameter("@P2", NgayTuChoiTinNhanUT.Length > 0 ? DateTime.ParseExact(NgayTuChoiTinNhanUT, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now));
+            parameterList.Add(new SqlParameter("@P3", LyDoTuChoiTinNhanUT));            
+            parameterList.Add(new SqlParameter("@P4", TuChoiNhanTinNhanXN));
+            parameterList.Add(new SqlParameter("@P5", NgayTuChoiTinNhanXN.Length > 0 ? DateTime.ParseExact(NgayTuChoiTinNhanXN, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now));
+            parameterList.Add(new SqlParameter("@P6", LyDoTuChoiTinNhanXN));            
+            parameterList.Add(new SqlParameter("@P7", TuChoiNhanTinNhanTT));
+            parameterList.Add(new SqlParameter("@P8", NgayTuChoiTinNhanTT.Length > 0 ? DateTime.ParseExact(NgayTuChoiTinNhanTT, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now));
+            parameterList.Add(new SqlParameter("@P9", LyDoTuChoiTinNhanTT));
+            SqlParameter[] parameters = parameterList.ToArray();
+            return db.Database.ExecuteSqlCommand(sql, parameters);
+
         }
 
         
