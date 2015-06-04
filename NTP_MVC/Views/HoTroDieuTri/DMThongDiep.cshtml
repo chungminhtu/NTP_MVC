@@ -80,7 +80,7 @@
         }).data("kendoDropDownList");
 
         dataSourceMessage = new kendo.data.DataSource({
-            pageSize: 10,
+            pageSize: 5,
             schema: {
                 model: {
                     id: "ID",
@@ -154,8 +154,7 @@
             $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetDMThongDiep", "HoTroDieuTri")",
-                data: { giaidoan: filterLoaiTinNhan.value(), loai: filterLoaiBenh.value() },
-                //url: "@Url.Action("GetDMThongDiep", "HoTroDieuTri")",giaidoan=" + filterGiaiDoanDieuTri.value() + "&loai=" + filterLoaiTinNhan.value(),
+                data: { LoaiTinNhan: filterLoaiTinNhan.value(), LoaiBenhNhan: filterLoaiBenh.value() },               
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {

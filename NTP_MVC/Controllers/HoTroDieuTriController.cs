@@ -2115,29 +2115,29 @@ namespace NTP_MVC.Controllers
         [WebMethod]
         public string GetDMThongDiep()
         {
-            string giaidoan = Request.QueryString["giaidoan"]; giaidoan = giaidoan != null ? giaidoan : "";
-            string loai = Request.QueryString["loai"]; loai = loai != null ? loai : "";
+            string LoaiTinNhan = Request.QueryString["LoaiTinNhan"]; LoaiTinNhan = LoaiTinNhan != null ? LoaiTinNhan : "";
+            string LoaiBenhNhan = Request.QueryString["LoaiBenhNhan"]; LoaiBenhNhan = LoaiBenhNhan != null ? LoaiBenhNhan : "";
             string sql = "SELECT * FROM dbo.HTDT_ThongDiepTruyenThong td WHERE 1=1 ";
-            if (giaidoan.Length > 0)
+            if (LoaiTinNhan.Length > 0)
             {
-                sql += " AND td.GiaiDoan=@P1";
+                sql += " AND td.LoaiTinNhan=@P1";
             }
-            if (loai.Length > 0)
+            if (LoaiBenhNhan.Length > 0)
             {
-                sql += " AND td.Loai=@P2";
+                sql += " AND td.LoaiBenhNhan=@P2";
             }
 
             List<SqlParameter> parameterList = new List<SqlParameter>();
-            if (giaidoan.Length > 0)
+            if (LoaiTinNhan.Length > 0)
             {
-                parameterList.Add(new SqlParameter("@P1", giaidoan));
+                parameterList.Add(new SqlParameter("@P1", LoaiTinNhan));
             }
-            if (loai.Length > 0)
+            if (LoaiBenhNhan.Length > 0)
             {
-                parameterList.Add(new SqlParameter("@P2", loai));
+                parameterList.Add(new SqlParameter("@P2", LoaiBenhNhan));
             }
             List<HTDT_ThongDiepTruyenThong> dmthongdiep = null;
-            if (giaidoan.Length > 0 || loai.Length > 0)
+            if (LoaiTinNhan.Length > 0 || LoaiBenhNhan.Length > 0)
             {
                 SqlParameter[] parameters = parameterList.ToArray();
                 dmthongdiep = db.Database.SqlQuery<HTDT_ThongDiepTruyenThong>(sql, parameters).ToList();
