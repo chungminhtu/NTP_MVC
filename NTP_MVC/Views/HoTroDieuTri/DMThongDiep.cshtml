@@ -80,7 +80,7 @@
         }).data("kendoDropDownList");
 
         dataSourceMessage = new kendo.data.DataSource({
-            pageSize: 5,
+            pageSize: 20,
             schema: {
                 model: {
                     id: "ID",
@@ -91,52 +91,84 @@
                     }
                 }
             },
-            serverPaging: false
+            serverPaging: false,
+            aggregate: [
+                   { field:"T1", aggregate:"sum" },
+                   { field:"T2", aggregate:"sum" },
+                   { field:"T3", aggregate:"sum" },
+                   { field:"T4", aggregate:"sum" },
+                   { field:"T5", aggregate:"sum" },
+                   { field:"T6", aggregate:"sum" },
+                   { field:"T7", aggregate:"sum" },
+                   { field:"T8", aggregate:"sum" },
+                   { field:"T9", aggregate:"sum" },
+                   { field:"T10", aggregate:"sum" },
+                   { field:"T11", aggregate:"sum" },
+                   { field:"T12", aggregate:"sum" },
+                   { field:"T13", aggregate:"sum" },
+                   { field:"T14", aggregate:"sum" },
+                   { field:"T15", aggregate:"sum" },
+                   { field:"T16", aggregate:"sum" },
+                   { field:"T17", aggregate:"sum" },
+                   { field:"T18", aggregate:"sum" },
+                   { field:"T19", aggregate:"sum" },
+                   { field:"T20", aggregate:"sum" },
+                   { field:"T21", aggregate:"sum" },
+                   { field:"T22", aggregate:"sum" },
+                   { field:"T23", aggregate:"sum" },
+                   { field:"T24", aggregate:"sum" },
+                   { field:"T25", aggregate:"sum" },
+                   { field:"T26", aggregate:"sum" }                       
+            ]
         });
 
         var gridThongDiep = $("#gridThongDiep").kendoGrid({
-            autoBind: true,
+            autoBind: false,
             dataSource: dataSourceMessage,
             navigatable: true,
-            pageable: true,
-            pageable: {
-                messages: {
-                    display: '{0} - {1} / {2} thông điệp',
-                    empty: ""
-                }
-            },
-            resizable: true,
-            sortable: true,
+            pageable: false,
+            resizable: false,
+            sortable: false,
+            selectable: true,
+            scrollable: true,
+            //pageable: {
+            //    messages: {
+            //        display: '{0} - {1} / {2} thông điệp',
+            //        empty: ""
+            //    }
+            //},
+            height:440,
             columns: [
-                { field: "NoiDung", width: "150px", title: 'Tin nhắn', attributes: { style: "white-space: normal" } },
-                { field: "LoaiTinNhan", width: "80px", title: "Loại tin nhắn", attributes: { style: "white-space: normal" }, template: "#= dataSourceMessageLoaiTinNhan.at(LoaiTinNhan-1).name #" },
-                { field: "LoaiBenhNhan", width: "80px", title: 'Loại bệnh nhân', attributes: { style: "white-space: normal" }, template: "#= dataSourceLoaiBenh.at(LoaiBenhNhan-1).name #" },
-                { field: "T1", width: "20px", title: 'T1' },
-                { field: "T2", width: "20px", title: 'T2' },
-                { field: "T3", width: "20px", title: 'T3' },
-                { field: "T4", width: "20px", title: 'T4' },
-                { field: "T5", width: "20px", title: 'T5' },
-                { field: "T6", width: "20px", title: 'T6' },
-                { field: "T7", width: "20px", title: 'T7' },
-                { field: "T8", width: "20px", title: 'T8' },
-                { field: "T9", width: "20px", title: 'T9' },
-                { field: "T10", width: "20px", title: 'T10' },
-                { field: "T11", width: "20px", title: 'T11' },
-                { field: "T12", width: "20px", title: 'T12' },
-                { field: "T13", width: "20px", title: 'T13' },
-                { field: "T14", width: "20px", title: 'T14' },
-                { field: "T15", width: "20px", title: 'T15' },
-                { field: "T16", width: "20px", title: 'T16' },
-                { field: "T17", width: "20px", title: 'T17' },
-                { field: "T18", width: "20px", title: 'T18' },
-                { field: "T19", width: "20px", title: 'T19' },
-                { field: "T20", width: "20px", title: 'T20' },
-                { field: "T21", width: "20px", title: 'T21' },
-                { field: "T22", width: "20px", title: 'T22' },
-                { field: "T23", width: "20px", title: 'T23' },
-                { field: "T24", width: "20px", title: 'T24' },
-                { field: "T25", width: "20px", title: 'T25' },
-                { field: "T26", width: "20px", title: 'T26' }
+                { field: "NoiDung", width: "170px", title: 'Tin nhắn', attributes: { style: "white-space: normal" } },
+                { field: "LoaiTinNhan", width: "50px", title: "Loại tin nhắn", attributes: { style: "white-space: normal" }, template: "#= dataSourceMessageLoaiTinNhan.at(LoaiTinNhan-1).name #" },
+                { field: "LoaiBenhNhan", width: "50px", title: 'Loại bệnh nhân', attributes: { style: "white-space: normal" }, template: "#= dataSourceLoaiBenh.at(LoaiBenhNhan-1).name #" },
+                { field: "T1", width: "20px", title: 'T1', template: "# if (T1 > 0) {# <font color='DarkOrange'> #= T1 # </font> #} else {# 0 #}#" },
+                { field: "T2", width: "20px", title: 'T2', template: "# if (T2 > 0) {# <font color='DarkOrange'> #= T2 # </font> #} else {# 0 #}#" },
+                { field: "T3", width: "20px", title: 'T3', template: "# if (T3 > 0) {# <font color='DarkOrange'> #= T3 # </font> #} else {# 0 #}#" },
+                { field: "T4", width: "20px", title: 'T4', template: "# if (T4 > 0) {# <font color='DarkOrange'> #= T4 # </font> #} else {# 0 #}#" },
+                { field: "T5", width: "20px", title: 'T5', template: "# if (T5 > 0) {# <font color='DarkOrange'> #= T5 # </font> #} else {# 0 #}#" },
+                { field: "T6", width: "20px", title: 'T6', template: "# if (T6 > 0) {# <font color='DarkOrange'> #= T6 # </font> #} else {# 0 #}#" },
+                { field: "T7", width: "20px", title: 'T7', template: "# if (T7 > 0) {# <font color='DarkOrange'> #= T7 # </font> #} else {# 0 #}#" },
+                { field: "T8", width: "20px", title: 'T8', template: "# if (T8 > 0) {# <font color='DarkOrange'> #= T8 # </font> #} else {# 0 #}#" },
+                { field: "T9", width: "20px", title: 'T9', template: "# if (T9 > 0) {# <font color='DarkOrange'> #= T9 # </font> #} else {# 0 #}#" },
+                { field: "T10", width: "20px", title: 'T10', template: "# if (T10 > 0) {# <font color='DarkOrange'> #= T10 # </font> #} else {# 0 #}#" },
+                { field: "T11", width: "20px", title: 'T11', template: "# if (T11 > 0) {# <font color='DarkOrange'> #= T11 # </font> #} else {# 0 #}#" },
+                { field: "T12", width: "20px", title: 'T12', template: "# if (T12 > 0) {# <font color='DarkOrange'> #= T12 # </font> #} else {# 0 #}#" },
+                { field: "T13", width: "20px", title: 'T13', template: "# if (T13 > 0) {# <font color='DarkOrange'> #= T13 # </font> #} else {# 0 #}#" },
+                { field: "T14", width: "20px", title: 'T14', template: "# if (T14 > 0) {# <font color='DarkOrange'> #= T14 # </font> #} else {# 0 #}#" },
+                { field: "T15", width: "20px", title: 'T15', template: "# if (T15 > 0) {# <font color='DarkOrange'> #= T15 # </font> #} else {# 0 #}#" },
+                { field: "T16", width: "20px", title: 'T16', template: "# if (T16 > 0) {# <font color='DarkOrange'> #= T16 # </font> #} else {# 0 #}#" },
+                { field: "T17", width: "20px", title: 'T17', template: "# if (T17 > 0) {# <font color='DarkOrange'> #= T17 # </font> #} else {# 0 #}#" },
+                { field: "T18", width: "20px", title: 'T18', template: "# if (T18 > 0) {# <font color='DarkOrange'> #= T18 # </font> #} else {# 0 #}#" },
+                { field: "T19", width: "20px", title: 'T19', template: "# if (T19 > 0) {# <font color='DarkOrange'> #= T19 # </font> #} else {# 0 #}#" },
+                { field: "T20", width: "20px", title: 'T20', template: "# if (T20 > 0) {# <font color='DarkOrange'> #= T20 # </font> #} else {# 0 #}#" },
+                { field: "T21", width: "20px", title: 'T21', template: "# if (T21 > 0) {# <font color='DarkOrange'> #= T21 # </font> #} else {# 0 #}#" },
+                { field: "T22", width: "20px", title: 'T22', template: "# if (T22 > 0) {# <font color='DarkOrange'> #= T22 # </font> #} else {# 0 #}#" },
+                { field: "T23", width: "20px", title: 'T23', template: "# if (T23 > 0) {# <font color='DarkOrange'> #= T23 # </font> #} else {# 0 #}#" },
+                { field: "T24", width: "20px", title: 'T24', template: "# if (T24 > 0) {# <font color='DarkOrange'> #= T24 # </font> #} else {# 0 #}#" },
+                { field: "T25", width: "20px", title: 'T25', template: "# if (T25 > 0) {# <font color='DarkOrange'> #= T25 # </font> #} else {# 0 #}#" },
+                { field: "T26", width: "20px", title: 'T26', template: "# if (T26 > 0) {# <font color='DarkOrange'> #= T26 # </font> #} else {# 0 #}#" },
+                { field: "T26", width: "30px", title: 'Tổng', template: '#= T1 + T2 + T3 + T4 + T5 + T6 +T7+T8+T9+T10+T11+T12+T13+T14+T15+T16+T17+T18+T19+T20+T21+T22+T23+T24+T25+T26 #' },
             ],
             editable: false,
             dataBound: function (e) {
@@ -144,12 +176,38 @@
                     $("#log").html(dataSourceMessage.total() + ' thông điệp');
                 else
                     $("#log").html('Không tìm thấy dữ liệu');
-            },
-            selectable: true
+            }
         }).data("kendoGrid");
 
-        $("#gridThongDiep").data().kendoGrid.thead.prepend("<tr class='htable'  style='font-size:11px;' cellspacing='0'><th style='border-bottom:none;border-left:none;'></th><th style='border-bottom:none;'></th><th style='border-bottom:none;'></th><th colspan='26'>Số lần gửi tin nhắn theo tuần</th></tr>");
-
+        $("#gridThongDiep").data().kendoGrid.thead.prepend("<tr class='htable'  style='font-size:11px;' cellspacing='0'><th style='border-bottom:none;border-left:none;'></th><th style='border-bottom:none;'></th><th style='border-bottom:none;'></th><th colspan='26'>Số lần gửi tin nhắn theo tuần</th><th style='border-bottom:none;'></th></tr>");
+        function runAggregate() {
+            $("#gridThongDiep .k-footer-template").find("td").eq(3).html(dataSourceMessage.aggregates().T1.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(4).html(dataSourceMessage.aggregates().T2.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(5).html(dataSourceMessage.aggregates().T3.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(6).html(dataSourceMessage.aggregates().T4.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(7).html(dataSourceMessage.aggregates().T5.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(8).html(dataSourceMessage.aggregates().T6.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(9).html(dataSourceMessage.aggregates().T7.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(10).html(dataSourceMessage.aggregates().T8.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(11).html(dataSourceMessage.aggregates().T9.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(12).html(dataSourceMessage.aggregates().T10.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(13).html(dataSourceMessage.aggregates().T11.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(14).html(dataSourceMessage.aggregates().T12.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(15).html(dataSourceMessage.aggregates().T13.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(16).html(dataSourceMessage.aggregates().T14.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(17).html(dataSourceMessage.aggregates().T15.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(18).html(dataSourceMessage.aggregates().T16.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(19).html(dataSourceMessage.aggregates().T17.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(20).html(dataSourceMessage.aggregates().T18.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(21).html(dataSourceMessage.aggregates().T19.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(22).html(dataSourceMessage.aggregates().T20.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(23).html(dataSourceMessage.aggregates().T21.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(24).html(dataSourceMessage.aggregates().T22.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(25).html(dataSourceMessage.aggregates().T23.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(26).html(dataSourceMessage.aggregates().T24.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(27).html(dataSourceMessage.aggregates().T25.sum);
+            $("#gridThongDiep .k-footer-template").find("td").eq(28).html(dataSourceMessage.aggregates().T26.sum);
+        }
         function getMessages() {
             $.ajax({
                 type: "GET",
@@ -157,9 +215,10 @@
                 data: { LoaiTinNhan: filterLoaiTinNhan.value(), LoaiBenhNhan: filterLoaiBenh.value() },               
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (data) {
-                    if (data != null) {
+                success: function (data) {                    
+                    if (data != null) {                        
                         dataSourceMessage.data(data);
+                        runAggregate();
                     } else {
                         dataSourceMessage.data({});
                     }
@@ -323,7 +382,7 @@ Loại bệnh nhân:&nbsp;<input id="filterLoaiBenh" style="width:100px" />&nbsp
 <input class="btn btn-primary" style="width:50px;cursor:pointer;" id="buttonSearch" name="buttonSearch" value="Tìm" readonly /><br />
 <p style="height:3px"></p>
 <font color="#EE7318"><div id="log">&nbsp;</div></font>
-<div id="gridThongDiep"></div>
+<div id="gridThongDiep" style="margin:0px;padding:0px;"></div>
 <p style="height:3px"></p>
 <font color="#08C"><strong>Bảng nhập liệu</strong></font>
 <br /><br />
