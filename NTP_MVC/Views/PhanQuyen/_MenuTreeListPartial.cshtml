@@ -1,26 +1,26 @@
-@{
+﻿@{
     var treeList = Html.DevExpress().TreeList(settings =>
     {
         settings.Name = "MenuTreeList";
-        settings.CallbackRouteValues = new { Controller = "Role", Action = "MenuTreeListPartial" };
+        settings.CallbackRouteValues = new { Controller = "Menu", Action = "MenuTreeListPartial" };
 
 
         settings.AutoGenerateColumns = false;
 
         settings.KeyFieldName = "MenuID";
-        settings.ParentFieldName = "AD_Menu";
+        settings.ParentFieldName = "MenuParentID";
+        settings.Columns.Add(
+                column =>
+                {
+                    column.FieldName = "AD_Menu";
+                    column.Caption = "Tên Menu";
+                });
         settings.Columns.Add(
             column =>
             {
                 column.FieldName = "AllowAccess";
-            }
-        );
-        settings.Columns.Add(
-            column =>
-            {
-                column.FieldName = "AD_Menu";
-            }
-     );
+                column.Caption = "Cho phép truy cập";
+            });
 
         settings.SettingsPager.Visible = true;
         settings.SettingsSelection.Enabled = true;

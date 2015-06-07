@@ -1,4 +1,4 @@
-﻿@model NTP_MVC.Models.BCThuNhanModel
+﻿@model NTP_MVC.Models.BCDieuTriModel
 @using DevExpress.Web.Rendering
 @{
     var grid = Html.DevExpress().GridView(settings =>
@@ -6,10 +6,10 @@
         /*Initial*/
         settings.Name = "GridBCKetQuaDT";
         settings.Width = Unit.Percentage(100);
-        settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCKetQuaDT" };
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "BC_TNBNLAddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "BC_TNBNLUpdate" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "BC_TNBNLDelete" };
+        settings.CallbackRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDT" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCKetQuaDT", Action = "BC_TNBNLAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCKetQuaDT", Action = "BC_TNBNLUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCKetQuaDT", Action = "BC_TNBNLDelete" };
         settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] =cboQuy.GetValue(); e.customArgs['Nam'] =txtNam.GetText(); }";
 
         /* Behavior */
@@ -23,17 +23,17 @@
         settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
         settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
 
-        settings.ClientSideEvents.FocusedRowChanged = "OnGridBCThuNhanBNLaoFocusedRowChanged";
-        settings.ClientSideEvents.RowDblClick = "OnGridBCThuNhanBNLaoRowDblClick";
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridBCKetQuaDTFocusedRowChanged";
 
         /* Pager */
         settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
+        settings.ClientSideEvents.RowDblClick = "OnGridBCKetQuaDTRowDblClick";
         settings.SettingsPager.AllButton.Text = "Tất cả";
         settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
         settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
         settings.SettingsPager.Visible = true;
 
-        settings.KeyFieldName = "ID_BCThunhanBNLao";
+        settings.KeyFieldName = "ID_BCKetQuaDT";
 
         //settings.Columns.Add(i =>
         //{
@@ -81,5 +81,5 @@
         });
 
 
-    }).Bind(Model.BC_ThuNhanBNLao).GetHtml();
+    }).Bind(Model != null ? Model.BC_KQDieuTriBNLao : null).GetHtml();
 }

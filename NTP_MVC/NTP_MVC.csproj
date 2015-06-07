@@ -52,6 +52,9 @@
     <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvertMessage">
+      <HintPath>packages\FPTSMS\AdvertMessage.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=3.1.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Common.Logging.3.1.0\lib\net40\Common.Logging.dll</HintPath>
@@ -60,12 +63,31 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Common.Logging.Core.3.1.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Charts.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Dashboard.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Dashboard.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v14.2.Web.Mvc5, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -141,6 +163,7 @@
     <Reference Include="DevExpress.XtraCharts.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraCharts.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -153,6 +176,7 @@
     <Reference Include="DevExpress.XtraReports.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraReports.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraScheduler.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -190,6 +214,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FeedBackMessage">
+      <HintPath>packages\FPTSMS\FeedBackMessage.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -207,6 +234,9 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NghiepCT.Utilities">
+      <HintPath>packages\FPTSMS\NghiepCT.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>packages\NPOI.2.1.3.1\lib\net40\NPOI.dll</HintPath>
@@ -435,6 +465,12 @@
     <Content Include="Reports\NTPDataSet.xsc">
       <DependentUpon>NTPDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\BangTongHopKiemKe.rpt" />
+    <Content Include="Reports\BaoCao_SuDungThuoc_Huyen.rpt" />
+    <Content Include="Reports\BaoCao_SuDungThuoc_Tinh.rpt" />
+    <Content Include="Reports\BaoCao_SuDungThuoc_Tinh_Huyen.rpt" />
+    <Content Include="Reports\BaoCao_SuDungThuoc_TuyenHuyen.rpt" />
+    <Content Include="Reports\BN_BCHOATDONGPHOIHOPDIEUTRI.rpt" />
     <None Include="Reports\NTPDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -535,6 +571,7 @@
     <Content Include="Views\BCThuNhanBNLao\GridBCTN2.cshtml" />
     <Content Include="Views\BCThuNhanBNLao\GridBCTN3.cshtml" />
     <Content Include="Views\PhieuXetNghiem\_DocumentViewerPartial.cshtml" />
+    <Content Include="Views\PhanQuyen\_DSUserGridViewPartial.cshtml" />
     <None Include="Views\PhieuXetNghiem\_GridPhieuXetNghiem.cshtml" />
     <None Include="Views\PhieuXetNghiem\_FormPhieuXetNghiem.cshtml" />
     <None Include="Views\PhieuXetNghiem\_GridKetQuaXetNghiem.cshtml" />
@@ -552,7 +589,6 @@
     <Content Include="Views\BCThuNhanBNLao\EditBCThuNhanBNLao.cshtml" />
     <Content Include="Views\BCKetQuaDT\_ComboBoxHuyen.cshtml" />
     <Content Include="Views\BCKetQuaDT\_ComboBoxTinh.cshtml" />
-    <Content Include="Views\BCKetQuaDT\EditBCKetQuaDT.cshtml" />
     <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT.cshtml" />
     <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT1.cshtml" />
     <Content Include="Views\BCKetQuaDT\GridBCKetQuaDT2.cshtml" />
@@ -659,11 +695,12 @@
     <Compile Include="Models\AD_User_Kho.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BCDieuTriModel.cs" />
     <Compile Include="Models\BCThuNhanModel.cs" />
     <Compile Include="Models\BC_KetQuaDT.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BC_KetQuaDTLaoIN.cs">
+    <Compile Include="Models\BC_KetQuaDT1.cs">
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BC_KetQuaXN.cs">
@@ -853,9 +890,9 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\DanhSachBenhNhanPrint.resx">
       <DependentUpon>DanhSachBenhNhanPrint.cs</DependentUpon>
     </EmbeddedResource>

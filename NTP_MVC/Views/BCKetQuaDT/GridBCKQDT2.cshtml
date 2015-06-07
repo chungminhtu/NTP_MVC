@@ -6,10 +6,10 @@
         /*Initial*/
         settings.Name = "GridBCTN2";
         settings.Width = Unit.Percentage(100);
-        settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCTN2" };
-        settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCTN2BatchEditingUpdateModel" };
+        settings.CallbackRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCTN2" };
+        settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCTN2BatchEditingUpdateModel" };
 
-        settings.ClientSideEvents.BeginCallback = "GridBCThuNhanBNLao_OnBeginCallback";
+        settings.ClientSideEvents.BeginCallback = "GridBCKetQuaDT_OnBeginCallback";
 
         /* Behavior */ 
         settings.SettingsBehavior.AllowFocusedRow = true; 
@@ -28,7 +28,7 @@
         settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
         settings.SettingsPager.Visible = true;
 
-        settings.KeyFieldName = "ID_BCThunhanBNLaoP2;ID_BCThunhanBNLao;Phanloai";
+        settings.KeyFieldName = "ID_BCKetQuaDTP2;ID_BCKetQuaDT;Phanloai";
  
         settings.Columns.Add(i =>
         {
@@ -271,5 +271,5 @@
     {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
-    grid.Bind(ViewData["ListBCThuNhanBNLao2"]).GetHtml();
+    grid.Bind(ViewData["ListBCKetQuaDT2"]).GetHtml();
 }

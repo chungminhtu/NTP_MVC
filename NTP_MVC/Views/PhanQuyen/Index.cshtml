@@ -1,4 +1,12 @@
-﻿@Html.DevExpress().Splitter(settings =>
+﻿<script>
+    $(function () {
+        MenuTreeList.PerformCallback();
+        RoleGridView.PerformCallback();
+    });
+</script>
+
+
+@Html.DevExpress().Splitter(settings =>
 {
     settings.Name = "Splitter";
     settings.Height = 400;
@@ -8,14 +16,27 @@
     {
         pane.SetContent(() =>
         {
-            @Html.Action("RoleGridViewPartial"); 
+            Html.DevExpress().Label(lbsettings =>
+            {
+                lbsettings.Text = "DANH SÁCH QUYỀN";
+            });
+            Html.RenderPartial("_RoleGridViewPartial"); 
         });
     });
     settings.Panes.Add(pane =>
     {
         pane.SetContent(() =>
         {
-            @Html.Action("MenuTreeListPartial");
+            Html.DevExpress().Label(lbsettings =>
+            {
+                lbsettings.Text = "DANH SÁCH MENU";
+            });
+            Html.RenderPartial("_MenuTreeListPartial");
         });
     });
 }).GetHtml()
+@Html.Action("DSUserGridViewPartial")
+
+
+
+

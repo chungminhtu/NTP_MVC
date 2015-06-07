@@ -1,10 +1,11 @@
-﻿<script>
-    var ID_BCThuNhanBNLao = "";
-    var ID_BCThuNhanBNLaoCD = "";
+﻿
+<script>
+    var ID_BCKetQuaDT = "";
+    var ID_BCKetQuaDTCD = "";
 
-    function OnGridBCThuNhanBNLaoFocusedRowChanged(s, e) {
+    function OnGridBCKetQuaDTFocusedRowChanged(s, e) {
         if (s.GetFocusedRowIndex() != -1) {
-            ID_BCThuNhanBNLao = s.GetRowKey(s.GetFocusedRowIndex());
+            ID_BCKetQuaDT = s.GetRowKey(s.GetFocusedRowIndex());
             update3Grid();
             GridBCTN1.PerformCallback();
             GridBCTN2.PerformCallback();
@@ -15,27 +16,27 @@
     function update3Grid() {
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Update3Grid", "BCThuNhanBNLao")',
-            data: { ID_BCThuNhanBNLao: ID_BCThuNhanBNLao }
+            url: '@Url.Action("Update3Grid", "BCKetQuaDT")',
+            data: { ID_BCKetQuaDT: ID_BCKetQuaDT }
         });
     }
 
-    function GridBCThuNhanBNLao_OnBeginCallback(s, e) {
-        e.customArgs["ID_BCThuNhanBNLao"] = ID_BCThuNhanBNLao;
+    function GridBCKetQuaDT_OnBeginCallback(s, e) {
+        e.customArgs["ID_BCKetQuaDT"] = ID_BCKetQuaDT;
     }
 
-    function OnGridBCThuNhanBNLaoRowDblClick(s, e) {
-        GridBCThuNhanBNLao.StartEditRow(GridBCThuNhanBNLao.GetFocusedRowIndex());
+    function OnGridBCKetQuaDTRowDblClick(s, e) {
+        GridBCKetQuaDT.StartEditRow(GridBCKetQuaDT.GetFocusedRowIndex());
     }
     $(function () {
-        GridBCThuNhanBNLao.PerformCallback();
+        GridBCKetQuaDT.PerformCallback();
     });
 
     function OnGridBNFocusedRowChanged(s, e) {
-        ID_BCThuNhanBNLao = s.GetRowKey(s.GetFocusedRowIndex());
+        ID_BCKetQuaDT = s.GetRowKey(s.GetFocusedRowIndex());
     }
     function OnGridBNCDFocusedRowChanged(s, e) {
-        ID_BCThuNhanBNLaoCD = s.GetRowKey(s.GetFocusedRowIndex());
+        ID_BCKetQuaDTCD = s.GetRowKey(s.GetFocusedRowIndex());
     }
 
     var currentColumnName;
@@ -63,7 +64,7 @@
 </script>
 @Html.DevExpress().FormLayout(settings =>
 {
-    settings.Name = "ListBCThuNhanBNLao";
+    settings.Name = "ListBCKetQuaDT";
     settings.RequiredMarkDisplayMode = RequiredMarkMode.None;
     settings.Width = Unit.Percentage(100);
     settings.ColCount = 1;
@@ -109,7 +110,7 @@
                                 MyButton.Name = "btnSearch";
                                 MyButton.Width = 90;
                                 MyButton.Text = "Xem";
-                                MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao.PerformCallback(); }";
+                                MyButton.ClientSideEvents.Click = "function() { GridBCKetQuaDT.PerformCallback(); }";
                                 MyButton.Images.Image.Url = "~/Content/Images/blue_search.png";
                                 MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                             }).Render();
@@ -135,7 +136,7 @@
                    MyButton.Name = "btnThemMoiBC";
                    MyButton.Width = 90;
                    MyButton.Text = "Thêm mới";
-                   MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao.AddNewRow();}";
+                   MyButton.ClientSideEvents.Click = "function() { GridBCKetQuaDT.AddNewRow();}";
                    MyButton.Images.Image.Url = "~/Content/Images/add.png";
                    MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                }).Render();
@@ -147,7 +148,7 @@
                         MyButton.Text = "Sửa";
                         MyButton.Images.Image.Url = "~/Content/Images/edit.png";
                         MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                        MyButton.ClientSideEvents.Click = "function() { GridBCThuNhanBNLao.StartEditRow(GridBCThuNhanBNLao.GetFocusedRowIndex());}";
+                        MyButton.ClientSideEvents.Click = "function() { GridBCKetQuaDT.StartEditRow(GridBCKetQuaDT.GetFocusedRowIndex());}";
 
                     }).Render();
             Html.DevExpress().Button(
@@ -157,7 +158,7 @@
                                    myButton.Text = "Lưu";
                                    myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                    myButton.Images.Image.Url = "~/Content/Images/save.png";
-                                   myButton.ClientSideEvents.Click = "function( ) { GridBCThuNhanBNLao.UpdateEdit();   GridBCTN1.PerformCallback();}";
+                                   myButton.ClientSideEvents.Click = "function( ) { GridBCKetQuaDT.UpdateEdit();   GridBCTN1.PerformCallback();}";
                                    myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                                }).GetHtml();
             Html.DevExpress().Button(
@@ -167,7 +168,7 @@
                       myButton.Text = "Hủy";
                       myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                       myButton.Images.Image.Url = "~/Content/Images/cancel.png";
-                      myButton.ClientSideEvents.Click = "function( ) { GridBCThuNhanBNLao.CancelEdit();  }";
+                      myButton.ClientSideEvents.Click = "function( ) { GridBCKetQuaDT.CancelEdit();  }";
                       myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                   }).GetHtml();
             Html.DevExpress().Button(
@@ -178,7 +179,7 @@
                         MyButton.Text = "Xóa";
                         MyButton.Images.Image.Url = "~/Content/Images/delete.png";
                         MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                        MyButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có muốn xóa toàn bộ Báo cáo đã nhập?'))  { GridBCThuNhanBNLao.DeleteRow(); } }";
+                        MyButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có muốn xóa toàn bộ Báo cáo đã nhập?'))  { GridBCKetQuaDT.DeleteRow(); } }";
                     }).Render();
         });
     }).GetHtml();
@@ -188,7 +189,7 @@
         settings =>
         {
             settings.Name = "splResizing";
-            settings.Height = 800;
+            settings.Height = 2000;
             settings.Width = Unit.Percentage(100);
             settings.Styles.Pane.Paddings.Padding = 0;
 
@@ -200,7 +201,7 @@
                 listBoxPane.ShowCollapseBackwardButton = DefaultBoolean.True;
                 listBoxPane.SetContent(() =>
                 {
-                    Html.RenderPartial("GridBCThuNhanBNLao");
+                    Html.RenderPartial("GridBCKetQuaDT");
                 });
             });
             settings.Panes.Add(contentPane =>
@@ -213,7 +214,7 @@
                     gridPane.MinSize = 100;
                     gridPane.SetContent(() =>
                     {
-                        Html.RenderPartial("EditBCTN");
+                        Html.RenderPartial("EditBCKQDT");
                     });
                 });
             });

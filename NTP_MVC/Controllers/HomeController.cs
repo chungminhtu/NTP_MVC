@@ -8,10 +8,18 @@ using NTP_MVC.Models;
 namespace NTP_MVC.Controllers
 {
     public class HomeController : Controller
-    { 
+    {
         public ActionResult Index()
         {
-            return View();
-        } 
+            var MaTinh = Session["MATINH"] + "";
+            if (MaTinh != "")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
     }
 }

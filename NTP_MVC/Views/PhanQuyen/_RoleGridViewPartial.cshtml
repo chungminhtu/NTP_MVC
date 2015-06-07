@@ -1,17 +1,23 @@
-@{
-	var grid = Html.DevExpress().GridView(settings => {
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
         settings.Name = "RoleGridView";
-        settings.CallbackRouteValues = new { Controller = "Role", Action = "RoleGridViewPartial" };
+        settings.CallbackRouteValues = new { Controller = "PhanQuyen", Action = "RoleGridViewPartial" };
 
 
-		settings.KeyFieldName = "RoleID";
+        settings.KeyFieldName = "RoleID";
 
-		settings.SettingsPager.Visible = false;
-		settings.Settings.ShowGroupPanel = false;
-		settings.Settings.ShowFilterRow = false;
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsPager.Visible = false;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-				settings.Columns.Add("RoleName");
-			});
+        settings.Columns.Add(
+                 column =>
+                 {
+                     column.FieldName = "RoleName";
+                     column.Caption = "Tên quyền";
+                 });
+    });
 }
 @grid.Bind(Model).GetHtml()

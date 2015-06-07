@@ -14,7 +14,7 @@ namespace NTP_MVC.Models
     
     public partial class BC_KetQuaDT
     {
-        public int ID_BC_KetquaDT { get; set; }
+        public int ID_BCKetQuaDT { get; set; }
         public byte Quy { get; set; }
         public int Nam { get; set; }
         public string DVBaocao { get; set; }

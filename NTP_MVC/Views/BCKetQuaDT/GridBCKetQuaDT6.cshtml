@@ -4,12 +4,12 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         /*Initial*/
-        settings.Name = "GridBCThuNhanBNLao2";
+        settings.Name = "GridBCKetQuaDT6";
         settings.Width = Unit.Percentage(100);
-        settings.CallbackRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2" };
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2AddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2Update" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCThuNhanBNLao", Action = "GridBCThuNhanBNLao2Delete" };
+        settings.CallbackRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDT6" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDT6AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDT6Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCKetQuaDT", Action = "GridBCKetQuaDT6Delete" };
 
         /* Behavior */
         //settings.SettingsBehavior.AllowSelectByRowClick = true;
@@ -50,7 +50,7 @@
         settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
         settings.SettingsPager.Visible = true;
          
-        settings.KeyFieldName = "ID_BCThunhanBNLaoP1";
+        settings.KeyFieldName = "ID_BCKetQuaDTP1";
  
         settings.Columns.Add(i =>
         {
@@ -307,5 +307,5 @@
     {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
-    grid.Bind(ViewData["ListBCThuNhanBNLao2"]).GetHtml();
+    grid.Bind(ViewData["ListBCKetQuaDT6"]).GetHtml();
 }
