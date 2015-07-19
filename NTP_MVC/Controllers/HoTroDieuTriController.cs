@@ -1451,7 +1451,7 @@ namespace NTP_MVC.Controllers
                 input = reader.ReadToEnd();
             }
             JObject req = JObject.Parse(input);
-            long benhNhanId = (long)req["benhNhanId"];
+            long benhNhanId = (long)req["ID_BenhNhan"];
             var model = db.HTDT_BaoCaoGiamSat;
             List<HTDT_BaoCaoGiamSat> giamsats = model.ToList().Where(a => a.ID_BenhNhan == benhNhanId).ToList();
 
@@ -1501,10 +1501,10 @@ namespace NTP_MVC.Controllers
                     c = (HSSFCell)r.GetCell(1);
                     c.SetCellValue("Họ tên bệnh nhân: " + benhNhan.HoTen);
 
-                    c = (HSSFCell)r.GetCell(10);
+                    c = (HSSFCell)r.GetCell(12);
                     c.SetCellValue("Tuổi: " + benhNhan.Tuoi);
 
-                    c = (HSSFCell)r.GetCell(11);
+                    c = (HSSFCell)r.GetCell(13);
                     String strGender = (bool)benhNhan.Gioitinh ? "Nam" : "Nữ";
                     c.SetCellValue("Giới: " + strGender);
 
@@ -1520,12 +1520,12 @@ namespace NTP_MVC.Controllers
                     c = (HSSFCell)r.GetCell(1);
                     c.SetCellValue("Ngày bắt đầu điều trị: " + ((DateTime)dieuTri.NgayDT).ToString("dd/MM/yyyy"));
 
-                    c = (HSSFCell)r.GetCell(9);
+                    c = (HSSFCell)r.GetCell(11);
                     c.SetCellValue("Phác đồ điều trị: " + phacdos[(int)dieuTri.ID_PhacdoDT - 1].Ten_PhacdoDT);
 
                     r = (HSSFRow)s.GetRow(9);
                     c = (HSSFCell)r.GetCell(1);
-                    c.SetCellValue("Liều lượng thuốc/ngày: H: " + giamsats[0].LieuLuong_H + "       E: " + giamsats[0].LieuLuong_E + "        RH: " + giamsats[0].LieuLuong_RH);
+                    c.SetCellValue("Liều lượng thuốc/ngày: H: " + giamsats[0].LieuLuong_H + "       E: " + giamsats[0].LieuLuong_E + "        RH: " + giamsats[0].LieuLuong_RH + "        RHZ: " + giamsats[0].LieuLuong_RHZ);
 
                     for (int rownum = 15; rownum < giamsats.Count + 15; rownum++)
                     {
@@ -1541,43 +1541,51 @@ namespace NTP_MVC.Controllers
 
                         c = (HSSFCell)r.CreateCell(3, CellType.Numeric);
                         c.CellStyle = cs1;
-                        c.SetCellValue((int)giamsats[rownum - 15].LuongCap_H);
+                        c.SetCellValue((double)giamsats[rownum - 15].LuongCap_H);
 
                         c = (HSSFCell)r.CreateCell(4);
                         c.CellStyle = cs1;
-                        c.SetCellValue((int)giamsats[rownum - 15].LuongCap_E);
+                        c.SetCellValue((double)giamsats[rownum - 15].LuongCap_E);
 
                         c = (HSSFCell)r.CreateCell(5);
                         c.CellStyle = cs1;
-                        c.SetCellValue((int)giamsats[rownum - 15].LuongCap_RH);
+                        c.SetCellValue((double)giamsats[rownum - 15].LuongCap_RH);
 
                         c = (HSSFCell)r.CreateCell(6);
                         c.CellStyle = cs1;
-                        c.SetCellValue((int)giamsats[rownum - 15].ConLai_H);
+                        c.SetCellValue((double)giamsats[rownum - 15].LuongCap_RHZ);
 
                         c = (HSSFCell)r.CreateCell(7);
                         c.CellStyle = cs1;
-                        c.SetCellValue((int)giamsats[rownum - 15].ConLai_E);
+                        c.SetCellValue((double)giamsats[rownum - 15].ConLai_H);
 
                         c = (HSSFCell)r.CreateCell(8);
                         c.CellStyle = cs1;
-                        c.SetCellValue((int)giamsats[rownum - 15].ConLai_RH);
+                        c.SetCellValue((double)giamsats[rownum - 15].ConLai_E);
 
                         c = (HSSFCell)r.CreateCell(9);
-                        c.CellStyle = cs;
-                        c.SetCellValue(giamsats[rownum - 15].NhanXetCuaGiamSatVien);
+                        c.CellStyle = cs1;
+                        c.SetCellValue((double)giamsats[rownum - 15].ConLai_RH);
 
                         c = (HSSFCell)r.CreateCell(10);
-                        c.CellStyle = cs;
-                        c.SetCellValue(giamsats[rownum - 15].DienBienDieuTri);
+                        c.CellStyle = cs1;
+                        c.SetCellValue((double)giamsats[rownum - 15].ConLai_RHZ);
 
                         c = (HSSFCell)r.CreateCell(11);
                         c.CellStyle = cs;
-                        c.SetCellValue(giamsats[rownum - 15].DanDoBenhNhan);
+                        c.SetCellValue(giamsats[rownum - 15].NhanXetCuaGiamSatVien);
 
                         c = (HSSFCell)r.CreateCell(12);
                         c.CellStyle = cs;
+                        c.SetCellValue(giamsats[rownum - 15].DienBienDieuTri);
+
                         c = (HSSFCell)r.CreateCell(13);
+                        c.CellStyle = cs;
+                        c.SetCellValue(giamsats[rownum - 15].DanDoBenhNhan);
+
+                        c = (HSSFCell)r.CreateCell(14);
+                        c.CellStyle = cs;
+                        c = (HSSFCell)r.CreateCell(15);
                         c.CellStyle = cs;
                     }
                     wb.Write(ms);
@@ -1592,16 +1600,25 @@ namespace NTP_MVC.Controllers
         }
 
         [WebMethod]
-        public int SaveBaoCaoGiamSatBenhNhan()
+        public string SaveBaoCaoGiamSatBenhNhan()
         {
             string input;
             using (var reader = new StreamReader(Request.InputStream))
             {
                 input = reader.ReadToEnd();
             }
-            JObject req = JObject.Parse(input);            
-
-            return SaveBaoCaoGiamSatBenhNhan(req);
+            JObject req = JObject.Parse(input);
+            SaveBaoCaoGiamSatBenhNhan(req);
+            List<BaoCaoGiamSatVO> giamsats = GetDsGiamSatCuaBenhNhan(req);
+            if (giamsats != null && giamsats.Count() > 0)
+            {
+                JavaScriptSerializer TheSerializer = new JavaScriptSerializer();
+                return TheSerializer.Serialize(giamsats);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private int SaveBaoCaoGiamSatBenhNhan(JObject req)
@@ -1613,9 +1630,9 @@ namespace NTP_MVC.Controllers
             List<SqlParameter> parameterList = new List<SqlParameter>();
             if (idGS > 0)
             {
-                sql = "UPDATE dbo.HTDT_BaoCaoGiamSat SET Diachi=@P2,Tuoi=@P3,LieuLuong_E=@P4,LieuLuong_H=@P5,LieuLuong_RH=@P6,"
-                + " LuongCap_E=@P7,LuongCap_H=@P8,LuongCap_RH=@P9,ConLai_E=@P10,ConLai_H=@P11,ConLai_RH=@P12,Sodienthoai=@P13,"
-                + " NgayGiamSat=@P14,NgayCapThuocGanNhat=@P15,NhanXetCuaGiamSatVien=@P16,DienBienDieuTri=@P17,"
+                sql = "UPDATE dbo.HTDT_BaoCaoGiamSat SET Diachi=@P2,Tuoi=@P3,LieuLuong_E=@P4,LieuLuong_H=@P5,LieuLuong_RH=@P6,LieuLuong_RHZ=@LieuLuong_RHZ,"
+                + " LuongCap_E=@P7,LuongCap_H=@P8,LuongCap_RH=@P9,LuongCap_RHZ=@LuongCap_RHZ,ConLai_E=@P10,ConLai_H=@P11,ConLai_RH=@P12,Sodienthoai=@P13,"
+                + " ConLai_RHZ=@ConLai_RHZ,NgayGiamSat=@P14,NgayCapThuocGanNhat=@P15,NhanXetCuaGiamSatVien=@P16,DienBienDieuTri=@P17,"
                 + " DanDoBenhNhan=@P18,NhapTuMobile=@P19,NgayNhapBaoCao=@P20"
                 + " WHERE ID=@P21";
                 parameterList.Add(new SqlParameter("@P21", (long)req["ID"]));
@@ -1624,8 +1641,8 @@ namespace NTP_MVC.Controllers
             {
                 sql = "INSERT INTO dbo.HTDT_BaoCaoGiamSat (ID_BenhNhan,ID_SoDieuTri,Diachi,Tuoi,LieuLuong_E,LieuLuong_H,LieuLuong_RH, "
                 + " LuongCap_E,LuongCap_H,LuongCap_RH,ConLai_E,ConLai_H,ConLai_RH,Sodienthoai,NgayGiamSat,NgayCapThuocGanNhat,"
-                + " NhanXetCuaGiamSatVien,DienBienDieuTri,DanDoBenhNhan,NhapTuMobile,NgayNhapBaoCao)"
-                + " VALUES (@P0,@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8,@P9,@P10,@P11,@P12,@P13,@P14,@P15,@P16,@P17,@P18,@P19,@P20)";
+                + " NhanXetCuaGiamSatVien,DienBienDieuTri,DanDoBenhNhan,NhapTuMobile,NgayNhapBaoCao,LieuLuong_RHZ,LuongCap_RHZ,ConLai_RHZ)"
+                + " VALUES (@P0,@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8,@P9,@P10,@P11,@P12,@P13,@P14,@P15,@P16,@P17,@P18,@P19,@P20,@LieuLuongRHZ,@LuongCap_RHZ,@ConLai_RHZ)";
                 parameterList.Add(new SqlParameter("@P0", (long)req["ID_BenhNhan"]));
                 parameterList.Add(new SqlParameter("@P1", (long)req["ID_SoDieuTri"]));
             }
@@ -1649,6 +1666,9 @@ namespace NTP_MVC.Controllers
             parameterList.Add(new SqlParameter("@P18", (string)req["DanDoBenhNhan"]));
             parameterList.Add(new SqlParameter("@P19", (bool)req["NhapTuMobile"]));
             parameterList.Add(new SqlParameter("@P20", DateTime.Now));
+            parameterList.Add(new SqlParameter("@LieuLuongRHZ", (double)req["LieuLuong_RHZ"]));
+            parameterList.Add(new SqlParameter("@LuongCap_RHZ", (double)req["LuongCap_RHZ"]));
+            parameterList.Add(new SqlParameter("@ConLai_RHZ", (double)req["ConLai_RHZ"]));
 
             SqlParameter[] parameters = parameterList.ToArray();
             int result = db.Database.ExecuteSqlCommand(sql, parameters);
@@ -1917,10 +1937,10 @@ namespace NTP_MVC.Controllers
 
         private List<BaoCaoGiamSatVO> GetDsGiamSatCuaBenhNhan(JObject req)
         {
-            long benhNhanId = (long)req["benhNhanId"];
+            long benhNhanId = (long)req["ID_BenhNhan"];
 
-            string sql = "SELECT ID, ID_BenhNhan, ID_SoDieuTri, Diachi, Tuoi, LieuLuong_E, LieuLuong_H, LieuLuong_RH, LuongCap_E, "
-                + " LuongCap_H, LuongCap_RH, ConLai_E, ConLai_H, ConLai_RH, Sodienthoai, NgayGiamSat, NgayCapThuocGanNhat, "
+            string sql = "SELECT ID, ID_BenhNhan, ID_SoDieuTri, Diachi, Tuoi, LieuLuong_E, LieuLuong_H, LieuLuong_RH,LieuLuong_RHZ, LuongCap_E, "
+                + " LuongCap_H, LuongCap_RH, LuongCap_RHZ, ConLai_E, ConLai_H, ConLai_RH, ConLai_RHZ, Sodienthoai, NgayGiamSat, NgayCapThuocGanNhat, "
                 + " NhanXetCuaGiamSatVien, DienBienDieuTri, DanDoBenhNhan, NhapTuMobile, NgayNhapBaoCao, "
                 + " CONVERT(VARCHAR(10),NgayGiamSat,103) AS StrNgayGiamSat  "
                 + " FROM dbo.HTDT_BaoCaoGiamSat "
@@ -1944,12 +1964,12 @@ namespace NTP_MVC.Controllers
             }
             JObject req = JObject.Parse(input);
             XoaBaoCaoGiamSat(req);
-            
-            BenhNhanGSGrid grid = GetGridBenhNhanGS(req, true);
-            if (grid != null)
+
+            List<BaoCaoGiamSatVO> giamsats = GetDsGiamSatCuaBenhNhan(req);
+            if (giamsats != null && giamsats.Count() > 0)
             {
                 JavaScriptSerializer TheSerializer = new JavaScriptSerializer();
-                return TheSerializer.Serialize(grid);
+                return TheSerializer.Serialize(giamsats);
             }
             else
             {
