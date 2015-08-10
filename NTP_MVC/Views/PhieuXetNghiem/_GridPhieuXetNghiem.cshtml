@@ -7,7 +7,8 @@
         settings.Width = Unit.Percentage(100);
 
         settings.CallbackRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiem" };
-        ///settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }";
+       // settings.ClientSideEvents.BeginCallback = "function(s, e) { if(" + Session["ID_BenhNhan"] + "=='' ){alert('Chưa tạo mới bệnh nhân!'); e.processOnServer = false;  } else {e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }}";
+       // settings.ClientSideEvents.EndCallback = "function(s, e) { if(" + Session["ID_BenhNhan"] + "=='' ){alert('Chưa tạo mới bệnh nhân!');  GridPhieuXetNghiem.CancelEdit(); } else {e.customArgs['ID_BenhNhan'] = " + Session["ID_BenhNhan"] + "; }}";
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PhieuXetNghiem", Action = "GridPhieuXetNghiemUpdate" };

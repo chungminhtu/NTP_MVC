@@ -61,8 +61,29 @@
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
         
         /* Column Definitions */
-        settings.Columns.Add("HoTen");
-        settings.Columns.Add("SoCMND");
+       
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "HoTen";
+            i.Caption = "Họ và tên"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+        
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "SoCMND";
+            i.Caption = "Số CMND"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "Tuoi";
+            i.Caption = "Tuổi"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+
+        
         settings.Columns.Add("Tuoi");
 
         settings.Columns.Add(i =>
@@ -75,16 +96,47 @@
             i.ReadOnly = true;
             var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
             comboBoxProperties.DropDownHeight = 0;
-            comboBoxProperties.Items.Add("Nam", false);
-            comboBoxProperties.Items.Add("Nữ", true); 
+            comboBoxProperties.Items.Add("Nam", true);
+            comboBoxProperties.Items.Add("Nữ", false); 
         });
-         
-        settings.Columns.Add("Diachi");
-        settings.Columns.Add("Sodienthoai");
-        settings.Columns.Add("BHYT");
-        settings.Columns.Add("NgheNghiep");
-        settings.Columns.Add("NoiGioiThieu"); 
 
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "Diachi";
+            i.Caption = "Địa chỉ"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "Sodienthoai";
+            i.Caption = "Số điện thoại"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "BHYT";
+            i.Caption = "Bảo hiểm y tế"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NgheNghiep";
+            i.Caption = "Nghề nghiệp"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });
+
+        settings.Columns.Add(i =>
+        {
+            i.FieldName = "NoiGioiThieu";
+            i.Caption = "Nơi giới thiệu"; 
+            i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
+        });  
+        
         ///*Edit Form*/
         //settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         //settings.SettingsPopup.EditForm.Modal = true;

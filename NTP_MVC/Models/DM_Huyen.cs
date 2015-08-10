@@ -14,15 +14,8 @@ namespace NTP_MVC.Models
     
     public partial class DM_Huyen
     {
-        public DM_Huyen()
-        {
-            this.SO_BenhNhan = new HashSet<SO_BenhNhan>();
-        }
-    
         public string MA_HUYEN { get; set; }
         public string TEN_HUYEN { get; set; }
         public string MA_TINH { get; set; }
-    
-        public virtual ICollection<SO_BenhNhan> SO_BenhNhan { get; set; }
     }
 }

@@ -62,6 +62,9 @@
             Html.DevExpress().SpinEditFor(i => i.Tuoi, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.Properties.MinValue = 1;
+                mySettings.Properties.MaxValue = 100; 
+                mySettings.Properties.SpinButtons.ShowIncrementButtons = false;
             }).Render();
         });
     });
@@ -75,6 +78,9 @@
             Html.DevExpress().SpinEditFor(i => i.Sodienthoai, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.Properties.MinValue = 1;
+                mySettings.Properties.MaxValue = int.MaxValue;
+                mySettings.Properties.SpinButtons.ShowIncrementButtons = false;
             }).Render();
         });
     });
@@ -88,6 +94,9 @@
             Html.DevExpress().SpinEditFor(i => i.SoCMND, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.Properties.MinValue = 1;
+                mySettings.Properties.MaxValue = int.MaxValue;
+                mySettings.Properties.SpinButtons.ShowIncrementButtons = false;
             }).Render();
         });
     });
@@ -124,7 +133,20 @@
         m.ColSpan = 1;
         m.SetNestedContent(() =>
         {
-            Html.RenderPartial("_ComboBoxTinh");
+            @Html.DevExpress().ComboBoxFor(i => i.MA_TINH, cbbSettings =>
+                {
+                    //cbbSettings.Name = "MA_TINH";
+                    cbbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                    cbbSettings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboBoxTinhList" };
+                    cbbSettings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    cbbSettings.Properties.ValueType = typeof(string);
+                    cbbSettings.Properties.ValueField = "MA_TINH";
+                    cbbSettings.Properties.TextField = "TEN_TINH";
+                    cbbSettings.Properties.Caption = "Tỉnh";
+                    cbbSettings.Properties.ClientSideEvents.SelectedIndexChanged = "function(s, e) {ComboBoxHuyen.PerformCallback(); }";
+                    cbbSettings.SelectedIndex = 0;
+                    //cbbSettings.ClientEnabled = Session["MATINH"] == "";
+                }).BindList(ViewData["Tinhs"]).Render();
         });
     });
     groupItem.Items.Add(m =>
@@ -134,7 +156,21 @@
         m.ColSpan = 1;
         m.SetNestedContent(() =>
         {
-            Html.RenderPartial("_ComboBoxHuyen");
+            @Html.DevExpress().ComboBoxFor(i => i.MA_HUYEN, cbbSettings =>
+                 {
+                     //cbbSettings.Name = "MA_HUYEN";
+                     cbbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                     cbbSettings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                     cbbSettings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboBoxHuyenList" };
+                     cbbSettings.Properties.CallbackPageSize = 5000;
+                     cbbSettings.Properties.ValueField = "MA_HUYEN";
+                     cbbSettings.Properties.TextField = "TEN_HUYEN";
+                     cbbSettings.Properties.ValueType = typeof(string);
+                     cbbSettings.Properties.Caption = "Huyện";
+                     cbbSettings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaTinh'] = ComboBoxTinh.GetValue(); }";
+                     cbbSettings.SelectedIndex = 0;
+                     //cbbSettings.ClientEnabled = Session["MAHUYEN"] == null;
+                 }).BindList(ViewData["Huyens"]).Render();
         });
     });
     groupItem.Items.Add(m =>
@@ -143,7 +179,18 @@
         m.ColSpan = 1;
         m.SetNestedContent(() =>
         {
-            Html.RenderAction("ComboBoxXaList","BenhNhan");
+
+            @Html.DevExpress().ComboBoxFor(i => i.MA_XA, cbbSettings =>
+            {
+                //cbbSettings.Name = "MA_XA";
+                cbbSettings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                cbbSettings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                cbbSettings.CallbackRouteValues = new { Controller = "BenhNhan", Action = "ComboBoxXaList" };
+                cbbSettings.Properties.CallbackPageSize = 500;
+                cbbSettings.Properties.ValueField = "MA_XA";
+                cbbSettings.Properties.TextField = "TEN_XA";
+                cbbSettings.Properties.ValueType = typeof(string);
+            }).BindList(ViewData["Xas"]).Render();
         });
     }); 
     groupItem.Items.Add(m =>
@@ -196,8 +243,8 @@
             }).Render();
         });
     });
-     
-    
+
+
     Session["ID_BenhNhan"] = Model != null ? Model.ID_BenhNhan + "" : "";
     Session["HoTen"] = Model != null ? Model.HoTen + "" : "";
     Session["Gioitinh"] = Model != null ? Model.Gioitinh == true ? "Nam" : "Nữ" : "";
@@ -205,5 +252,6 @@
     Session["Diachi"] = Model != null ? Model.Diachi + "" : "";
     Session["MATINH"] = Model != null ? Model.MA_TINH + "" : "";
     Session["MAHUYEN"] = Model != null ? Model.MA_HUYEN + "" : "";
-
+    //Html.HiddenFor(m => m.MA_TINH);
+    //Html.HiddenFor(m => m.MA_HUYEN); 
 }).GetHtml()

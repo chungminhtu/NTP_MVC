@@ -14,7 +14,36 @@ namespace NTP_MVC.Controllers
         // GET: BC_KetQuaDT
         public ActionResult Index()
         {
-            return View();
+            //Session["MATINH"] = "07";
+            //Session["MAHUYEN"] = "0703";
+            var MaTinh = Session["MATINH"] + "";
+            if (MaTinh != "")
+            {
+                var MaHuyen = Session["MAHUYEN"] + "";
+                ViewData["Tinhs"] = db.DM_Tinh.Where(t => t.MA_TINH.Equals(MaTinh)).ToList();
+                if (MaHuyen == "")
+                {
+                    List<DM_Huyen> ListHuyen = new List<DM_Huyen>();
+                    DM_Huyen h = new DM_Huyen() { TEN_HUYEN = "-- Tất cả--", MA_HUYEN = "0", MA_TINH = MaTinh };
+                    ListHuyen.Add(h);
+                    ListHuyen.AddRange(db.DM_Huyen.Where(m => m.MA_TINH.Equals(MaTinh)).ToList());
+                    ViewData["Huyens"] = ListHuyen;
+                }
+                else
+                {
+                    ViewData["Huyens"] = db.DM_Huyen.Where(b => b.MA_HUYEN.Equals(MaHuyen)).ToList();
+                }
+                GetListBCKetQuaDT();
+
+                BCDieuTriModel model = new BCDieuTriModel();
+                model.BC_KQDieuTriBNLao = ViewData["ListBCKetQuaDT"] as List<BC_KetQuaDT>;
+
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         NTP_DBEntities db = new NTP_DBEntities();
@@ -28,7 +57,7 @@ namespace NTP_MVC.Controllers
                 {
                     int MaQuy = Request.Params["MaQuy"] != null ? Convert.ToInt16(Request.Params["MaQuy"]) : 0;
                     int Nam = Request.Params["Nam"] != null ? Convert.ToInt32((Request.Params["Nam"] + "").TrimStart('"').TrimEnd('"')) : 0;
-
+                    if (MaQuy == 0) MaQuy = 1;
 
                     item.MA_TINH = Session["MATINH"] + "";
                     item.Quy = (byte)MaQuy;
@@ -179,9 +208,9 @@ namespace NTP_MVC.Controllers
         {
             string matinh = Session["MATINH"] + "";
 
-            int MaQuy = Request.Params["MaQuy"] != null ? Convert.ToInt16(Request.Params["MaQuy"]) : 0;
-            int Nam = Request.Params["Nam"] != null ? Convert.ToInt32((Request.Params["Nam"] + "").TrimStart('"').TrimEnd('"')) : 0;
-
+            int MaQuy = Request.Params["MaQuy"] != null ? Convert.ToInt16(Request.Params["MaQuy"]) : 1;
+            int Nam = Request.Params["Nam"] != null ? Convert.ToInt32((Request.Params["Nam"] + "").TrimStart('"').TrimEnd('"')) : DateTime.Now.Year;
+            
             ViewData["ListBCKetQuaDT"] = (from d in db.BC_KetQuaDT
                                           where d.MA_TINH.Equals(matinh)
                                               && d.Quy == MaQuy

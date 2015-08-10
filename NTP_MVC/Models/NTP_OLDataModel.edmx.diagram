@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c5b4cb3bdde4a80a28791a26d21aacd" Name="Diagram1">
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_KETQUADT" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_KetquaDTp1" Width="1.5" PointX="2.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_KETQUADTP2" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_KETQUAXN" Width="1.5" PointX="2.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_THUNHANBNLAO" Width="1.5" PointX="4.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_THUNHANBNLAOP1" Width="1.5" PointX="17.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_THUNHANBNLAOP2" Width="1.5" PointX="19.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BCKETQUADIEUTRILAOIN" Width="1.5" PointX="19.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BENHNHAN" Width="1.5" PointX="17.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_CTCHONGLAO" Width="1.5" PointX="19.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_CTCHONGLAOP1" Width="1.5" PointX="21.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_CTCHONGLAOP2" Width="1.5" PointX="14.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_CTCHONGLAOP3" Width="1.5" PointX="14.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DIEUTRI" Width="1.5" PointX="21.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_DOITUONG" Width="1.5" PointX="16.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_KETQUADT" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_KETQUAXN" Width="1.5" PointX="19.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_NGUONNHANLUC" Width="1.5" PointX="21.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_PHACDODT" Width="1.5" PointX="22.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_PHANLOAIBENH" Width="1.5" PointX="22.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_PHANLOAIBN" Width="1.5" PointX="23.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DM_PHANLOAIYTE" Width="1.5" PointX="23.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_DMPHANLOAIBN_BC" Width="1.5" PointX="23.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_PHANHOI" Width="1.5" PointX="23.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_PHIEUCHUYEN" Width="1.5" PointX="23.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_PHIEUXETNGHIEM" Width="1.5" PointX="24.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_PHIEUXETNGHIEM_C" Width="1.5" PointX="25.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_THUOC" Width="1.5" PointX="25.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_TINHHINHTRIENKHAICTCL" Width="1.5" PointX="25.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_XETNGHIEM_GD" Width="1.5" PointX="25.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_XETNGHIEM_GE" Width="1.5" PointX="26.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_HC_EXPORT" Width="1.5" PointX="14.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_HC_IMPORT" Width="1.5" PointX="16.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_HC_TH_KHO" Width="1.5" PointX="18.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_HC_TH_NHAPXUAT" Width="1.5" PointX="20.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_SUDUNGTHUOC" Width="1.5" PointX="17.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_SUDUNGTHUOC_CHITIET" Width="1.5" PointX="20" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_THIETBI" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_THIETBI_CHITIET" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_THUOC_EXPORT" Width="1.5" PointX="22.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_THUOC_IMPORT" Width="1.5" PointX="24.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_THUOC_TH_KHO" Width="1.5" PointX="26.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_THUOC_TH_NHAPXUAT" Width="1.5" PointX="27.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_TTB_EXPORT" Width="1.5" PointX="27.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_TTB_IMPORT" Width="1.5" PointX="27.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_TTB_TH_KHO" Width="1.5" PointX="27.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_TTB_TH_NHAPXUAT" Width="1.5" PointX="28.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_VATTUHOACHAT" Width="1.5" PointX="28.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_VATTUHOACHAT_HC" Width="1.5" PointX="29.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_VATTUHOACHAT_VT" Width="1.5" PointX="29.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_VT_EXPORT" Width="1.5" PointX="29.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_VT_IMPORT" Width="1.5" PointX="28.75" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_VT_TH_KHO" Width="1.5" PointX="30.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_CU_VT_TH_NHAPXUAT" Width="1.5" PointX="30.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_BENHVIEN" Width="1.5" PointX="30.75" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_BV" Width="1.5" PointX="31.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_CAP" Width="1.5" PointX="0.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_DVT" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_HANG" Width="1.5" PointX="31.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_HUYEN" Width="1.5" PointX="5.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_LOAIBV" Width="1.5" PointX="31.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_LYDO_NHAPXUAT" Width="1.5" PointX="10.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_MIEN" Width="1.5" PointX="0.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_NGUONKINHPHI" Width="1.5" PointX="6" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_NUOC" Width="1.5" PointX="0.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_THUOC" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_TINH" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_VUNG" Width="1.5" PointX="0.75" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_KD_BC_HOATDONGXN" Width="1.5" PointX="31.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_KD_BC_HOATDONGXNC" Width="1.5" PointX="32.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_KD_BC_KIEMDINHTB" Width="1.5" PointX="14.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_KD_PLAYMAU" Width="1.5" PointX="16.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_KD_PLAYMAU_C" Width="1.5" PointX="18.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_NEWS" Width="1.5" PointX="31.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_DM_KHOTHUOC" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_DM_TRANGTHAI" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_KIEMKE" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_KIEMKE_CHITIET" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_KY_KIEMKE" Width="1.5" PointX="8" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_KY_KIEMKE_CHITIET" Width="1.5" PointX="20.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_PHIEUNHAP" Width="1.5" PointX="5.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_PHIEUNHAP_CHITIET" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_PHIEUXUAT" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_PHIEUXUAT_CHITIET" Width="1.5" PointX="10.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_DM_KHO" Width="1.5" PointX="3" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_DM_THIETBI" Width="1.5" PointX="3" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_DM_TRANGTHAI" Width="1.5" PointX="8.25" PointY="47.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_KIEMKE" Width="1.5" PointX="5.25" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_KIEMKE_CHITIET" Width="1.5" PointX="10.5" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_KY_KIEMKE" Width="1.5" PointX="3" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_KY_KIEMKE_CHITIET" Width="1.5" PointX="5.25" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_PHIEUNHAP" Width="1.5" PointX="8.25" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_PHIEUNHAP_CHITIET" Width="1.5" PointX="10.5" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_PHIEUXUAT" Width="1.5" PointX="5.25" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_PHIEUXUAT_CHITIET" Width="1.5" PointX="7.5" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_DM_KHO" Width="1.5" PointX="7.5" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_DM_TRANGTHAI" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_DM_VATTU" Width="1.5" PointX="12.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_KIEMKE" Width="1.5" PointX="12.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_KIEMKE_CHITIET" Width="1.5" PointX="15" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_KY_KIEMKE" Width="1.5" PointX="10.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_KY_KIEMKE_CHITIET" Width="1.5" PointX="12.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_PHIEUNHAP" Width="1.5" PointX="12.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_PHIEUNHAP_CHITIET" Width="1.5" PointX="15" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_PHIEUXUAT" Width="1.5" PointX="12.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_PHIEUXUAT_CHITIET" Width="1.5" PointX="15" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_SURVEY_OPTION" Width="1.5" PointX="15.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_SURVEY_QUESTION" Width="1.5" PointX="13" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_SURVEY_RESULT" Width="1.5" PointX="17.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_SURVEYS" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BC_KetquaDTp1_tmp" Width="1.5" PointX="22.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BCTHUNHAN" Width="1.5" PointX="32.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_BCTHUNHAN_LAOHIV" Width="1.5" PointX="24.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_KQDT" Width="1.5" PointX="32.75" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_BN_PHIEUCHUYEN1" Width="1.5" PointX="33.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_DM_USER_KHO" Width="1.5" PointX="33.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLT_KHOTHUOC" Width="1.5" PointX="10.25" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTTB_KHO" Width="1.5" PointX="11.25" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_KHO" Width="1.5" PointX="12.75" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_TEST" Width="1.5" PointX="33.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_TEST1" Width="1.5" PointX="33.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_TEST2" Width="1.5" PointX="33.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.PHIEUXETNGHIEM_C" Width="1.5" PointX="34.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.PHIEUXN" Width="1.5" PointX="34.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.PHIEUXN_C" Width="1.5" PointX="26.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.PXN1" Width="1.5" PointX="34.75" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.PXN2" Width="1.5" PointX="28.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLTB_View_XuatNhap" Width="1.5" PointX="34.75" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_VW_ALL_NHAPXUAT" Width="1.5" PointX="35.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_VW_PHIEUNHAP_TONGHOP" Width="1.5" PointX="35.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NTP_OLDModel.NTP_QLVT_VW_PHIEUXUAT_TONGHOP" Width="1.5" PointX="35.75" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_CU_SUDUNGTHUOC_NTP_CU_SUDUNGTHUOC_CHITIET" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_CU_THIETBI_NTP_CU_THIETBI_CHITIET" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_DM_KHOTHUOC_NTP_DM_CAP" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_DM_KHO_NTP_DM_CAP" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_DM_KHO_NTP_DM_CAP" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_DM_THUOC_NTP_DM_DVT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_DM_THIETBI_NTP_DM_DVT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_DM_HUYEN_NTP_DM_TINH" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_DM_KHO_NTP_DM_HUYEN" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUNHAP_NTP_DM_LYDO_NHAPXUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUXUAT_NTP_DM_LYDO_NHAPXUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUNHAP_NTP_DM_LYDO_NHAPXUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUXUAT_NTP_DM_LYDO_NHAPXUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_DM_KHO_NTP_DM_MIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_PHIEUNHAP_NTP_DM_NGUONKINHPHI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_PHIEUXUAT_NTP_DM_NGUONKINHPHI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUNHAP_NTP_DM_NGUONKINHPHI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUNHAP_NTP_DM_NGUONKINHPHI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUXUAT_NTP_DM_NGUONKINHPHI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_DM_THIETBI_NTP_DM_NUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_KHOTHUOC_NTP_DM_THUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_KIEMKE_CHITIET_NTP_DM_THUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_PHIEUXUAT_CHITIET_NTP_DM_THUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_DM_TINH_NTP_DM_VUNG" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_DM_KHO_NTP_DM_TINH" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_DM_KHOTHUOC_NTP_DM_VUNG" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_DM_KHO_NTP_DM_VUNG" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_DM_KHO_NTP_DM_VUNG" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_KHOTHUOC_NTP_QLT_DM_KHOTHUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_PHIEUNHAP_NTP_QLT_DM_KHOTHUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_PHIEUXUAT_NTP_QLT_DM_KHOTHUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_KIEMKE_CHITIET_NTP_QLT_DM_TRANGTHAI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_KIEMKE_CHITIET_NTP_QLT_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_KIEMKE_NTP_QLT_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_KHOTHUOC_NTP_QLT_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_PHIEUNHAP_CHITIET_NTP_QLT_PHIEUNHAP" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLT_PHIEUXUAT_CHITIET_NTP_QLT_PHIEUXUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KHO_NTP_QLTTB_DM_KHO" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KY_KIEMKE_CHITIET_NTP_QLTTB_DM_KHO" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUNHAP_NTP_QLTTB_DM_KHO" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUXUAT_NTP_QLTTB_DM_KHO" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUXUAT_NTP_QLTTB_DM_KHO1" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KHO_NTP_QLTTB_DM_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KY_KIEMKE_CHITIET_NTP_QLTTB_DM_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUXUAT_CHITIET_NTP_QLTTB_DM_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KIEMKE_CHITIET_NTP_QLTTB_DM_TRANGTHAI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KIEMKE_CHITIET_NTP_QLTTB_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KIEMKE_NTP_QLTTB_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KHO_NTP_QLTTB_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_KY_KIEMKE_PHIEU_NTP_QLTTB_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUNHAP_CHITIET_NTP_QLTTB_PHIEUNHAP" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLTTB_PHIEUXUAT_CHITIET_NTP_QLTTB_PHIEUXUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KHO_NTP_QLVT_DM_KHO" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KY_KIEMKE_CHITIET_NTP_QLVT_DM_KHO" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUXUAT_NTP_QLVT_DM_KHO" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KIEMKE_CHITIET_NTP_QLVT_DM_TRANGTHAI" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KHO_NTP_QLVT_DM_VATTU" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KIEMKE_CHITIET_NTP_QLVT_DM_VATTU" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KY_KIEMKE_CHITIET_NTP_QLVT_DM_VATTU" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUNHAP_CHITIET_NTP_QLVT_DM_VATTU" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUXUAT_CHITIET_NTP_QLVT_DM_VATTU" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KIEMKE_CHITIET_NTP_QLVT_KIEMKE1" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KIEMKE_NTP_QLVT_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KHO_NTP_QLVT_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_KY_KIEMKE_CHITIET_NTP_QLVT_KY_KIEMKE" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUNHAP_CHITIET_NTP_QLVT_PHIEUNHAP" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_QLVT_PHIEUXUAT_CHITIET_NTP_QLVT_PHIEUXUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_SURVEY_OPTION_NTP_SURVEY_QUESTION" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_SURVEY_OPTION_NTP_SURVEYS" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_SURVEY_RESULT_NTP_SURVEY_OPTION" ManuallyRouted="false" />
+        <AssociationConnector Association="NTP_OLDModel.FK_NTP_SURVEY_QUESTION_NTP_SURVEYS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

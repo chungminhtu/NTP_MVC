@@ -38,7 +38,7 @@ namespace NTP_MVC.Controllers
 
         public void GetPhieuXetNghiem_BenhNhan()
         {
-            if (Session["ID_BenhNhan"] != null)
+            if (Session["ID_BenhNhan"] != null && Session["ID_BenhNhan"] + "" != "0")
             {
                 var id = Session["ID_BenhNhan"] + "";
                 var data = db.SO_PhieuXetNghiem.Where(p => p.ID_Benhnhan.ToString().Equals(id)).ToList();
@@ -58,7 +58,7 @@ namespace NTP_MVC.Controllers
 
         private void GetKetQuaXetNghiem_PXN()
         {
-            if (Request.Params["ID_PhieuXetNghiem"] != "")
+            if (Request.Params["ID_PhieuXetNghiem"] +"" != "" )
             {
                 var id_PhieuXetNghiem = Convert.ToInt64(Request.Params["ID_PhieuXetNghiem"]);
                 Session["ID_PhieuXetNghiem"] = id_PhieuXetNghiem;
@@ -89,7 +89,8 @@ namespace NTP_MVC.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {
+                { 
+                    item.ID_Benhnhan = Convert.ToInt64(Session["ID_BenhNhan"]);
                     model.Add(item);
                     db.SaveChanges();
                 }
@@ -171,7 +172,7 @@ namespace NTP_MVC.Controllers
                     if (dataKQ.Count != 0)
                     {
                         var MaxKQXN = Convert.ToInt32(dataKQ.Max(m => m.KetQua));
-                        var modelItemPXN = modelPXN.FirstOrDefault(it => it.ID_PhieuXetNghiem == id_PhieuXetNghiem);
+                        var modelItemPXN = modelPXN.FirstOrDefault(it => it.ID_PhieuXetNghiem == id_PhieuXetNghiem); 
                         modelItemPXN.KetQuaPXN = MaxKQXN;
                         modelItemPXN.Soluong = (byte)dataKQ.Count;
                         UpdateModel(modelItemPXN);

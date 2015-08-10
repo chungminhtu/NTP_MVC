@@ -12,6 +12,8 @@ namespace NTP_MVC.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class NTP_DBEntities : DbContext
     {
@@ -30,6 +32,9 @@ namespace NTP_MVC.Models
         public virtual DbSet<AD_Roles> AD_Roles { get; set; }
         public virtual DbSet<AD_User_Kho> AD_User_Kho { get; set; }
         public virtual DbSet<AD_Users> AD_Users { get; set; }
+        public virtual DbSet<BC_KetQuaDT> BC_KetQuaDT { get; set; }
+        public virtual DbSet<BC_KetQuaDT1> BC_KetQuaDT1 { get; set; }
+        public virtual DbSet<BC_KetQuaDT2> BC_KetQuaDT2 { get; set; }
         public virtual DbSet<BC_KetQuaXN> BC_KetQuaXN { get; set; }
         public virtual DbSet<BC_ThuNhan> BC_ThuNhan { get; set; }
         public virtual DbSet<BC_ThuNhan_LaoHIV> BC_ThuNhan_LaoHIV { get; set; }
@@ -56,6 +61,15 @@ namespace NTP_MVC.Models
         public virtual DbSet<DM_Tinh> DM_Tinh { get; set; }
         public virtual DbSet<DM_Vung> DM_Vung { get; set; }
         public virtual DbSet<DM_Xa> DM_Xa { get; set; }
+        public virtual DbSet<NTP_BN_CTCHONGLAO> NTP_BN_CTCHONGLAO { get; set; }
+        public virtual DbSet<NTP_BN_CTCHONGLAOP1> NTP_BN_CTCHONGLAOP1 { get; set; }
+        public virtual DbSet<NTP_BN_CTCHONGLAOP2> NTP_BN_CTCHONGLAOP2 { get; set; }
+        public virtual DbSet<NTP_BN_CTCHONGLAOP3> NTP_BN_CTCHONGLAOP3 { get; set; }
+        public virtual DbSet<NTP_KD_BC_HOATDONGXN> NTP_KD_BC_HOATDONGXN { get; set; }
+        public virtual DbSet<NTP_KD_BC_HOATDONGXNC> NTP_KD_BC_HOATDONGXNC { get; set; }
+        public virtual DbSet<NTP_KD_BC_KIEMDINHTB> NTP_KD_BC_KIEMDINHTB { get; set; }
+        public virtual DbSet<NTP_KD_PLAYMAU> NTP_KD_PLAYMAU { get; set; }
+        public virtual DbSet<NTP_KD_PLAYMAU_C> NTP_KD_PLAYMAU_C { get; set; }
         public virtual DbSet<SO_BenhNhan> SO_BenhNhan { get; set; }
         public virtual DbSet<SO_PhieuXetNghiem> SO_PhieuXetNghiem { get; set; }
         public virtual DbSet<SO_PhieuXetNghiem_KQ> SO_PhieuXetNghiem_KQ { get; set; }
@@ -63,17 +77,777 @@ namespace NTP_MVC.Models
         public virtual DbSet<SO_SoDieuTri_KQ> SO_SoDieuTri_KQ { get; set; }
         public virtual DbSet<SO_SoKhamBenh> SO_SoKhamBenh { get; set; }
         public virtual DbSet<SO_XetNghiemKhamBenh> SO_XetNghiemKhamBenh { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<HTDT_BaoCaoGiamSat> HTDT_BaoCaoGiamSat { get; set; }
         public virtual DbSet<HTDT_BenhNhanDoiDiaChi> HTDT_BenhNhanDoiDiaChi { get; set; }
         public virtual DbSet<HTDT_BenhNhanNhanTinNhan> HTDT_BenhNhanNhanTinNhan { get; set; }
         public virtual DbSet<HTDT_BenhNhanPhanHoiTacDungPhu> HTDT_BenhNhanPhanHoiTacDungPhu { get; set; }
+        public virtual DbSet<HTDT_BenhNhanTuChoiNhanTin> HTDT_BenhNhanTuChoiNhanTin { get; set; }
         public virtual DbSet<HTDT_LichHenXN> HTDT_LichHenXN { get; set; }
+        public virtual DbSet<HTDT_ThongDiepTruyenThong> HTDT_ThongDiepTruyenThong { get; set; }
         public virtual DbSet<HTDT_ThongKeTinNhan> HTDT_ThongKeTinNhan { get; set; }
+        public virtual DbSet<NTP_BN_DM_NGUONNHANLUC> NTP_BN_DM_NGUONNHANLUC { get; set; }
         public virtual DbSet<InDanhSachBenhNhan> InDanhSachBenhNhans { get; set; }
         public virtual DbSet<InPhieuXetNghiem> InPhieuXetNghiems { get; set; }
-        public virtual DbSet<HTDT_BenhNhanTuChoiNhanTin> HTDT_BenhNhanTuChoiNhanTin { get; set; }
-        public virtual DbSet<HTDT_ThongDiepTruyenThong> HTDT_ThongDiepTruyenThong { get; set; }
-        public virtual DbSet<BC_KetQuaDT> BC_KetQuaDT { get; set; }
-        public virtual DbSet<BC_KetQuaDT1> BC_KetQuaDT1 { get; set; }
+    
+        public virtual int NTP_BN_BCKETQUAAMHOADOM_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, string dK)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var dKParameter = dK != null ?
+                new ObjectParameter("DK", dK) :
+                new ObjectParameter("DK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCKETQUAAMHOADOM_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, dKParameter);
+        }
+    
+        public virtual int NTP_BN_BCKETQUAAMHOADOMBYHUYEN_IN(string tINH, Nullable<int> mIEN, Nullable<int> vUNG, Nullable<int> nAM, string qUY, string dK)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(int));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(int));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var dKParameter = dK != null ?
+                new ObjectParameter("DK", dK) :
+                new ObjectParameter("DK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCKETQUAAMHOADOMBYHUYEN_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, dKParameter);
+        }
+    
+        public virtual int NTP_BN_BCKETQUADIEUTRILAOBYHUYEN_IN(string tINH, Nullable<int> mIEN, Nullable<int> vUNG, Nullable<int> nAM, string qUY, Nullable<byte> loaiBC, string dK)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(int));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(int));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var loaiBCParameter = loaiBC.HasValue ?
+                new ObjectParameter("LoaiBC", loaiBC) :
+                new ObjectParameter("LoaiBC", typeof(byte));
+    
+            var dKParameter = dK != null ?
+                new ObjectParameter("DK", dK) :
+                new ObjectParameter("DK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCKETQUADIEUTRILAOBYHUYEN_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, loaiBCParameter, dKParameter);
+        }
+    
+        public virtual int NTP_BN_BCKETQUADT_TUYENHUYEN(Nullable<System.DateTime> tUNGAY, Nullable<System.DateTime> dENNGAY, Nullable<int> nAM, Nullable<byte> qUY, string dVBAOCAO, Nullable<byte> cAPNHATDL)
+        {
+            var tUNGAYParameter = tUNGAY.HasValue ?
+                new ObjectParameter("TUNGAY", tUNGAY) :
+                new ObjectParameter("TUNGAY", typeof(System.DateTime));
+    
+            var dENNGAYParameter = dENNGAY.HasValue ?
+                new ObjectParameter("DENNGAY", dENNGAY) :
+                new ObjectParameter("DENNGAY", typeof(System.DateTime));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY.HasValue ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(byte));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            var cAPNHATDLParameter = cAPNHATDL.HasValue ?
+                new ObjectParameter("CAPNHATDL", cAPNHATDL) :
+                new ObjectParameter("CAPNHATDL", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCKETQUADT_TUYENHUYEN", tUNGAYParameter, dENNGAYParameter, nAMParameter, qUYParameter, dVBAOCAOParameter, cAPNHATDLParameter);
+        }
+    
+        public virtual int NTP_BN_BCKETQUADTCHUNGCACTHE_IN(string tINH, Nullable<int> mIEN, Nullable<int> vUNG, Nullable<int> nAM, string qUY)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(int));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(int));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCKETQUADTCHUNGCACTHE_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter);
+        }
+    
+        public virtual int NTP_BN_BCKETQUAXN_TUYENHUYEN(Nullable<System.DateTime> tUNGAY, Nullable<System.DateTime> dENNGAY, Nullable<int> nAM, Nullable<byte> qUY, string dVBAOCAO, Nullable<byte> cAPNHATDL)
+        {
+            var tUNGAYParameter = tUNGAY.HasValue ?
+                new ObjectParameter("TUNGAY", tUNGAY) :
+                new ObjectParameter("TUNGAY", typeof(System.DateTime));
+    
+            var dENNGAYParameter = dENNGAY.HasValue ?
+                new ObjectParameter("DENNGAY", dENNGAY) :
+                new ObjectParameter("DENNGAY", typeof(System.DateTime));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY.HasValue ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(byte));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            var cAPNHATDLParameter = cAPNHATDL.HasValue ?
+                new ObjectParameter("CAPNHATDL", cAPNHATDL) :
+                new ObjectParameter("CAPNHATDL", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCKETQUAXN_TUYENHUYEN", tUNGAYParameter, dENNGAYParameter, nAMParameter, qUYParameter, dVBAOCAOParameter, cAPNHATDLParameter);
+        }
+    
+        public virtual int NTP_BN_BCThunhanBNLao_TUYENHUYEN(Nullable<System.DateTime> tUNGAY, Nullable<System.DateTime> dENNGAY, Nullable<int> nAM, Nullable<byte> qUY, string dVBAOCAO, Nullable<byte> cAPNHATDL)
+        {
+            var tUNGAYParameter = tUNGAY.HasValue ?
+                new ObjectParameter("TUNGAY", tUNGAY) :
+                new ObjectParameter("TUNGAY", typeof(System.DateTime));
+    
+            var dENNGAYParameter = dENNGAY.HasValue ?
+                new ObjectParameter("DENNGAY", dENNGAY) :
+                new ObjectParameter("DENNGAY", typeof(System.DateTime));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY.HasValue ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(byte));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            var cAPNHATDLParameter = cAPNHATDL.HasValue ?
+                new ObjectParameter("CAPNHATDL", cAPNHATDL) :
+                new ObjectParameter("CAPNHATDL", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCThunhanBNLao_TUYENHUYEN", tUNGAYParameter, dENNGAYParameter, nAMParameter, qUYParameter, dVBAOCAOParameter, cAPNHATDLParameter);
+        }
+    
+        public virtual int NTP_BN_BCTHUNHANBNLAONGOAIPHOI_IN(string tINH, Nullable<int> mIEN, Nullable<int> vUNG, Nullable<int> nAM, string qUY)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(int));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(int));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCTHUNHANBNLAONGOAIPHOI_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter);
+        }
+    
+        public virtual int NTP_BN_BCTHUNHANBNLAOTHEOTUOIGIOI_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, Nullable<byte> phanloaiBC)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var phanloaiBCParameter = phanloaiBC.HasValue ?
+                new ObjectParameter("phanloaiBC", phanloaiBC) :
+                new ObjectParameter("phanloaiBC", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCTHUNHANBNLAOTHEOTUOIGIOI_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, phanloaiBCParameter);
+        }
+    
+        public virtual int NTP_BN_BCTINHHINHNHANLUCTHAMGIAPCL_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, Nullable<byte> pHANLOAIBC)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var pHANLOAIBCParameter = pHANLOAIBC.HasValue ?
+                new ObjectParameter("PHANLOAIBC", pHANLOAIBC) :
+                new ObjectParameter("PHANLOAIBC", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCTINHHINHNHANLUCTHAMGIAPCL_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, pHANLOAIBCParameter);
+        }
+    
+        public virtual int NTP_BN_BCTONGHOPTUYENHUYEN_IN(Nullable<System.DateTime> tUNGAY, Nullable<System.DateTime> dENNGAY, Nullable<int> nAM, string qUY, string dVBAOCAO, Nullable<byte> lOAIBC, Nullable<byte> cAPIN, Nullable<byte> cAPNHATDL)
+        {
+            var tUNGAYParameter = tUNGAY.HasValue ?
+                new ObjectParameter("TUNGAY", tUNGAY) :
+                new ObjectParameter("TUNGAY", typeof(System.DateTime));
+    
+            var dENNGAYParameter = dENNGAY.HasValue ?
+                new ObjectParameter("DENNGAY", dENNGAY) :
+                new ObjectParameter("DENNGAY", typeof(System.DateTime));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            var lOAIBCParameter = lOAIBC.HasValue ?
+                new ObjectParameter("LOAIBC", lOAIBC) :
+                new ObjectParameter("LOAIBC", typeof(byte));
+    
+            var cAPINParameter = cAPIN.HasValue ?
+                new ObjectParameter("CAPIN", cAPIN) :
+                new ObjectParameter("CAPIN", typeof(byte));
+    
+            var cAPNHATDLParameter = cAPNHATDL.HasValue ?
+                new ObjectParameter("CAPNHATDL", cAPNHATDL) :
+                new ObjectParameter("CAPNHATDL", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCTONGHOPTUYENHUYEN_IN", tUNGAYParameter, dENNGAYParameter, nAMParameter, qUYParameter, dVBAOCAOParameter, lOAIBCParameter, cAPINParameter, cAPNHATDLParameter);
+        }
+    
+        public virtual int NTP_BN_BCTONGHOPTUYENTINH_GetNguoiBC(string hUYEN, string tINH, Nullable<int> nAM, Nullable<byte> qUY, Nullable<byte> phanloaiBC)
+        {
+            var hUYENParameter = hUYEN != null ?
+                new ObjectParameter("HUYEN", hUYEN) :
+                new ObjectParameter("HUYEN", typeof(string));
+    
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY.HasValue ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(byte));
+    
+            var phanloaiBCParameter = phanloaiBC.HasValue ?
+                new ObjectParameter("phanloaiBC", phanloaiBC) :
+                new ObjectParameter("phanloaiBC", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCTONGHOPTUYENTINH_GetNguoiBC", hUYENParameter, tINHParameter, nAMParameter, qUYParameter, phanloaiBCParameter);
+        }
+    
+        public virtual int NTP_BN_BCTONGHOPTUYENTINH_IN(string tINH, Nullable<int> nAM, string qUY, Nullable<byte> phanloaiBC, string dVBAOCAO)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var phanloaiBCParameter = phanloaiBC.HasValue ?
+                new ObjectParameter("phanloaiBC", phanloaiBC) :
+                new ObjectParameter("phanloaiBC", typeof(byte));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_BCTONGHOPTUYENTINH_IN", tINHParameter, nAMParameter, qUYParameter, phanloaiBCParameter, dVBAOCAOParameter);
+        }
+    
+        public virtual int NTP_BN_XETNGHIEM_AM3MAU_List(Nullable<System.DateTime> tuNgay, Nullable<System.DateTime> denNgay, string dVDieutri, string dieukien)
+        {
+            var tuNgayParameter = tuNgay.HasValue ?
+                new ObjectParameter("TuNgay", tuNgay) :
+                new ObjectParameter("TuNgay", typeof(System.DateTime));
+    
+            var denNgayParameter = denNgay.HasValue ?
+                new ObjectParameter("DenNgay", denNgay) :
+                new ObjectParameter("DenNgay", typeof(System.DateTime));
+    
+            var dVDieutriParameter = dVDieutri != null ?
+                new ObjectParameter("DVDieutri", dVDieutri) :
+                new ObjectParameter("DVDieutri", typeof(string));
+    
+            var dieukienParameter = dieukien != null ?
+                new ObjectParameter("dieukien", dieukien) :
+                new ObjectParameter("dieukien", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_XETNGHIEM_AM3MAU_List", tuNgayParameter, denNgayParameter, dVDieutriParameter, dieukienParameter);
+        }
+    
+        public virtual int NTP_BN_XETNGHIEM_PHDUONG_List(Nullable<System.DateTime> tuNgay, Nullable<System.DateTime> denNgay, string dVDieutri, string mATINH, string dieukien)
+        {
+            var tuNgayParameter = tuNgay.HasValue ?
+                new ObjectParameter("TuNgay", tuNgay) :
+                new ObjectParameter("TuNgay", typeof(System.DateTime));
+    
+            var denNgayParameter = denNgay.HasValue ?
+                new ObjectParameter("DenNgay", denNgay) :
+                new ObjectParameter("DenNgay", typeof(System.DateTime));
+    
+            var dVDieutriParameter = dVDieutri != null ?
+                new ObjectParameter("DVDieutri", dVDieutri) :
+                new ObjectParameter("DVDieutri", typeof(string));
+    
+            var mATINHParameter = mATINH != null ?
+                new ObjectParameter("MATINH", mATINH) :
+                new ObjectParameter("MATINH", typeof(string));
+    
+            var dieukienParameter = dieukien != null ?
+                new ObjectParameter("dieukien", dieukien) :
+                new ObjectParameter("dieukien", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_BN_XETNGHIEM_PHDUONG_List", tuNgayParameter, denNgayParameter, dVDieutriParameter, mATINHParameter, dieukienParameter);
+        }
+    
+        public virtual int NTP_KD_BCHOATDONGXETNGHIEM_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, Nullable<byte> lOAIBC, string dK)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var lOAIBCParameter = lOAIBC.HasValue ?
+                new ObjectParameter("LOAIBC", lOAIBC) :
+                new ObjectParameter("LOAIBC", typeof(byte));
+    
+            var dKParameter = dK != null ?
+                new ObjectParameter("DK", dK) :
+                new ObjectParameter("DK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_BCHOATDONGXETNGHIEM_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, lOAIBCParameter, dKParameter);
+        }
+    
+        public virtual int NTP_KD_BCHOATDONGXETNGHIEMBYHUYEN_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, Nullable<byte> lOAIBC, string dK)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var lOAIBCParameter = lOAIBC.HasValue ?
+                new ObjectParameter("LOAIBC", lOAIBC) :
+                new ObjectParameter("LOAIBC", typeof(byte));
+    
+            var dKParameter = dK != null ?
+                new ObjectParameter("DK", dK) :
+                new ObjectParameter("DK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_BCHOATDONGXETNGHIEMBYHUYEN_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, lOAIBCParameter, dKParameter);
+        }
+    
+        public virtual int NTP_KD_BCHOATDONGXN_TUYENHUYEN(Nullable<System.DateTime> tUNGAY, Nullable<System.DateTime> dENNGAY, Nullable<int> nAM, Nullable<byte> qUY, string dVBAOCAO, Nullable<byte> cAPNHATDL)
+        {
+            var tUNGAYParameter = tUNGAY.HasValue ?
+                new ObjectParameter("TUNGAY", tUNGAY) :
+                new ObjectParameter("TUNGAY", typeof(System.DateTime));
+    
+            var dENNGAYParameter = dENNGAY.HasValue ?
+                new ObjectParameter("DENNGAY", dENNGAY) :
+                new ObjectParameter("DENNGAY", typeof(System.DateTime));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY.HasValue ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(byte));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            var cAPNHATDLParameter = cAPNHATDL.HasValue ?
+                new ObjectParameter("CAPNHATDL", cAPNHATDL) :
+                new ObjectParameter("CAPNHATDL", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_BCHOATDONGXN_TUYENHUYEN", tUNGAYParameter, dENNGAYParameter, nAMParameter, qUYParameter, dVBAOCAOParameter, cAPNHATDLParameter);
+        }
+    
+        public virtual int NTP_KD_BCKETQUAKD_TUYENTINH(string mATINH, Nullable<int> nAM, string qUY, string dVBAOCAO)
+        {
+            var mATINHParameter = mATINH != null ?
+                new ObjectParameter("MATINH", mATINH) :
+                new ObjectParameter("MATINH", typeof(string));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_BCKETQUAKD_TUYENTINH", mATINHParameter, nAMParameter, qUYParameter, dVBAOCAOParameter);
+        }
+    
+        public virtual int NTP_KD_BCKIEMDINHTB_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, Nullable<byte> lOAIBC, string dK)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var lOAIBCParameter = lOAIBC.HasValue ?
+                new ObjectParameter("LOAIBC", lOAIBC) :
+                new ObjectParameter("LOAIBC", typeof(byte));
+    
+            var dKParameter = dK != null ?
+                new ObjectParameter("DK", dK) :
+                new ObjectParameter("DK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_BCKIEMDINHTB_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, lOAIBCParameter, dKParameter);
+        }
+    
+        public virtual int NTP_KD_BCTHUDOMPHBYHUYEN_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, string dK)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var dKParameter = dK != null ?
+                new ObjectParameter("DK", dK) :
+                new ObjectParameter("DK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_BCTHUDOMPHBYHUYEN_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, dKParameter);
+        }
+    
+        public virtual int NTP_KD_BCTONGHOPTUYENTINH_IN(string tINH, Nullable<int> nAM, string qUY, Nullable<byte> phanloaiBC, string dVBAOCAO)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var phanloaiBCParameter = phanloaiBC.HasValue ?
+                new ObjectParameter("phanloaiBC", phanloaiBC) :
+                new ObjectParameter("phanloaiBC", typeof(byte));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_BCTONGHOPTUYENTINH_IN", tINHParameter, nAMParameter, qUYParameter, phanloaiBCParameter, dVBAOCAOParameter);
+        }
+    
+        public virtual int NTP_KD_PLAYMAU_IN(Nullable<int> tHANG, Nullable<int> nAM, string iD_BENHVIEN)
+        {
+            var tHANGParameter = tHANG.HasValue ?
+                new ObjectParameter("THANG", tHANG) :
+                new ObjectParameter("THANG", typeof(int));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var iD_BENHVIENParameter = iD_BENHVIEN != null ?
+                new ObjectParameter("ID_BENHVIEN", iD_BENHVIEN) :
+                new ObjectParameter("ID_BENHVIEN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_PLAYMAU_IN", tHANGParameter, nAMParameter, iD_BENHVIENParameter);
+        }
+    
+        public virtual int NTP_KD_PLAYMAU_KQKDLAN2_IN(Nullable<int> tHANG, Nullable<int> nAM, string iD_BENHVIEN)
+        {
+            var tHANGParameter = tHANG.HasValue ?
+                new ObjectParameter("THANG", tHANG) :
+                new ObjectParameter("THANG", typeof(int));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var iD_BENHVIENParameter = iD_BENHVIEN != null ?
+                new ObjectParameter("ID_BENHVIEN", iD_BENHVIEN) :
+                new ObjectParameter("ID_BENHVIEN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NTP_KD_PLAYMAU_KQKDLAN2_IN", tHANGParameter, nAMParameter, iD_BENHVIENParameter);
+        }
+    
+        public virtual int usp_CAPMA(string tENBANG, string mADAU, string mACUOI, Nullable<byte> lENMACUOI, string wHERE, ObjectParameter sTTBN)
+        {
+            var tENBANGParameter = tENBANG != null ?
+                new ObjectParameter("TENBANG", tENBANG) :
+                new ObjectParameter("TENBANG", typeof(string));
+    
+            var mADAUParameter = mADAU != null ?
+                new ObjectParameter("MADAU", mADAU) :
+                new ObjectParameter("MADAU", typeof(string));
+    
+            var mACUOIParameter = mACUOI != null ?
+                new ObjectParameter("MACUOI", mACUOI) :
+                new ObjectParameter("MACUOI", typeof(string));
+    
+            var lENMACUOIParameter = lENMACUOI.HasValue ?
+                new ObjectParameter("LENMACUOI", lENMACUOI) :
+                new ObjectParameter("LENMACUOI", typeof(byte));
+    
+            var wHEREParameter = wHERE != null ?
+                new ObjectParameter("WHERE", wHERE) :
+                new ObjectParameter("WHERE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_CAPMA", tENBANGParameter, mADAUParameter, mACUOIParameter, lENMACUOIParameter, wHEREParameter, sTTBN);
+        }
+    
+        public virtual int BC_ThuNhanBNLao_TUYENHUYEN(Nullable<System.DateTime> tUNGAY, Nullable<System.DateTime> dENNGAY, Nullable<int> nAM, Nullable<byte> qUY, string dVBAOCAO, Nullable<byte> cAPNHATDL)
+        {
+            var tUNGAYParameter = tUNGAY.HasValue ?
+                new ObjectParameter("TUNGAY", tUNGAY) :
+                new ObjectParameter("TUNGAY", typeof(System.DateTime));
+    
+            var dENNGAYParameter = dENNGAY.HasValue ?
+                new ObjectParameter("DENNGAY", dENNGAY) :
+                new ObjectParameter("DENNGAY", typeof(System.DateTime));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY.HasValue ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(byte));
+    
+            var dVBAOCAOParameter = dVBAOCAO != null ?
+                new ObjectParameter("DVBAOCAO", dVBAOCAO) :
+                new ObjectParameter("DVBAOCAO", typeof(string));
+    
+            var cAPNHATDLParameter = cAPNHATDL.HasValue ?
+                new ObjectParameter("CAPNHATDL", cAPNHATDL) :
+                new ObjectParameter("CAPNHATDL", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BC_ThuNhanBNLao_TUYENHUYEN", tUNGAYParameter, dENNGAYParameter, nAMParameter, qUYParameter, dVBAOCAOParameter, cAPNHATDLParameter);
+        }
+    
+        public virtual int BC_ThuNhanBNLAONGOAIPHOI_IN(string tINH, Nullable<int> mIEN, Nullable<int> vUNG, Nullable<int> nAM, string qUY)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(int));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(int));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BC_ThuNhanBNLAONGOAIPHOI_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter);
+        }
+    
+        public virtual int BC_ThuNhanBNLAOTHEOTUOIGIOI_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, Nullable<byte> phanloaiBC)
+        {
+            var tINHParameter = tINH != null ?
+                new ObjectParameter("TINH", tINH) :
+                new ObjectParameter("TINH", typeof(string));
+    
+            var mIENParameter = mIEN.HasValue ?
+                new ObjectParameter("MIEN", mIEN) :
+                new ObjectParameter("MIEN", typeof(byte));
+    
+            var vUNGParameter = vUNG.HasValue ?
+                new ObjectParameter("VUNG", vUNG) :
+                new ObjectParameter("VUNG", typeof(byte));
+    
+            var nAMParameter = nAM.HasValue ?
+                new ObjectParameter("NAM", nAM) :
+                new ObjectParameter("NAM", typeof(int));
+    
+            var qUYParameter = qUY != null ?
+                new ObjectParameter("QUY", qUY) :
+                new ObjectParameter("QUY", typeof(string));
+    
+            var phanloaiBCParameter = phanloaiBC.HasValue ?
+                new ObjectParameter("phanloaiBC", phanloaiBC) :
+                new ObjectParameter("phanloaiBC", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BC_ThuNhanBNLAOTHEOTUOIGIOI_IN", tINHParameter, mIENParameter, vUNGParameter, nAMParameter, qUYParameter, phanloaiBCParameter);
+        }
     }
 }

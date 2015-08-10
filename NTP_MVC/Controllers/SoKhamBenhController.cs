@@ -18,7 +18,6 @@ namespace NTP_MVC.Controllers
 
         public ActionResult Index()
         {
-
             // Session["MATINH"] = "07";
             // Session["MAHUYEN"] = "0703";
             var MaTinh = Session["MATINH"] + "";
@@ -146,6 +145,9 @@ namespace NTP_MVC.Controllers
             if (model.BN == null)
             {
                 model.BN = new SO_BenhNhan();
+                model.BN.MA_HUYEN = Session["MAHUYEN"] + "";
+                model.BN.MA_TINH = Session["MATINH"] + "";
+
             }
             model.BN.ID_BenhNhan = ID_BenhNhan;
 
@@ -154,6 +156,10 @@ namespace NTP_MVC.Controllers
             {
                 model.SKB = new SO_SoKhamBenh();
             }
+
+            ViewData["Tinhs"] = db.DM_Tinh.Where(t => t.MA_TINH.Equals(model.BN.MA_TINH)).ToList();
+            ViewData["Huyens"] = db.DM_Huyen.Where(m => m.MA_TINH.Equals(model.BN.MA_TINH)).ToList();
+            ViewData["Xas"] = db.DM_Xa.ToList();
 
             return View(model);
         }
@@ -165,8 +171,7 @@ namespace NTP_MVC.Controllers
             {
                 try
                 {
-                    bn.MA_HUYEN = Session["MAHUYEN"] + "";
-                    bn.MA_TINH = Session["MATINH"] + "";
+                    var a = ViewData["ListPXNBenhNhan"] as List<SO_PhieuXetNghiem>;
                     bn.ID_BenhNhan = Request.Params["ID_BenhNhan"] + "" != "" ? Convert.ToInt64(Request.Params["ID_BenhNhan"]) : 0;
                     skb.ID_SoKhamBenh = Request.Params["ID_SoKhamBenh"] + "" != "" ? Convert.ToInt64(Request.Params["ID_SoKhamBenh"]) : 0;
                     if (bn.ID_BenhNhan != 0)
@@ -196,6 +201,8 @@ namespace NTP_MVC.Controllers
                         db.SO_SoKhamBenh.Add(skb);
                         db.SaveChanges();
                     }
+
+                    Session["ID_BenhNhan"] = bn.ID_BenhNhan;
                     return "Cập nhật thành công";
                 }
                 catch (Exception e)

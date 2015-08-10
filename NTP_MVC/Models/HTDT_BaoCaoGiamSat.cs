@@ -36,5 +36,8 @@ namespace NTP_MVC.Models
         public string DanDoBenhNhan { get; set; }
         public bool NhapTuMobile { get; set; }
         public System.DateTime NgayNhapBaoCao { get; set; }
+        public Nullable<decimal> LieuLuong_RHZ { get; set; }
+        public Nullable<decimal> LuongCap_RHZ { get; set; }
+        public Nullable<decimal> ConLai_RHZ { get; set; }
     }
 }

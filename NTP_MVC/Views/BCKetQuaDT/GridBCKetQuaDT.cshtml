@@ -10,7 +10,7 @@
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BCKetQuaDT", Action = "BC_TNBNLAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BCKetQuaDT", Action = "BC_TNBNLUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BCKetQuaDT", Action = "BC_TNBNLDelete" };
-        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] =cboQuy.GetValue(); e.customArgs['Nam'] =txtNam.GetText(); }";
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaQuy'] = cboQuy.GetValue(); e.customArgs['Nam'] =txtNam.GetText(); }";
 
         /* Behavior */
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
@@ -24,6 +24,7 @@
         settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
 
         settings.ClientSideEvents.FocusedRowChanged = "OnGridBCKetQuaDTFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "OnGridBCThuNhanBNLaoRowDblClick";
 
         /* Pager */
         settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;

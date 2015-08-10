@@ -1,7 +1,8 @@
 ﻿@model NTP_MVC.Models.SoKhamBenhModel
 
 <script>
-
+    var ID_PhieuXetNghiem = "";
+    var ID_BenhNhan = "";
     function OnGridPXNFocusedRowChanged(s, e) {
         if (s.GetFocusedRowIndex() != -1) {
             ID_PhieuXetNghiem = s.GetRowKey(s.GetFocusedRowIndex());
@@ -10,7 +11,13 @@
     }
 
     function GridKQPXN_OnBeginCallback(s, e) {
+        if (ID_PhieuXetNghiem=="")
+        {
+            alert("Chưa lưu Phiếu xét nghiệm!");
+        }
+        else { 
         e.customArgs["ID_PhieuXetNghiem"] = ID_PhieuXetNghiem;
+        }
     }
     function OnGridPXNRowDblClick(s, e) {
         s.StartEditRow(s.GetFocusedRowIndex());
@@ -33,7 +40,7 @@
                                     {
                                         HttpMethod = "POST",
                                         UpdateTargetId = "MsgError",
-                                        InsertionMode = InsertionMode.Replace
+                                        InsertionMode = InsertionMode.Replace 
                                     }))
 {
     <h2 style="text-align: center; width:100%;">
