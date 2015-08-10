@@ -1,4 +1,4 @@
-﻿@model NTP_MVC.Models.HTDTGS
+﻿jsonReq@model NTP_MVC.Models.HTDTGS
 
 <script src="@Url.Content("~/Scripts/js/jquery.min.js")"></script>
 <link href="@Url.Content("~/Content/styles/lib/bootstrap.min.css")" rel="stylesheet">
@@ -439,15 +439,15 @@
                 alert("Ngày cấp thuốc gần nhất không được lớn hơn ngày hiện tại");
                 return;
             }
-            if ($("#hDose").val() == '' || $("#eDose").val() == '' || $("#rhDose").val() == '') {
+            if ($("#hDose").val() == '' || $("#eDose").val() == '' || $("#rhDose").val() == '' || $("#rhzDose").val() == '') {
                 alert("Bạn chưa nhập liều lượng thuốc/ngày");
                 return;
             }
-            if ($("#hAmount").val() == '' || $("#eAmount").val() == '' || $("#rhAmount").val() == '') {
+            if ($("#hAmount").val() == '' || $("#eAmount").val() == '' || $("#rhAmount").val() == '' || $("#rhzAmount").val() == '') {
                 alert("Bạn chưa nhập số lượng thuốc cấp");
                 return;
             }
-            if ($("#hRemainingAmount").val() == '' || $("#eRemainingAmount").val() == '' || $("#rhRemainingAmount").val() == '') {
+            if ($("#hRemainingAmount").val() == '' || $("#eRemainingAmount").val() == '' || $("#rhRemainingAmount").val() == '' || $("#rhzRemainingAmount").val() == '') {
                 alert("Bạn chưa nhập số lượng thuốc còn lại");
                 return;
             }
@@ -457,15 +457,17 @@
 
             var strHDose = $("#hDose").val();
             if (strHDose.search(regstr)==-1 || $("#eDose").val().search(regstr)==-1 || $("#rhDose").val().search(regstr)==-1
-                    || $("#hAmount").val().search(regstr)==-1 || $("#eAmount").val().search(regstr)==-1 || $("#rhAmount").val().search(regstr)==-1
-                    || $("#hRemainingAmount").val().search(regstr)==-1 || $("#eRemainingAmount").val().search(regstr)==-1 || $("#rhRemainingAmount").val().search(regstr)==-1 ) {
+                || $("#hAmount").val().search(regstr)==-1 || $("#eAmount").val().search(regstr)==-1 || $("#rhAmount").val().search(regstr)==-1
+                || $("#hRemainingAmount").val().search(regstr)==-1 || $("#eRemainingAmount").val().search(regstr)==-1 || $("#rhRemainingAmount").val().search(regstr)==-1
+                || $("#rhzRemainingAmount").val().search(regstr)==-1 || $("#rhzAmount").val().search(regstr)==-1 || $("#rhzDose").val().search(regstr)==-1) {
                 alert("Số thuốc bạn nhập không đúng (phải là số nguyên hoặc số thập phân)");
                 return;
             } else {
                 model.LieuLuong_H = $("#hDose").val();
-                model.LieuLuong_E = $("#eDose").val();model.LieuLuong_RH = $("#rhDose").val();
-                model.LuongCap_H = $("#hAmount").val();model.LuongCap_E = $("#eAmount").val();model.LuongCap_RH = $("#rhAmount").val();
+                model.LieuLuong_E = $("#eDose").val();model.LieuLuong_RH = $("#rhDose").val();model.LieuLuong_RHZ = $("#rhzDose").val();
+                model.LuongCap_H = $("#hAmount").val();model.LuongCap_E = $("#eAmount").val();model.LuongCap_RH = $("#rhAmount").val();model.LuongCap_RHZ = $("#rhzAmount").val();
                 model.ConLai_H = $("#hRemainingAmount").val();model.ConLai_E = $("#eRemainingAmount").val();model.ConLai_RH = $("#rhRemainingAmount").val();
+                model.ConLai_RHZ = $("#rhzRemainingAmount").val();
             }
 
             model.NgayGiamSat = kendo.toString(supervisoryDate.value(),"yyyy-MM-dd HH:mm:ss");
@@ -479,9 +481,8 @@
                 url: "@Url.Action("SaveBaoCaoGiamSatBenhNhan", "HoTroDieuTri")",
                 data: JSON.stringify(model),
                 type: 'POST',
-                processData: true,
-                async: false,
-                contentType: "application/json",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 success: function (data) {
                     alert("Dữ liệu lưu thành công");
                     dataSourceSupervisions.data(data);
@@ -506,7 +507,7 @@
             }
         });
         var dropdownSupervisions = $("#dropdownSupervisions").kendoDropDownList({
-            autoBind: false,
+            autoBind: true,
             optionLabel: "---",
             dataTextField: 'StrNgayGiamSat',
             dataValueField: "ID",
@@ -537,12 +538,15 @@
                 var strHDose = model.LieuLuong_H + "";$("#hDose").val(strHDose);
                 var strEDose = model.LieuLuong_E + "";$("#eDose").val(strEDose);
                 var strRHDose = model.LieuLuong_RH + "";$("#rhDose").val(strRHDose);
+                var strRHZDose = model.LieuLuong_RHZ + "";$("#rhzDose").val(strRHZDose);
                 var strHAmount = model.LuongCap_H + "";$("#hAmount").val(strHAmount);
                 var strEAmount = model.LuongCap_E + "";$("#eAmount").val(strEAmount);
                 var strRHAmount = model.LuongCap_RH + "";$("#rhAmount").val(strRHAmount);
+                var strRHZAmount = model.LuongCap_RHZ + "";$("#rhzAmount").val(strRHZAmount);
                 var strHRemainingAmount = model.ConLai_H + "";$("#hRemainingAmount").val(strHRemainingAmount);
                 var strERemainingAmount = model.ConLai_E + "";$("#eRemainingAmount").val(strERemainingAmount);
                 var strRHRemainingAmount = model.ConLai_RH + "";$("#rhRemainingAmount").val(strRHRemainingAmount);
+                var strRHZRemainingAmount = model.ConLai_RHZ + "";$("#rhzRemainingAmount").val(strRHZRemainingAmount);
                 $("#comments").val(model.NhanXetCuaGiamSatVien);
                 $("#recommendations").val(model.DanDoBenhNhan);
                 $("#treatmentDevelopment").val(model.DienBienDieuTri);
@@ -558,7 +562,7 @@
             $("#textPatientName").val(model.HoTen);
 
             if (model.SoLanGiamSat > 0) {
-                var paramdetail = {benhNhanId: model.ID_BenhNhan};
+                var paramdetail = {ID_BenhNhan: model.ID_BenhNhan};
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("GetDsGiamSatCuaBenhNhan", "HoTroDieuTri")",
@@ -654,7 +658,7 @@
             var model = gridBenhNhanGS.dataItem(selectedRow);
 
             if (model.SoLanGiamSat > 0) {
-                var paramdetail = {benhNhanId: model.ID_BenhNhan};
+                var paramdetail = {ID_BenhNhan: model.ID_BenhNhan};
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("XuatBaoCaoGiamSatCuaBenhNhan", "HoTroDieuTri")",
@@ -739,7 +743,7 @@
                             'action': function(){
                                 var model = dataSourceSupervisions.at(value-1);
 
-                                var rmps = { ID: model.ID, req: jsonReq};
+                                var rmps = { ID: model.ID, req: jsonReq, ID_BenhNhan: model.ID_BenhNhan};
                                 $.ajax({
                                     type: "POST",
                                     url: "@Url.Action("XoaBaoCaoGiamSat", "HoTroDieuTri")",
@@ -750,6 +754,7 @@
                                         alert("Dữ liệu đã được xóa");
                                         dataSourceSupervisions.data(data);
                                         haveChanged = 1;
+                                        resetSupervisionForm();
                                     },
                                     failure: function(errMsg) {
                                         alert(errMsg);
@@ -813,7 +818,8 @@ Lọc theo:&nbsp;<input id="dropdownSupervisionStatus" style="width:140px" />&nb
             <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Liều lượng thuốc/ngày:</div>
             H=<input name="hDose" style="width:30px;" id="hDose" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
             E=<input name="eDose" style="width:30px;" id="eDose" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
-            RH=<input name="rhDose" style="width:30px;" id="rhDose" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" ><br />
+            RH=<input name="rhDose" style="width:30px;" id="rhDose" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
+            RHZ=<input name="rhzDose" style="width:30px;" id="rhzDose" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')"><br />
             <div class="k-edit-label" style="width:55px;text-align:left;padding-right:5px;">Ngày GS</div>
             <input id="supervisoryDate" value="" style="width:100px;" />&nbsp;&nbsp;
             <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Ngày cấp thuốc gần nhất</div>
@@ -821,11 +827,13 @@ Lọc theo:&nbsp;<input id="dropdownSupervisionStatus" style="width:140px" />&nb
             <div class="k-edit-label" style="width:120px;text-align:left;padding-right:5px;">Số lượng thuốc cấp</div>
             H=<input name="hAmount" style="width:30px;" id="hAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
             E=<input name="eAmount" style="width:30px;" id="eAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
-            RH=<input name="rhAmount" style="width:30px;" id="rhAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >&nbsp;&nbsp;&nbsp;&nbsp;
+            RH=<input name="rhAmount" style="width:30px;" id="rhAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
+            RHZ=<input name="rhzAmount" style="width:30px;" id="rhzAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')">&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="k-edit-label" style="width:auto;text-align:left;padding-right:5px;">Số lượng thuốc còn lại</div>
             H=<input name="hRemainingAmount" style="width:30px;" id="hRemainingAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
             E=<input name="eRemainingAmount" style="width:30px;" id="eRemainingAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
-            RH=<input name="rhRemainingAmount" style="width:30px;" id="rhRemainingAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" ><br />
+            RH=<input name="rhRemainingAmount" style="width:30px;" id="rhRemainingAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')" >
+            RHZ=<input name="rhzRemainingAmount" style="width:30px;" id="rhzRemainingAmount" onkeyup="this.value=this.value.replace(/[^\d\]+[\.]./,'')"><br />
             <div class="k-edit-label" style="width:200px;text-align:left;padding-right:5px;">Nhận xét của GSV</div>
             <textarea id="comments" style="width:350px;"></textarea><br />
             <div class="k-edit-label" style="width:200px;text-align:left;padding-right:5px;">Diễn biến của BN trong quá trình điều trị</div>

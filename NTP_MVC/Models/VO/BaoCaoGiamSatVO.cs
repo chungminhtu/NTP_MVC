@@ -15,12 +15,15 @@ namespace NTP_MVC.Models.VO
         public decimal LieuLuong_E { get; set; }
         public decimal LieuLuong_H { get; set; }
         public decimal LieuLuong_RH { get; set; }
+        public decimal LieuLuong_RHZ { get; set; }
         public decimal LuongCap_E { get; set; }
         public decimal LuongCap_H { get; set; }
         public decimal LuongCap_RH { get; set; }
+        public decimal LuongCap_RHZ { get; set; }
         public decimal ConLai_E { get; set; }
         public decimal ConLai_H { get; set; }
         public decimal ConLai_RH { get; set; }
+        public decimal ConLai_RHZ { get; set; }
         public string Sodienthoai { get; set; }
         public System.DateTime NgayGiamSat { get; set; }
         public string StrNgayGiamSat { get; set; }
