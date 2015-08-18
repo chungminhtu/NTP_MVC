@@ -35,11 +35,13 @@ namespace NTP_MVC.Controllers
                     ListHuyen.AddRange(db.DM_Huyen.Where(m => m.MA_TINH.Equals(MaTinh)).ToList());
                     ViewData["Huyens"] = ListHuyen;
                     model.ListBN = db.SO_BenhNhan.Where(b => b.MA_TINH.Equals(MaTinh)).Take(1000).ToList();
+                    ViewData["Xas"] = db.DM_Xa.Where(t => t.MA_HUYEN.Equals(MaHuyen)).ToList();
                 }
                 else
                 {
                     ViewData["Huyens"] = db.DM_Huyen.Where(b => b.MA_HUYEN.Equals(MaHuyen)).ToList();
                     model.ListBN = db.SO_BenhNhan.Where(b => b.MA_HUYEN.Equals(MaHuyen) && b.MA_TINH.Equals(MaTinh)).Take(1000).ToList();
+                    ViewData["Xas"] = db.DM_Xa.ToList();
                 }
                 Session["ListIDBN"] = model.ListBN.Select(a => a.ID_BenhNhan).ToList();
                 model.ListSKB = new List<SO_SoKhamBenh>();
@@ -53,10 +55,11 @@ namespace NTP_MVC.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SearchBenhNhan(string matinh, string mahuyen, string hoten, string mabnql, string socmnd, DateTime? nkbfrom, DateTime? nkbto)
+        public ActionResult SearchBenhNhan(string matinh, string mahuyen, string maxa, string hoten, string mabnql, string socmnd, DateTime? nkbfrom, DateTime? nkbto)
         {
             List<SO_BenhNhan> ListBN = (from d in db.SO_BenhNhan
                                         where (((mahuyen == "" || mahuyen == "0") ? true : d.MA_HUYEN.Equals(mahuyen))
+                                        && ((maxa == "" || maxa == "0") ? true : d.MA_XA.Equals(maxa))
                                         && d.MA_TINH.Equals(matinh)
                                         && ((hoten != "") ? d.HoTen.Contains(hoten) : true)
                                         && ((mabnql != "") ? d.MaBNQL.Contains(mabnql) : true)
@@ -125,43 +128,51 @@ namespace NTP_MVC.Controllers
 
         public ActionResult Edit()
         {
-            long ID_BenhNhan = 0;
-            long ID_SoKhamBenh = 0;
-            if (Request.Params["ID_BenhNhan"] != "null" && Request.Params["ID_BenhNhan"] != "")
+            var MaTinh = Session["MATINH"] + "";
+            if (MaTinh != "")
             {
-                ID_BenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"]);
-            }
+                long ID_BenhNhan = 0;
+                long ID_SoKhamBenh = 0;
+                if (Request.Params["ID_BenhNhan"] != "null" && Request.Params["ID_BenhNhan"] != "")
+                {
+                    ID_BenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"]);
+                }
 
-            if (Request.Params["ID_SoKhamBenh"] != "null" && Request.Params["ID_SoKhamBenh"] != "")
+                if (Request.Params["ID_SoKhamBenh"] != "null" && Request.Params["ID_SoKhamBenh"] != "")
+                {
+                    ID_SoKhamBenh = Convert.ToInt64(Request.Params["ID_SoKhamBenh"]);
+                }
+
+                SoKhamBenhModel model = new SoKhamBenhModel();
+
+                model.BN = db.SO_BenhNhan.Where(b => b.ID_BenhNhan == ID_BenhNhan).SingleOrDefault();
+
+
+                if (model.BN == null)
+                {
+                    model.BN = new SO_BenhNhan();
+                    model.BN.MA_HUYEN = Session["MAHUYEN"] + "";
+                    model.BN.MA_TINH = Session["MATINH"] + "";
+
+                }
+                model.BN.ID_BenhNhan = ID_BenhNhan;
+
+                model.SKB = db.SO_SoKhamBenh.Where(b => b.ID_SoKhamBenh == ID_SoKhamBenh).SingleOrDefault();
+                if (model.SKB == null)
+                {
+                    model.SKB = new SO_SoKhamBenh();
+                }
+
+                ViewData["Tinhs"] = db.DM_Tinh.Where(t => t.MA_TINH.Equals(model.BN.MA_TINH)).ToList();
+                ViewData["Huyens"] = db.DM_Huyen.Where(m => m.MA_TINH.Equals(model.BN.MA_TINH)).ToList();
+                ViewData["Xas"] = db.DM_Xa.ToList();
+
+                return View(model);
+            }
+            else
             {
-                ID_SoKhamBenh = Convert.ToInt64(Request.Params["ID_SoKhamBenh"]);
+                return RedirectToAction("Index", "Login");
             }
-
-            SoKhamBenhModel model = new SoKhamBenhModel();
-
-            model.BN = db.SO_BenhNhan.Where(b => b.ID_BenhNhan == ID_BenhNhan).SingleOrDefault();
-
-
-            if (model.BN == null)
-            {
-                model.BN = new SO_BenhNhan();
-                model.BN.MA_HUYEN = Session["MAHUYEN"] + "";
-                model.BN.MA_TINH = Session["MATINH"] + "";
-
-            }
-            model.BN.ID_BenhNhan = ID_BenhNhan;
-
-            model.SKB = db.SO_SoKhamBenh.Where(b => b.ID_SoKhamBenh == ID_SoKhamBenh).SingleOrDefault();
-            if (model.SKB == null)
-            {
-                model.SKB = new SO_SoKhamBenh();
-            }
-
-            ViewData["Tinhs"] = db.DM_Tinh.Where(t => t.MA_TINH.Equals(model.BN.MA_TINH)).ToList();
-            ViewData["Huyens"] = db.DM_Huyen.Where(m => m.MA_TINH.Equals(model.BN.MA_TINH)).ToList();
-            ViewData["Xas"] = db.DM_Xa.ToList();
-
-            return View(model);
         }
 
         [HttpPost, ValidateInput(false)]
@@ -176,6 +187,7 @@ namespace NTP_MVC.Controllers
                     skb.ID_SoKhamBenh = Request.Params["ID_SoKhamBenh"] + "" != "" ? Convert.ToInt64(Request.Params["ID_SoKhamBenh"]) : 0;
                     if (bn.ID_BenhNhan != 0)
                     {
+                        bn.Ngay_SD = DateTime.Now;
                         db.SO_BenhNhan.Attach(bn);
                         db.Entry(bn).State = EntityState.Modified;
                         db.SaveChanges();
@@ -194,6 +206,7 @@ namespace NTP_MVC.Controllers
                     }
                     else
                     {
+                        bn.NGAY_NM = DateTime.Now;
                         db.SO_BenhNhan.Add(bn);
                         db.SaveChanges();
 

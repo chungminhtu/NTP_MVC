@@ -75,31 +75,32 @@
             {
                 ViewContext.Writer.Write("<table><tr><td style=\"padding-right:5px;\">");
                 Html.RenderPartial("_ComboBoxTinh");
-                ViewContext.Writer.Write("</td><td style=\"padding-right:50px;\">");
+                ViewContext.Writer.Write("</td><td style=\"padding-right:5px;\">");
                 Html.RenderPartial("_ComboBoxHuyen");
+                ViewContext.Writer.Write("</td><td style=\"padding-right:5px;\">");
+                Html.RenderPartial("_ComboBoxXa"); 
+                ViewContext.Writer.Write("</td></tr><tr><td style=\"padding-right:5px;\">");
+                Html.DevExpress().TextBox(mySettings =>
+                {
+                    mySettings.Name = "txtHoTen";
+                    mySettings.Properties.Caption = "Họ tên";
+                    mySettings.Width = Unit.Pixel(200);
+                }).Render();
                 ViewContext.Writer.Write("</td><td style=\"padding-right:5px;\">");
                 Html.DevExpress().TextBox(mySettings =>
                 {
                     mySettings.Name = "txtMaBNQL";
                     mySettings.Properties.Caption = "Mã BNQL";
-                    mySettings.Width = Unit.Pixel(100);
+                    mySettings.Width = Unit.Pixel(150);
                 }).Render();
                 ViewContext.Writer.Write("</td><td style=\"padding-right:5px;\">");
                 Html.DevExpress().TextBox(mySettings =>
                 {
                     mySettings.Name = "txtSoCMND";
                     mySettings.Properties.Caption = "Số CMND";
-                    mySettings.Width = Unit.Pixel(100);
+                    mySettings.Width = Unit.Pixel(150);
                 }).Render();
 
-
-                ViewContext.Writer.Write("</td></tr><tr><td colspan='2' style=\"padding-right:5px;\">");
-                Html.DevExpress().TextBox(mySettings =>
-                {
-                    mySettings.Name = "txtHoTen";
-                    mySettings.Properties.Caption = "Họ tên";
-                    mySettings.Width = Unit.Pixel(300);
-                }).Render();
                 ViewContext.Writer.Write("</td><td style=\"padding-right:5px;\">");
                 Html.DevExpress().DateEdit(mySettings =>
                 {
@@ -210,68 +211,68 @@
 
     });
     settings.Items.AddGroupItem(group =>
-   {
-       group.Caption = "Sổ khám bệnh của bệnh nhân";
-       group.ShowCaption = DefaultBoolean.True;
-       group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
-       group.Width = Unit.Percentage(100);
-       group.Items.Add(m =>
-       {
-           m.ShowCaption = DefaultBoolean.False;
-           m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
-       }).SetNestedContent(() =>
-       {
-           Html.DevExpress().Panel(settings5 =>
-           {
-               settings5.Name = "Panel1";
-               settings5.FixedPosition = PanelFixedPosition.None;
-               settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
-               settings5.SetContent(() =>
-               {
-                   Html.DevExpress().Button(
-                      MyButton =>
-                      {
-                          MyButton.Name = "btnThemMoi1";
-                          MyButton.Width = 90;
-                          MyButton.Text = "Thêm sổ khám bệnh";
-                          MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+    {
+        group.Caption = "Sổ khám bệnh của bệnh nhân";
+        group.ShowCaption = DefaultBoolean.True;
+        group.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+        group.Width = Unit.Percentage(100);
+        group.Items.Add(m =>
+        {
+            m.ShowCaption = DefaultBoolean.False;
+            m.RequiredMarkDisplayMode = FieldRequiredMarkMode.Hidden;
+        }).SetNestedContent(() =>
+        {
+            Html.DevExpress().Panel(settings5 =>
+            {
+                settings5.Name = "Panel1";
+                settings5.FixedPosition = PanelFixedPosition.None;
+                settings5.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
+                settings5.SetContent(() =>
+                {
+                    Html.DevExpress().Button(
+                       MyButton =>
+                       {
+                           MyButton.Name = "btnThemMoi1";
+                           MyButton.Width = 90;
+                           MyButton.Text = "Thêm sổ khám bệnh";
+                           MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
+                                                                       new { Controller = "SoKhamBenh", Action = "Edit" }) +
+                                                                       "?ID_BenhNhan='+ GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex())+'" +
+                                                                     "&ID_SoKhamBenh=0'}";
+                           MyButton.Images.Image.Url = "~/Content/Images/add.png";
+                           MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                       }).Render();
+                    Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnSua1";
+                                MyButton.Width = 90;
+                                MyButton.Text = "Sửa sổ khám bệnh";
+                                MyButton.Images.Image.Url = "~/Content/Images/edit.png";
+                                MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
                                                                       new { Controller = "SoKhamBenh", Action = "Edit" }) +
-                                                                      "?ID_BenhNhan='+ GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex())+'" +
-                                                                    "&ID_SoKhamBenh=0'}";
-                          MyButton.Images.Image.Url = "~/Content/Images/add.png";
-                          MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                      }).Render();
-                   Html.DevExpress().Button(
-                           MyButton =>
-                           {
-                               MyButton.Name = "btnSua1";
-                               MyButton.Width = 90;
-                               MyButton.Text = "Sửa sổ khám bệnh";
-                               MyButton.Images.Image.Url = "~/Content/Images/edit.png";
-                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                               MyButton.ClientSideEvents.Click = "function() { document.location='" + DevExpressHelper.GetUrl(
-                                                                     new { Controller = "SoKhamBenh", Action = "Edit" }) +
-                                                                   "?ID_BenhNhan=' + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex())+'" +
-                                                                    "&ID_SoKhamBenh='+GridSoKhamBenh.GetRowKey(GridSoKhamBenh.GetFocusedRowIndex());}";
-                           }).Render();
-                   Html.DevExpress().Button(
-                           MyButton =>
-                           {
-                               MyButton.Name = "btnXoa1";
-                               MyButton.Width = 90;
-                               MyButton.Text = "Xóa sổ khám bệnh";
-                               MyButton.Images.Image.Url = "~/Content/Images/delete.png";
-                               MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                               MyButton.ClientSideEvents.Click = "function() { if(confirm('bạn có muốn xóa dữ liệu này không?')) {document.location='" + DevExpressHelper.GetUrl(
-                                                                       new { Controller = "SoKhamBenh", Action = "DeleteSKB" }) +
-                                                                      "?ID_SoKhamBenh='+GridSoKhamBenh.GetRowKey(GridSoKhamBenh.GetFocusedRowIndex());}}";
-                           }).Render();
-               });
-           }).Render();
+                                                                    "?ID_BenhNhan=' + GridBenhNhan.GetRowKey(GridBenhNhan.GetFocusedRowIndex())+'" +
+                                                                     "&ID_SoKhamBenh='+GridSoKhamBenh.GetRowKey(GridSoKhamBenh.GetFocusedRowIndex());}";
+                            }).Render();
+                    Html.DevExpress().Button(
+                            MyButton =>
+                            {
+                                MyButton.Name = "btnXoa1";
+                                MyButton.Width = 90;
+                                MyButton.Text = "Xóa sổ khám bệnh";
+                                MyButton.Images.Image.Url = "~/Content/Images/delete.png";
+                                MyButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                MyButton.ClientSideEvents.Click = "function() { if(confirm('bạn có muốn xóa dữ liệu này không?')) {document.location='" + DevExpressHelper.GetUrl(
+                                                                        new { Controller = "SoKhamBenh", Action = "DeleteSKB" }) +
+                                                                       "?ID_SoKhamBenh='+GridSoKhamBenh.GetRowKey(GridSoKhamBenh.GetFocusedRowIndex());}}";
+                            }).Render();
+                });
+            }).Render();
 
-           Html.RenderPartial("_GridSoKhamBenh", Model.ListSKB);
-       });
-   });
+            Html.RenderPartial("_GridSoKhamBenh", Model.ListSKB);
+        });
+    });
 }).GetHtml()
 
 @Html.DevExpress().PopupControl(

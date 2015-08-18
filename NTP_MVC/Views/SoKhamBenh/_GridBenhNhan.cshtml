@@ -1,14 +1,15 @@
 ﻿@model List<NTP_MVC.Models.SO_BenhNhan>
 @{
     var grid = Html.DevExpress().GridView(settings =>
-    {    
+    {
         /*Initial*/
         settings.Name = "GridBenhNhan";
-        settings.Width = Unit.Percentage(100); 
+        settings.Width = Unit.Percentage(100);
         settings.CallbackRouteValues = new { Controller = "SoKhamBenh", Action = "SearchBenhNhan" };
         settings.ClientSideEvents.BeginCallback = "function(s, e) { " +
                                                                   "e.customArgs['matinh'] = ComboBoxTinh.GetValue();" +
                                                                   "e.customArgs['mahuyen'] = ComboBoxHuyen.GetValue();" +
+                                                                  "e.customArgs['maxa'] = ComboBoxXa.GetValue();" +
                                                                   "e.customArgs['hoten'] = txtHoTen.GetText() ;" +
                                                                   "e.customArgs['mabnql'] = txtMaBNQL.GetText() ;" +
                                                                   "e.customArgs['socmnd'] = txtSoCMND.GetText() ;" +
@@ -22,7 +23,7 @@
         settings.KeyFieldName = "ID_BenhNhan";
 
         /* Behavior */
-       // settings.SettingsBehavior.AllowSelectByRowClick = true;
+        // settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
         settings.SettingsBehavior.AllowFocusedRow = true;
         //settings.Settings.ShowTitlePanel = true;
@@ -31,11 +32,11 @@
         settings.SettingsBehavior.ConfirmDelete = true;
         //settings.SettingsSearchPanel.Visible = true;
         settings.SettingsBehavior.AllowDragDrop = false;
-        
+
         /*Events*/
         settings.ClientSideEvents.FocusedRowChanged = "OnGridBNFocusedRowChanged";
-     //   settings.ClientSideEvents.RowDblClick = "OnGridBNRowDblClick";
-     
+        //   settings.ClientSideEvents.RowDblClick = "OnGridBNRowDblClick";
+
         /*Buttons*/
         //var EditColumnCommand = new MVCxGridViewCommandColumn();
         //EditColumnCommand.ButtonType = GridViewCommandButtonType.Button;
@@ -50,40 +51,41 @@
         //DeleteColumnCommand.Width = 50;
         //DeleteColumnCommand.VisibleIndex = 14;
         //settings.Columns.Add(DeleteColumnCommand);
-         
+
         /* Pager */
         settings.SettingsPager.Mode = GridViewPagerMode.ShowPager;
         settings.SettingsPager.AllButton.Text = "Tất cả";
         settings.SettingsPager.NextPageButton.Text = "Tiếp theo >";
         settings.SettingsPager.PrevPageButton.Text = "< Quay lại";
+        settings.SettingsPager.PageSize = 20;
         settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
-        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
-        
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "30", "40", "50", };
+
         /* Column Definitions */
-       
+
         settings.Columns.Add(i =>
         {
             i.FieldName = "HoTen";
-            i.Caption = "Họ và tên"; 
+            i.Caption = "Họ và tên";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
-        
+
         settings.Columns.Add(i =>
         {
             i.FieldName = "SoCMND";
-            i.Caption = "Số CMND"; 
+            i.Caption = "Số CMND";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
 
         settings.Columns.Add(i =>
         {
             i.FieldName = "Tuoi";
-            i.Caption = "Tuổi"; 
+            i.Caption = "Tuổi";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
 
-        
+
         settings.Columns.Add("Tuoi");
 
         settings.Columns.Add(i =>
@@ -97,14 +99,14 @@
             var comboBoxProperties = i.PropertiesEdit as ComboBoxProperties;
             comboBoxProperties.DropDownHeight = 0;
             comboBoxProperties.Items.Add("Nam", true);
-            comboBoxProperties.Items.Add("Nữ", false); 
+            comboBoxProperties.Items.Add("Nữ", false);
         });
 
 
         settings.Columns.Add(i =>
         {
             i.FieldName = "Diachi";
-            i.Caption = "Địa chỉ"; 
+            i.Caption = "Địa chỉ";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
 
@@ -112,31 +114,31 @@
         settings.Columns.Add(i =>
         {
             i.FieldName = "Sodienthoai";
-            i.Caption = "Số điện thoại"; 
+            i.Caption = "Số điện thoại";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
 
         settings.Columns.Add(i =>
         {
             i.FieldName = "BHYT";
-            i.Caption = "Bảo hiểm y tế"; 
+            i.Caption = "Bảo hiểm y tế";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
 
         settings.Columns.Add(i =>
         {
             i.FieldName = "NgheNghiep";
-            i.Caption = "Nghề nghiệp"; 
+            i.Caption = "Nghề nghiệp";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
         });
 
         settings.Columns.Add(i =>
         {
             i.FieldName = "NoiGioiThieu";
-            i.Caption = "Nơi giới thiệu"; 
+            i.Caption = "Nơi giới thiệu";
             i.HeaderStyle.Paddings.Padding = Unit.Pixel(2);
-        });  
-        
+        });
+
         ///*Edit Form*/
         //settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         //settings.SettingsPopup.EditForm.Modal = true;
@@ -158,5 +160,5 @@
     {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
- grid.Bind(Model).GetHtml();
+    grid.Bind(Model).GetHtml();
 } 

@@ -43,10 +43,22 @@
                                         InsertionMode = InsertionMode.Replace 
                                     }))
 {
-    <h2 style="text-align: center; width:100%;">
+    <h2 style="text-align: left; width:100%;">
         Cập nhật thông tin bệnh nhân
     </h2> Html.RenderPartial("_FormBenhNhan", Model.BN);
-    <h2 style="text-align: center; width:100%;">
+    <div style="width:100%; align-content:center">
+        @Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnUpdateBN";
+            btnSettings.Text = "Lưu bệnh nhân";
+            btnSettings.Height = 30;
+            btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            btnSettings.Images.Image.Url = "~/Content/Images/save.png";
+            btnSettings.UseSubmitBehavior = true;
+        }).GetHtml()
+    </div>
+    <h2 style="text-align: left; width:100%;">
         Thông tin Sổ Khám Bệnh của bệnh nhân
     </h2>
     Html.RenderPartial("_FormSoKhamBenh", Model.SKB);
@@ -77,6 +89,7 @@
     </div>
     <div id="MsgError" style='margin-right:50px; float:right; font-size:14px; font-weight:bold; color:blue'>
     </div>
+    <div style="height:100px"></div>
 }
 
 @Html.DevExpress().PopupControl(

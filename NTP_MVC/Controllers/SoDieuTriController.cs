@@ -44,34 +44,42 @@ namespace NTP_MVC.Controllers
 
         public ActionResult Edit()
         {
-            long ID_BenhNhan = 0;
-            long ID_SoDieuTri = 0;
-            if (Request.Params["ID_BenhNhan"] != "" && Request.Params["ID_BenhNhan"] != "null")
+            var MaTinh = Session["MATINH"] + "";
+            if (MaTinh != "")
             {
-                ID_BenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"]);
-            }
+                long ID_BenhNhan = 0;
+                long ID_SoDieuTri = 0;
+                if (Request.Params["ID_BenhNhan"] != "" && Request.Params["ID_BenhNhan"] != "null")
+                {
+                    ID_BenhNhan = Convert.ToInt64(Request.Params["ID_BenhNhan"]);
+                }
 
-            if (Request.Params["ID_SoDieuTri"] != "" && Request.Params["ID_SoDieuTri"] != "null")
+                if (Request.Params["ID_SoDieuTri"] != "" && Request.Params["ID_SoDieuTri"] != "null")
+                {
+                    ID_SoDieuTri = Convert.ToInt64(Request.Params["ID_SoDieuTri"]);
+                }
+
+                SoDieuTriModel model = new SoDieuTriModel();
+
+                model.BN = db.SO_BenhNhan.Where(b => b.ID_BenhNhan == ID_BenhNhan).SingleOrDefault();
+                model.BN.ID_BenhNhan = ID_BenhNhan;
+                model.SDT = db.SO_SoDieuTri.Where(b => b.ID_SoDieuTri == ID_SoDieuTri).SingleOrDefault();
+
+                if (model.BN == null)
+                {
+                    model.BN = new SO_BenhNhan();
+                }
+                if (model.SDT == null)
+                {
+                    model.SDT = new SO_SoDieuTri();
+                }
+
+                return View(model);
+            }
+            else
             {
-                ID_SoDieuTri = Convert.ToInt64(Request.Params["ID_SoDieuTri"]);
+                return RedirectToAction("Index", "Login");
             }
-
-            SoDieuTriModel model = new SoDieuTriModel();
-
-            model.BN = db.SO_BenhNhan.Where(b => b.ID_BenhNhan == ID_BenhNhan).SingleOrDefault();
-            model.BN.ID_BenhNhan = ID_BenhNhan;
-            model.SDT = db.SO_SoDieuTri.Where(b => b.ID_SoDieuTri == ID_SoDieuTri).SingleOrDefault();
-
-            if (model.BN == null)
-            {
-                model.BN = new SO_BenhNhan();
-            }
-            if (model.SDT == null)
-            {
-                model.SDT = new SO_SoDieuTri();
-            }
-
-            return View(model);
         }
 
 
@@ -89,24 +97,28 @@ namespace NTP_MVC.Controllers
                     sdt.ID_SoDieuTri = Request.Params["ID_SoDieuTri"] + "" != "" ? Convert.ToInt64(Request.Params["ID_SoDieuTri"]) : 0;
                     if (bn.ID_BenhNhan != 0)
                     {
+                        bn.Ngay_SD = DateTime.Now;
                         db.SO_BenhNhan.Attach(bn);
                         db.Entry(bn).State = EntityState.Modified;
                         db.SaveChanges();
                         sdt.ID_BENHNHAN = bn.ID_BenhNhan;
                         if (sdt.ID_SoDieuTri != 0)
                         {
+                            sdt.Ngay_SD = DateTime.Now;
                             db.SO_SoDieuTri.Attach(sdt);
                             db.Entry(sdt).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                         else
                         {
+                            sdt.NGAY_NM = DateTime.Now;
                             db.SO_SoDieuTri.Add(sdt);
                             db.SaveChanges();
                         }
                     }
                     else
                     {
+                        bn.NGAY_NM = DateTime.Now;
                         db.SO_BenhNhan.Add(bn);
                         db.SaveChanges();
 
@@ -132,7 +144,7 @@ namespace NTP_MVC.Controllers
             {
                 ViewData["ListSoDieuTri"] = db.SO_SoDieuTri.Where(bn => bn.ID_BENHNHAN.ToString().Contains(s)).ToList();
             }
-            ViewData["ListHuyen"] = db.DM_Huyen.ToList(); 
+            ViewData["ListHuyen"] = db.DM_Huyen.ToList();
         }
 
 
