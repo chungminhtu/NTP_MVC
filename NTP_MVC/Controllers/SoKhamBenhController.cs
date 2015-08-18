@@ -185,6 +185,11 @@ namespace NTP_MVC.Controllers
                     var a = ViewData["ListPXNBenhNhan"] as List<SO_PhieuXetNghiem>;
                     bn.ID_BenhNhan = Request.Params["ID_BenhNhan"] + "" != "" ? Convert.ToInt64(Request.Params["ID_BenhNhan"]) : 0;
                     skb.ID_SoKhamBenh = Request.Params["ID_SoKhamBenh"] + "" != "" ? Convert.ToInt64(Request.Params["ID_SoKhamBenh"]) : 0;
+
+                    if (string.IsNullOrEmpty(bn.HoTen) && bn.Gioitinh == null && bn.Tuoi == null && string.IsNullOrEmpty(bn.Diachi))
+                    {
+                        return "Chưa nhập thông tin bệnh nhân";
+                    }
                     if (bn.ID_BenhNhan != 0)
                     {
                         bn.Ngay_SD = DateTime.Now;

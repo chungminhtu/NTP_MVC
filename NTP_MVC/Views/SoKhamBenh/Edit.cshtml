@@ -11,12 +11,11 @@
     }
 
     function GridKQPXN_OnBeginCallback(s, e) {
-        if (ID_PhieuXetNghiem=="")
-        {
+        if (ID_PhieuXetNghiem == "") {
             alert("Chưa lưu Phiếu xét nghiệm!");
         }
-        else { 
-        e.customArgs["ID_PhieuXetNghiem"] = ID_PhieuXetNghiem;
+        else {
+            e.customArgs["ID_PhieuXetNghiem"] = ID_PhieuXetNghiem;
         }
     }
     function OnGridPXNRowDblClick(s, e) {
@@ -33,21 +32,23 @@
 
 @Html.DevExpress().GetStyleSheets(
     new StyleSheet { ExtensionSuite = ExtensionSuite.Report }
-) 
+)
 @using (Ajax.BeginForm("Edit", "SoKhamBenh",
-                                    new { ID_BenhNhan = Model.BN.ID_BenhNhan, ID_SoKhamBenh = Model.SKB.ID_SoKhamBenh },
-                                    new AjaxOptions
-                                    {
-                                        HttpMethod = "POST",
-                                        UpdateTargetId = "MsgError",
-                                        InsertionMode = InsertionMode.Replace 
-                                    }))
+                                                                                    new { ID_BenhNhan = Model.BN.ID_BenhNhan, ID_SoKhamBenh = Model.SKB.ID_SoKhamBenh },
+                                                                                    new AjaxOptions
+                                                                                    {
+                                                                                        HttpMethod = "POST",
+                                                                                        UpdateTargetId = "MsgError",
+                                                                                        InsertionMode = InsertionMode.Replace
+                                                                                    }))
 {
     <h2 style="text-align: left; width:100%;">
         Cập nhật thông tin bệnh nhân
     </h2> Html.RenderPartial("_FormBenhNhan", Model.BN);
-    <div style="width:100%; align-content:center">
-        @Html.DevExpress().Button(
+    <div style="width:100%;">
+        <div id="MsgError" style='margin-left:10px; float:left; font-size:14px; font-weight:bold; color:blue'></div>
+        <div style="display: table; margin: 0 auto;">
+            @Html.DevExpress().Button(
         btnSettings =>
         {
             btnSettings.Name = "btnUpdateBN";
@@ -57,24 +58,26 @@
             btnSettings.Images.Image.Url = "~/Content/Images/save.png";
             btnSettings.UseSubmitBehavior = true;
         }).GetHtml()
+        </div>
     </div>
     <h2 style="text-align: left; width:100%;">
         Thông tin Sổ Khám Bệnh của bệnh nhân
     </h2>
     Html.RenderPartial("_FormSoKhamBenh", Model.SKB);
 
-    <div style='float:right'>
-        @Html.DevExpress().Button(
+    <div style="width:100%;">
+        <div style="display: table; margin: 0 auto;">
+            @Html.DevExpress().Button(
         btnSettings =>
         {
             btnSettings.Name = "btnUpdate1";
-            btnSettings.Text = "Lưu toàn bộ";
+            btnSettings.Text = "Lưu Phiếu xét nghiệm và Sổ Khám bệnh";
             btnSettings.Height = 30;
             btnSettings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
             btnSettings.Images.Image.Url = "~/Content/Images/save.png";
             btnSettings.UseSubmitBehavior = true;
         }).GetHtml()
-        @Html.DevExpress().Button(
+            @Html.DevExpress().Button(
         btnSettings =>
         {
             btnSettings.Name = "btnCancel1";
@@ -86,8 +89,7 @@
             btnSettings.ClientSideEvents.Click = "function(s, e){ document.location ='" + DevExpressHelper.GetUrl(
                                                                         new { Controller = "SoKhamBenh", Action = "Index" }) + "' }";
         }).GetHtml()
-    </div>
-    <div id="MsgError" style='margin-right:50px; float:right; font-size:14px; font-weight:bold; color:blue'>
+        </div>
     </div>
     <div style="height:100px"></div>
 }
