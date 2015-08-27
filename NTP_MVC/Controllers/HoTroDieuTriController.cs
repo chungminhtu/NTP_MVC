@@ -2730,13 +2730,16 @@ namespace NTP_MVC.Controllers
 			    String strHAmount = p.LuongCap_H + ""; if (strHAmount.EndsWith(".0")) strHAmount = strHAmount.Substring(0,strHAmount.IndexOf(".")); js.Add("hAmount", strHAmount);
 			    String strEAmount = p.LuongCap_E + ""; if (strEAmount.EndsWith(".0")) strEAmount = strEAmount.Substring(0,strEAmount.IndexOf(".")); js.Add("eAmount", strEAmount);
 			    String strRHAmount = p.LuongCap_RH + ""; if (strRHAmount.EndsWith(".0")) strRHAmount = strRHAmount.Substring(0,strRHAmount.IndexOf(".")); js.Add("rhAmount", strRHAmount);
+                String strRHZAmount = p.LuongCap_RHZ + ""; if (strRHZAmount.EndsWith(".0")) strRHZAmount = strRHZAmount.Substring(0, strRHZAmount.IndexOf(".")); js.Add("rhzAmount", strRHZAmount);
                 String strHRemainingAmount = p.ConLai_H + ""; if (strHRemainingAmount.EndsWith(".0")) strHRemainingAmount = strHRemainingAmount.Substring(0, strHRemainingAmount.IndexOf(".")); js.Add("hRemainingAmount", strHRemainingAmount);
                 String strERemainingAmount = p.ConLai_E + ""; if (strERemainingAmount.EndsWith(".0")) strERemainingAmount = strERemainingAmount.Substring(0, strERemainingAmount.IndexOf(".")); js.Add("eRemainingAmount", strERemainingAmount);
                 String strRHRemainingAmount = p.ConLai_RH + ""; if (strRHRemainingAmount.EndsWith(".0")) strRHRemainingAmount = strRHRemainingAmount.Substring(0, strRHRemainingAmount.IndexOf(".")); js.Add("rhRemainingAmount", strRHRemainingAmount);
+                String strRHZRemainingAmount = p.ConLai_RHZ + ""; if (strRHZRemainingAmount.EndsWith(".0")) strRHZRemainingAmount = strRHZRemainingAmount.Substring(0, strRHZRemainingAmount.IndexOf(".")); js.Add("rhzRemainingAmount", strRHZRemainingAmount);
                 js.Add("mobileNumber", p.Sodienthoai != null ? p.Sodienthoai : "");
                 String strHDose = p.LieuLuong_H + ""; if (strHDose.EndsWith(".0")) strHDose = strHDose.Substring(0, strHDose.IndexOf(".")); js.Add("hDose", strHDose);
                 String strEDose = p.LieuLuong_E + ""; if (strEDose.EndsWith(".0")) strEDose = strEDose.Substring(0, strEDose.IndexOf(".")); js.Add("eDose", strEDose);
-                String strRHDose = p.LieuLuong_RH + ""; if (strRHDose.EndsWith(".0")) strRHDose = strRHDose.Substring(0, strRHDose.IndexOf(".")); js.Add("rhDose", strRHDose);			
+                String strRHDose = p.LieuLuong_RH + ""; if (strRHDose.EndsWith(".0")) strRHDose = strRHDose.Substring(0, strRHDose.IndexOf(".")); js.Add("rhDose", strRHDose);
+                String strRHZDose = p.LieuLuong_RHZ + ""; if (strRHZDose.EndsWith(".0")) strRHZDose = strRHZDose.Substring(0, strRHZDose.IndexOf(".")); js.Add("rhzDose", strRHZDose);			
 			    js.Add("therapy", phacdos[(int)dieutri.ID_PhacdoDT-1].Ten_PhacdoDT);
 			
 			    jsonArray.Add(js);
