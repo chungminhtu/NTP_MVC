@@ -58,7 +58,6 @@
         <EntityTypeShape EntityType="NTP_DBModel.sysdiagram" Width="1.5" PointX="20.75" PointY="11.75" />
         <EntityTypeShape EntityType="NTP_DBModel.HTDT_BaoCaoGiamSat" Width="1.5" PointX="20.75" PointY="14.75" />
         <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanDoiDiaChi" Width="1.5" PointX="20.75" PointY="20.75" />
-        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" Width="1.5" PointX="6.75" PointY="21.75" />
         <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanPhanHoiTacDungPhu" Width="1.5" PointX="22.75" PointY="0.75" />
         <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanTuChoiNhanTin" Width="1.5" PointX="22.75" PointY="3.75" />
         <EntityTypeShape EntityType="NTP_DBModel.HTDT_LichHenXN" Width="1.5" PointX="22.75" PointY="7.75" />
@@ -67,6 +66,7 @@
         <EntityTypeShape EntityType="NTP_DBModel.NTP_BN_DM_NGUONNHANLUC" Width="1.5" PointX="16.75" PointY="22.75" />
         <EntityTypeShape EntityType="NTP_DBModel.InDanhSachBenhNhan" Width="1.5" PointX="22.75" PointY="18.75" />
         <EntityTypeShape EntityType="NTP_DBModel.InPhieuXetNghiem" Width="1.5" PointX="18.75" PointY="23.75" />
+        <EntityTypeShape EntityType="NTP_DBModel.HTDT_BenhNhanNhanTinNhan" Width="1.5" PointX="7.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -80,7 +80,6 @@ namespace NTP_MVC.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<HTDT_BaoCaoGiamSat> HTDT_BaoCaoGiamSat { get; set; }
         public virtual DbSet<HTDT_BenhNhanDoiDiaChi> HTDT_BenhNhanDoiDiaChi { get; set; }
-        public virtual DbSet<HTDT_BenhNhanNhanTinNhan> HTDT_BenhNhanNhanTinNhan { get; set; }
         public virtual DbSet<HTDT_BenhNhanPhanHoiTacDungPhu> HTDT_BenhNhanPhanHoiTacDungPhu { get; set; }
         public virtual DbSet<HTDT_BenhNhanTuChoiNhanTin> HTDT_BenhNhanTuChoiNhanTin { get; set; }
         public virtual DbSet<HTDT_LichHenXN> HTDT_LichHenXN { get; set; }
@@ -89,6 +88,7 @@ namespace NTP_MVC.Models
         public virtual DbSet<NTP_BN_DM_NGUONNHANLUC> NTP_BN_DM_NGUONNHANLUC { get; set; }
         public virtual DbSet<InDanhSachBenhNhan> InDanhSachBenhNhans { get; set; }
         public virtual DbSet<InPhieuXetNghiem> InPhieuXetNghiems { get; set; }
+        public virtual DbSet<HTDT_BenhNhanNhanTinNhan> HTDT_BenhNhanNhanTinNhan { get; set; }
     
         public virtual int NTP_BN_BCKETQUAAMHOADOM_IN(string tINH, Nullable<byte> mIEN, Nullable<byte> vUNG, Nullable<int> nAM, string qUY, string dK)
         {

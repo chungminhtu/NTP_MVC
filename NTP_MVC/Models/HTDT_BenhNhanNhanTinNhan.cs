@@ -20,9 +20,12 @@ namespace NTP_MVC.Models
         public string Sodienthoai { get; set; }
         public string MA_HUYEN { get; set; }
         public System.DateTime NgayGui { get; set; }
-        public bool GuiThanhCong { get; set; }
+        public Nullable<bool> GuiThanhCong { get; set; }
         public Nullable<bool> PhanHoi { get; set; }
         public Nullable<System.DateTime> NgayPhanHoiGanNhat { get; set; }
         public short LoaiTinNhan { get; set; }
+        public string TinNhan { get; set; }
+        public int Tuan { get; set; }
+        public int ID_PhanLoaiBenh { get; set; }
     }
 }
