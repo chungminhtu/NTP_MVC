@@ -1,4 +1,4 @@
-using NghiepCT.Utilities.Security;
+﻿using NghiepCT.Utilities.Security;
 using NTP_MVC.Models;
 using NTP_MVC.Models.VO;
 using Quartz;
@@ -47,28 +47,28 @@ namespace NTP_MVC.Job
 
         public void DoReminder(string provinceId, string districtId)
         {
-           string sql = "select distinct data.ID_BenhNhan,data.Tuan,data.ID_SoDieuTri, data.Sodienthoai, data.ID_PhanLoaiBenh, data.MA_HUYEN from "
-                + " (select (DATEDIFF(day,sdt.NgayDT,getdate())/7 + 1) as Tuan, bn.ID_BenhNhan,sdt.NgayDT,sdt.ID_PhacdoDT, "
-                + " sdt.ID_SoDieuTri,bn.Sodienthoai,sdt.ID_PhanLoaiBenh,bn.MA_HUYEN "
-                + " from so_benhnhan bn, SO_SoDieuTri sdt where bn.ID_BenhNhan=sdt.ID_BENHNHAN and sdt.ID_PhanLoaiBenh IN (1,2,3,4) "
-                + " and bn.MA_HUYEN=@P0 and sdt.NgayRV is null and (sdt.ID_KetquaDT is null OR sdt.ID_KetquaDT=0) "
-                + " and sdt.NgayDT is not null and bn.Sodienthoai is not null and bn.Sodienthoai != N'0' "
-                + " and (sdt.Huy=0 or sdt.Huy is null) and (bn.Huy=0 or bn.Huy is null) "
-                + " and DATEDIFF(day,sdt.NgayDT,getdate()) <= 182) data "
-                + " where Tuan <= 26 "
-                + " order by Tuan asc ";
+            string sql = "select distinct data.ID_BenhNhan,data.Tuan,data.ID_SoDieuTri, data.Sodienthoai, data.ID_PhanLoaiBenh, data.MA_HUYEN from "
+                 + " (select (DATEDIFF(day,sdt.NgayDT,getdate())/7 + 1) as Tuan, bn.ID_BenhNhan,sdt.NgayDT,sdt.ID_PhacdoDT, "
+                 + " sdt.ID_SoDieuTri,bn.Sodienthoai,sdt.ID_PhanLoaiBenh,bn.MA_HUYEN "
+                 + " from so_benhnhan bn, SO_SoDieuTri sdt where bn.ID_BenhNhan=sdt.ID_BENHNHAN and sdt.ID_PhanLoaiBenh IN (1,2,3,4) "
+                 + " and bn.MA_HUYEN=@P0 and sdt.NgayRV is null and (sdt.ID_KetquaDT is null OR sdt.ID_KetquaDT=0) "
+                 + " and sdt.NgayDT is not null and bn.Sodienthoai is not null and bn.Sodienthoai != N'0' "
+                 + " and (sdt.Huy=0 or sdt.Huy is null) and (bn.Huy=0 or bn.Huy is null) "
+                 + " and DATEDIFF(day,sdt.NgayDT,getdate()) <= 182) data "
+                 + " where Tuan <= 26 "
+                 + " order by Tuan asc ";
 
             List<SqlParameter> parameterList2 = new List<SqlParameter>();
             parameterList2.Add(new SqlParameter("@P0", districtId));
-            SqlParameter[] parameters2 = parameterList2.ToArray(); 
+            SqlParameter[] parameters2 = parameterList2.ToArray();
             List<SMSPatientVO> patients = db.Database.SqlQuery<SMSPatientVO>(sql, parameters2).ToList();
-            
+
             List<List<HTDT_ThongDiepTruyenThong>> smss = new List<List<HTDT_ThongDiepTruyenThong>>();
 
             DateTime ClockInfoFromSystem = DateTime.Now;
             int day1 = (int)ClockInfoFromSystem.DayOfWeek;
 
-            for (int i = 1; i <= 26;i++ )
+            for (int i = 1; i <= 26; i++)
             {
                 string sql3 = "SELECT * FROM dbo.HTDT_ThongDiepTruyenThong sms WHERE sms.T" + i + " > 0 ";
                 List<HTDT_ThongDiepTruyenThong> sms = db.Database.SqlQuery<HTDT_ThongDiepTruyenThong>(sql3).ToList();
@@ -85,10 +85,10 @@ namespace NTP_MVC.Job
                 string ServiceNum = "8100";
                 bool IsSendNow = true;
                 string Telco = "viettel";
-                for (int i = 0; i < patients.Count;i++ )
+                for (int i = 0; i < patients.Count; i++)
                 {
                     p = patients[i];
-                   
+
                     string Phone = p.Sodienthoai;
                     if (!Phone.StartsWith("0"))
                     {
@@ -96,59 +96,60 @@ namespace NTP_MVC.Job
                     }
                     else
                     {
-                        Phone = "84" + Phone.Substring(1, Phone.Length-1);
-                    }                   
-                    
+                        Phone = "84" + Phone.Substring(1, Phone.Length - 1);
+                    }
+
                     List<HTDT_ThongDiepTruyenThong> psms = smss.ElementAt((int)p.Tuan - 1);
                     int lpsms = psms.Count();
-                    
-                    bool smsUT = false; int smsUTid = -1; bool smsXN = false;int smsXNid = -1;
-                    string Message = "";short LoaiTinNhan = 0;
-                    for (int cp = 0; cp < lpsms;cp++ )
+
+                    bool smsUT = false; int smsUTid = -1; bool smsXN = false; int smsXNid = -1;
+                    string Message = ""; short LoaiTinNhan = 0;
+                    for (int cp = 0; cp < lpsms; cp++)
                     {
                         if (psms.ElementAt(cp).LoaiTinNhan == 2)
                         {
-                            smsUT = true;smsUTid = cp;
+                            smsUT = true; smsUTid = cp;
                         }
                         if (psms.ElementAt(cp).LoaiTinNhan == 3)
                         {
-                            smsXN = true;smsXNid=cp;
+                            smsXN = true; smsXNid = cp;
                         }
                     }
-                    if (p.ID_PhanLoaiBenh == 3 || p.ID_PhanLoaiBenh == 4) {
+                    if (p.ID_PhanLoaiBenh == 3 || p.ID_PhanLoaiBenh == 4)
+                    {
                         if (smsUT && day1 == 1)
                         {
                             Message = psms.ElementAt(smsUTid).NoiDung;
                         }
-                        else if (day1 > 1 && day1 <6)
+                        else if (day1 > 1 && day1 < 6)
                         {
                             if (day1 - 1 >= smsUTid)
                             {
                                 if (day1 < lpsms && psms.ElementAt(day1).LoaiBenhNhan == 2)
                                 {
-                                    Message = psms.ElementAt(day1).NoiDung;LoaiTinNhan=2;
+                                    Message = psms.ElementAt(day1).NoiDung; LoaiTinNhan = 2;
                                 }
                             }
-                            else if (day1 - 1 < lpsms && psms.ElementAt(day1-1).LoaiBenhNhan == 2)
+                            else if (day1 - 1 < lpsms && psms.ElementAt(day1 - 1).LoaiBenhNhan == 2)
                             {
-                                Message = psms.ElementAt(day1 - 1).NoiDung;LoaiTinNhan=psms.ElementAt(day1-1).LoaiTinNhan;
+                                Message = psms.ElementAt(day1 - 1).NoiDung; LoaiTinNhan = psms.ElementAt(day1 - 1).LoaiTinNhan;
                             }
-                            
+
                         }
                     }
                     else
                     {
                         if (smsXN && day1 == 1 && (p.Tuan == 7 || p.Tuan == 15 || p.Tuan == 23 || p.Tuan == 8 || p.Tuan == 16 || p.Tuan == 24))
                         {
-                            Message = psms.ElementAt(smsXNid).NoiDung;LoaiTinNhan=3;
+                            Message = psms.ElementAt(smsXNid).NoiDung; LoaiTinNhan = 3;
                         }
                         else if (smsXN && day1 == 2 && (p.Tuan == 8 || p.Tuan == 16 || p.Tuan == 24))
                         {
-                            Message = psms.ElementAt(smsXNid).NoiDung;LoaiTinNhan=3;
-                        } 
+                            Message = psms.ElementAt(smsXNid).NoiDung; LoaiTinNhan = 3;
+                        }
                         else if (smsUT && day1 == 1)
                         {
-                            Message = psms.ElementAt(smsUTid).NoiDung;LoaiTinNhan=2;
+                            Message = psms.ElementAt(smsUTid).NoiDung; LoaiTinNhan = 2;
                         }
                         else if (day1 > 1 && day1 < 6)
                         {
@@ -156,23 +157,24 @@ namespace NTP_MVC.Job
                             {
                                 if (day1 < lpsms)
                                 {
-                                    Message = psms.ElementAt(day1).NoiDung;LoaiTinNhan=psms.ElementAt(day1).LoaiTinNhan;
+                                    Message = psms.ElementAt(day1).NoiDung; LoaiTinNhan = psms.ElementAt(day1).LoaiTinNhan;
                                 }
                             }
                             else if (day1 - 1 < lpsms)
                             {
-                                Message = psms.ElementAt(day1 - 1).NoiDung;LoaiTinNhan=psms.ElementAt(day1-1).LoaiTinNhan;
+                                Message = psms.ElementAt(day1 - 1).NoiDung; LoaiTinNhan = psms.ElementAt(day1 - 1).LoaiTinNhan;
                             }
 
                         }
                     }
-                    
-                    if (Message.Length > 0) {
+
+                    if (Message.Length > 0)
+                    {
 
                         string Signature = GenerateSignature(Message, Phone);
-                       
+
                         string EncryptMessage = Convert.ToBase64String(Encoding.UTF8.GetBytes(Message));
-                        
+
                         int Result = WSInstance.Send(Telco
                                                  , Phone
                                                  , ServiceNum
@@ -187,7 +189,7 @@ namespace NTP_MVC.Job
                         {
                             // Gui thanh cong.
                         }
-                        
+
                         List<SqlParameter> uparameterList = new List<SqlParameter>();
                         String usql = "INSERT INTO dbo.HTDT_BenhNhanNhanTinNhan (ID_BenhNhan,ID_SoDieuTri,Sodienthoai,MA_HUYEN, "
                             + " NgayGui,LoaiTinNhan,TinNhan,Tuan,ID_PhanLoaiBenh)"
@@ -206,8 +208,8 @@ namespace NTP_MVC.Job
                         TongSoTinNhan++;
                     }
 
-      
-                    
+
+
                 }
                 string reportPhone = "84915164626";
                 string reportMessage = "Da gui " + TongSoTinNhan + " Tin nhan";

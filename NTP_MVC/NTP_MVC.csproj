@@ -66,17 +66,17 @@
     <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>..\packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="CrystalDecisions.ReportSource">
+      <HintPath>..\packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>..\packages\CrystalDecisions.Shared.1.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -1385,6 +1385,7 @@
       <DependentUpon>HTDT.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Job\HTDTSMSJob.cs" />
     <Compile Include="Job\HTDTSMSStatisticJob.cs" />
     <Compile Include="Job\HTDTExamReminderJob.cs" />
     <Compile Include="Job\HTDTGeneratePatientDue.cs" />
@@ -2040,6 +2041,7 @@
       <DependentUpon>NTP_DBDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VO\BaoCaoGiamSatVO.cs" />
+    <Compile Include="Models\VO\SMSPatientVO.cs" />
     <Compile Include="Models\VO\SMSStatisticVO.cs" />
     <Compile Include="Models\VO\BenhNhanGSGrid.cs" />
     <Compile Include="Models\VO\BenhNhanGrid.cs" />
