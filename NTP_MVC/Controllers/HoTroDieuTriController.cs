@@ -690,7 +690,6 @@ namespace NTP_MVC.Controllers
 
         }
 
-        
         [WebMethod]
         public string XuatExcelBenhNhanXN()
         {
@@ -833,7 +832,7 @@ namespace NTP_MVC.Controllers
             }
             JavaScriptSerializer TheSerializer = new JavaScriptSerializer();
             return TheSerializer.Serialize(filepath);
-        }
+        }        
 
         [WebMethod]
         public string GetBenhNhanNhanTinNhan()

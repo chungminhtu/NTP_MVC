@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,5 +14,6 @@ namespace NTP_MVC.Models.VO
 
         public int Tuan { get; set; }
         public int ID_PhanLoaiBenh { get; set; }
+
     }
 }

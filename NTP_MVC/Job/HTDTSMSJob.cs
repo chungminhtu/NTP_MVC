@@ -47,6 +47,7 @@ namespace NTP_MVC.Job
 
         public void DoReminder(string provinceId, string districtId)
         {
+
             string sql = "select distinct data.ID_BenhNhan,data.Tuan,data.ID_SoDieuTri, data.Sodienthoai, data.ID_PhanLoaiBenh, data.MA_HUYEN from "
                  + " (select (DATEDIFF(day,sdt.NgayDT,getdate())/7 + 1) as Tuan, bn.ID_BenhNhan,sdt.NgayDT,sdt.ID_PhacdoDT, "
                  + " sdt.ID_SoDieuTri,bn.Sodienthoai,sdt.ID_PhanLoaiBenh,bn.MA_HUYEN "
@@ -57,7 +58,7 @@ namespace NTP_MVC.Job
                  + " and DATEDIFF(day,sdt.NgayDT,getdate()) <= 182) data "
                  + " where Tuan <= 26 "
                  + " order by Tuan asc ";
-
+            
             List<SqlParameter> parameterList2 = new List<SqlParameter>();
             parameterList2.Add(new SqlParameter("@P0", districtId));
             SqlParameter[] parameters2 = parameterList2.ToArray();
@@ -170,7 +171,6 @@ namespace NTP_MVC.Job
 
                     if (Message.Length > 0)
                     {
-
                         string Signature = GenerateSignature(Message, Phone);
 
                         string EncryptMessage = Convert.ToBase64String(Encoding.UTF8.GetBytes(Message));
