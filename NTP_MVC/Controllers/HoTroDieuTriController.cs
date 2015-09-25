@@ -2288,7 +2288,7 @@ namespace NTP_MVC.Controllers
             {
                 input = input.Substring(5);
             }
-            input = "{tor: \"4\", provinceId: 45, districtId: 4501, communeId: 450109, pageSize: 10,skip:0, toDate: \"2015-09-25 09:00:00\", statusId: 0, fromDate: \"2010-01-01 00:00:00\"}";
+            
             JObject req = JObject.Parse(input);
             JObject result = new JObject();
             short tor = (short)req["tor"];
