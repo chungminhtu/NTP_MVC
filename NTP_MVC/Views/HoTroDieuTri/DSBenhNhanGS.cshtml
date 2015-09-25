@@ -562,7 +562,7 @@
             $("#textPatientName").val(model.HoTen);
 
             if (model.SoLanGiamSat > 0) {
-                var paramdetail = {ID_BenhNhan: model.ID_BenhNhan};
+                var paramdetail = {benhNhanId: model.ID_BenhNhan};
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("GetDsGiamSatCuaBenhNhan", "HoTroDieuTri")",

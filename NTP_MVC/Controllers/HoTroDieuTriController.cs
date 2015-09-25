@@ -1936,7 +1936,7 @@ namespace NTP_MVC.Controllers
 
         private List<BaoCaoGiamSatVO> GetDsGiamSatCuaBenhNhan(JObject req)
         {
-            long benhNhanId = (long)req["ID_BenhNhan"];
+            long benhNhanId = (long)req["benhNhanId"];
 
             string sql = "SELECT ID, ID_BenhNhan, ID_SoDieuTri, Diachi, Tuoi, LieuLuong_E, LieuLuong_H, LieuLuong_RH,LieuLuong_RHZ, LuongCap_E, "
                 + " LuongCap_H, LuongCap_RH, LuongCap_RHZ, ConLai_E, ConLai_H, ConLai_RH, ConLai_RHZ, Sodienthoai, NgayGiamSat, NgayCapThuocGanNhat, "
@@ -2283,10 +2283,12 @@ namespace NTP_MVC.Controllers
             {
                 input = reader.ReadToEnd();
             }
+            
             if (input.Length > 5)
             {
                 input = input.Substring(5);
             }
+            
             JObject req = JObject.Parse(input);
             JObject result = new JObject();
             short tor = (short)req["tor"];
