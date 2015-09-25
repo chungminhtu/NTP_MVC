@@ -1936,7 +1936,7 @@ namespace NTP_MVC.Controllers
 
         private List<BaoCaoGiamSatVO> GetDsGiamSatCuaBenhNhan(JObject req)
         {
-            long benhNhanId = (long)req["benhNhanId"];
+            long benhNhanId = (long)req["ID_BenhNhan"];
 
             string sql = "SELECT ID, ID_BenhNhan, ID_SoDieuTri, Diachi, Tuoi, LieuLuong_E, LieuLuong_H, LieuLuong_RH,LieuLuong_RHZ, LuongCap_E, "
                 + " LuongCap_H, LuongCap_RH, LuongCap_RHZ, ConLai_E, ConLai_H, ConLai_RH, ConLai_RHZ, Sodienthoai, NgayGiamSat, NgayCapThuocGanNhat, "
@@ -2288,7 +2288,7 @@ namespace NTP_MVC.Controllers
             {
                 input = input.Substring(5);
             }
-            
+            input = "{tor: \"4\", provinceId: 45, districtId: 4501, communeId: 450109, pageSize: 10,skip:0, toDate: \"2015-09-25 09:00:00\", statusId: 0, fromDate: \"2010-01-01 00:00:00\"}";
             JObject req = JObject.Parse(input);
             JObject result = new JObject();
             short tor = (short)req["tor"];
@@ -2704,7 +2704,7 @@ namespace NTP_MVC.Controllers
         private JObject mbgetPatientSupervisionDetail(JObject req) {		
 		    var phacdos = db.DM_PhacDoDT.ToList();
             var loaibenhs = db.DM_PhanLoaiBenh.ToList();
-            long BenhNhanID = (long)req["benhNhanId"];
+            long BenhNhanID = (long)req["ID_BenhNhan"];
             long SoDieuTriID = (long)req["soDieuTriId"];
             
             SO_BenhNhan benhnhan = db.SO_BenhNhan.Where(p => p.ID_BenhNhan==BenhNhanID).SingleOrDefault();
